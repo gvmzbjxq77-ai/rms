@@ -1,7 +1,7 @@
 """Sweep runner: detect, refine, eliminate, in resumable stages.
 
     python -m skywatch.sweep.run detect    [--kind blind|control|seeded] [--regions ID ...]
-    python -m skywatch.sweep.run refine    [--top 20]
+    python -m skywatch.sweep.run refine    [--top 20]   (optional: eliminate refines what it keeps)
     python -m skywatch.sweep.run sensors   [--kind blind]     thermal, radar, night lights
     python -m skywatch.sweep.run eliminate
 
@@ -219,19 +219,58 @@ def _eliminate_job(region: Region, force: bool) -> tuple[str, int]:
     return region.id, eliminate_region(region, force)
 
 
-def eliminate_region(region: Region, force: bool = False, confirm: bool = True) -> int:
-    """Run sensor confirmation and every elimination check; save final candidates."""
-    from ..eliminate.engine import run_all
+#: Cheap, cached checks run first; refinement and the slow checks only
+#: follow for candidates these do not already explain.
+CHEAP_CHECKS = ("military_or_rocket_range", "landcover", "osm_infrastructure",
+                "wikidata_nearby", "aviation_accident", "meteorite_record")
+
+
+def eliminate_region(region: Region, force: bool = False, confirm: bool = True,
+                     top: int = 16, workers: int = 3) -> int:
+    """Checks, onset refinement, sensor confirmation and tiers for one region.
+
+    Takes the top ``top`` raw candidates (half of them event-window finds for
+    dated regions) plus the strongest undated finds from the other sensors.
+    Cheap map and catalogue checks run first; candidates they explain stop
+    there. The rest get their onset refined scene by scene, then every check
+    and the Landsat and radar confirmations.
+    """
+    from ..detect.optical_change import refine_onset
+    from ..eliminate.engine import assign_tier, confirm_sensors, run_checks
 
     out = CAND_DIR / "final" / f"{region.id}.jsonl"
     if out.exists() and not force:
         return len(load_candidates(out))
-    candidates = load_candidates(CAND_DIR / "refined" / f"{region.id}.jsonl")
-    # Undated finds from the other sensors: the strongest few of each kind.
+    raw = load_candidates(CAND_DIR / "raw" / f"{region.id}.jsonl")
+    events = [c for c in raw if c.detector == "optical_event"][:max(top // 2, 6)]
+    yearly = [c for c in raw if c.detector != "optical_event"]
+    candidates = events + yearly[:max(top - len(events), 0)]
     extra = load_candidates(CAND_DIR / "sensors" / f"{region.id}.jsonl")
     for detector, keep in (("landsat_thermal", 4), ("sar_bright", 4), ("viirs_light", 3)):
         candidates += [c for c in extra if c.detector == detector][:keep]
-    done = run_all(candidates, workers=4, confirm=confirm, progress=False)
+
+    def one(candidate: Candidate) -> Candidate:
+        try:
+            run_checks(candidate, only=list(CHEAP_CHECKS), stop_when_explained=True)
+            if candidate.tier == "T0":
+                candidate.notes += " stopped after the cheap checks"
+                return candidate
+            if candidate.detector in ("optical_change", "optical_event"):
+                try:
+                    refine_onset(candidate)
+                except Exception as exc:
+                    candidate.measurements["onset_note"] = f"refine failed: {type(exc).__name__}"
+            run_checks(candidate, stop_when_explained=True)
+            if confirm and candidate.tier != "T0":
+                confirm_sensors(candidate)
+                candidate.tier, candidate.tier_reason = assign_tier(candidate)
+        except Exception as exc:
+            candidate.notes += f" engine failure: {type(exc).__name__}"
+            candidate.tier, candidate.tier_reason = assign_tier(candidate)
+        return candidate
+
+    with ThreadPoolExecutor(workers) as pool:
+        done = list(pool.map(one, candidates))
     save_candidates(out, done)
     return len(done)
 
@@ -269,7 +308,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     else:
         # One process only: the Wikidata client paces its requests per process.
         for region in chosen:
-            if (CAND_DIR / "refined" / f"{region.id}.jsonl").exists():
+            if (CAND_DIR / "raw" / f"{region.id}.jsonl").exists():
                 print(*_eliminate_job(region, args.force), flush=True)
 
 

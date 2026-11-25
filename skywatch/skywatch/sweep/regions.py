@@ -183,9 +183,16 @@ def evaluate_expectation(region: Region, candidates: Sequence[Candidate]) -> dic
     if len(candidates) < expect.get("min_candidates", 0):
         ok = False
         result["reasons"].append(f"found {len(candidates)}, expected at least {expect['min_candidates']}")
-    if expect.get("max_candidates") is not None and len(candidates) > expect["max_candidates"]:
-        ok = False
-        result["reasons"].append(f"found {len(candidates)}, expected at most {expect['max_candidates']}")
+    if expect.get("max_candidates") is not None:
+        # Once the checks have run, what matters is how many detections
+        # survive them; the raw detection count is reported alongside.
+        checked = [c for c in candidates if c.checks]
+        counted = [c for c in checked if c.tier != "T0"] if checked else list(candidates)
+        result["unexplained"] = len(counted)
+        if len(counted) > expect["max_candidates"]:
+            ok = False
+            result["reasons"].append(f"{len(counted)} unexplained of {len(candidates)} reviewed, "
+                                     f"expected at most {expect['max_candidates']}")
     relevant = list(candidates)
     if expect.get("detector"):
         relevant = [c for c in relevant if c.detector == expect["detector"]]

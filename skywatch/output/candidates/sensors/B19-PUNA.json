@@ -1,0 +1,11 @@
+{
+ "region": "B19-PUNA",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 81.6
+ },
+ "lights": {
+  "candidates": 1,
+  "seconds": 2.3
+ }
+}

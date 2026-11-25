@@ -1,0 +1,11 @@
+{
+ "region": "B15-BETPAKDALA",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 80.0
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 2.9
+ }
+}

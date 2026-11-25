@@ -1,0 +1,11 @@
+{
+ "region": "B14-USTYURT",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 71.9
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 2.1
+ }
+}

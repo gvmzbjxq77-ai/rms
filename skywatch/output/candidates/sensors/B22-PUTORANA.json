@@ -1,0 +1,11 @@
+{
+ "region": "B22-PUTORANA",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 55.6
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 8.7
+ }
+}

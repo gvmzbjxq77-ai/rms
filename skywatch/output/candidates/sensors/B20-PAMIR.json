@@ -1,0 +1,11 @@
+{
+ "region": "B20-PAMIR",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 77.0
+ },
+ "lights": {
+  "candidates": 1,
+  "seconds": 3.4
+ }
+}

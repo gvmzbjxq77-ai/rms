@@ -1,0 +1,11 @@
+{
+ "region": "B17-KALAHARI",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 72.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.4
+ }
+}

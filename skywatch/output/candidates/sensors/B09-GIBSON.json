@@ -1,0 +1,11 @@
+{
+ "region": "B09-GIBSON",
+ "thermal": {
+  "candidates": 37,
+  "seconds": 114.1
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.0
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "region": "B23-BARRENLANDS",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 75.6
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 8.0
+ }
+}

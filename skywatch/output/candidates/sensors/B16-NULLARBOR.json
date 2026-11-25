@@ -1,0 +1,11 @@
+{
+ "region": "B16-NULLARBOR",
+ "thermal": {
+  "candidates": 14,
+  "seconds": 107.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.7
+ }
+}

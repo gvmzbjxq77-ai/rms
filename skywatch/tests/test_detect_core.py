@@ -103,3 +103,11 @@ def test_single_year_transient_and_nan_tolerance():
     assert int(stats["n_valid"][0, 0]) == 9
     empty = oc.step_statistics(np.full((6, 4, 8, 8), np.nan, "float32"))
     assert float(empty["step_z"].max()) == 0.0
+
+
+def test_earliest_significant_step_dates_the_event():
+    stack = _stack()
+    stack[3:, 2, 10:20, 10:20] -= 0.3          # burn index drops in year 3 and stays down
+    stack[4:, 0, 10:20, 10:20] += 0.12         # brightness rises a year later (bigger z)
+    stats = oc.step_statistics(stack)
+    assert (stats["step_k"][10:20, 10:20] == 3).mean() > 0.95

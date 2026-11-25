@@ -36,30 +36,41 @@ def _per_scene_support(candidate: Candidate) -> CheckResult:
         feature = max(steps, key=lambda key: steps[key])
     expected = float(m.get({"brightness": "d_brightness", "ndvi": "d_ndvi", "nbr": "d_nbr"}[feature], 0.0))
     dates = [datetime.fromisoformat(d).date() for d in series["dates"]]
-    contrast = np.array(series["inside"][feature]) - np.array(series["ring"][feature])
+    inside = np.array(series["inside"][feature])
+    ring = np.array(series["ring"][feature])
     kind = m.get("kind", "step")
     break_year = int(m.get("break_year", datetime.fromisoformat(candidate.present_from).year))
     composite_dates = (m.get("composite_dates") or {}).get(str(break_year), [])
     first_after = min(composite_dates) if composite_dates else candidate.present_from
     before_cut = datetime.fromisoformat(candidate.absent_until).date() if candidate.absent_until else None
-    before = contrast[[before_cut is not None and d <= before_cut for d in dates]]
-    if before.size < 2:
+    is_before = np.array([before_cut is not None and d <= before_cut for d in dates])
+    if is_before.sum() < 2:
         return _result(name, "not_run", "too few clear scenes before the change to form a baseline")
-    base = float(np.median(before))
-    noise = max(float(np.median(np.abs(before - base)) * 1.4826), 0.25 * abs(expected), 1e-4)
     after_start = datetime.fromisoformat(first_after).date()
     if kind == "step":
-        window = [d >= after_start for d in dates]
+        window = np.array([d >= after_start for d in dates])
     else:
-        window = [abs((d - after_start).days) <= 100 for d in dates]
-    later = contrast[window]
-    if later.size < 2:
+        window = np.array([abs((d - after_start).days) <= 100 for d in dates])
+    if window.sum() < 2:
         return _result(name, "inconclusive",
                        "fewer than two clear scenes in the period when the change should be visible",
-                       n_scenes=int(later.size))
-    shifted = (np.sign(expected) * (later - base)) >= max(2.0 * noise, 0.4 * abs(expected))
-    share = float(shifted.mean())
-    evidence = dict(feature=feature, expected_shift=expected, baseline=base, noise=noise,
+                       n_scenes=int(window.sum()))
+    # Test the inside-minus-ring contrast and the absolute inside value, and
+    # keep whichever shows the change best: a change wider than the footprint
+    # cancels out of the contrast but not out of the absolute value.
+    best: tuple[float, str, float, float, np.ndarray] | None = None
+    for mode, values in (("contrast", inside - ring), ("absolute", inside)):
+        before = values[is_before]
+        base = float(np.median(before))
+        noise = max(float(np.median(np.abs(before - base)) * 1.4826), 0.25 * abs(expected), 1e-4)
+        later = values[window]
+        shifted = (np.sign(expected) * (later - base)) >= max(2.0 * noise, 0.4 * abs(expected))
+        if best is None or shifted.mean() > best[0]:
+            best = (float(shifted.mean()), mode, base, noise, shifted)
+    assert best is not None
+    share, mode, base, noise, shifted = best
+    later = inside[window]
+    evidence = dict(feature=feature, mode=mode, expected_shift=expected, baseline=base, noise=noise,
                     scenes_checked=int(later.size), scenes_showing_change=int(shifted.sum()),
                     share=share)
     if kind == "step":

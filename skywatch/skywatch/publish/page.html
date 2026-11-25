@@ -1,4 +1,5 @@
 <title>SKYWATCH Groundtruth</title>
+<meta charset="utf-8">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
@@ -180,7 +181,7 @@ const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls)
 const fmt = (n) => Number(n).toLocaleString("en-US");
 const TIERS = { T4: "Unexplained, dated, multi-sensor, with a matching witness report", T3: "Unexplained, dated, multi-sensor, every check ran", T2: "Seen by two sensors, but a check is missing or inconclusive", T1: "Unexplained in one sensor only", T0: "Explained" };
 const STATUS = { explains: "explains it", does_not_explain: "does not explain", inconclusive: "inconclusive", not_run: "not run" };
-const NAMES = { osm_infrastructure: "Mapped infrastructure", landcover: "Land cover", wikidata_nearby: "Known sites nearby", military_or_rocket_range: "Test or launch range", aviation_accident: "Aviation accident records", meteorite_record: "Meteorite records", fire_history: "Fire history", burn_spectral: "Burn-scar spectrum", lightning: "Lightning", natural_process: "Natural processes", artefact_screen: "Sensor artefacts", report_match: "Witness reports" };
+const NAMES = { osm_infrastructure: "Mapped infrastructure", landcover: "Land cover", wikidata_nearby: "Known sites nearby", military_or_rocket_range: "Test or launch range", aviation_accident: "Aviation accident records", meteorite_record: "Meteorite records", fire_history: "Fire history", burn_spectral: "Burn-scar spectrum", lightning: "Lightning", natural_process: "Natural processes", artefact_screen: "Sensor artefacts", report_match: "Witness reports", witness_reports: "Witness reports", human_context: "Human activity nearby", night_lights: "Night lights" };
 let regionFilter = null, tierFilter = "open", shown = 0, CANDS = [];
 
 function head() {

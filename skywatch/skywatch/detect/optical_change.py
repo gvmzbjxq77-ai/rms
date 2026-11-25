@@ -175,7 +175,11 @@ def _step_block(stack: np.ndarray, floors: Sequence[float]) -> dict[str, np.ndar
                 np.maximum(best_trans[k], np.where(good_t, np.clip(z_t, 0, 250), 0).astype("float16"),
                            out=best_trans[k])
         del ok, csum, csum2, cnum
-    step_k = best_step.argmax(axis=0)
+    # The EARLIEST significant step dates the event; later steps are its
+    # aftermath (ash blowing away, regrowth, a second construction phase).
+    significant = best_step.astype("float32") >= Z_STEP
+    first_k = significant.argmax(axis=0)
+    step_k = np.where(significant.any(axis=0), first_k, best_step.argmax(axis=0))
     step_z = np.take_along_axis(best_step, step_k[None], 0)[0].astype("float32")
     trans_k = best_trans.argmax(axis=0)
     trans_z = np.take_along_axis(best_trans, trans_k[None], 0)[0].astype("float32")
@@ -232,7 +236,7 @@ def _blobs(mask: np.ndarray, key: np.ndarray, res: float, min_area_m2: float,
 
 
 def detect_changes(region: Region, years: Sequence[int] | None = None, res: float = 20.0,
-                   min_area_m2: float = 1600.0, max_area_m2: float = 6.0e7,
+                   min_area_m2: float = 1600.0, max_area_m2: float = 3.0e8,
                    max_candidates: int = 200,
                    diagnostics: dict[str, Any] | None = None) -> list[Candidate]:
     """Find abrupt surface changes in ``region`` and return ranked candidates.
@@ -429,7 +433,8 @@ def detect_event_change(region: Region, event_date: str, window_days: int = 150,
                           "composite_dates": {"before": before["dates"], "after": after["dates"]},
                           "scene_ids_before": before["scene_ids"],
                           "scene_ids_after": after["scene_ids"], "res_m": res}))
-    candidates.sort(key=lambda c: -c.score * (1.0 + 0.5 * np.log10(max(c.area_m2, min_area_m2) / min_area_m2)))
+    candidates.sort(key=lambda c: -c.score * (1.0 + 0.5 * np.log10(max(c.area_m2, min_area_m2) / min_area_m2))
+                    / (1.0 + c.measurements["crowding"] / 0.02))
     if len(candidates) > max_candidates:
         log.warning("%s: %d event candidates, %d dropped by the cap", region.id,
                     len(candidates), len(candidates) - max_candidates)
@@ -499,7 +504,8 @@ def time_series(lat: float, lon: float, footprint_radius_m: float, start: str, e
 def refine_onset(candidate: Candidate, pad_days: int = 400, max_scenes: int = 32) -> Candidate:
     """Tighten the onset window using individual scenes; store the series.
 
-    The inside-minus-ring contrast of the most changed feature is classified
+    The inside-minus-ring contrast of the most changed feature (or, when the
+    surroundings changed too, the absolute inside value) is classified
     scene by scene as "before-like" or "after-like". ``absent_until`` becomes
     the last scene of the unbroken before-like run and ``present_from`` the
     first scene after which every scene is after-like. When the series does
@@ -530,20 +536,33 @@ def refine_onset(candidate: Candidate, pad_days: int = 400, max_scenes: int = 32
                "nbr": abs(m.get("d_nbr", 0)) / MIN_STEP["nbr"]}
     main = max(weights, key=lambda key: weights[key])
     dates = [datetime.fromisoformat(d).date() for d in series["dates"]]
-    contrast = np.array(series["inside"][main]) - np.array(series["ring"][main])
-    early = contrast[[d <= before0 for d in dates]]
-    late = contrast[[d >= after0 for d in dates]]
-    if early.size < 2 or late.size < 2:
+    inside = np.array(series["inside"][main])
+    is_early = np.array([d <= before0 for d in dates])
+    is_late = np.array([d >= after0 for d in dates])
+    if is_early.sum() < 2 or is_late.sum() < 2:
         m["onset_note"] = "too few scenes on one side of the window"
         return candidate
-    level0, level1 = float(np.median(early)), float(np.median(late))
-    spread = float(np.median(np.abs(early - level0)) + np.median(np.abs(late - level1))) * 1.4826
+    # Inside-minus-ring contrast cancels weather and season, but fails when
+    # the ring changed too (a change wider than the footprint). Then the
+    # absolute inside value is used instead.
+    chosen = None
+    for mode, values in (("contrast", inside - np.array(series["ring"][main])), ("absolute", inside)):
+        level0, level1 = float(np.median(values[is_early])), float(np.median(values[is_late]))
+        spread = float(np.median(np.abs(values[is_early] - level0))
+                       + np.median(np.abs(values[is_late] - level1))) * 1.4826
+        if abs(level1 - level0) >= max(3 * spread, 1e-4):
+            chosen = (mode, values, level0, level1, spread)
+            break
     m["series_feature"] = main
+    if chosen is None:
+        m["series_shift"] = level1 - level0
+        m["series_noise"] = spread
+        m["onset_note"] = "per-scene values do not separate before from after"
+        return candidate
+    mode, contrast, level0, level1, spread = chosen
+    m["series_mode"] = mode
     m["series_shift"] = level1 - level0
     m["series_noise"] = spread
-    if abs(level1 - level0) < max(3 * spread, 1e-4):
-        m["onset_note"] = "per-scene contrast does not separate before from after"
-        return candidate
     after_like = np.abs(contrast - level1) < np.abs(contrast - level0)
     last_before = None
     for i, flag in enumerate(after_like):

@@ -1,0 +1,11 @@
+{
+ "region": "B13-MAPIMI",
+ "thermal": {
+  "candidates": 43,
+  "seconds": 119.8
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.2
+ }
+}

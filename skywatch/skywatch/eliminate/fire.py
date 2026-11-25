@@ -63,6 +63,8 @@ _MODIS_BA_START = date(2000, 11, 1)
 _S2_START = date(2015, 7, 1)
 #: Onset windows are widened by this many days on both sides.
 PAD_DAYS = 15
+#: Lookback before the onset window for candidates dated from yearly composites.
+YEARLY_LOOKBACK_DAYS = 400
 _MAX_RADIUS_M = 5000.0
 _S2_SPAN_DAYS = 60
 
@@ -784,7 +786,14 @@ def _history(candidate: Candidate, spectral: dict[str, Any], radius_m: float) ->
                       f"Burned-area record {_S2_START} to {today} within {radius_m:.0f} m: {context}. "
                       + MODIS_LIMIT + ".", radius_m=radius_m, detections=found[:20],
                       n_detections=len(found), burned_area=area)
-    first = max(window[0] - timedelta(days=PAD_DAYS), _MODIS_BA_START)
+    # A burn's brightness signature keeps developing for about a year, so a
+    # change dated from yearly composites may be the aftermath of a fire that
+    # burned before the last "unchanged" composite: look back a year for those.
+    lookback = PAD_DAYS
+    if candidate.measurements.get("composite_dates") and candidate.measurements.get("kind") in (
+            "step", "transient", "latest_year"):
+        lookback = YEARLY_LOOKBACK_DAYS
+    first = max(window[0] - timedelta(days=lookback), _MODIS_BA_START)
     last = min(window[1] + timedelta(days=PAD_DAYS), today)
     if first > last:
         return result("not_run", f"onset window {window[0]} to {window[1]} lies outside the MODIS "

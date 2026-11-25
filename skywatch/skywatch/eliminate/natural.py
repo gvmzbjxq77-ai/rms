@@ -223,8 +223,37 @@ def _fluvial(x: _Context) -> CheckResult:
     return _result(name, "does_not_explain", "no significant water around the footprint", **evidence)
 
 
+def _volcanic(x: _Context) -> CheckResult:
+    """Fresh lava, ash or fumarole activity near a catalogued volcano."""
+    name = "natural:volcanic"
+    wikidata = next((c for c in x.c.checks if c.check == "wikidata_nearby"), None)
+    if wikidata is None or wikidata.status == "not_run":
+        return _result(name, "not_run", "no catalogue of volcanoes was consulted")
+    volcanoes = [item for item in (wikidata.evidence.get("nearest") or [])
+                 if item.get("category") == "volcano_or_geothermal"]
+    volcanoes += [item for item in (wikidata.evidence.get("explaining") or [])
+                  if item.get("category") == "volcano_or_geothermal"]
+    if not volcanoes:
+        return _result(name, "does_not_explain", "no catalogued volcano within 10 km")
+    nearest = min(volcanoes, key=lambda item: item.get("distance_km", 99.0))
+    distance = float(nearest.get("distance_km", 99.0))
+    lc = x.landcover()
+    bare = (lc or {}).get("bare", 0.0)
+    d_bri = x.d("d_brightness")
+    evidence = dict(volcano=nearest.get("label"), distance_km=distance, bare_fraction=bare, d_brightness=d_bri)
+    if distance <= 15.0 and bare >= 0.6 and d_bri <= -0.03:
+        return _result(name, "explains",
+                       f"a darkening on bare ground {distance:.1f} km from {nearest.get('label')}: "
+                       "fresh lava or scoria", **evidence)
+    if distance <= 15.0:
+        return _result(name, "inconclusive",
+                       f"{nearest.get('label')} is {distance:.1f} km away: volcanic activity "
+                       "(lava, ash, fumaroles, salt crusts) is likely", **evidence)
+    return _result(name, "does_not_explain", f"nearest volcano {distance:.1f} km away", **evidence)
+
+
 _SUBTESTS: tuple[Callable[[_Context], CheckResult], ...] = (
-    _agriculture, _seasonal, _water, _snow, _mass_movement, _sand, _periglacial, _fluvial)
+    _agriculture, _seasonal, _water, _snow, _mass_movement, _sand, _periglacial, _fluvial, _volcanic)
 
 
 def check_natural(candidate: Candidate) -> list[CheckResult]:

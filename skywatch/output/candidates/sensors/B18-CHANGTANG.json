@@ -1,0 +1,11 @@
+{
+ "region": "B18-CHANGTANG",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 82.2
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 2.1
+ }
+}

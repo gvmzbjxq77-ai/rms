@@ -1,0 +1,11 @@
+{
+ "region": "B10-SIMPSON",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 101.0
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.2
+ }
+}

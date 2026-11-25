@@ -1,0 +1,11 @@
+{
+ "region": "B21-TAYMYR",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 60.1
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 8.0
+ }
+}

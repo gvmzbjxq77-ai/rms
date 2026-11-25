@@ -1,0 +1,11 @@
+{
+ "region": "B12-NAMIB",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 74.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 0.7
+ }
+}

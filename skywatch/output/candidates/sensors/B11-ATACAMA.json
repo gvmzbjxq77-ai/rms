@@ -1,0 +1,11 @@
+{
+ "region": "B11-ATACAMA",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 66.4
+ },
+ "lights": {
+  "candidates": 2,
+  "seconds": 2.3
+ }
+}
