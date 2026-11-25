@@ -1,0 +1,14 @@
+[project]
+name = "skywatch"
+version = "0.1.0"
+description = "Open, falsifiable search for unexplained surface anomalies in public satellite imagery"
+requires-python = ">=3.12"
+dependencies = ["numpy", "scipy", "scikit-image", "rasterio", "pystac-client", "planetary-computer",
+  "shapely", "pyproj", "requests", "pandas", "pillow", "matplotlib", "opentimestamps-client", "tqdm"]
+
+[tool.setuptools.packages.find]
+include = ["skywatch*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["network: needs live data hosts"]
