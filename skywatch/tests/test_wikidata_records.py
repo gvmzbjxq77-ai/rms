@@ -87,8 +87,8 @@ def test_bindings_are_grouped_per_item_with_best_date_and_priority() -> None:
         out.update({k: {"value": v} for k, v in extra.items()})
         return out
 
-    rows = [row("Q1", "1.5", "Q10", "village", inc="1900-01-01T00:00:00Z", incPrec="9"),
-            row("Q1", "1.2", "Q11", "gold mine", pit="2021-05-04T00:00:00Z", pitPrec="11"),
+    rows = [row("Q1", "1.5", "Q10", "village", inc="1900-01-01T00:00:00Z", incPrec="9", links="2", ceb="u1", sv="u2"),
+            row("Q1", "1.2", "Q11", "gold mine", pit="2021-05-04T00:00:00Z", pitPrec="11", links="2", ceb="u1", sv="u2"),
             row("Q2", "0.4", "Q12", "thing nobody maps"),
             {"item": {"value": "not-a-qid"}, "dist": {"value": "0.1"}}]
     items = wikidata._finalise(wikidata._items_from_bindings(rows), {"Q12": ["impact_crater"]})
@@ -99,6 +99,8 @@ def test_bindings_are_grouped_per_item_with_best_date_and_priority() -> None:
     assert mine["categories"] == ["mine_or_quarry", "settlement"]
     assert (mine["date"], mine["date_precision"], mine["date_property"]) == ("2021-05-04", "day", "P585")
     assert (mine["lat"], mine["lon"]) == (-20.25, 10.5)
+    assert (mine["sitelinks"], mine["notable_sitelinks"]) == (2, 0)  # only bot-written Cebuano/Swedish stubs
+    assert items[0]["notable_sitelinks"] is None  # unknown stays unknown
 
 
 def test_date_helpers() -> None:
@@ -126,6 +128,18 @@ def test_site_within_limit_explains_but_settlement_never_does() -> None:
     assert benign.status == "does_not_explain" and benign.evidence["nearest"][0]["label"] == "Town"
     empty = wikidata.evaluate_items(cand, [], 10.0)
     assert empty.status == "does_not_explain" and empty.evidence["n_items"] == 0
+
+
+def test_minor_site_without_any_article_only_explains_at_short_range() -> None:
+    cand = make_candidate(10, 10, area_m2=0.0)  # bbox half-diagonal ~0.16 km is used as the footprint
+    adit = {**item("Q7", "Apex Tunnel", "mine_or_quarry", 1.5), "notable_sitelinks": 0}
+    far = wikidata.evaluate_items(cand, [adit], 10.0)
+    assert far.status == "does_not_explain" and far.evidence["causal_near_misses"][0]["qid"] == "Q7"
+    assert wikidata.evaluate_items(cand, [{**adit, "distance_km": 0.4}], 10.0).status == "explains"
+    assert wikidata.evaluate_items(cand, [{**adit, "notable_sitelinks": 12}], 10.0).status == "explains"
+    # A recorded crash keeps its 2 km limit even without an article: its date does the filtering.
+    crash = {**item("Q9", "Flight 1", "aviation_accident", 1.5, "2022-03-21", "day"), "notable_sitelinks": 0}
+    assert wikidata.evaluate_items(make_candidate(10, 10, "2022-03-10", "2022-04-02"), [crash], 10.0).status == "explains"
 
 
 def test_event_items_need_a_date_inside_the_onset_window() -> None:

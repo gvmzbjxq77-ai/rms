@@ -27,15 +27,16 @@ log = logging.getLogger(__name__)
 
 #: (check name, dotted path of ``fn(candidate) -> list[CheckResult]``, category, mandatory)
 REGISTRY: list[tuple[str, str, str, bool]] = [
-    ("artefact_screen", "skywatch.eliminate.artefacts.check_artefacts", "artefact", True),
+    # Ordered cheapest first, so an early explanation saves the slow reads.
+    ("military_or_rocket_range", "skywatch.eliminate.records.check_ranges", "infrastructure", False),
     ("landcover", "skywatch.eliminate.landcover.check_landcover", "natural", True),
     ("osm_infrastructure", "skywatch.eliminate.osm.check_osm", "infrastructure", True),
     ("wikidata_nearby", "skywatch.eliminate.wikidata.check_wikidata", "infrastructure", True),
-    ("military_or_rocket_range", "skywatch.eliminate.records.check_ranges", "infrastructure", False),
     ("aviation_accident", "skywatch.eliminate.records.check_aviation_accident", "event", False),
     ("meteorite_record", "skywatch.eliminate.records.check_meteorite", "event", False),
-    ("fire_history", "skywatch.eliminate.fire.check_fire", "event", True),
     ("natural_process", "skywatch.eliminate.natural.check_natural", "natural", True),
+    ("artefact_screen", "skywatch.eliminate.artefacts.check_artefacts", "artefact", True),
+    ("fire_history", "skywatch.eliminate.fire.check_fire", "event", True),
 ]
 
 assert {name for name, _, _, mandatory in REGISTRY if mandatory} == set(MANDATORY_CHECKS), \
@@ -52,16 +53,25 @@ def _resolve(target: str | Callable[..., Any]) -> Callable[..., Any]:
 
 
 def run_checks(candidate: Candidate, only: Sequence[str] | None = None,
-               registry: Sequence[Entry] | None = None) -> Candidate:
+               registry: Sequence[Entry] | None = None,
+               stop_when_explained: bool = False) -> Candidate:
     """Run the registered checks on one candidate and set its tier.
 
     A missing module, an exception or an empty return becomes a "not_run"
     result carrying the error type. Results replace earlier results of the
-    same check name. Witness reports are matched afterwards.
+    same check name. Witness reports are matched afterwards. With
+    ``stop_when_explained`` the remaining checks are recorded as "not_run"
+    (reason: already explained) once one check explains the candidate.
     """
     results: dict[str, CheckResult] = {c.check: c for c in candidate.checks}
+    explained_by: str | None = None
     for name, target, category, _mandatory in (registry if registry is not None else REGISTRY):
         if only is not None and name not in only:
+            continue
+        if stop_when_explained and explained_by:
+            results[name] = CheckResult(check=name, category=category, status="not_run",  # type: ignore[arg-type]
+                                        detail=f"skipped: already explained by {explained_by}",
+                                        source="engine")
             continue
         try:
             produced = list(_resolve(target)(candidate) or [])
@@ -74,6 +84,8 @@ def run_checks(candidate: Candidate, only: Sequence[str] | None = None,
                                     source="engine")]
         for result in produced:
             results[result.check] = result
+            if result.status == "explains" and explained_by is None:
+                explained_by = result.check
     candidate.checks = list(results.values())
     if only is None:
         try:
@@ -105,13 +117,19 @@ def confirm_sensors(candidate: Candidate) -> Candidate:
 
 
 def run_all(candidates: Sequence[Candidate], workers: int = 3, confirm: bool = True,
-            progress: bool = True) -> list[Candidate]:
-    """Confirm sensors and run all checks for many candidates, order preserved."""
+            progress: bool = True, stop_when_explained: bool = True) -> list[Candidate]:
+    """Run all checks for many candidates, then confirm the unexplained ones.
+
+    Sensor confirmation (slow) is only attempted for candidates that no check
+    explains; the tier is re-derived afterwards. Output order matches input.
+    """
     def one(candidate: Candidate) -> Candidate:
         try:
-            if confirm:
+            run_checks(candidate, stop_when_explained=stop_when_explained)
+            if confirm and candidate.tier != "T0":
                 confirm_sensors(candidate)
-            return run_checks(candidate)
+                candidate.tier, candidate.tier_reason = assign_tier(candidate)
+            return candidate
         except Exception as exc:  # last line of defence: keep the batch alive
             candidate.notes += f" engine failure: {type(exc).__name__}"
             candidate.tier, candidate.tier_reason = assign_tier(candidate)

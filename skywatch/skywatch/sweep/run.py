@@ -172,6 +172,14 @@ def refine_region(region: Region, top: int = 20, force: bool = False) -> int:
     return len(refined)
 
 
+def _refine_job(region: Region, top: int, force: bool) -> tuple[str, int]:
+    return region.id, refine_region(region, top, force)
+
+
+def _eliminate_job(region: Region, force: bool) -> tuple[str, int]:
+    return region.id, eliminate_region(region, force)
+
+
 def eliminate_region(region: Region, force: bool = False, confirm: bool = True) -> int:
     """Run sensor confirmation and every elimination check; save final candidates."""
     from ..eliminate.engine import run_all
@@ -207,13 +215,15 @@ def main(argv: Sequence[str] | None = None) -> None:
                       f"blobs={s.get('n_blobs_total')} kept={s.get('n_candidates_kept')} "
                       f"{s.get('seconds')}s {s.get('error', '')}", flush=True)
     elif args.stage == "refine":
-        for region in chosen:
-            if (CAND_DIR / "raw" / f"{region.id}.jsonl").exists():
-                print(region.id, refine_region(region, args.top, args.force), flush=True)
+        ready = [r for r in chosen if (CAND_DIR / "raw" / f"{r.id}.jsonl").exists()]
+        with ProcessPoolExecutor(args.workers) as pool:
+            for future in as_completed([pool.submit(_refine_job, r, args.top, args.force) for r in ready]):
+                print(*future.result(), flush=True)
     else:
+        # One process only: the Wikidata client paces its requests per process.
         for region in chosen:
             if (CAND_DIR / "refined" / f"{region.id}.jsonl").exists():
-                print(region.id, eliminate_region(region, args.force), flush=True)
+                print(*_eliminate_job(region, args.force), flush=True)
 
 
 if __name__ == "__main__":

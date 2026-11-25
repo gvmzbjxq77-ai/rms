@@ -27,8 +27,8 @@
  "n_blobs_total": 0,
  "n_candidates_kept": 0,
  "kinds": {},
- "step_fraction": 1.2560991618863063e-05,
+ "step_fraction": 1.108322789899682e-05,
  "transient_fraction": 0.0,
  "valid_fraction": 1.0,
- "seconds": 120.1
+ "seconds": 18.0
 }

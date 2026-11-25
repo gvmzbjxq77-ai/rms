@@ -1,0 +1,354 @@
+<title>SKYWATCH Groundtruth</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a survey log. One reading column; the map and the catalogue are the two working surfaces. */
+:root {
+  --bg: #f2f5f3; --surface: #ffffff; --sunken: #e7ece9; --line: #cfd8d3;
+  --fg: #15201d; --muted: #56655f; --accent: #0d6b5b; --accent-soft: #d9ece7;
+  --t0: #7d8b85; --t1: #4a6f8f; --t2: #b9770c; --t3: #c2410c; --t4: #a21caf;
+  --ok: #1d7a4c; --bad: #b42318; --warn: #a15c07; --land: #dfe6e2; --sea: #f2f5f3;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1615; --surface: #172120; --sunken: #121a19; --line: #2b3a37;
+  --fg: #e3eae7; --muted: #94a59f; --accent: #58c7b2; --accent-soft: #17332e;
+  --t0: #74837d; --t1: #7fb0d6; --t2: #e3a548; --t3: #f08a55; --t4: #e58af0;
+  --ok: #5fcf95; --bad: #f58b7e; --warn: #e3a548; --land: #1f2c2a; --sea: #0f1615; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1615; --surface: #172120; --sunken: #121a19; --line: #2b3a37;
+  --fg: #e3eae7; --muted: #94a59f; --accent: #58c7b2; --accent-soft: #17332e;
+  --t0: #74837d; --t1: #7fb0d6; --t2: #e3a548; --t3: #f08a55; --t4: #e58af0;
+  --ok: #5fcf95; --bad: #f58b7e; --warn: #e3a548; --land: #1f2c2a; --sea: #0f1615; color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 44px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(1.7rem, 4.2vw, 2.5rem); font-weight: 700; line-height: 1.1; }
+h2 { font-size: 1.3rem; font-weight: 600; }
+h3 { font-size: 1rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); }
+.eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+section { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.lede { font-size: 1.05rem; }
+
+header.top { display: flex; flex-direction: column; gap: 14px; }
+.verdict { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; display: flex; flex-direction: column; gap: 6px; }
+
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.figure { background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.figure b { font-family: var(--display); font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.figure span { font-size: 0.82rem; color: var(--muted); }
+
+.tiers { display: flex; flex-wrap: wrap; gap: 8px; }
+.tier { font-family: var(--mono); font-size: 0.78rem; font-weight: 500; padding: 2px 8px; border-radius: 3px; color: #fff; white-space: nowrap; }
+.tier.T0 { background: var(--t0); } .tier.T1 { background: var(--t1); } .tier.T2 { background: var(--t2); }
+.tier.T3 { background: var(--t3); } .tier.T4 { background: var(--t4); }
+:root[data-theme="dark"] .tier, .tier { color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tier { color: #10100f; } }
+:root[data-theme="dark"] .tier { color: #10100f; }
+.ladder { display: grid; grid-template-columns: auto 1fr auto; gap: 6px 14px; align-items: baseline; font-size: 0.92rem; }
+.ladder .n { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+
+.mapbox { background: var(--surface); border: 1px solid var(--line); padding: 8px; }
+#map { width: 100%; height: auto; display: block; }
+#map .land { fill: var(--land); stroke: none; }
+#map .grat { stroke: var(--line); stroke-width: 0.3; fill: none; }
+#map .dot { stroke: var(--surface); stroke-width: 0.6; cursor: pointer; }
+#map .dot.blind { fill: var(--accent); } #map .dot.control { fill: var(--muted); } #map .dot.seeded { fill: var(--t2); }
+#map .dot.hot { fill: var(--t3); }
+#map .dot.sel { stroke: var(--fg); stroke-width: 1.4; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.82rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+#regioninfo { font-size: 0.92rem; min-height: 3.2em; }
+
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.pass { color: var(--ok); font-weight: 600; } .fail { color: var(--bad); font-weight: 600; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { font: inherit; font-size: 0.85rem; padding: 5px 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip:focus-visible, .card summary:focus-visible, #map .dot:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+#count { font-size: 0.85rem; color: var(--muted); }
+
+#cards { display: flex; flex-direction: column; gap: 10px; }
+.card { background: var(--surface); border: 1px solid var(--line); }
+.card summary { list-style: none; cursor: pointer; padding: 12px 14px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 14px; align-items: center; }
+.card summary::-webkit-details-marker { display: none; }
+.card .thumb { width: 132px; height: 66px; object-fit: cover; background: var(--sunken); display: block; }
+.card .head { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.card .title { font-weight: 600; overflow-wrap: anywhere; }
+.card .meta { font-size: 0.82rem; color: var(--muted); overflow-wrap: anywhere; }
+.card .why { font-size: 0.86rem; }
+.card .body { border-top: 1px solid var(--line); padding: 14px; display: flex; flex-direction: column; gap: 16px; }
+.pics { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.pics figure { margin: 0; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.pics img { width: 100%; height: auto; display: block; background: var(--sunken); }
+.pics figcaption { font-size: 0.76rem; color: var(--muted); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px 18px; font-size: 0.88rem; }
+.facts div { display: flex; flex-direction: column; min-width: 0; }
+.facts dt { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; overflow-wrap: anywhere; }
+dl { margin: 0; }
+.checks { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); }
+.check { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 4px 12px; padding: 7px 10px; border-bottom: 1px solid var(--line); font-size: 0.86rem; }
+.check:last-child { border-bottom: none; }
+.check.sub { background: var(--sunken); font-size: 0.8rem; }
+.st { font-family: var(--mono); font-size: 0.72rem; white-space: nowrap; }
+.st.explains { color: var(--ok); } .st.does_not_explain { color: var(--t3); } .st.inconclusive { color: var(--warn); } .st.not_run { color: var(--muted); }
+.verdictbox { background: var(--accent-soft); padding: 10px 12px; font-size: 0.9rem; display: flex; flex-direction: column; gap: 4px; }
+.more { align-self: flex-start; font: inherit; padding: 8px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.limits { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px 28px; }
+.limits div { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.limits p { font-size: 0.92rem; }
+footer { font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+@media (max-width: 560px) {
+  .card summary { grid-template-columns: minmax(0, 1fr) auto; }
+  .card .thumb { grid-column: 1 / -1; width: 100%; height: auto; aspect-ratio: 2 / 1; }
+  .check { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) { .card summary:hover { background: var(--sunken); } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Project SKYWATCH · Phase 1 · pilot sweep · <span id="rundate"></span></span>
+    <h1>GROUNDTRUTH: a search of public satellite imagery for surface changes nobody has explained</h1>
+    <div class="verdict" id="verdict"></div>
+  </header>
+
+  <section aria-labelledby="h-fig">
+    <h2 id="h-fig">What was searched and what came out</h2>
+    <div class="figures" id="figures"></div>
+    <p class="muted" id="coverage"></p>
+    <div class="ladder" id="ladder"></div>
+  </section>
+
+  <section aria-labelledby="h-map">
+    <h2 id="h-map">Where the sweep looked</h2>
+    <div class="mapbox"><svg id="map" viewBox="0 0 1000 440" role="img" aria-label="World map of searched regions"></svg></div>
+    <div class="legend">
+      <span><i style="background:var(--accent)"></i>Blind region (no prior hypothesis)</span>
+      <span><i style="background:var(--muted)"></i>Control region (known answer)</span>
+      <span><i style="background:var(--t2)"></i>Seeded by a witness report</span>
+      <span><i style="background:var(--t3)"></i>Has a candidate at tier T2 or above</span>
+    </div>
+    <p id="regioninfo" class="muted">Select a region on the map to see what was found there. Selecting it also filters the catalogue below.</p>
+  </section>
+
+  <section aria-labelledby="h-ctl">
+    <h2 id="h-ctl">Does the method work? The control regions</h2>
+    <p>Each control region holds something with a known, ordinary cause and a known date. The pipeline has to find it and then explain it. Three "pristine" controls were declared in advance to contain nothing, which measures how often the detector fires on empty ground.</p>
+    <div class="tablewrap"><table id="controls"></table></div>
+  </section>
+
+  <section aria-labelledby="h-cat">
+    <h2 id="h-cat">Candidate catalogue</h2>
+    <p>Every candidate that went through the elimination checks, least explained first. A tier describes how much evidence survives, never what the thing is. Open a row for the imagery, the measurements and every check that was run or could not be run.</p>
+    <div class="filters" id="filters"></div>
+    <span id="count"></span>
+    <div id="cards"></div>
+    <button class="more" id="more" type="button" hidden>Show more</button>
+  </section>
+
+  <section aria-labelledby="h-lim">
+    <h2 id="h-lim">What this sweep cannot tell you</h2>
+    <div class="limits" id="limits"></div>
+  </section>
+
+  <footer>
+    Contains modified Copernicus Sentinel data (Sentinel-1, Sentinel-2). Landsat 8/9 courtesy of the U.S. Geological Survey. Land cover: ESA WorldCover 2021. Map data © OpenStreetMap contributors. High-resolution views: Esri World Imagery. Catalogue records: Wikidata, NTSB, NASA / Meteoritical Society. This catalogue records observations and the checks applied to them. It makes no claim about the origin of anything.
+  </footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const $ = (id) => document.getElementById(id);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const fmt = (n) => Number(n).toLocaleString("en-US");
+const TIERS = { T4: "Unexplained, dated, multi-sensor, with a matching witness report", T3: "Unexplained, dated, multi-sensor, every check ran", T2: "Seen by two sensors, but a check is missing or inconclusive", T1: "Unexplained in one sensor only", T0: "Explained" };
+const STATUS = { explains: "explains it", does_not_explain: "does not explain", inconclusive: "inconclusive", not_run: "not run" };
+const NAMES = { osm_infrastructure: "Mapped infrastructure", landcover: "Land cover", wikidata_nearby: "Known sites nearby", military_or_rocket_range: "Test or launch range", aviation_accident: "Aviation accident records", meteorite_record: "Meteorite records", fire_history: "Fire history", burn_spectral: "Burn-scar spectrum", lightning: "Lightning", natural_process: "Natural processes", artefact_screen: "Sensor artefacts", report_match: "Witness reports" };
+let regionFilter = null, tierFilter = "open", shown = 0, CANDS = [];
+
+function head() {
+  const s = DATA.summary, c = DATA.coverage, t = s.tiers || {};
+  $("rundate").textContent = DATA.generated;
+  const open = (t.T1 || 0) + (t.T2 || 0) + (t.T3 || 0) + (t.T4 || 0);
+  const v = $("verdict");
+  v.append(el("p", "lede", DATA.headline));
+  v.append(el("p", "muted", DATA.subline));
+  const figs = [
+    [fmt(Math.round(c.blind_area_completed_km2)) + " km²", "of remote terrain swept blind"],
+    [fmt(DATA.regions.length), "regions: " + DATA.regions.filter(r => r.kind === "blind").length + " blind, " + DATA.regions.filter(r => r.kind === "control").length + " control, " + DATA.regions.filter(r => r.kind === "seeded").length + " seeded"],
+    [fmt(DATA.total_blobs), "abrupt changes detected"],
+    [fmt(s.n_candidates), "strongest ones put through the checks"],
+    [fmt(t.T0 || 0), "explained by an ordinary cause"],
+    [fmt(open), "not yet explained"],
+  ];
+  for (const [n, label] of figs) { const f = el("div", "figure"); f.append(el("b", null, n), el("span", null, label)); $("figures").append(f); }
+  $("coverage").textContent = "Coverage: the blind regions add up to " + (c.share_of_land * 100).toFixed(3) + " % of Earth's land. This is a pilot that tests the method and measures its error rate. It is not a global search.";
+  const lad = $("ladder");
+  for (const k of ["T4", "T3", "T2", "T1", "T0"]) { const b = el("span", "tier " + k, k); lad.append(b, el("span", null, TIERS[k]), el("span", "n", fmt(t[k] || 0))); }
+}
+
+function project(lon, lat) { return [(lon + 180) / 360 * 1000, (84 - lat) / 144 * 440]; }
+async function map() {
+  const svg = $("map"), NS = "http://www.w3.org/2000/svg";
+  const mk = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+  for (let lat = -60; lat <= 80; lat += 20) { const [, y] = project(0, lat); svg.append(mk("line", { class: "grat", x1: 0, x2: 1000, y1: y, y2: y })); }
+  for (let lon = -180; lon <= 180; lon += 30) { const [x] = project(lon, 0); svg.append(mk("line", { class: "grat", x1: x, x2: x, y1: 0, y2: 440 })); }
+  try {
+    const land = await (await fetch("land.json")).json();
+    let d = "";
+    for (const ring of land) { d += "M" + ring.map(p => project(p[0], p[1]).map(v => v.toFixed(1)).join(",")).join("L") + "Z"; }
+    svg.append(mk("path", { class: "land", d }));
+  } catch (e) { /* the dots still tell the story without the coastline */ }
+  for (const r of DATA.regions) {
+    const [x, y] = project(r.lon, r.lat);
+    const hot = (r.tiers.T2 || 0) + (r.tiers.T3 || 0) + (r.tiers.T4 || 0) > 0;
+    const dot = mk("circle", { class: "dot " + r.kind + (hot ? " hot" : ""), cx: x, cy: y, r: 5.2, tabindex: 0, role: "button", "aria-label": r.name });
+    const title = document.createElementNS(NS, "title"); title.textContent = r.id + " · " + r.name; dot.append(title);
+    const pick = () => selectRegion(regionFilter === r.id ? null : r.id);
+    dot.addEventListener("click", pick);
+    dot.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+    dot.dataset.id = r.id; svg.append(dot);
+  }
+}
+function selectRegion(id) {
+  regionFilter = id;
+  document.querySelectorAll("#map .dot").forEach(d => d.classList.toggle("sel", d.dataset.id === id));
+  const info = $("regioninfo"); info.replaceChildren();
+  if (!id) { info.textContent = "Select a region on the map to see what was found there. Selecting it also filters the catalogue below."; }
+  else {
+    const r = DATA.regions.find(x => x.id === id), t = r.tiers;
+    const b = el("b", null, r.name + " "); const m = el("span", "mono muted", r.id + " · " + r.lat.toFixed(2) + ", " + r.lon.toFixed(2) + " · " + fmt(r.area_km2) + " km²");
+    info.append(b, m, el("br"));
+    let text = r.status !== "ok" ? "Not completed: " + (r.error || r.status) + "." :
+      fmt(r.blobs_detected) + " abrupt changes detected over " + r.years.length + " years of imagery; " + r.reviewed + " reviewed: " +
+      (t.T0 || 0) + " explained, " + ((t.T1 || 0) + (t.T2 || 0) + (t.T3 || 0) + (t.T4 || 0)) + " not explained.";
+    if (r.expected) text += " Expected here: " + r.expected;
+    if (r.seed && r.seed.summary) text += " Witness report (unverified): " + r.seed.summary;
+    info.append(document.createTextNode(text));
+  }
+  shown = 0; render();
+}
+
+function controls() {
+  const tbl = $("controls");
+  const hr = el("tr"); for (const h of ["Control", "What should happen", "Detected", "Reviewed", "Explained", "Result"]) hr.append(el("th", null, h)); tbl.append(hr);
+  for (const r of DATA.regions.filter(x => x.kind === "control")) {
+    const tr = el("tr"), ex = r.expectation || {};
+    const name = el("td"); name.append(el("b", null, r.name), el("br"), el("span", "mono muted", r.id));
+    const res = el("td", ex.passed ? "pass" : "fail", ex.passed ? "Pass" : "Fail");
+    if (ex.reasons && ex.reasons.length) { res.append(el("br")); res.append(el("span", "muted", ex.reasons.join("; "))); res.lastChild.style.fontWeight = "400"; }
+    tr.append(name, el("td", null, r.expected), el("td", "num", fmt(r.blobs_detected || 0)), el("td", "num", fmt(r.reviewed)), el("td", "num", fmt(r.tiers.T0 || 0)), res);
+    tbl.append(tr);
+  }
+}
+
+function card(c) {
+  const d = el("details", "card"), s = el("summary");
+  const region = DATA.regions.find(r => r.id === c.region) || { name: c.region };
+  if (c.thumb) { const im = el("img", "thumb"); im.src = c.thumb; im.alt = "Before and after"; im.loading = "lazy"; s.append(im); } else s.append(el("span"));
+  const h = el("div", "head");
+  h.append(el("span", "title", region.name + " · " + describe(c)));
+  h.append(el("span", "meta mono", c.id + " · " + c.lat.toFixed(4) + ", " + c.lon.toFixed(4) + (c.present_from ? " · appeared " + (c.absent_until || "?") + " → " + c.present_from : "")));
+  h.append(el("span", "why", c.adjudication ? c.adjudication.one_line : c.tier_reason));
+  s.append(h, el("span", "tier " + c.tier, c.tier));
+  d.append(s);
+  d.addEventListener("toggle", () => { if (d.open && !d.dataset.built) { d.dataset.built = "1"; d.append(body(c)); } }, { once: false });
+  return d;
+}
+function describe(c) {
+  const ha = c.area_m2 / 10000, size = ha >= 100 ? (ha / 100).toFixed(1) + " km²" : ha.toFixed(1) + " ha";
+  const what = c.detector === "landsat_thermal" ? "persistent thermal anomaly" : c.detector === "sar_bright" ? "bright radar target" :
+    c.kind === "transient" ? "one-year change" : c.kind === "latest_year" ? "change in the newest imagery" : c.kind === "event_window" ? "change at the reported date" : "persistent change";
+  return what + ", " + size;
+}
+function body(c) {
+  const b = el("div", "body");
+  if (c.adjudication) {
+    const v = el("div", "verdictbox"); v.append(el("b", null, "Review panel: " + c.adjudication.verdict_label), el("span", null, c.adjudication.summary));
+    if (c.adjudication.next_step) v.append(el("span", "muted", "Next step: " + c.adjudication.next_step));
+    b.append(v);
+  }
+  if (c.images && c.images.length) {
+    const p = el("div", "pics");
+    for (const im of c.images) { const f = el("figure"), i = el("img"); i.src = im.src; i.alt = im.caption; i.loading = "lazy"; f.append(i, el("figcaption", null, im.caption)); p.append(f); }
+    b.append(p);
+  }
+  const dl = el("dl", "facts");
+  const fact = (k, v) => { if (v == null || v === "") return; const w = el("div"); w.append(el("dt", null, k), el("dd", null, String(v))); dl.append(w); };
+  fact("Position", c.lat.toFixed(5) + ", " + c.lon.toFixed(5));
+  fact("Onset window", c.present_from ? (c.absent_until || "?") + " → " + c.present_from + (c.onset_window_days ? " (" + c.onset_window_days + " days)" : "") : "no dated onset");
+  fact("Size", fmt(c.area_m2) + " m²" + (c.shape.equivalent_diameter_m ? " · about " + Math.round(c.shape.equivalent_diameter_m) + " m across" : ""));
+  fact("Shape", c.shape.circularity != null ? "roundness " + c.shape.circularity + " · elongation " + c.shape.elongation + " · regularity " + c.shape.regularity : null);
+  fact("Triage label", { crash: "scar-like", landing_trace: "compact ring or disc", installation: "rectilinear or large and bright", thermal: "thermal", unknown: "none" }[c.signature]);
+  const ch = c.change || {}; const parts = [];
+  if (ch.d_brightness != null) parts.push("brightness " + (ch.d_brightness > 0 ? "+" : "") + ch.d_brightness);
+  if (ch.d_ndvi != null) parts.push("vegetation index " + (ch.d_ndvi > 0 ? "+" : "") + ch.d_ndvi);
+  if (ch.d_nbr != null) parts.push("burn index " + (ch.d_nbr > 0 ? "+" : "") + ch.d_nbr);
+  fact("Change", parts.join(" · ") + (c.thermal_K != null ? "temperature " + c.thermal_K.toFixed(1) + " K vs surroundings" : ""));
+  fact("Signal strength", c.snr + " × noise");
+  fact("Seen by", c.sensors.map(x => ({ optical_s2: "Sentinel-2 optical", optical_landsat: "Landsat optical", thermal_landsat: "Landsat thermal", radar_s1: "Sentinel-1 radar", terrain_dem: "terrain", nightlights_viirs: "night lights" }[x] || x)).join(", "));
+  fact("Tier", c.tier + ": " + c.tier_reason);
+  b.append(dl);
+  const links = el("p");
+  const g = el("a", null, "Open this spot in Google Maps satellite view"); g.href = "https://www.google.com/maps/@" + c.lat + "," + c.lon + ",900m/data=!3m1!1e3"; g.target = "_blank"; g.rel = "noopener";
+  links.append(g, document.createTextNode(" to inspect it yourself.")); b.append(links);
+  const box = el("div", "checks");
+  for (const k of c.checks) {
+    const sub = k.check.includes(":");
+    const row = el("div", "check" + (sub ? " sub" : ""));
+    const left = el("div"); left.append(el("div", null, sub ? k.check.split(":")[1].replace(/_/g, " ") : (NAMES[k.check] || k.check)), el("div", "st " + k.status, STATUS[k.status]));
+    row.append(left, el("div", null, k.detail || "")); box.append(row);
+  }
+  b.append(el("h3", null, "Checks"), box);
+  if (c.reports && c.reports.length) { b.append(el("h3", null, "Witness reports matched in time and place (unverified claims)")); for (const r of c.reports) b.append(el("p", "muted", (r.datetime || "") + " · " + (r.distance_km != null ? r.distance_km.toFixed(0) + " km away · " : "") + (r.text || r.excerpt || ""))); }
+  return b;
+}
+function filtered() {
+  return CANDS.filter(c => (!regionFilter || c.region === regionFilter) &&
+    (tierFilter === "all" || (tierFilter === "open" ? c.tier !== "T0" : c.tier === tierFilter)));
+}
+function render() {
+  const list = filtered(), cards = $("cards");
+  if (shown === 0) cards.replaceChildren();
+  const next = list.slice(shown, shown + 25);
+  for (const c of next) cards.append(card(c));
+  shown += next.length;
+  $("count").textContent = list.length ? "Showing " + shown + " of " + fmt(list.length) + (regionFilter ? " in " + regionFilter : "") : "Nothing matches this filter" + (regionFilter ? " in " + regionFilter : "") + ".";
+  $("more").hidden = shown >= list.length;
+}
+function filters() {
+  const defs = [["open", "Not explained"], ["T3", "T3"], ["T2", "T2"], ["T1", "T1"], ["T0", "Explained"], ["all", "All"]];
+  for (const [key, label] of defs) {
+    const b = el("button", "chip", label); b.type = "button"; b.id = "f-" + key; b.setAttribute("aria-pressed", String(key === tierFilter));
+    b.addEventListener("click", () => { tierFilter = key; document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x === b))); shown = 0; render(); });
+    $("filters").append(b);
+  }
+  $("more").addEventListener("click", render);
+}
+function limits() {
+  for (const [title, text] of DATA.limits) { const d = el("div"); d.append(el("h3", null, title), el("p", null, text)); $("limits").append(d); }
+}
+async function start() {
+  head(); controls(); filters(); limits(); map();
+  try { CANDS = await (await fetch("catalogue.json")).json(); } catch (e) { CANDS = DATA.top || []; }
+  render();
+}
+start();
+</script>

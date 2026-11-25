@@ -11,6 +11,8 @@
  ],
  "area_km2": 99.9999999999885,
  "res_m": 20.0,
+ "event_date": "2022-03-21",
+ "n_event_candidates": 60,
  "status": "ok",
  "years": [
   2017,
@@ -24,13 +26,16 @@
   2025,
   2026
  ],
- "n_blobs_total": 538,
- "n_candidates_kept": 120,
+ "n_blobs_total": 509,
+ "n_candidates_kept": 180,
  "kinds": {
-  "step": 120
+  "event_window": 60,
+  "step": 80,
+  "transient": 32,
+  "latest_year": 8
  },
- "step_fraction": 0.020804083216332866,
- "transient_fraction": 0.030956123824495297,
+ "step_fraction": 0.016832067328269314,
+ "transient_fraction": 0.03107612430449722,
  "valid_fraction": 1.0,
- "seconds": 45.4
+ "seconds": 61.8
 }

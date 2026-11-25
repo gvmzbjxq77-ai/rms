@@ -1,0 +1,36 @@
+{
+ "region": "B02-BILMA",
+ "name": "Erg of Bilma, Niger/Chad",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  15.110324867435217,
+  18.520337765001795,
+  15.489675132564784,
+  18.879662234998204
+ ],
+ "area_km2": 1600.0000000000089,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 12,
+ "n_candidates_kept": 12,
+ "kinds": {
+  "step": 12
+ },
+ "step_fraction": 6.835300798303043e-05,
+ "transient_fraction": 4.006037097906545e-06,
+ "valid_fraction": 1.0,
+ "seconds": 19.4
+}

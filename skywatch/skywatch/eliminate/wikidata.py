@@ -64,6 +64,11 @@ EXPLAIN_KM: dict[str, float] = {
     "archaeological_site": 1.0, "aviation_accident": 2.0, "meteorite": 2.0,
     "oil_gas_field": 2.0, "research_station": 1.0,
 }
+#: Limit for site items with no human-written Wikipedia page
+#: (``notable_sitelinks`` == 0). Bulk-imported minor features (single adits,
+#: barrows, ponds) are so dense in places that a 2 km rule would "explain" a
+#: large share of all points around them.
+MINOR_SITE_KM = 0.5
 #: The candidate footprint radius added to ``EXPLAIN_KM`` is capped at this.
 FOOTPRINT_CAP_KM = 1.0
 #: Causal items beyond the limit but this close are listed as near misses.
@@ -393,7 +398,7 @@ def sparql(query: str, use_cache: bool = True) -> list[dict[str, Any]]:
 
 def _around_query(lat: float, lon: float, radius_km: float, limit: int) -> str:
     return (
-        "SELECT ?item ?itemLabel ?dist ?loc ?class ?classLabel ?pit ?pitPrec ?inc ?incPrec WHERE {\n"
+        "SELECT ?item ?itemLabel ?dist ?loc ?links ?ceb ?sv ?class ?classLabel ?pit ?pitPrec ?inc ?incPrec WHERE {\n"
         "  { SELECT ?item (MIN(?d) AS ?dist) (SAMPLE(?l) AS ?loc) WHERE {\n"
         "      SERVICE wikibase:around {\n"
         "        ?item wdt:P625 ?l .\n"
@@ -402,6 +407,9 @@ def _around_query(lat: float, lon: float, radius_km: float, limit: int) -> str:
         "        bd:serviceParam wikibase:distance ?d .\n"
         "      }\n"
         f"    }} GROUP BY ?item ORDER BY ?dist LIMIT {int(limit)} }}\n"
+        "  OPTIONAL { ?item wikibase:sitelinks ?links . }\n"
+        "  OPTIONAL { ?ceb schema:about ?item ; schema:isPartOf <https://ceb.wikipedia.org/> . }\n"
+        "  OPTIONAL { ?sv schema:about ?item ; schema:isPartOf <https://sv.wikipedia.org/> . }\n"
         "  OPTIONAL { ?item wdt:P31 ?class . }\n"
         "  OPTIONAL { ?item p:P585/psv:P585 ?pv . ?pv wikibase:timeValue ?pit ; wikibase:timePrecision ?pitPrec . }\n"
         "  OPTIONAL { ?item p:P571/psv:P571 ?iv . ?iv wikibase:timeValue ?inc ; wikibase:timePrecision ?incPrec . }\n"
@@ -445,13 +453,19 @@ def _items_from_bindings(rows: Sequence[Mapping[str, Any]]) -> list[dict[str, An
         except (KeyError, ValueError, TypeError):
             continue
         rec = grouped.setdefault(qid, {"qid": qid, "label": "", "distance_km": dist, "lat": None, "lon": None,
-                                       "_classes": {}, "_dates": set()})
+                                       "sitelinks": None, "_bot": set(), "_classes": {}, "_dates": set()})
         rec["distance_km"] = min(rec["distance_km"], dist)
         label = row.get("itemLabel", {}).get("value", "")
         if label and not rec["label"]:
             rec["label"] = label
         if rec["lat"] is None:
             rec["lat"], rec["lon"] = _parse_point(row.get("loc", {}).get("value"))
+        if rec["sitelinks"] is None and "links" in row:
+            try:
+                rec["sitelinks"] = int(float(row["links"]["value"]))
+            except (KeyError, ValueError, TypeError):
+                pass
+        rec["_bot"].update(key for key in ("ceb", "sv") if key in row)
         cls = _qid(row.get("class", {}).get("value", ""))
         if _QID_RE.match(cls):
             rec["_classes"][cls] = row.get("classLabel", {}).get("value", cls)
@@ -468,6 +482,10 @@ def _finalise(records: list[dict[str, Any]], class_roots: Mapping[str, Sequence[
     for rec in records:
         classes: dict[str, str] = rec.pop("_classes")
         dates: set[tuple[str, str, str]] = rec.pop("_dates")
+        bot: set[str] = rec.pop("_bot")
+        # Lsjbot wrote Cebuano (and paired Swedish) stubs for every GeoNames feature: not a sign of notability.
+        stubs = (1 + ("sv" in bot)) if "ceb" in bot else 0
+        notable = None if rec["sitelinks"] is None else max(0, rec["sitelinks"] - stubs)
         found: set[str] = set()
         for cls, label in classes.items():
             found.update(classify_labels([label]))
@@ -488,6 +506,8 @@ def _finalise(records: list[dict[str, Any]], class_roots: Mapping[str, Sequence[
             "date": best[1] if best else None,
             "date_precision": best[2] if best else None,
             "date_property": best[0] if best else None,
+            "sitelinks": rec["sitelinks"],
+            "notable_sitelinks": notable,
             "url": "https://www.wikidata.org/wiki/" + rec["qid"],
         })
     return items
@@ -515,7 +535,9 @@ def nearby_items(lat: float, lon: float, radius_km: float = 10.0) -> list[dict[s
     (all matches, most specific first), ``distance_km``, ``lat``, ``lon``,
     ``date`` (ISO date from point in time P585, else inception P571, else
     None), ``date_precision`` ("day", "month", "year", ... or None),
-    ``date_property`` and ``url``. At most ``MAX_ITEMS`` nearest items are
+    ``date_property``, ``sitelinks`` (number of Wikipedia-family pages),
+    ``notable_sitelinks`` (the same without bot-written Cebuano/Swedish
+    geography stubs; a notability proxy, None if unknown) and ``url``. At most ``MAX_ITEMS`` nearest items are
     returned. Raises ``WikidataError`` if the endpoint fails and ``ValueError``
     for invalid arguments; an empty list always means "nothing catalogued".
     """
@@ -527,7 +549,15 @@ def nearby_items(lat: float, lon: float, radius_km: float = 10.0) -> list[dict[s
 # --------------------------------------------------------------------------
 
 def _brief(item: Mapping[str, Any]) -> dict[str, Any]:
-    return {key: item.get(key) for key in ("qid", "label", "category", "instance_of", "distance_km", "date", "date_precision")}
+    return {key: item.get(key) for key in ("qid", "label", "category", "instance_of", "distance_km", "date",
+                                           "date_precision", "notable_sitelinks")}
+
+
+def _limit_km(item: Mapping[str, Any], category: str, foot: float) -> float:
+    """Explanation distance for one item in one causal category."""
+    links = item.get("notable_sitelinks")
+    minor = links is not None and int(links) < 1 and category not in EVENT_CATEGORIES
+    return (min(EXPLAIN_KM[category], MINOR_SITE_KM) if minor else EXPLAIN_KM[category]) + foot
 
 
 def _name(item: Mapping[str, Any]) -> str:
@@ -539,7 +569,8 @@ def evaluate_items(candidate: Candidate, items: Sequence[Mapping[str, Any]], sea
     """Decide the ``wikidata_nearby`` status from an already fetched item list.
 
     ``explains``: an item of a causal category lies within ``EXPLAIN_KM`` plus
-    the footprint radius (capped); aviation accidents and meteorites must also
+    the footprint radius (capped); site items with no human-written
+    Wikipedia page only count within ``MINOR_SITE_KM``; aviation accidents and meteorites must also
     carry a date overlapping the onset window padded by 30 days when the
     candidate has one. ``inconclusive``: only undated accident/meteorite items
     are in range of a dated candidate, or the item list was truncated before
@@ -558,7 +589,7 @@ def evaluate_items(candidate: Candidate, items: Sequence[Mapping[str, Any]], sea
         causal = [c for c in item.get("categories", [item.get("category")]) if c in EXPLAIN_KM]
         if not causal:
             continue
-        in_range = [c for c in causal if dist <= EXPLAIN_KM[c] + foot]
+        in_range = [c for c in causal if dist <= _limit_km(item, c, foot)]
         if not in_range:
             if dist <= NEAR_MISS_KM:
                 near_miss.append(_brief(item))
@@ -567,7 +598,7 @@ def evaluate_items(candidate: Candidate, items: Sequence[Mapping[str, Any]], sea
         brief = _brief(item)
         if sites or window is None:
             brief["explains_as"] = (sites or in_range)[0]
-            brief["limit_km"] = round(EXPLAIN_KM[brief["explains_as"]] + foot, 3)
+            brief["limit_km"] = round(_limit_km(item, brief["explains_as"], foot), 3)
             explaining.append(brief)
             continue
         span = date_interval(item.get("date"), item.get("date_precision"))
@@ -576,7 +607,7 @@ def evaluate_items(candidate: Candidate, items: Sequence[Mapping[str, Any]], sea
             undated.append(brief)
         elif intervals_overlap(span, window):
             brief["explains_as"] = in_range[0]
-            brief["limit_km"] = round(EXPLAIN_KM[in_range[0]] + foot, 3)
+            brief["limit_km"] = round(_limit_km(item, in_range[0], foot), 3)
             explaining.append(brief)
         else:
             brief["reason"] = "event date outside the onset window padded by 30 days"

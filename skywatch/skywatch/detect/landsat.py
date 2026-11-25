@@ -173,15 +173,19 @@ def confirm(candidate: Candidate, scenes_per_side: int = 4) -> dict[str, Any]:
 def detect_thermal_anomalies(region: Region, start: str = "2019-01-01", end: str | None = None,
                              res: float = 90.0, min_scenes: int = 8, z_threshold: float = 3.5,
                              max_scenes: int = 14, max_candidates: int = 60,
+                             min_anomaly_k: float = 2.5,
                              diagnostics: dict[str, Any] | None = None) -> list[Candidate]:
     """Places that stay hotter or colder than their surroundings, scene after scene.
 
-    For each clear scene the surface temperature is detrended against elevation
-    (when the terrain module is available), the local background (median within
-    about 2 km) is subtracted and the result is scaled to robust z-scores.
-    A pixel is anomalous when |z| >= ``z_threshold`` with the same sign in at
-    least 70 % of the scenes in which it is clear, across at least two years
-    and both halves of the year. Open water (NDWI > 0.1) and snow are masked.
+    For each clear scene the temperature that surface brightness, vegetation
+    and (when the terrain module is available) elevation predict is removed,
+    the local background (median within about 2 km) is subtracted and the
+    result is scaled to robust z-scores. A pixel is anomalous when |z| >=
+    ``z_threshold`` with the same sign in at least 70 % of the scenes in which
+    it is clear and its typical anomaly is at least ``min_anomaly_k`` kelvin,
+    across at least two years and both halves of the year. Open water
+    (NDWI > 0.1) and snow are masked. All scenes are daytime, so differences
+    in how rock and sand store heat still produce ordinary anomalies.
     Candidates have signature "thermal" and detector "landsat_thermal".
     """
     end = end or date.today().isoformat()
@@ -209,10 +213,19 @@ def detect_thermal_anomalies(region: Region, start: str = "2019-01-01", end: str
         ok = np.isfinite(kelvin)
         if ok.mean() < 0.5:
             continue
-        if elevation is not None and np.isfinite(elevation[ok]).sum() > 100:
-            good = ok & np.isfinite(elevation)
-            slope, intercept = np.polyfit(elevation[good], kelvin[good], 1)
-            kelvin = kelvin - (slope * elevation + intercept)
+        # Remove what ordinary surface properties predict: darker and barer
+        # ground is hotter by day, higher ground is cooler.
+        with np.errstate(divide="ignore", invalid="ignore"):
+            albedo = (scene["blue"] + scene["green"] + scene["red"] + scene["nir08"]) / 4
+            ndvi = (scene["nir08"] - scene["red"]) / (scene["nir08"] + scene["red"])
+        predictors = [albedo, ndvi] + ([elevation] if elevation is not None else [])
+        good = ok & np.all([np.isfinite(p) for p in predictors], axis=0)
+        if good.sum() > 200:
+            design = np.column_stack([p[good] for p in predictors] + [np.ones(int(good.sum()))])
+            coeffs, *_ = np.linalg.lstsq(design, kelvin[good], rcond=None)
+            model = sum(c * p for c, p in zip(coeffs[:-1], predictors)) + coeffs[-1]
+            kelvin = np.where(good, kelvin - model, np.nan)
+            ok = good
         filled = np.where(ok, kelvin, np.nanmedian(kelvin))
         background = ndimage.median_filter(filled, size=window)
         anomaly = np.where(ok, kelvin - background, np.nan)
@@ -236,7 +249,8 @@ def detect_thermal_anomalies(region: Region, start: str = "2019-01-01", end: str
     with np.errstate(invalid="ignore"):
         for sign in (1, -1):
             hits = (np.nan_to_num(z * sign, nan=0.0) >= z_threshold).sum(axis=0)
-            mask = (seen >= min_scenes) & (hits >= 0.7 * seen)
+            typical = np.nanmedian(np.stack(anomalies), axis=0) * sign
+            mask = (seen >= min_scenes) & (hits >= 0.7 * seen) & (typical >= min_anomaly_k)
             labels, count = ndimage.label(mask, structure=np.ones((3, 3), int))
             for index, box in enumerate(ndimage.find_objects(labels), start=1):
                 blob = labels[box] == index
@@ -260,7 +274,8 @@ def detect_thermal_anomalies(region: Region, start: str = "2019-01-01", end: str
                                   "hit_fraction": float(np.median((hits / np.maximum(seen, 1))[box][blob])),
                                   "n_scenes": len(dates), "sign": sign, "dates": dates,
                                   "years": sorted(years), "res_m": res,
-                                  "elevation_detrended": elevation is not None}))
+                                  "elevation_detrended": elevation is not None,
+                                  "surface_detrended": True}))
     candidates.sort(key=lambda c: -c.score * np.log10(max(c.area_m2, 100.0)))
     if len(candidates) > max_candidates:
         log.warning("%s: %d thermal candidates, %d dropped by the cap", region.id,

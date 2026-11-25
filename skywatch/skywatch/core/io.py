@@ -297,28 +297,36 @@ def s2_composite(grid: Grid, start: str, end: str, bands: Sequence[str] = S2_BAN
         by_day.setdefault(item.datetime.strftime("%Y-%m-%d"), []).append(item)
     days = sorted(by_day, key=lambda d: np.mean(
         [it.properties.get("eo:cloud_cover", 100.0) for it in by_day[d]]))[:max_scenes]
-    chosen: list[Item] = []
+    stacks: dict[str, list[np.ndarray]] = {b: [] for b in bands}
+    count = np.zeros(grid.shape, dtype="uint8")
+    used: list[Item] = []
     for day in days:
         tiles: dict[str, Item] = {}
         for item in by_day[day]:
             tiles.setdefault(item.properties.get("grid:code", item.id), item)
-        chosen.extend(tiles.values())
-    if not chosen:
-        return None
-    stacks: dict[str, list[np.ndarray]] = {b: [] for b in bands}
-    count = np.zeros(grid.shape, dtype="uint8")
-    used: list[Item] = []
-    for item in chosen:
-        try:
-            scene = s2_read(item, grid, bands)
-        except Exception:
+        # Mosaic the tiles of one date first, so memory holds one layer per
+        # date rather than one per tile.
+        mosaic: dict[str, np.ndarray] | None = None
+        for item in tiles.values():
+            try:
+                scene = s2_read(item, grid, bands)
+            except Exception:
+                continue
+            if scene["valid"].mean() < 0.02:
+                continue
+            used.append(item)
+            if mosaic is None:
+                mosaic = scene
+            else:
+                fill = ~mosaic["valid"] & scene["valid"]
+                for b in bands:
+                    mosaic[b][fill] = scene[b][fill]
+                mosaic["valid"] |= scene["valid"]
+        if mosaic is None:
             continue
-        if scene["valid"].mean() < 0.02:
-            continue
-        used.append(item)
-        count += scene["valid"].astype("uint8")
+        count += mosaic["valid"].astype("uint8")
         for b in bands:
-            stacks[b].append(scene[b])
+            stacks[b].append(mosaic[b])
     if not used:
         return None
     out = {}

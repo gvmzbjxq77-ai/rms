@@ -83,40 +83,36 @@ def yearly_stack(region: Region, years: Sequence[int], res: float,
     return grid, usable, stack, meta
 
 
+def _sums(series: np.ndarray, name: str) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, float]:
+    """Cumulative sums of one feature's yearly series and its region-wide noise floor."""
+    ok = np.isfinite(series)
+    filled = np.where(ok, series, 0.0).astype("float32")
+    diffs = np.abs(np.diff(series[:, ::7, ::7], axis=0))
+    finite = diffs[np.isfinite(diffs)]
+    floor = float(np.median(finite) * 1.4826 / np.sqrt(2)) if finite.size else 0.0
+    floor = max(floor, 0.25 * MIN_STEP[name] / 3.0)
+    return ok, np.cumsum(filled, axis=0), np.cumsum(filled ** 2, axis=0), \
+        np.cumsum(ok, axis=0, dtype="float32"), floor
+
+
 def step_statistics(stack: np.ndarray) -> dict[str, np.ndarray]:
     """Per-pixel best persistent step and best single-year transient.
 
     ``stack`` is features[y, f, H, W] with NaN gaps. Returns arrays over (H, W):
     step_z, step_k (index of the first year after the break), trans_z, trans_k,
-    n_valid, and ``delta`` [f, H, W] = after-mean minus before-mean at the best
-    step (or the excursion for pixels whose transient is stronger).
+    n_valid, and step_delta / trans_delta [f, H, W]: the after-minus-before
+    mean at the best step, and the excursion in the best transient year.
+    Memory stays near twice the size of ``stack``.
     """
     n_years, n_feat, height, width = stack.shape
-    step_z = np.zeros((height, width), "float32")
-    step_k = np.zeros((height, width), "int8")
-    trans_z = np.zeros((height, width), "float32")
-    trans_k = np.zeros((height, width), "int8")
-    step_delta = np.zeros((n_feat, height, width), "float32")
-    trans_delta = np.zeros((n_feat, height, width), "float32")
-    valid_all = np.isfinite(stack).all(axis=1)              # [y, H, W]
-    n_valid = valid_all.sum(axis=0).astype("int16")
-    sub = (slice(None, None, 7), slice(None, None, 7))
-    z_steps = np.zeros((n_years, n_feat, height, width), "float16")
-    z_trans = np.zeros((n_years, n_feat, height, width), "float16")
-    deltas = np.zeros((n_years, n_feat, height, width), "float16")
-    excurs = np.zeros((n_years, n_feat, height, width), "float16")
+    best_step = np.zeros((n_years, height, width), "float16")
+    best_trans = np.zeros((n_years, height, width), "float16")
+    n_valid = np.isfinite(stack).all(axis=1).sum(axis=0).astype("int16")
     for f in range(n_feat):
         series = stack[:, f]
-        ok = np.isfinite(series)
-        filled = np.where(ok, series, 0.0).astype("float32")
-        diffs = np.abs(np.diff(series[(slice(None),) + sub], axis=0))
-        finite = diffs[np.isfinite(diffs)]
-        floor = float(np.median(finite) * 1.4826 / np.sqrt(2)) if finite.size else 0.0
-        floor = max(floor, 0.25 * MIN_STEP[FEATURES[f]] / 3.0)
-        csum = np.cumsum(filled, axis=0)
-        csum2 = np.cumsum(filled ** 2, axis=0)
-        cnum = np.cumsum(ok, axis=0).astype("float32")
+        ok, csum, csum2, cnum, floor = _sums(series, FEATURES[f])
         total, total2, count = csum[-1], csum2[-1], cnum[-1]
+        minimum = MIN_STEP[FEATURES[f]]
         with np.errstate(divide="ignore", invalid="ignore"):
             for k in range(1, n_years):
                 n1, n2 = cnum[k - 1], count - cnum[k - 1]
@@ -131,33 +127,46 @@ def step_statistics(stack: np.ndarray) -> dict[str, np.ndarray]:
                 # Two composites are required on each side: a level known from a
                 # single year (above all the first, 2017, whose imagery has
                 # known striping) cannot anchor a step.
-                good = abrupt & (n1 >= 2) & (n2 >= 2) & (np.abs(step) >= MIN_STEP[FEATURES[f]])
-                z_steps[k, f] = np.where(good, np.clip(z, 0, 250), 0)
-                deltas[k, f] = np.where(np.isfinite(step), np.clip(step, -4, 4), 0)
-            for k in range(1, n_years):          # the first year has no "before"
+                good = abrupt & (n1 >= 2) & (n2 >= 2) & (np.abs(step) >= minimum)
+                np.maximum(best_step[k], np.where(good, np.clip(z, 0, 250), 0).astype("float16"),
+                           out=best_step[k])
+                # Single-year transient (the first year has no "before").
+                value = np.where(ok[k], series[k], 0.0)
                 n_other = count - ok[k]
-                base = (total - filled[k]) / n_other
-                sse = (total2 - filled[k] ** 2) - n_other * base ** 2
-                resid = np.sqrt(np.clip(sse, 0, None) / np.clip(n_other - 1, 1, None))
+                base = (total - value) / n_other
+                sse_t = (total2 - value ** 2) - n_other * base ** 2
+                resid_t = np.sqrt(np.clip(sse_t, 0, None) / np.clip(n_other - 1, 1, None))
                 excursion = series[k] - base
-                z = np.abs(excursion) / np.sqrt(resid ** 2 + floor ** 2)
-                good = ok[k] & (n_other >= 4) & (np.abs(excursion) >= 1.5 * MIN_STEP[FEATURES[f]])
-                z_trans[k, f] = np.where(good, np.clip(z, 0, 250), 0)
-                excurs[k, f] = np.where(np.isfinite(excursion), np.clip(excursion, -4, 4), 0)
-        del csum, csum2, cnum, filled
-    best_step = z_steps.max(axis=1)                          # [y, H, W]
-    step_k = best_step.argmax(axis=0).astype("int8")
-    step_z = np.take_along_axis(best_step, step_k[None].astype("int64"), 0)[0].astype("float32")
-    best_trans = z_trans.max(axis=1)
-    trans_k = best_trans.argmax(axis=0).astype("int8")
-    trans_z = np.take_along_axis(best_trans, trans_k[None].astype("int64"), 0)[0].astype("float32")
-    idx_s = step_k[None, None].astype("int64")
-    idx_t = trans_k[None, None].astype("int64")
+                z_t = np.abs(excursion) / np.sqrt(resid_t ** 2 + floor ** 2)
+                good_t = ok[k] & (n_other >= 4) & (np.abs(excursion) >= 1.5 * minimum)
+                np.maximum(best_trans[k], np.where(good_t, np.clip(z_t, 0, 250), 0).astype("float16"),
+                           out=best_trans[k])
+        del ok, csum, csum2, cnum
+    step_k = best_step.argmax(axis=0)
+    step_z = np.take_along_axis(best_step, step_k[None], 0)[0].astype("float32")
+    trans_k = best_trans.argmax(axis=0)
+    trans_z = np.take_along_axis(best_trans, trans_k[None], 0)[0].astype("float32")
+    del best_step, best_trans
+    step_delta = np.zeros((n_feat, height, width), "float32")
+    trans_delta = np.zeros((n_feat, height, width), "float32")
+    before_index = np.clip(step_k - 1, 0, None)[None]
     for f in range(n_feat):
-        step_delta[f] = np.take_along_axis(deltas[:, f:f + 1], idx_s, 0)[0, 0]
-        trans_delta[f] = np.take_along_axis(excurs[:, f:f + 1], idx_t, 0)[0, 0]
-    return {"step_z": step_z, "step_k": step_k, "trans_z": trans_z, "trans_k": trans_k,
-            "step_delta": step_delta, "trans_delta": trans_delta, "n_valid": n_valid}
+        series = stack[:, f]
+        ok, csum, _csum2, cnum, _ = _sums(series, FEATURES[f])
+        total, count = csum[-1], cnum[-1]
+        with np.errstate(divide="ignore", invalid="ignore"):
+            c1 = np.take_along_axis(csum, before_index, 0)[0]
+            n1 = np.take_along_axis(cnum, before_index, 0)[0]
+            delta = (total - c1) / (count - n1) - c1 / n1
+            step_delta[f] = np.where((step_k > 0) & np.isfinite(delta), delta, 0)
+            value = np.take_along_axis(series, trans_k[None], 0)[0]
+            seen = np.take_along_axis(ok, trans_k[None], 0)[0]
+            base = (total - np.where(seen, value, 0.0)) / (count - seen)
+            excursion = value - base
+            trans_delta[f] = np.where(np.isfinite(excursion), excursion, 0)
+    return {"step_z": step_z, "step_k": step_k.astype("int8"), "trans_z": trans_z,
+            "trans_k": trans_k.astype("int8"), "step_delta": step_delta,
+            "trans_delta": trans_delta, "n_valid": n_valid}
 
 
 def _blobs(mask: np.ndarray, key: np.ndarray, res: float, min_area_m2: float,
@@ -387,14 +396,18 @@ def time_series(lat: float, lon: float, footprint_radius_m: float, start: str, e
                 max_scenes: int = 60, max_cloud: float = 30.0) -> dict[str, Any]:
     """Per-scene Sentinel-2 statistics inside a footprint and its surrounding ring.
 
-    For each clear scene (10 m) between ``start`` and ``end``: mean brightness,
+    For each clear scene (10 m, coarser for footprints over about 500 m in
+    radius) between ``start`` and ``end``: mean brightness,
     NDVI and NBR inside a disc of ``footprint_radius_m`` and inside the ring
     from 2x to 4x that radius. Scenes are spread evenly over the period.
     Returns ``dates``, ``inside`` and ``ring`` (dicts of lists), ``valid``
     and ``scene_ids``; scenes where the footprint is under 70 % clear are left out.
     """
     radius = max(float(footprint_radius_m), 15.0)
-    grid = io.make_grid(io.point_bbox(lat, lon, 4.5 * radius + 20.0), 10.0)
+    half = 4.5 * radius + 20.0
+    # Large footprints are read at a coarser resolution: at most ~500 px across.
+    res = float(max(10, int(np.ceil(2 * half / 500.0 / 10.0)) * 10))
+    grid = io.make_grid(io.point_bbox(lat, lon, half), res)
     items = io.s2_scenes(grid.bbox_wgs84(), start, end, max_cloud=max_cloud, max_items=600)
     by_day: dict[str, Any] = {}
     for item in sorted(items, key=lambda it: it.datetime):
@@ -436,7 +449,7 @@ def time_series(lat: float, lon: float, footprint_radius_m: float, start: str, e
     }
 
 
-def refine_onset(candidate: Candidate, pad_days: int = 400, max_scenes: int = 45) -> Candidate:
+def refine_onset(candidate: Candidate, pad_days: int = 400, max_scenes: int = 32) -> Candidate:
     """Tighten the onset window using individual scenes; store the series.
 
     The inside-minus-ring contrast of the most changed feature is classified
