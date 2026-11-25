@@ -135,3 +135,17 @@ def test_artefact_observation_count_reads_event_window_layout():
     yearly.measurements["n_valid_years"] = 8
     assert artefacts._observation_count(yearly).status == "does_not_explain"
     assert artefacts._bracketing_dates({"2020": ["2020-07-01"]}, 2019) is None
+
+
+def test_index_change_beyond_physical_range_is_an_artefact():
+    from skywatch.core.models import Candidate
+    from skywatch.eliminate import artefacts
+
+    def cand(**m):
+        return Candidate(id="x", region_id="r", lat=0, lon=0, bbox=(0, 0, 1, 1), signature="unknown",
+                         detector="optical_change", score=0.5, area_m2=1600, measurements=m)
+
+    assert artefacts._index_range(cand(d_ndvi=3.19, d_brightness=-0.1)).status == "explains"
+    assert artefacts._index_range(cand(d_ndvi=-0.7, d_nbr=-0.76)).status == "does_not_explain"
+    umbrella = artefacts.check_artefacts(cand(d_ndvi=3.19, kind="transient"))[0]
+    assert umbrella.status == "explains" and "physical range" in umbrella.detail

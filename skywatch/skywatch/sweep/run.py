@@ -290,10 +290,11 @@ def eliminate_region(region: Region, force: bool = False, confirm: bool = True,
 def recheck_region(region: Region) -> tuple[str, dict[str, int]]:
     """Apply the region-wide sibling census to an already eliminated region.
 
-    Re-runs only the natural-process check (which reads the census) on the
-    unexplained candidates and re-assigns their tiers, so a rule added after a
-    long elimination run does not force the slow stages to run again. Returns
-    the tier counts before and after.
+    Re-runs only the natural-process check (which reads the census) and the
+    artefact screen (which works from stored measurements) on the unexplained
+    candidates and re-assigns their tiers, so a rule added after a long
+    elimination run does not force the slow stages to run again. Returns the
+    tier counts before and after.
     """
     from ..eliminate.engine import run_checks
     from ..eliminate.regional import annotate_siblings, copy_census
@@ -307,8 +308,8 @@ def recheck_region(region: Region) -> tuple[str, dict[str, int]]:
     copy_census(raw, final)
     before = {t: sum(c.tier == t for c in final) for t in ("T0", "T1", "T2", "T3", "T4")}
     for candidate in final:
-        if candidate.tier != "T0" and candidate.measurements.get("regional_siblings"):
-            run_checks(candidate, only=["natural_process"])
+        if candidate.tier != "T0":
+            run_checks(candidate, only=["natural_process", "artefact_screen"])
     save_candidates(out, final)
     after = {t: sum(c.tier == t for c in final) for t in ("T0", "T1", "T2", "T3", "T4")}
     return region.id, {"before": before, "after": after}

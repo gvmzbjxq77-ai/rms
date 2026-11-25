@@ -187,6 +187,26 @@ def _widespread(candidate: Candidate) -> CheckResult:
                    crowding=crowding)
 
 
+#: A normalised-difference index lies in [-1, 1], so no real change of one
+#: can exceed this; a larger value means a near-zero denominator.
+INDEX_CHANGE_LIMIT = 2.0
+
+
+def _index_range(candidate: Candidate) -> CheckResult:
+    """A vegetation or burn index change beyond its physical range."""
+    m = candidate.measurements
+    name = "artefact:index_range"
+    worst = max(abs(float(m.get(k, 0.0) or 0.0)) for k in ("d_ndvi", "d_nbr"))
+    if worst > INDEX_CHANGE_LIMIT:
+        return _result(name, "explains",
+                       f"an index change of {worst:.2f} is outside the physical range of a normalised-difference "
+                       f"index (at most {INDEX_CHANGE_LIMIT:.0f}): the denominator was near zero, which happens over "
+                       "dark water, deep shadow, snow or a bad pixel, not over a real surface change",
+                       worst_index_change=worst)
+    return _result(name, "does_not_explain", f"index changes within range (largest {worst:.2f})",
+                   worst_index_change=worst)
+
+
 def check_artefacts(candidate: Candidate) -> list[CheckResult]:
     """Umbrella "artefact_screen" plus its sub-results (names start "artefact:").
 
@@ -195,7 +215,7 @@ def check_artefacts(candidate: Candidate) -> list[CheckResult]:
     ran and nothing was found; "not_run" when the per-scene test could not run.
     """
     subs = [_per_scene_support(candidate), _observation_count(candidate),
-            _terrain_shadow(candidate), _widespread(candidate)]
+            _terrain_shadow(candidate), _widespread(candidate), _index_range(candidate)]
     statuses = {s.check: s.status for s in subs}
     explaining = [s for s in subs if s.status == "explains"]
     if explaining:
