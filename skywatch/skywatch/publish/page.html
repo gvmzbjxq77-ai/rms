@@ -200,7 +200,9 @@ function head() {
     [fmt(open), "not yet explained"],
   ];
   for (const [n, label] of figs) { const f = el("div", "figure"); f.append(el("b", null, n), el("span", null, label)); $("figures").append(f); }
-  $("coverage").textContent = "Coverage: the blind regions add up to " + (c.share_of_land * 100).toFixed(3) + " % of Earth's land. This is a pilot that tests the method and measures its error rate. It is not a global search.";
+  const e = DATA.error_rates || {};
+  $("coverage").textContent = "Coverage: the blind regions add up to " + (c.share_of_land * 100).toFixed(3) + " % of Earth's land. This is a pilot that tests the method and measures its error rate. It is not a global search." +
+    (e.pristine_regions ? " Error rate: on " + fmt(Math.round(e.pristine_area_km2)) + " km² of ground declared empty in advance, the detector fired " + fmt(e.pristine_detections) + " times and " + fmt(e.pristine_unexplained) + " of the reviewed detections stayed unexplained. " + e.controls_passed + " of " + e.controls_total + " control regions passed their test." : "");
   const lad = $("ladder");
   for (const k of ["T4", "T3", "T2", "T1", "T0"]) { const b = el("span", "tier " + k, k); lad.append(b, el("span", null, TIERS[k]), el("span", "n", fmt(t[k] || 0))); }
 }
@@ -267,7 +269,7 @@ function card(c) {
   const h = el("div", "head");
   h.append(el("span", "title", region.name + " · " + describe(c)));
   h.append(el("span", "meta mono", c.id + " · " + c.lat.toFixed(4) + ", " + c.lon.toFixed(4) + (c.present_from ? " · appeared " + (c.absent_until || "?") + " → " + c.present_from : "")));
-  h.append(el("span", "why", c.adjudication ? c.adjudication.one_line : c.tier_reason));
+  h.append(el("span", "why", (c.weak ? "At the detection floor (small, low-amplitude). " : "") + (c.adjudication ? c.adjudication.one_line : c.tier_reason)));
   s.append(h, el("span", "tier " + c.tier, c.tier));
   d.append(s);
   d.addEventListener("toggle", () => { if (d.open && !d.dataset.built) { d.dataset.built = "1"; d.append(body(c)); } }, { once: false });

@@ -1,0 +1,11 @@
+{
+ "region": "B28-AMAZON",
+ "thermal": {
+  "candidates": 5,
+  "seconds": 87.3
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 11.5
+ }
+}

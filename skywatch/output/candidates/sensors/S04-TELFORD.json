@@ -1,0 +1,11 @@
+{
+ "region": "S04-TELFORD",
+ "thermal": {
+  "candidates": 4,
+  "seconds": 48.7
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 4.6
+ }
+}

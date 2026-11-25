@@ -1,0 +1,11 @@
+{
+ "region": "C06-MU5735",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 46.2
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.1
+ }
+}

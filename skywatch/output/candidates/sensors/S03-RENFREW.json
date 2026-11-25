@@ -1,0 +1,11 @@
+{
+ "region": "S03-RENFREW",
+ "thermal": {
+  "candidates": 10,
+  "seconds": 63.3
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 3.8
+ }
+}

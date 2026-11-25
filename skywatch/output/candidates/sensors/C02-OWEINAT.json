@@ -1,0 +1,11 @@
+{
+ "region": "C02-OWEINAT",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 63.7
+ },
+ "lights": {
+  "candidates": 2,
+  "seconds": 4.3
+ }
+}

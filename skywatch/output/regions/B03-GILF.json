@@ -26,11 +26,11 @@
  "n_blobs_total": 2520,
  "n_candidates_kept": 120,
  "kinds": {
-  "step": 51,
-  "transient": 69
+  "step": 50,
+  "transient": 70
  },
  "step_fraction": 0.0004905930513329962,
  "transient_fraction": 0.17101025324640803,
  "valid_fraction": 1.0,
- "seconds": 54.8
+ "seconds": 38.2
 }

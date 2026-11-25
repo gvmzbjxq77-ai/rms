@@ -1,0 +1,11 @@
+{
+ "region": "B29-PATAGONIA",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 83.7
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 3.2
+ }
+}

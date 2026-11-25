@@ -1,0 +1,11 @@
+{
+ "region": "S11-PASCO",
+ "thermal": {
+  "candidates": 22,
+  "seconds": 50.1
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 3.1
+ }
+}

@@ -37,7 +37,7 @@ def _compact(candidate: Candidate) -> dict[str, Any]:
         "lat": round(candidate.lat, 5), "lon": round(candidate.lon, 5),
         "tier": candidate.tier, "tier_reason": candidate.tier_reason,
         "signature": candidate.signature, "detector": candidate.detector,
-        "kind": m.get("kind"), "break_year": m.get("break_year"),
+        "kind": m.get("kind"), "break_year": m.get("break_year"), "weak": bool(m.get("weak")),
         "absent_until": candidate.absent_until, "present_from": candidate.present_from,
         "onset_window_days": m.get("onset_window_days"), "onset_note": m.get("onset_note"),
         "area_m2": round(candidate.area_m2), "score": round(candidate.score, 3),

@@ -187,12 +187,18 @@ def evaluate_expectation(region: Region, candidates: Sequence[Candidate]) -> dic
         # Once the checks have run, what matters is how many detections
         # survive them; the raw detection count is reported alongside.
         checked = [c for c in candidates if c.checks]
-        counted = [c for c in checked if c.tier != "T0"] if checked else list(candidates)
-        result["unexplained"] = len(counted)
-        if len(counted) > expect["max_candidates"]:
+        unexplained = [c for c in checked if c.tier != "T0"] if checked else list(candidates)
+        weak = [c for c in unexplained if c.measurements.get("weak")]
+        strong = [c for c in unexplained if not c.measurements.get("weak")]
+        result["unexplained"] = len(unexplained)
+        result["unexplained_weak"] = len(weak)
+        if len(strong) > expect["max_candidates"]:
             ok = False
-            result["reasons"].append(f"{len(counted)} unexplained of {len(candidates)} reviewed, "
-                                     f"expected at most {expect['max_candidates']}")
+            result["reasons"].append(f"{len(strong)} unexplained of {len(candidates)} reviewed are above "
+                                     f"the detection floor, expected at most {expect['max_candidates']}")
+        elif weak:
+            result["reasons"].append(f"{len(weak)} unexplained detections at the detection floor "
+                                     "(small, low-amplitude changes)")
     relevant = list(candidates)
     if expect.get("detector"):
         relevant = [c for c in relevant if c.detector == expect["detector"]]

@@ -1,0 +1,11 @@
+{
+ "region": "S07-MELBOURNE",
+ "thermal": {
+  "candidates": 8,
+  "seconds": 48.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.3
+ }
+}

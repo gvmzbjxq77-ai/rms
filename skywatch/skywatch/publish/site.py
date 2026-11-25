@@ -98,8 +98,20 @@ def build_site(site: Path = SITE, image_candidates: int = 60, headline: str = ""
     _land(site)
     files["catalogue.json"] = str(site / "catalogue.json")
     files["land.json"] = str(site / "land.json")
+    pristine = [r for r in catalogue["regions"] if r["kind"] == "control" and r.get("expectation")
+                and (r.get("expected") or "").lower().startswith(("a featureless", "remote rock", "one of the emptiest"))]
+    error_rates = {
+        "pristine_regions": len(pristine),
+        "pristine_area_km2": sum(r["area_km2"] for r in pristine),
+        "pristine_detections": sum(r["blobs_detected"] or 0 for r in pristine),
+        "pristine_unexplained": sum(sum(v for t, v in r["tiers"].items() if t != "T0") for r in pristine),
+        "controls_passed": sum(1 for r in catalogue["regions"] if r["kind"] == "control"
+                               and (r.get("expectation") or {}).get("passed")),
+        "controls_total": sum(1 for r in catalogue["regions"] if r["kind"] == "control"),
+    }
     data = {
         "generated": date.today().isoformat(), "headline": headline, "subline": subline,
+        "error_rates": error_rates,
         "coverage": catalogue["coverage"], "summary": catalogue["summary"],
         "regions": catalogue["regions"], "limits": LIMITS,
         "total_blobs": sum(r["blobs_detected"] or 0 for r in catalogue["regions"])

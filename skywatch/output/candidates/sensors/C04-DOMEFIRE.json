@@ -1,0 +1,11 @@
+{
+ "region": "C04-DOMEFIRE",
+ "thermal": {
+  "candidates": 20,
+  "seconds": 61.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.9
+ }
+}

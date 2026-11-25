@@ -226,11 +226,13 @@ CHEAP_CHECKS = ("military_or_rocket_range", "landcover", "osm_infrastructure",
 
 
 def eliminate_region(region: Region, force: bool = False, confirm: bool = True,
-                     top: int = 16, workers: int = 3) -> int:
+                     top: int = 16, events_kept: int = 20, workers: int = 3) -> int:
     """Checks, onset refinement, sensor confirmation and tiers for one region.
 
-    Takes the top ``top`` raw candidates (half of them event-window finds for
-    dated regions) plus the strongest undated finds from the other sensors.
+    Takes the top ``top`` yearly candidates, up to ``events_kept`` event-window
+    finds (dated regions) and the strongest undated finds from the other
+    sensors. Each candidate is flagged ``measurements["weak"]`` when its
+    amplitude sits at the detection floor.
     Cheap map and catalogue checks run first; candidates they explain stop
     there. The rest get their onset refined scene by scene, then every check
     and the Landsat and radar confirmations.
@@ -241,10 +243,15 @@ def eliminate_region(region: Region, force: bool = False, confirm: bool = True,
     out = CAND_DIR / "final" / f"{region.id}.jsonl"
     if out.exists() and not force:
         return len(load_candidates(out))
+    from ..detect.optical_change import is_weak
+
     raw = load_candidates(CAND_DIR / "raw" / f"{region.id}.jsonl")
-    events = [c for c in raw if c.detector == "optical_event"][:max(top // 2, 6)]
+    # Dated regions: the event-window finds are the point, so many are kept.
+    events = [c for c in raw if c.detector == "optical_event"][:events_kept]
     yearly = [c for c in raw if c.detector != "optical_event"]
-    candidates = events + yearly[:max(top - len(events), 0)]
+    candidates = events + yearly[:top if events else top]
+    for candidate in candidates:
+        candidate.measurements["weak"] = is_weak(candidate)
     extra = load_candidates(CAND_DIR / "sensors" / f"{region.id}.jsonl")
     for detector, keep in (("landsat_thermal", 4), ("sar_bright", 4), ("viirs_light", 3)):
         candidates += [c for c in extra if c.detector == detector][:keep]

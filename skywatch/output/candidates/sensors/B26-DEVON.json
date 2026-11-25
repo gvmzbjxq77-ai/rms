@@ -1,0 +1,11 @@
+{
+ "region": "B26-DEVON",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 65.8
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 0.0
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "region": "S12-PLYMOUTH",
+ "thermal": {
+  "candidates": 4,
+  "seconds": 47.6
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 3.2
+ }
+}

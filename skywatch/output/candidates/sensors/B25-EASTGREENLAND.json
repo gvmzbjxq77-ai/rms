@@ -1,0 +1,11 @@
+{
+ "region": "B25-EASTGREENLAND",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 63.8
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 9.7
+ }
+}

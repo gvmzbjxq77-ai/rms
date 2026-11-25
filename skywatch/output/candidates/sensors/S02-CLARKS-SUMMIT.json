@@ -1,0 +1,11 @@
+{
+ "region": "S02-CLARKS-SUMMIT",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 46.5
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.0
+ }
+}

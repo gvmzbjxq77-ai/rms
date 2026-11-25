@@ -111,3 +111,15 @@ def test_earliest_significant_step_dates_the_event():
     stack[4:, 0, 10:20, 10:20] += 0.12         # brightness rises a year later (bigger z)
     stats = oc.step_statistics(stack)
     assert (stats["step_k"][10:20, 10:20] == 3).mean() > 0.95
+
+
+def test_weak_flag_marks_floor_level_changes():
+    from skywatch.core.models import Candidate
+
+    def cand(area, **m):
+        return Candidate(id="x", region_id="r", lat=0, lon=0, bbox=(0, 0, 1, 1), signature="unknown",
+                         detector="optical_change", score=0.3, area_m2=area, measurements=m)
+
+    assert oc.is_weak(cand(1600, d_brightness=-0.018, d_swir=-0.05))
+    assert not oc.is_weak(cand(1600, d_brightness=-0.08))          # strong amplitude
+    assert not oc.is_weak(cand(20000, d_brightness=-0.018, d_swir=-0.05))   # large area

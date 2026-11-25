@@ -1,0 +1,11 @@
+{
+ "region": "S08-LIMA",
+ "thermal": {
+  "candidates": 7,
+  "seconds": 48.1
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 3.4
+ }
+}

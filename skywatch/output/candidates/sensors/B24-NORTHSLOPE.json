@@ -1,0 +1,11 @@
+{
+ "region": "B24-NORTHSLOPE",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 51.7
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 10.6
+ }
+}

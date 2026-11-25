@@ -23,15 +23,15 @@
   2025,
   2026
  ],
- "n_blobs_total": 81,
- "n_candidates_kept": 81,
+ "n_blobs_total": 80,
+ "n_candidates_kept": 80,
  "kinds": {
-  "step": 43,
+  "step": 42,
   "latest_year": 11,
   "transient": 27
  },
  "step_fraction": 0.0007312159134349191,
  "transient_fraction": 0.0006155817689847458,
  "valid_fraction": 1.0,
- "seconds": 43.4
+ "seconds": 11.4
 }

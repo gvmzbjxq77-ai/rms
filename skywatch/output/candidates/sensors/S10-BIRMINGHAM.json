@@ -1,0 +1,11 @@
+{
+ "region": "S10-BIRMINGHAM",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 46.7
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 0.9
+ }
+}

@@ -458,3 +458,12 @@ def test_live_atacama_never_burned() -> None:
     assert results["fire_history"].evidence["active_fire"]["days_covered"] >= 90
     assert results["burn_spectral"].status == "does_not_explain"
     assert results["lightning"].status == "not_run"
+
+
+def test_aftermath_spectra_count_as_consistent_only_for_earlier_fires():
+    from skywatch.eliminate import fire
+
+    spectral = {"level": "weak", "d_nbr": 0.04, "d_ndvi": 0.01, "d_brightness": 0.05}
+    assert fire._fire_consistent(spectral) is False
+    assert fire._fire_consistent(spectral, aftermath=True) is True
+    assert fire._fire_consistent({"level": "unknown"}, aftermath=True) is None

@@ -1,0 +1,11 @@
+{
+ "region": "C05-YUCCAFLAT",
+ "thermal": {
+  "candidates": 60,
+  "seconds": 65.9
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 2.9
+ }
+}

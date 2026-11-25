@@ -1,0 +1,11 @@
+{
+ "region": "C11-MAJABAT",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 125.5
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 3.4
+ }
+}

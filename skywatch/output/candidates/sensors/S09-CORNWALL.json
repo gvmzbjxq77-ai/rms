@@ -1,0 +1,11 @@
+{
+ "region": "S09-CORNWALL",
+ "thermal": {
+  "candidates": 4,
+  "seconds": 47.2
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 6.3
+ }
+}

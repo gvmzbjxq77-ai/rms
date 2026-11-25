@@ -1,0 +1,11 @@
+{
+ "region": "C10-NUBIAN",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 81.3
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.3
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "region": "S05-SNELLVILLE",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 57.1
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.0
+ }
+}

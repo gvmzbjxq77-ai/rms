@@ -1,0 +1,11 @@
+{
+ "region": "B27-EVENKIA",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 75.1
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 4.7
+ }
+}

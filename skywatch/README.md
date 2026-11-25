@@ -12,8 +12,10 @@ claims an origin.
 uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -e . pytest access-parser
 
 .venv/bin/python -m skywatch.sweep.run detect --kind control   # then --kind blind / seeded
-.venv/bin/python -m skywatch.sweep.run refine --top 16          # tighten onset dates
-.venv/bin/python -m skywatch.sweep.run eliminate                # checks, sensor confirmation, tiers
+.venv/bin/python -m skywatch.sweep.run sensors                  # thermal and night-light detectors
+.venv/bin/python -m skywatch.sweep.run eliminate                # cheap checks, onset refinement, all checks, confirmation, tiers
+.venv/bin/python -m skywatch.sweep.followup                     # dossiers, timestamps, request drafts
+.venv/bin/python -m skywatch.publish.adjudicate                 # review briefs for the panel
 .venv/bin/python -m skywatch.publish.site                       # output/site/
 .venv/bin/python -m pytest -q -m "not network"                  # unit tests
 ```

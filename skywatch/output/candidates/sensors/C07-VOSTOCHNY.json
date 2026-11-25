@@ -1,0 +1,11 @@
+{
+ "region": "C07-VOSTOCHNY",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 65.2
+ },
+ "lights": {
+  "candidates": 1,
+  "seconds": 5.7
+ }
+}

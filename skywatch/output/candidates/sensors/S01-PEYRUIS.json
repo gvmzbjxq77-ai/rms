@@ -1,0 +1,11 @@
+{
+ "region": "S01-PEYRUIS",
+ "thermal": {
+  "candidates": 3,
+  "seconds": 51.9
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 3.2
+ }
+}

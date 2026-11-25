@@ -700,18 +700,24 @@ def _spectral(candidate: Candidate, radius_m: float) -> dict[str, Any]:
     return values
 
 
-def _fire_consistent(spectral: dict[str, Any]) -> bool | None:
+def _fire_consistent(spectral: dict[str, Any], aftermath: bool = False) -> bool | None:
     """Does the change fit a place that MODIS says burned? None when unmeasured.
 
     Looser than ``burn_likeness``: a modest loss in the burn index or in
     vegetation is enough, because a burnt surface seen months later can be
     brighter than before. Darkening alone is not accepted: solar panels,
     tarmac and wet ground also darken, and industrial heat can trip the
-    satellite fire detector.
+    satellite fire detector. With ``aftermath`` (the fire burned before the
+    last composite that still looked unchanged, so the detected step is the
+    scar developing) brightening, a rising burn index or a vegetation change
+    of either sign is consistent too.
     """
     if spectral["level"] == "unknown":
         return None
-    d_nbr, d_ndvi = spectral["d_nbr"], spectral["d_ndvi"]
+    d_nbr, d_ndvi, d_bri = spectral["d_nbr"], spectral["d_ndvi"], spectral["d_brightness"]
+    if aftermath:
+        return bool((d_nbr is not None and abs(d_nbr) >= 0.03) or (d_ndvi is not None and abs(d_ndvi) >= 0.03)
+                    or (d_bri is not None and d_bri >= 0.02))
     return bool((d_nbr is not None and d_nbr <= -0.04) or (d_ndvi is not None and d_ndvi <= -0.04))
 
 
@@ -808,11 +814,15 @@ def _history(candidate: Candidate, spectral: dict[str, Any], radius_m: float) ->
     span = f"between {first} and {last} within {radius_m:.0f} m of the candidate"
     strong = [d for d in found if d["product"] == "MCD64A1" or d["confidence"] != "low"]
     if strong:
-        consistent = _fire_consistent(spectral)
+        aftermath = lookback > PAD_DAYS and all(
+            date.fromisoformat(str(d["date"])[:10]) < window[0] for d in strong)
+        consistent = _fire_consistent(spectral, aftermath=aftermath)
         if consistent is False:
             return result("inconclusive", f"MODIS records fire {span} ({_describe(found)}), but the "
                           f"spectral change is not that of a burn ({spectral['reason']}).", **evidence)
-        basis = (f"the spectral change fits a burn ({spectral['reason']})" if consistent
+        basis = ((f"the fire burned before the last unchanged composite and the later change "
+                  f"({spectral['reason']}) is the scar developing" if aftermath
+                  else f"the spectral change fits a burn ({spectral['reason']})") if consistent
                  else "no spectral measurement was available to cross-check")
         return result("explains", f"MODIS records fire {span}: {_describe(found)}; {basis}.", **evidence)
     if found:

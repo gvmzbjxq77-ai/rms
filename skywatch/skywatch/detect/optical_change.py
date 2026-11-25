@@ -351,6 +351,21 @@ def detect_changes(region: Region, years: Sequence[int] | None = None, res: floa
     return candidates
 
 
+#: Below this multiple of the minimum step, and below this area, a change is
+#: "weak": real but at the detector's floor, where tracks, stones and wind
+#: produce changes of the same size.
+WEAK_STEP_MULTIPLE = 1.5
+WEAK_AREA_M2 = 4000.0
+
+
+def is_weak(candidate: Candidate) -> bool:
+    """True for a small change whose amplitude is near the detection floor."""
+    m = candidate.measurements
+    keys = {"brightness": "d_brightness", "ndvi": "d_ndvi", "nbr": "d_nbr", "swir": "d_swir"}
+    strongest = max((abs(float(m.get(k, 0.0) or 0.0)) / MIN_STEP[f] for f, k in keys.items()), default=0.0)
+    return strongest < WEAK_STEP_MULTIPLE and candidate.area_m2 < WEAK_AREA_M2
+
+
 def detect_event_change(region: Region, event_date: str, window_days: int = 150,
                         res: float = 10.0, min_area_m2: float = 800.0,
                         max_area_m2: float = 2.0e6, z_threshold: float = 6.0,
@@ -434,7 +449,7 @@ def detect_event_change(region: Region, event_date: str, window_days: int = 150,
                           "scene_ids_before": before["scene_ids"],
                           "scene_ids_after": after["scene_ids"], "res_m": res}))
     candidates.sort(key=lambda c: -c.score * (1.0 + 0.5 * np.log10(max(c.area_m2, min_area_m2) / min_area_m2))
-                    / (1.0 + c.measurements["crowding"] / 0.02))
+                    / (1.0 + c.measurements["crowding"] / 0.05))
     if len(candidates) > max_candidates:
         log.warning("%s: %d event candidates, %d dropped by the cap", region.id,
                     len(candidates), len(candidates) - max_candidates)

@@ -1,0 +1,11 @@
+{
+ "region": "C03-OYUTOLGOI",
+ "thermal": {
+  "candidates": 13,
+  "seconds": 69.8
+ },
+ "lights": {
+  "candidates": 1,
+  "seconds": 4.8
+ }
+}
