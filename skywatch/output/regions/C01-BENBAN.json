@@ -1,0 +1,36 @@
+{
+ "region": "C01-BENBAN",
+ "name": "Benban solar park, Egypt",
+ "kind": "control",
+ "biome": "desert",
+ "bbox": [
+  32.65018331354268,
+  24.375151994250807,
+  32.82781668645731,
+  24.536848005749192
+ ],
+ "area_km2": 323.99999999999494,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 794,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 120
+ },
+ "step_fraction": 0.18718106188971678,
+ "transient_fraction": 0.01655826778839158,
+ "valid_fraction": 1.0,
+ "seconds": 62.9
+}

@@ -1,0 +1,36 @@
+{
+ "region": "C04-DOMEFIRE",
+ "name": "Dome Fire scar, Mojave, USA",
+ "kind": "control",
+ "biome": "desert shrub",
+ "bbox": [
+  -115.71208231345935,
+  35.192202659001076,
+  -115.44791768654065,
+  35.40779734099892
+ ],
+ "area_km2": 576.0000000000165,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 217,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 120
+ },
+ "step_fraction": 0.013699889044008038,
+ "transient_fraction": 0.0006804670152567867,
+ "valid_fraction": 1.0,
+ "seconds": 112.6
+}

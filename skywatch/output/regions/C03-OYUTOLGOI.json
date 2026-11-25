@@ -1,0 +1,36 @@
+{
+ "region": "C03-OYUTOLGOI",
+ "name": "Oyu Tolgoi copper mine, Mongolia",
+ "kind": "control",
+ "biome": "desert",
+ "bbox": [
+  106.70258174017576,
+  42.90220265900108,
+  106.99741825982423,
+  43.11779734099892
+ ],
+ "area_km2": 575.9999999999928,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 357,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 120
+ },
+ "step_fraction": 0.004305668565229183,
+ "transient_fraction": 0.003946031897977526,
+ "valid_fraction": 1.0,
+ "seconds": 58.7
+}

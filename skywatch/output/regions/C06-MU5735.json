@@ -1,0 +1,36 @@
+{
+ "region": "C06-MU5735",
+ "name": "China Eastern 5735 crash site, Guangxi, China",
+ "kind": "control",
+ "biome": "forest",
+ "bbox": [
+  111.06308732775916,
+  23.27908444125045,
+  111.16091267224083,
+  23.368915558749553
+ ],
+ "area_km2": 99.9999999999885,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 538,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 120
+ },
+ "step_fraction": 0.020804083216332866,
+ "transient_fraction": 0.030956123824495297,
+ "valid_fraction": 1.0,
+ "seconds": 45.4
+}

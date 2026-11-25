@@ -284,22 +284,25 @@ def s2_composite(grid: Grid, start: str, end: str, bands: Sequence[str] = S2_BAN
     cache_file = config.CACHE / "s2_composite" / f"{key}.npz"
     if use_cache and cache_file.exists():
         with np.load(cache_file, allow_pickle=False) as data:
-            out: dict[str, Any] = {b: data[b] for b in bands}
+            out: dict[str, Any] = {b: data[b].astype("float32") for b in bands}
             out["count"] = data["count"]
             out["dates"] = [str(d) for d in data["dates"]]
             out["scene_ids"] = [str(s) for s in data["scene_ids"]]
             return out
     items = s2_scenes(grid.bbox_wgs84(), start, end, max_cloud=max_cloud)
-    chosen: list[Item] = []
-    seen_days: set[str] = set()
+    # Pick the clearest acquisition DATES and read every tile of each date, so
+    # an area straddling several image tiles is covered completely.
+    by_day: dict[str, list[Item]] = {}
     for item in items:
-        day = item.datetime.strftime("%Y-%m-%d") + item.properties.get("grid:code", "")
-        if day in seen_days:
-            continue
-        seen_days.add(day)
-        chosen.append(item)
-        if len(chosen) >= max_scenes:
-            break
+        by_day.setdefault(item.datetime.strftime("%Y-%m-%d"), []).append(item)
+    days = sorted(by_day, key=lambda d: np.mean(
+        [it.properties.get("eo:cloud_cover", 100.0) for it in by_day[d]]))[:max_scenes]
+    chosen: list[Item] = []
+    for day in days:
+        tiles: dict[str, Item] = {}
+        for item in by_day[day]:
+            tiles.setdefault(item.properties.get("grid:code", item.id), item)
+        chosen.extend(tiles.values())
     if not chosen:
         return None
     stacks: dict[str, list[np.ndarray]] = {b: [] for b in bands}
@@ -326,11 +329,12 @@ def s2_composite(grid: Grid, start: str, end: str, bands: Sequence[str] = S2_BAN
             for b in bands:
                 out[b] = np.nanmedian(np.stack(stacks[b]), axis=0).astype("float32")
     out["count"] = count
-    out["dates"] = [it.datetime.strftime("%Y-%m-%d") for it in used]
+    out["dates"] = sorted({it.datetime.strftime("%Y-%m-%d") for it in used})
     out["scene_ids"] = [it.id for it in used]
     cache_file.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(cache_file, count=count, dates=np.array(out["dates"]),
-                        scene_ids=np.array(out["scene_ids"]), **{b: out[b] for b in bands})
+                        scene_ids=np.array(out["scene_ids"]),
+                        **{b: out[b].astype("float16") for b in bands})
     return out
 
 

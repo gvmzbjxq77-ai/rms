@@ -1,0 +1,37 @@
+{
+ "region": "C09-SERIRTIBESTI",
+ "name": "Serir Tibesti gravel plain, Libya",
+ "kind": "control",
+ "biome": "desert",
+ "bbox": [
+  17.302560569610684,
+  24.320337765001796,
+  17.697439430389316,
+  24.679662234998204
+ ],
+ "area_km2": 1600.0000000000066,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 15,
+ "n_candidates_kept": 15,
+ "kinds": {
+  "step": 10,
+  "transient": 5
+ },
+ "step_fraction": 6.722945946547259e-05,
+ "transient_fraction": 0.00012720394129078628,
+ "valid_fraction": 1.0,
+ "seconds": 188.5
+}

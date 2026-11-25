@@ -1,0 +1,34 @@
+{
+ "region": "C11-MAJABAT",
+ "name": "Majabat al-Koubra, Mauritania",
+ "kind": "control",
+ "biome": "desert",
+ "bbox": [
+  -7.692444303563965,
+  20.820337765001796,
+  -7.307555696436035,
+  21.179662234998204
+ ],
+ "area_km2": 1600.0000000000105,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 0,
+ "n_candidates_kept": 0,
+ "kinds": {},
+ "step_fraction": 1.2560991618863063e-05,
+ "transient_fraction": 0.0,
+ "valid_fraction": 1.0,
+ "seconds": 120.1
+}

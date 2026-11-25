@@ -1,0 +1,36 @@
+{
+ "region": "C10-NUBIAN",
+ "name": "Nubian Desert, northern Sudan",
+ "kind": "control",
+ "biome": "desert",
+ "bbox": [
+  28.30819091560478,
+  20.320337765001796,
+  28.69180908439522,
+  20.679662234998204
+ ],
+ "area_km2": 1599.999999999997,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 102,
+ "n_candidates_kept": 102,
+ "kinds": {
+  "step": 102
+ },
+ "step_fraction": 0.0009568162991597964,
+ "transient_fraction": 7.396157942487476e-07,
+ "valid_fraction": 1.0,
+ "seconds": 150.4
+}

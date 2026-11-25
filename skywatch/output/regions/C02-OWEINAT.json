@@ -1,0 +1,35 @@
+{
+ "region": "C02-OWEINAT",
+ "name": "Sharq El Owainat pivot farms, Egypt",
+ "kind": "control",
+ "biome": "desert",
+ "bbox": [
+  28.60325336454958,
+  22.472202659001077,
+  28.836746635450417,
+  22.68779734099892
+ ],
+ "area_km2": 575.9999999999876,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "n_blobs_total": 566,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 120
+ },
+ "step_fraction": 0.042990329728680984,
+ "transient_fraction": 0.06485515015980965,
+ "valid_fraction": 1.0,
+ "seconds": 68.1
+}

@@ -1,0 +1,38 @@
+{
+ "region": "C07-VOSTOCHNY",
+ "name": "Vostochny Cosmodrome, Russia",
+ "kind": "control",
+ "biome": "taiga",
+ "bbox": [
+  128.15537582656532,
+  51.77220265900108,
+  128.5046241734347,
+  51.987797340998924
+ ],
+ "area_km2": 576.0000000000047,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 110,
+ "n_candidates_kept": 110,
+ "kinds": {
+  "step": 84,
+  "transient": 16,
+  "latest_year": 10
+ },
+ "step_fraction": 0.0027643362532088476,
+ "transient_fraction": 0.0007917537890588333,
+ "valid_fraction": 1.0,
+ "seconds": 60.1
+}

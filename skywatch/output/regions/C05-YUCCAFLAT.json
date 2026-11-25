@@ -1,0 +1,37 @@
+{
+ "region": "C05-YUCCAFLAT",
+ "name": "Yucca Flat crater field, Nevada, USA",
+ "kind": "control",
+ "biome": "desert",
+ "bbox": [
+  -116.16264391712662,
+  37.0201688825009,
+  -115.93735608287338,
+  37.1998311174991
+ ],
+ "area_km2": 399.99999999998045,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 4,
+ "n_candidates_kept": 4,
+ "kinds": {
+  "step": 2,
+  "transient": 2
+ },
+ "step_fraction": 2.6468097120271035e-05,
+ "transient_fraction": 0.00010391178869439739,
+ "valid_fraction": 1.0,
+ "seconds": 63.1
+}

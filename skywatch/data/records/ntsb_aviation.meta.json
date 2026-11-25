@@ -1,0 +1,11 @@
+{
+ "events": 31453,
+ "events_with_coordinates": 28009,
+ "dropped_no_coordinates": 3444,
+ "dropped_no_date": 0,
+ "first_date": "2008-01-01",
+ "last_date": "2026-10-26",
+ "source": "https://data.ntsb.gov/avdata/FileDirectory/DownloadFile?fileID=avall.zip",
+ "built": "2026-11-25T04:21:07Z",
+ "coverage": "NTSB aviation database (avall, 2008 to the download date): civil aviation accidents and selected incidents in the United States, its territories and international waters, plus foreign events involving US-registered, US-operated or US-manufactured aircraft in which the NTSB took part. It holds no military losses and almost no other foreign accidents, and records without coordinates cannot be matched."
+}

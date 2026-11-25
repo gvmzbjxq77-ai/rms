@@ -1,0 +1,36 @@
+{
+ "region": "C08-ERTAALE",
+ "name": "Erta Ale volcano, Ethiopia",
+ "kind": "control",
+ "biome": "volcanic desert",
+ "bbox": [
+  40.54909293589479,
+  13.492202659001078,
+  40.7709070641052,
+  13.70779734099892
+ ],
+ "area_km2": 576.0000000000099,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2017,
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 321,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 120
+ },
+ "step_fraction": 0.06508573864495813,
+ "transient_fraction": 0.0049490518557225565,
+ "valid_fraction": 1.0,
+ "seconds": 83.3
+}
