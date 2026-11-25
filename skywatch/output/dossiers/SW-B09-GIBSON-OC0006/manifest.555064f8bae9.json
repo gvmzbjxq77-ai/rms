@@ -1,0 +1,82 @@
+{
+ "files": [
+  {
+   "path": "after.png",
+   "sha256": "881fffdd5fcb21a59d214c0237bd257708bcfac96f21df41eabe8e00c4a8b0dc",
+   "size": 98798
+  },
+  {
+   "path": "before.png",
+   "sha256": "4b2320a8499c0377e291285fa641a47bc4fdebdd2efade7515e69e2c88c44299",
+   "size": 93821
+  },
+  {
+   "path": "context.png",
+   "sha256": "89576172236448690b1bd0f6765d0deb10ab9869a0e0c703f928e3fa0945fc83",
+   "size": 237461
+  },
+  {
+   "path": "difference.png",
+   "sha256": "7302cb7f6da7a9b5c34fc5c075dcfbc02bd03976d44aafd92503938049764acd",
+   "size": 63820
+  },
+  {
+   "path": "dossier.json",
+   "sha256": "173943dab44ae01cf8a1da7de014329f7a73256f84f47c0a863bf7b9d50a77f6",
+   "size": 88755
+  },
+  {
+   "path": "dossier.md",
+   "sha256": "e6d6f94264b37232a17f60d8588960826ac4ca792001860fd7a37246605c79e9",
+   "size": 14531
+  },
+  {
+   "path": "falsecolor_after.png",
+   "sha256": "405cd5522c225f27e1e28c677c44c2ea1b76e42f761bdf9444492b086b814cb3",
+   "size": 103290
+  },
+  {
+   "path": "falsecolor_before.png",
+   "sha256": "2c011b5d60f89c037a1431dca32b38d5cb50f9a0cf18c15475da6b4235195180",
+   "size": 100932
+  },
+  {
+   "path": "foia_1.md",
+   "sha256": "81b5ce25233443e4e57ab0ddee43829a1cedee698077585edc0f9516bd9ca1e8",
+   "size": 1620
+  },
+  {
+   "path": "foia_2.md",
+   "sha256": "cff7a42d22e49cd5d1ffaa0d85db9fb6e27b83bf80c635fa98c13d58cae1e080",
+   "size": 1684
+  },
+  {
+   "path": "ground_truth_plan.md",
+   "sha256": "9a51a5b58cd6586db9a7db1e659d3e34cf15f71aa51f46fcad35364ceede6909",
+   "size": 2993
+  },
+  {
+   "path": "hires.png",
+   "sha256": "33156e99d0a7ccac74044ae44507b287945ca9a04036469346bcceeb1c10fb72",
+   "size": 318079
+  },
+  {
+   "path": "thumb.png",
+   "sha256": "6c3f9c815482c7945d1d67e48e732cc745024a3041a1983358f363395c7d924f",
+   "size": 223077
+  },
+  {
+   "path": "timeseries.png",
+   "sha256": "72ee9fa4f48efc010c8e00f8f58275c6f40e36cdfcf72316bd36c635c3b18868",
+   "size": 98735
+  },
+  {
+   "path": "wayback_strip.png",
+   "sha256": "bc3a0a0b7a52dfd80c844c917c6ac3109753a6cac801698d2338d40db41ba5bb",
+   "size": 293276
+  }
+ ],
+ "hash": "sha256",
+ "manifest_sha256": "d4e6a3480bfec279a93230c781da2664b3c97e4761e12264466e43c433ad32ab",
+ "schema": "skywatch-manifest/1"
+}

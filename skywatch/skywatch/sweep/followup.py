@@ -20,7 +20,7 @@ from typing import Any, Sequence
 
 from ..core import config
 from ..core.models import Candidate
-from ..publish.export import TIER_ORDER, load_final
+from ..publish.export import least_explained, load_final
 from .run import all_regions
 
 log = logging.getLogger("skywatch.followup")
@@ -30,22 +30,16 @@ DOSSIERS = config.OUTPUT / "dossiers"
 def select(limit: int = 40, per_region: int = 3) -> list[Candidate]:
     """The least explained candidates overall, at most ``per_region`` from any
     one region, followed by one explained example from each control region."""
-    chosen: list[Candidate] = []
     examples: list[Candidate] = []
     for region in all_regions():
-        candidates = [c for c in load_final(region.id)[0] if c.tier]
-        unexplained = sorted((c for c in candidates if c.tier != "T0"),
-                             key=lambda c: (TIER_ORDER.get(c.tier, 5),
-                                            c.measurements.get("crowding", 0.0), -c.score))
-        chosen.extend(unexplained[:per_region])
-        if region.kind == "control":
-            target = (region.expect or {}).get("target")
-            explained = [c for c in candidates if c.tier == "T0"]
-            if target and explained:
-                explained.sort(key=lambda c: (c.lat - target["lat"]) ** 2 + (c.lon - target["lon"]) ** 2)
-            examples.extend(explained[:1])
-    chosen.sort(key=lambda c: (TIER_ORDER.get(c.tier, 5), c.measurements.get("crowding", 0.0), -c.score))
-    return chosen[:limit] + examples
+        if region.kind != "control":
+            continue
+        target = (region.expect or {}).get("target")
+        explained = [c for c in load_final(region.id)[0] if c.tier == "T0"]
+        if target and explained:
+            explained.sort(key=lambda c: (c.lat - target["lat"]) ** 2 + (c.lon - target["lon"]) ** 2)
+        examples.extend(explained[:1])
+    return least_explained(limit, per_region) + examples
 
 
 def follow_up(candidate: Candidate, hires: bool = True, stamp: bool = True,

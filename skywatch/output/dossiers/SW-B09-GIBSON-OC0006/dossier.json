@@ -1,6 +1,6 @@
 {
   "schema": "skywatch.dossier/1",
-  "generated_utc": "2026-11-25T11:39:30Z",
+  "generated_utc": "2026-11-25T12:33:09Z",
   "candidate": {
     "id": "SW-B09-GIBSON-OC0006",
     "region_id": "B09-GIBSON",
@@ -1036,7 +1036,8 @@
             "artefact:per_scene_support": "does_not_explain",
             "artefact:observation_count": "does_not_explain",
             "artefact:terrain_shadow": "does_not_explain",
-            "artefact:widespread_change": "does_not_explain"
+            "artefact:widespread_change": "does_not_explain",
+            "artefact:index_range": "does_not_explain"
           }
         }
       },
@@ -1206,6 +1207,16 @@
           "siblings": 0,
           "compared": 51,
           "year": 2025
+        }
+      },
+      {
+        "check": "artefact:index_range",
+        "category": "artefact",
+        "status": "does_not_explain",
+        "detail": "index changes within range (largest 0.03)",
+        "source": "Sentinel-2 per-scene series and composite metadata",
+        "evidence": {
+          "worst_index_change": 0.03234103322029114
         }
       }
     ],
@@ -1713,7 +1724,8 @@
           "artefact:per_scene_support": "does_not_explain",
           "artefact:observation_count": "does_not_explain",
           "artefact:terrain_shadow": "does_not_explain",
-          "artefact:widespread_change": "does_not_explain"
+          "artefact:widespread_change": "does_not_explain",
+          "artefact:index_range": "does_not_explain"
         }
       }
     },
@@ -1884,6 +1896,16 @@
         "compared": 51,
         "year": 2025
       }
+    },
+    {
+      "check": "artefact:index_range",
+      "category": "artefact",
+      "status": "does_not_explain",
+      "detail": "index changes within range (largest 0.03)",
+      "source": "Sentinel-2 per-scene series and composite metadata",
+      "evidence": {
+        "worst_index_change": 0.03234103322029114
+      }
     }
   ],
   "checks_not_run": [
@@ -1994,8 +2016,8 @@
     {
       "name": "dossier.md",
       "description": "Plain-language summary",
-      "bytes": 14353,
-      "sha256": "3a3d505dcd08b5c6306b6514a9331ee76627d97bd561bca64dc63fabde9e7f47"
+      "bytes": 14531,
+      "sha256": "e6d6f94264b37232a17f60d8588960826ac4ca792001860fd7a37246605c79e9"
     },
     {
       "name": "dossier.json",

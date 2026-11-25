@@ -22,13 +22,13 @@
   },
   {
    "path": "dossier.json",
-   "sha256": "438fe0f073b924f9702b50c2ac7f27105a9e4618f1ac3111804a1ecc5cb9b023",
-   "size": 87971
+   "sha256": "a88c6e516a8ef044e5bcfc3de7ea6ddc00d81d768d017b0eb40ead9997ae2ff2",
+   "size": 88755
   },
   {
    "path": "dossier.md",
-   "sha256": "3a3d505dcd08b5c6306b6514a9331ee76627d97bd561bca64dc63fabde9e7f47",
-   "size": 14353
+   "sha256": "e6d6f94264b37232a17f60d8588960826ac4ca792001860fd7a37246605c79e9",
+   "size": 14531
   },
   {
    "path": "falsecolor_after.png",
@@ -77,6 +77,6 @@
   }
  ],
  "hash": "sha256",
- "manifest_sha256": "e10b6c69294ebc36506219ed03071df6bd537c122b2e22aa102ec58c2cbffd23",
+ "manifest_sha256": "d0205923c9925020a6b32490c48a854b43308e26057bbadcf16197b7b27e8302",
  "schema": "skywatch-manifest/1"
 }

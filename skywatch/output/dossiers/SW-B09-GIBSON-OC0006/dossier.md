@@ -92,6 +92,7 @@ Mean values in the dossier's own Sentinel-2 composites (inside the footprint / r
 - **lightning** (event): NOT RUN. no open global lightning archive can be reached without an account, so ignition by lightning was not tested Source: none.
 - **witness_reports** (report): NOT RUN. no ingested report source covers this place and time (sources: nuforc 1906-11-11..2023-05-18; geipan 1937-01-01..2026-09-03) Source: NUFORC public copies; GEIPAN.
 - **natural:regional_pattern** (natural): ran and did not explain the feature. 0 of 51 other yearly candidates in this region changed the same way in 2025 (spectral direction within cosine 0.9, size within 2.0x), spread over 0.0 km Source: Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM.
+- **artefact:index_range** (artefact): ran and did not explain the feature. index changes within range (largest 0.03) Source: Sentinel-2 per-scene series and composite metadata.
 
 ## Checks that were NOT run
 A check that did not run rules nothing out. These explanations remain open:

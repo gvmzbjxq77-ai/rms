@@ -30,6 +30,40 @@ def load_final(region_id: str) -> tuple[list[Candidate], str]:
     return [], "none"
 
 
+def review_key(candidate: Candidate) -> tuple[int, int, int, float, float]:
+    """Sort key for "least explained first": tier, then a dated onset, then
+    optical before thermal (daytime thermal anomalies mostly trace terrain),
+    then isolation, then score."""
+    m = candidate.measurements
+    return (TIER_ORDER.get(candidate.tier, 5),
+            0 if m.get("onset_window_days") is not None else 1,
+            1 if candidate.detector == "landsat_thermal" else 0,
+            float(m.get("crowding", 0.0) or 0.0), -float(candidate.score))
+
+
+def least_explained(limit: int = 40, per_region: int = 3, thermal_cap: int = 6) -> list[Candidate]:
+    """The least explained candidates overall, at most ``per_region`` from any
+    one region and at most ``thermal_cap`` thermal-only candidates, so the
+    review set is not filled by one region or one sensor family."""
+    chosen: list[Candidate] = []
+    for region in all_regions():
+        mine = [c for c in load_final(region.id)[0] if c.tier and c.tier != "T0"]
+        mine.sort(key=review_key)
+        chosen.extend(mine[:per_region])
+    chosen.sort(key=review_key)
+    out: list[Candidate] = []
+    thermal = 0
+    for candidate in chosen:
+        if candidate.detector == "landsat_thermal":
+            if thermal >= thermal_cap:
+                continue
+            thermal += 1
+        out.append(candidate)
+        if len(out) >= limit:
+            break
+    return out
+
+
 def _compact(candidate: Candidate) -> dict[str, Any]:
     m, shape = candidate.measurements, candidate.shape or {}
     record: dict[str, Any] = {

@@ -19,8 +19,7 @@ from typing import Any
 
 from ..core import config
 from ..core.models import Candidate
-from ..publish.export import TIER_ORDER, load_final
-from ..sweep.run import all_regions
+from ..publish.export import least_explained
 
 ADJUDICATION_DIR = config.OUTPUT / "adjudication"
 DOSSIERS = config.OUTPUT / "dossiers"
@@ -63,14 +62,8 @@ def _trim(evidence: dict[str, Any], limit: int = 1500) -> Any:
 
 
 def candidates_for_review(limit: int = 30, per_region: int = 3) -> list[Candidate]:
-    """The least explained candidates, spread across regions."""
-    chosen: list[Candidate] = []
-    for region in all_regions():
-        mine = [c for c in load_final(region.id)[0] if c.tier and c.tier != "T0"]
-        mine.sort(key=lambda c: (TIER_ORDER.get(c.tier, 5), c.measurements.get("crowding", 0.0), -c.score))
-        chosen.extend(mine[:per_region])
-    chosen.sort(key=lambda c: (TIER_ORDER.get(c.tier, 5), c.measurements.get("crowding", 0.0), -c.score))
-    return chosen[:limit]
+    """The least explained candidates, spread across regions and sensors."""
+    return least_explained(limit, per_region)
 
 
 def write_briefs(limit: int = 30, per_region: int = 3) -> list[Path]:

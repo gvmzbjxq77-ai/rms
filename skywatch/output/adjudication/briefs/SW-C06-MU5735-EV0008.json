@@ -1,0 +1,545 @@
+{
+ "id": "SW-C06-MU5735-EV0008",
+ "region": "C06-MU5735",
+ "lat": 23.365250924493644,
+ "lon": 111.10022314865832,
+ "tier": "T2",
+ "tier_reason": "confirmed in 2 sensors; inconclusive: artefact:per_scene_support, artefact_screen, human_context, natural:surface_water, natural_process",
+ "signature": "landing_trace",
+ "detector": "optical_event",
+ "kind": "event_window",
+ "break_year": 2022,
+ "absent_until": "2021-12-13",
+ "present_from": "2022-04-07",
+ "onset_window_days": null,
+ "onset_note": "per-scene values do not separate before from after",
+ "area_m2": 3300.0,
+ "sensors": [
+  "optical_landsat",
+  "optical_s2"
+ ],
+ "change": {
+  "d_brightness": 0.0329589881002903,
+  "d_ndvi": -0.3916643261909485,
+  "d_nbr": -1.0262887477874756,
+  "d_swir": 0.1298828125,
+  "recovery_fraction": null,
+  "persistence_years": null,
+  "step_snr": 9.656787872314453,
+  "crowding": 0.004304588121681709
+ },
+ "shape": {
+  "area_m2": 3300.0,
+  "perimeter_m": 190.71067811865476,
+  "equivalent_diameter_m": 64.82044814428575,
+  "major_axis_m": 70.77507218274138,
+  "minor_axis_m": 59.759836859826294,
+  "elongation": 1.184325056789439,
+  "orientation_deg": 157.3344071057923,
+  "circularity": 1.0,
+  "solidity": 0.9166666666666666,
+  "eccentricity": 0.5357718656357573,
+  "rectangularity": 0.7857142857142857,
+  "n_corners": 6,
+  "straight_edge_fraction": 0.6455577978550453,
+  "hole_fraction": 0.0,
+  "regularity": 0.9166666666666666
+ },
+ "series_summary": {
+  "n_scenes": 29,
+  "feature": "nbr",
+  "shift": -0.10977432131767273,
+  "noise": 0.1027527899801731,
+  "flips": null
+ },
+ "landsat": {
+  "status": "ok",
+  "footprint_radius_m": 32.41022407214287,
+  "optical": {
+   "feature": "nbr",
+   "shift": -0.1400185525417328,
+   "noise": 0.04024899649322033,
+   "sentinel2_step": -1.0262887477874756,
+   "confirmed": true
+  },
+  "thermal": {
+   "confirmed": false,
+   "reason": "footprint radius 32 m is below thermal resolution"
+  }
+ },
+ "sar": {
+  "status": "not_run",
+  "reason": "footprint radius 32 m is under two radar pixels"
+ },
+ "checks": [
+  {
+   "check": "military_or_rocket_range",
+   "status": "does_not_explain",
+   "detail": "outside every listed launch site, drop zone and range; nearest is Xichang downrange drop zone, south-west Hunan (drop_zone), 339 km beyond its approximate edge. The list is not exhaustive",
+   "evidence": {
+    "inside": [],
+    "within_margin": [],
+    "nearest_entry": {
+     "name": "Xichang downrange drop zone, south-west Hunan",
+     "country": "China",
+     "kind": "drop_zone",
+     "lat": 26.9,
+     "lon": 110.4,
+     "radius_km": 60.0,
+     "approximate": true,
+     "diffuse": true,
+     "confidence": "low",
+     "note": "Stage debris area (Suining / Hongjiang); populated, diffuse.",
+     "distance_km": 399.31,
+     "distance_to_edge_km": 339.31,
+     "margin_km": 10.0
+    },
+    "signature": "landing_trace",
+    "n_entries": 82,
+    "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area."
+   }
+  },
+  {
+   "check": "landcover",
+   "status": "does_not_explain",
+   "detail": "Footprint is mostly tree (97%); cropland 0%, built-up 0%, water/wetland 0%; onset is undated or straddles 2021, so the map may show either state.",
+   "evidence": {
+    "worldcover": "v200 2021",
+    "context_margin_m": 500.0,
+    "footprint": {
+     "tree": 0.9653,
+     "shrub": 0.0,
+     "grass": 0.0,
+     "cropland": 0.0,
+     "builtup": 0.0,
+     "bare": 0.0347,
+     "snow": 0.0,
+     "water": 0.0,
+     "wetland": 0.0,
+     "mangrove": 0.0,
+     "moss": 0.0,
+     "nodata": 0.0
+    },
+    "context": {
+     "tree": 0.7586,
+     "shrub": 0.0,
+     "grass": 0.0135,
+     "cropland": 0.1654,
+     "builtup": 0.0594,
+     "bare": 0.0031,
+     "snow": 0.0,
+     "water": 0.0,
+     "wetland": 0.0,
+     "mangrove": 0.0,
+     "moss": 0.0,
+     "nodata": 0.0
+    },
+    "footprint_pixels": 144,
+    "footprint_source": "bbox",
+    "tiles": [
+     "N21E111"
+    ],
+    "missing_tiles": [],
+    "map_predates_onset": null,
+    "dominant": "tree",
+    "context_builtup": 0.0594,
+    "explained_by": null
+   }
+  },
+  {
+   "check": "osm_infrastructure",
+   "status": "does_not_explain",
+   "detail": "No mapped quarry, industry, military, aviation, power, building or similar feature within 110 m of the footprint (551 tagged features in the extract; nearest road or track 591 m; nearest building 594 m; nearest candidate cause landuse=residential at 204 m). OpenStreetMap coverage in remote regions is incomplete, so the absence of a mapped feature is weak evidence.",
+   "evidence": {
+    "nearest_road_m": 590.6,
+    "nearest_building_m": 593.8,
+    "nearest_road": {
+     "osm_type": "way",
+     "osm_id": 1042255226,
+     "kind": null,
+     "distance_m": 590.6,
+     "extent_m": 351.7,
+     "highway": "unclassified"
+    },
+    "nearest_road_seen_m": 590.6,
+    "nearest_building_seen_m": 593.8,
+    "tolerance_m": 110.0,
+    "footprint_source": "bbox",
+    "search_radius_m": 2967.1,
+    "covered_radius_m": 3044.5,
+    "n_tagged_features": 551,
+    "explaining": [],
+    "nearby_beyond_tolerance": [
+     {
+      "osm_type": "way",
+      "osm_id": 1042893926,
+      "kind": "landuse=residential",
+      "distance_m": 204.4,
+      "extent_m": 257.6
+     },
+     {
+      "osm_type": "way",
+      "osm_id": 1042893927,
+      "kind": "landuse=residential",
+      "distance_m": 402.2,
+      "extent_m": 436.5
+     },
+     {
+      "osm_type": "node",
+      "osm_id": 9594508766,
+      "kind": "power=tower",
+      "distance_m": 476.8,
+      "extent_m": 0.0
+     },
+     {
+      "osm_type": "way",
+      "osm_id": 1042255021,
+      "kind": "power=line",
+      "distance_m": 476.8,
+      "extent_m": 7223.9
+     },
+     {
+      "osm_type": "way",
+      "osm_id": 1042255223,
+      "kind": "building=yes",
+      "distance_m": 593.8,
+      "extent_m": 28.9
+     }
+    ],
+    "osm_fetched": "2026-11-25",
+    "network_requests": 0,
+    "distance_reference": "footprint edge (0 = intersects)"
+   }
+  },
+  {
+   "check": "wikidata_nearby",
+   "status": "does_not_explain",
+   "detail": "no causally plausible catalogued item within the explanation distance (4 item(s) within 10.0 km; nearest: Wuzhou Xijiang Airport (Q18208361, airport) at 4.02 km; Molang village (Q14477500, settlement) at 4.70 km; China Eastern Airlines Flight 5735 (Q111313251, aviation_accident) at 4.78 km); nearest causal item beyond the limit: Wuzhou Xijiang Airport (Q18208361, airport) at 4.02 km",
+   "evidence": "{\"searched_radius_km\": 10.0, \"n_items\": 4, \"truncated\": false, \"covered_radius_km\": 10.0, \"footprint_radius_km\": 0.032, \"onset_window_padded\": [\"2021-11-13\", \"2022-05-07\"], \"category_counts\": {\"airport\": 1, \"settlement\": 2, \"aviation_accident\": 1}, \"nearest\": [{\"qid\": \"Q18208361\", \"label\": \"Wuzhou Xijiang Airport\", \"category\": \"airport\", \"instance_of\": [\"airport\", \"commercial traffic aerodrome\"], \"distance_km\": 4.022, \"date\": \"2019-01-23\", \"date_precision\": \"day\", \"notable_sitelinks\": 4}, {\"qid\": \"Q14477500\", \"label\": \"Molang village\", \"category\": \"settlement\", \"instance_of\": [\"village of the People's Republic of China\"], \"distance_km\": 4.699, \"date\": null, \"date_precision\": null, \"notable_sitelinks\": 1}, {\"qid\": \"Q111313251\", \"label\": \"China Eastern Airlines Flight 5735\", \"category\": \"aviation_accident\", \"instance_of\": [\"aviation accident\"], \"distance_km\": 4.776, \"date\": \"2022-03-21\", \"date_precision\": \"day\", \"notable_sitelinks\": 37}, {\"qid\": \"Q10931037\", \"label\": \"Tangbu Town\", \"category\": \"settlement\", \"instance_of\": [\"town of China\"], \"distance_km\": 5.379, \"date\": null, \"date_precision\": null, \"notable_sitelinks\": 1}], \"explaining\": [], \"undated_events_in_range\": [], \"events_outside_window\": [], \"causal_near_misses\": [{\"qid\": \"Q18208361\", \"label\": \"Wuzhou Xijiang Airport\", \"category\": \"airport\", \"instance_of\": [\"airport\", \"commercial traffic aerodrome\"], \"distance_km\": 4.022, \"date\": \"2019-01-23\", \"date_precision\": \"day\", \"notable_sitelinks\": 4}, {\"qid\": \"Q111313251\", \"la..."
+  },
+  {
+   "check": "aviation_accident",
+   "status": "does_not_explain",
+   "detail": "no recorded accident within 2.0 km dated 2021-11-13 to 2022-05-07; nearest record in the window: Wikidata Q111313251: China Eastern Airlines Flight 5735 at 4.8 km. Coverage is limited: Outside the United States the absence of a record is weak evidence: most general-aviation and all military crashes abroad are in neither catalogue.",
+   "evidence": "{\"radius_km\": 2.032, \"pad_days\": 30, \"onset_window\": [\"2021-12-13\", \"2022-04-07\"], \"padded_window\": [\"2021-11-13\", \"2022-05-07\"], \"sources_used\": [\"ntsb\", \"wikidata\"], \"sources_failed\": {}, \"coverage\": \"NTSB aviation database (avall, 2008 to the download date): civil aviation accidents and selected incidents in the United States, its territories and international waters, plus foreign events involving US-registered, US-operated or US-manufactured aircraft in which the NTSB took part. It holds no military losses and almost no other foreign accidents, and records without coordinates cannot be matched. Wikidata: only accidents notable enough to have an item with coordinates within 10 km; far from complete anywhere. Outside the United States the absence of a record is weak evidence: most general-aviation and all military crashes abroad are in neither catalogue.\", \"records_in_radius\": [], \"nearest_record\": {\"source\": \"wikidata\", \"id\": \"Q111313251\", \"label\": \"Wikidata Q111313251: China Eastern Airlines Flight 5735\", \"date\": \"2022-03-21\", \"date_precision\": \"day\", \"latitude\": 23.323755555, \"longitude\": 111.112305555, \"distance_km\": 4.776, \"aircraft\": null, \"damage\": null, \"injury_severity\": null, \"fatalities\": null}, \"nearest_ntsb_record\": {\"ntsb_no\": \"DCA24WA297\", \"date\": \"2024-09-06\", \"latitude\": 23.3924, \"longitude\": 113.299, \"aircraft\": \"BOEING 787-9\", \"damage\": \"MINR\", \"injury_severity\": null, \"fatalities\": 0, \"location\": \"Guangzhou\", \"country\": \"CN\", \"source\": \"ntsb\", \"id\": \"202..."
+  },
+  {
+   "check": "meteorite_record",
+   "status": "not_run",
+   "detail": "the table's last recorded fall year is 2013; it cannot speak for an onset window ending 2022-04-07 (nearest record: Zhaoping (Found, 1983) at 96.9 km)",
+   "evidence": {
+    "radius_km": 3.032,
+    "onset_window": [
+     "2021-12-13",
+     "2022-04-07"
+    ],
+    "padded_window": [
+     "2021-12-13",
+     "2022-04-07"
+    ],
+    "catalogue_last_fall_year": 2013,
+    "coverage": "Meteorite Landings table (Meteoritical Society / NASA open data, as mirrored for TidyTuesday 2019-06-11): about 38,000 located meteorites, mostly finds; the year is the fall or find year, coordinates are often rounded to an arc-minute or worse, masses are recovered masses, and the table stops in the early 2010s. Later falls are only covered by Wikidata meteorite items, which the wikidata_nearby check evaluates.",
+    "records_in_radius": [],
+    "nearest_record": {
+     "name": "Zhaoping",
+     "fall": "Found",
+     "year": 1983,
+     "mass_g": 2000000.0,
+     "class": "Iron, IAB complex",
+     "lat": 24.23333,
+     "lon": 111.18333,
+     "distance_km": 96.896
+    },
+    "n_records_within_context_km": 0,
+    "context_radius_km": 50.0,
+    "matches": []
+   }
+  },
+  {
+   "check": "human_context",
+   "status": "inconclusive",
+   "detail": "ordinary human activity is present nearby: a mapped building is 594 m away; 17% of the land within 1.5 km is cropland; 4.0% of the land within 1.5 km is built-up",
+   "evidence": {
+    "nearest_road_m": 590.6,
+    "nearest_building_m": 593.8,
+    "mapped_features_nearby": 551,
+    "cropland_share": 0.17018928783634665,
+    "builtup_share": 0.040078657725716546
+   }
+  },
+  {
+   "check": "night_lights",
+   "status": "does_not_explain",
+   "detail": "No persistent light within 1500 m of the candidate: peak radiance 1.495 against background 0.83 nW/cm2/sr, lit in 0 of 12 monthly composites (202407 to 202506, 78 cloud-free nights). Unlit sites are not thereby unexplained; many installations carry no lights. Before the onset (202105 to 202111) persistent light was absent (radiance 1.485, background 0.67 nW/cm2/sr). Sensor footprint about 750 m, so a neighbour within roughly 1 km cannot be separated. Archive ends 2025-06-30.",
+   "evidence": "{\"archive_end\": \"2025-06-30\", \"radius_m\": 1500.0, \"resolution_m\": 750.0, \"after_onset\": {\"status\": \"ok\", \"reason\": \"\", \"radius_m\": 1500.0, \"months_used\": 12, \"months_lit\": 0, \"lit_fraction\": 0.0, \"clear_nights\": 78, \"radiance\": 1.495, \"radiance_mean\": 0.972, \"background\": 0.83, \"excess\": 0.66, \"persistent_light\": false, \"threshold\": {\"min_excess\": 1.0, \"k_sigma\": 5.0, \"absolute\": 5.0, \"min_lit_fraction\": 0.667, \"min_months\": 3, \"rule\": \"month lit if footprint_max - background_median >= max(min_excess, k_sigma*background_sigma) or footprint_max >= absolute; persistent if lit in >= min_lit_fraction of usable months\"}, \"archive_end\": \"2025-06-30\", \"resolution_m\": 750.0, \"units\": \"nW/cm2/sr\", \"files\": [\"composites/npp_202407_ops/DNB_npp_20240701-20240731_global_ecm-slexcl_v10_ops.avg_rade9.tif\", \"composites/npp_202407_ops/DNB_npp_20240701-20240731_global_ecm-slexcl_v10_ops.n_cf.tif\", \"composites/npp_202408_ops/DNB_npp_20240801-20240831_global_ecm-slexcl_v10_ops.avg_rade9.tif\", \"composites/npp_202408_ops/DNB_npp_20240801-20240831_global_ecm-slexcl_v10_ops.n_cf.tif\", \"composites/npp_202409_ops/DNB_npp_20240901-20240930_global_ecm-slexcl_v10_ops.avg_rade9.tif\", \"composites/npp_202409_ops/DNB_npp_20240901-20240930_global_ecm-slexcl_v10_ops.n_cf.tif\", \"composites/npp_202410_ops/DNB_npp_20241001-20241031_global_ecmcfg_v10_ops.avg_rade9.tif\", \"composites/npp_202410_ops/DNB_npp_20241001-20241031_global_ecmcfg_v10_ops.n_cf.tif\", \"composites/npp_202411_ops/DNB_npp_20241101-20241130_global_..."
+  },
+  {
+   "check": "natural_process",
+   "status": "inconclusive",
+   "detail": "moisture-like spectral change (wetting or drying)",
+   "evidence": {
+    "sub_checks": {
+     "natural:agriculture": "does_not_explain",
+     "natural:recurring_cycle": "does_not_explain",
+     "natural:surface_water": "inconclusive",
+     "natural:snow_ice": "does_not_explain",
+     "natural:mass_movement": "does_not_explain",
+     "natural:wind_blown_sand": "does_not_explain",
+     "natural:permafrost_or_lake_drainage": "does_not_explain",
+     "natural:river_or_coast": "does_not_explain",
+     "natural:volcanic": "does_not_explain",
+     "natural:regional_pattern": "not_run"
+    },
+    "data_errors": {}
+   }
+  },
+  {
+   "check": "natural:agriculture",
+   "status": "does_not_explain",
+   "detail": "no cropland and not a pivot-sized disc",
+   "evidence": {
+    "diameter_m": 64.82044814428575,
+    "circularity": 1.0,
+    "d_ndvi": -0.3916643261909485,
+    "cropland_fraction": 0.0,
+    "cropland_nearby_fraction": 0.011320754716981131
+   }
+  },
+  {
+   "check": "natural:recurring_cycle",
+   "status": "does_not_explain",
+   "detail": "the record shows one transition, not a cycle",
+   "evidence": {
+    "flips": null,
+    "onset_note": "per-scene values do not separate before from after",
+    "n_scenes": 29
+   }
+  },
+  {
+   "check": "natural:surface_water",
+   "status": "inconclusive",
+   "detail": "moisture-like spectral change (wetting or drying)",
+   "evidence": {
+    "water_fraction": 0.0,
+    "d_brightness": 0.0329589881002903,
+    "d_swir": 0.1298828125,
+    "slope_deg": 12.497628211975098,
+    "flat_basin": false,
+    "wetting_signature": false,
+    "drying_signature": true,
+    "short_lived": true,
+    "ragged_outline": false
+   }
+  },
+  {
+   "check": "natural:snow_ice",
+   "status": "does_not_explain",
+   "detail": "no snow mapped and no snow signature",
+   "evidence": {
+    "snow_fraction": 0.0,
+    "d_brightness": 0.0329589881002903,
+    "d_swir": 0.1298828125,
+    "elevation_m": 38.6856803894043,
+    "latitude": 23.365250924493644,
+    "snow_signature": false
+   }
+  },
+  {
+   "check": "natural:mass_movement",
+   "status": "does_not_explain",
+   "detail": "gentle ground (12 degrees)",
+   "evidence": {
+    "slope_deg": 12.497628211975098,
+    "slope_max_deg": 19.191675186157227,
+    "elongation": 1.184325056789439
+   }
+  },
+  {
+   "check": "natural:wind_blown_sand",
+   "status": "does_not_explain",
+   "detail": "not an irregular brightness-only change on bare ground",
+   "evidence": {
+    "bare_fraction": 0.035398230088495575,
+    "regularity": 0.9166666666666666,
+    "brightness_only": false
+   }
+  },
+  {
+   "check": "natural:permafrost_or_lake_drainage",
+   "status": "does_not_explain",
+   "detail": "not a permafrost latitude or altitude",
+   "evidence": {
+    "latitude": 23.365250924493644,
+    "elevation_m": 38.6856803894043,
+    "water_nearby_fraction": 0.0
+   }
+  },
+  {
+   "check": "natural:river_or_coast",
+   "status": "does_not_explain",
+   "detail": "no significant water around the footprint",
+   "evidence": {
+    "water_nearby_fraction": 0.0,
+    "elongation": 1.184325056789439
+   }
+  },
+  {
+   "check": "natural:volcanic",
+   "status": "does_not_explain",
+   "detail": "no catalogued volcano within 10 km",
+   "evidence": {}
+  },
+  {
+   "check": "natural:regional_pattern",
+   "status": "not_run",
+   "detail": "no region-wide sibling census (not a yearly optical candidate, or census not computed)",
+   "evidence": {}
+  },
+  {
+   "check": "artefact_screen",
+   "status": "inconclusive",
+   "detail": "fewer than two clear scenes in the period when the change should be visible",
+   "evidence": {
+    "sub_checks": {
+     "artefact:per_scene_support": "inconclusive",
+     "artefact:observation_count": "does_not_explain",
+     "artefact:terrain_shadow": "does_not_explain",
+     "artefact:widespread_change": "does_not_explain",
+     "artefact:index_range": "does_not_explain"
+    }
+   }
+  },
+  {
+   "check": "artefact:per_scene_support",
+   "status": "inconclusive",
+   "detail": "fewer than two clear scenes in the period when the change should be visible",
+   "evidence": {
+    "n_scenes": 1
+   }
+  },
+  {
+   "check": "artefact:observation_count",
+   "status": "does_not_explain",
+   "detail": "composites use 4 and 3 separate dates; 6 valid years",
+   "evidence": {
+    "dates_before": 4,
+    "dates_after": 3,
+    "valid_years": 6
+   }
+  },
+  {
+   "check": "artefact:terrain_shadow",
+   "status": "does_not_explain",
+   "detail": "not a steep-slope darkening pattern",
+   "evidence": {
+    "slope_max_deg": 19.191675186157227,
+    "day_of_year_gap": 189.16666666666666,
+    "darkening_only": false
+   }
+  },
+  {
+   "check": "artefact:widespread_change",
+   "status": "does_not_explain",
+   "detail": "isolated: only 0.4% of the surrounding 3 km changed in the same year",
+   "evidence": {
+    "crowding": 0.004304588121681709
+   }
+  },
+  {
+   "check": "fire_history",
+   "status": "does_not_explain",
+   "detail": "no burned area and no active fire between 2021-11-28 and 2022-04-22 within 74 m of the candidate (burned area: 6/6 monthly files read for 7 pixels; active fire: 37 eight-day files read (0 incomplete); 146/146 days covered, clear view on 136). MODIS misses fires smaller than roughly 25 hectares (and fires under persistent cloud), so a small fire is not excluded.",
+   "evidence": {
+    "window": [
+     "2021-11-28",
+     "2022-04-22"
+    ],
+    "radius_m": 74.42914310999628,
+    "detections": [],
+    "n_detections": 0,
+    "burned_area": {
+     "status": "ok",
+     "product": "MCD64A1",
+     "pixels": 7,
+     "months_expected": 6,
+     "months_read": 6,
+     "months_missing": [],
+     "months_failed": [],
+     "months_unmapped": [],
+     "detail": "6/6 monthly files read for 7 pixels"
+    },
+    "active_fire": {
+     "status": "ok",
+     "product": "MOD14A1/MYD14A1",
+     "pixels": 6,
+     "days_expected": 146,
+     "days_covered": 146,
+     "days_observed": 136,
+     "files_read": 37,
+     "files_failed": 0,
+     "clear_days_by_month": {
+      "2021-11": 3,
+      "2021-12": 30,
+      "2022-01": 30,
+      "2022-02": 25,
+      "2022-03": 29,
+      "2022-04": 19
+     },
+     "detail": "37 eight-day files read (0 incomplete); 146/146 days covered, clear view on 136"
+    },
+    "spectral": {
+     "d_nbr": -1.0262887477874756,
+     "d_ndvi": -0.3916643261909485,
+     "d_brightness": 0.0329589881002903,
+     "level": "not_burn_like",
+     "source": "candidate measurements"
+    }
+   }
+  },
+  {
+   "check": "burn_spectral",
+   "status": "does_not_explain",
+   "detail": "the before/after change does not look like a burn scar: surface brightened (+0.033).",
+   "evidence": {
+    "d_nbr": -1.0262887477874756,
+    "d_ndvi": -0.3916643261909485,
+    "d_brightness": 0.0329589881002903,
+    "d_nir": null,
+    "recovery_fraction": null,
+    "level": "not_burn_like",
+    "before_dates": null,
+    "after_dates": null,
+    "fire_history_status": "does_not_explain"
+   }
+  },
+  {
+   "check": "lightning",
+   "status": "not_run",
+   "detail": "no open global lightning archive can be reached without an account, so ignition by lightning was not tested",
+   "evidence": {}
+  },
+  {
+   "check": "witness_reports",
+   "status": "not_run",
+   "detail": "no ingested report source covers this place and time (sources: nuforc 1906-11-11..2023-05-18; geipan 1937-01-01..2026-09-03)",
+   "evidence": {
+    "window": [
+     "2021-12-06",
+     "2022-04-14"
+    ]
+   }
+  },
+  {
+   "check": "artefact:index_range",
+   "status": "does_not_explain",
+   "detail": "index changes within range (largest 1.03)",
+   "evidence": {
+    "worst_index_change": 1.0262887477874756
+   }
+  }
+ ],
+ "reports": [],
+ "dossier_folder": "/home/user/skywatch/output/dossiers/SW-C06-MU5735-EV0008",
+ "images": [],
+ "google_maps": "https://www.google.com/maps/@23.365250924493644,111.10022314865832,800m/data=!3m1!1e3"
+}
