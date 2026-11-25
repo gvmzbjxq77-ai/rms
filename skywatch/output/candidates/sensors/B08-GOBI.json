@@ -1,0 +1,11 @@
+{
+ "region": "B08-GOBI",
+ "thermal": {
+  "candidates": 60,
+  "seconds": 103.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 2.8
+ }
+}

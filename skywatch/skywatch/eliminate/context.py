@@ -66,3 +66,22 @@ def check_context(candidate: Candidate) -> list[CheckResult]:
                         "remote: no mapped road within 300 m, no mapped building within 1 km, "
                         "and no farmland or built-up land within 1.5 km (maps are incomplete in "
                         "remote regions)", source, evidence)]
+
+
+def check_lights(candidate: Candidate) -> list[CheckResult]:
+    """Night-light context ("night_lights"): persistent light marks human activity.
+
+    Wraps ``skywatch.detect.nightlights.check_lights``. When persistent light
+    is measured at the candidate the result is downgraded from
+    "does_not_explain" to "inconclusive": lit ground is worked ground, and the
+    candidate cannot reach tier T3 without a visit. Unlit or unmeasurable
+    places keep the wrapped result.
+    """
+    from ..detect.nightlights import check_lights as measure
+
+    results = measure(candidate)
+    for result in results:
+        if result.status == "does_not_explain" and result.evidence.get("persistent_light"):
+            result.status = "inconclusive"
+            result.detail = "persistent artificial light at the site (human activity): " + result.detail
+    return results

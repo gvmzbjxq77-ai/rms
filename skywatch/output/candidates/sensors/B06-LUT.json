@@ -1,0 +1,11 @@
+{
+ "region": "B06-LUT",
+ "thermal": {
+  "candidates": 60,
+  "seconds": 114.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.0
+ }
+}

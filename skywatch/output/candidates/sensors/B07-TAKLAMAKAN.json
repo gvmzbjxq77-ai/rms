@@ -1,0 +1,11 @@
+{
+ "region": "B07-TAKLAMAKAN",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 83.4
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 2.7
+ }
+}

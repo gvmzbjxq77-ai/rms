@@ -35,6 +35,7 @@ REGISTRY: list[tuple[str, str, str, bool]] = [
     ("osm_infrastructure", "skywatch.eliminate.osm.check_osm", "infrastructure", True),
     ("wikidata_nearby", "skywatch.eliminate.wikidata.check_wikidata", "infrastructure", True),
     ("human_context", "skywatch.eliminate.context.check_context", "infrastructure", False),
+    ("night_lights", "skywatch.eliminate.context.check_lights", "infrastructure", False),
     ("aviation_accident", "skywatch.eliminate.records.check_aviation_accident", "event", False),
     ("meteorite_record", "skywatch.eliminate.records.check_meteorite", "event", False),
     ("natural_process", "skywatch.eliminate.natural.check_natural", "natural", True),
