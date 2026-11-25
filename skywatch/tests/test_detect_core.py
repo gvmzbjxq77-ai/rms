@@ -123,3 +123,20 @@ def test_weak_flag_marks_floor_level_changes():
     assert oc.is_weak(cand(1600, d_brightness=-0.018, d_swir=-0.05))
     assert not oc.is_weak(cand(1600, d_brightness=-0.08))          # strong amplitude
     assert not oc.is_weak(cand(20000, d_brightness=-0.018, d_swir=-0.05))   # large area
+
+
+def test_event_rank_weighs_amplitude_as_much_as_significance():
+    from skywatch.core.models import Candidate
+
+    def ev(score, area, crowd, **d):
+        m = {"kind": "event_window", "crowding": crowd, "d_brightness": 0.0, "d_ndvi": 0.0, "d_nbr": 0.0, "d_swir": 0.0}
+        m.update(d)
+        return Candidate(id="e", region_id="r", lat=0, lon=0, bbox=(0, 0, 1, 1), signature="unknown",
+                         detector="optical_event", score=score, area_m2=area, measurements=m)
+
+    scar = ev(0.28, 29600, 0.02, d_ndvi=-0.7, d_nbr=-0.76)      # huge change, modest z in variable forest
+    field = ev(0.82, 3000, 0.04, d_brightness=0.37, d_ndvi=-0.5)  # strong z, small, crowded
+    small = ev(0.57, 1100, 0.005, d_brightness=-0.24, d_ndvi=0.21)
+    assert oc.event_rank(scar) > max(oc.event_rank(field), oc.event_rank(small))
+    assert oc.event_rank(field) < oc.event_rank(small)      # crowding costs more than size gains
+    assert oc.event_rank(ev(0.5, 800, 0.0, d_ndvi=-0.8)) == 0.75

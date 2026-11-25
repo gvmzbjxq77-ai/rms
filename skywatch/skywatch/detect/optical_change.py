@@ -358,6 +358,28 @@ WEAK_STEP_MULTIPLE = 1.5
 WEAK_AREA_M2 = 4000.0
 
 
+#: Physical amplitude, in units of the smallest detectable step, that counts
+#: as a full-strength event; and the crowding share that halves a rank.
+EVENT_FULL_AMPLITUDE = 10.0
+EVENT_CROWD_HALF = 0.05
+
+
+def event_rank(candidate: Candidate, min_area_m2: float = 800.0) -> float:
+    """Rank key for event-window finds: higher is kept first.
+
+    Statistical significance alone under-ranks a large change on a naturally
+    variable surface (a scar in forest), so significance and physical
+    amplitude (the largest feature change in units of ``MIN_STEP``) count
+    equally; bigger footprints gain by the log of their area and crowded
+    neighbourhoods lose.
+    """
+    m = candidate.measurements
+    amplitude = max(abs(float(m.get(f"d_{f}", 0.0) or 0.0)) / MIN_STEP[f] for f in FEATURES)
+    strength = 0.5 * min(1.0, float(candidate.score)) + 0.5 * min(1.0, amplitude / EVENT_FULL_AMPLITUDE)
+    size = 1.0 + 0.5 * float(np.log10(max(candidate.area_m2, min_area_m2) / min_area_m2))
+    return strength * size / (1.0 + float(m.get("crowding", 0.0) or 0.0) / EVENT_CROWD_HALF)
+
+
 def is_weak(candidate: Candidate) -> bool:
     """True for a small change whose amplitude is near the detection floor."""
     m = candidate.measurements
@@ -448,8 +470,7 @@ def detect_event_change(region: Region, event_date: str, window_days: int = 150,
                           "composite_dates": {"before": before["dates"], "after": after["dates"]},
                           "scene_ids_before": before["scene_ids"],
                           "scene_ids_after": after["scene_ids"], "res_m": res}))
-    candidates.sort(key=lambda c: -c.score * (1.0 + 0.5 * np.log10(max(c.area_m2, min_area_m2) / min_area_m2))
-                    / (1.0 + c.measurements["crowding"] / 0.05))
+    candidates.sort(key=lambda c: -event_rank(c, min_area_m2))
     if len(candidates) > max_candidates:
         log.warning("%s: %d event candidates, %d dropped by the cap", region.id,
                     len(candidates), len(candidates) - max_candidates)

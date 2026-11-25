@@ -1,0 +1,810 @@
+{
+  "schema": "skywatch.dossier/1",
+  "generated_utc": "2026-11-25T11:42:04Z",
+  "candidate": {
+    "id": "SW-C08-ERTAALE-TH0001",
+    "region_id": "C08-ERTAALE",
+    "lat": 13.603968653878196,
+    "lon": 40.66313848898357,
+    "bbox": [
+      40.66001714487712,
+      13.601399403976938,
+      40.665804597922836,
+      13.60631905353914
+    ],
+    "signature": "thermal",
+    "detector": "landsat_thermal",
+    "score": 0.7097630500793457,
+    "area_m2": 89100.0,
+    "absent_until": null,
+    "present_from": null,
+    "sensors": [
+      "thermal_landsat"
+    ],
+    "shape": {},
+    "measurements": {
+      "median_anomaly_K": 7.793093204498291,
+      "median_z": 8.517156600952148,
+      "hit_fraction": 0.7692307692307693,
+      "n_scenes": 14,
+      "sign": 1,
+      "dates": [
+        "2019-01-16",
+        "2020-01-19",
+        "2021-03-26",
+        "2021-12-23",
+        "2022-06-17",
+        "2023-01-03",
+        "2023-06-28",
+        "2023-12-29",
+        "2024-06-30",
+        "2025-01-16",
+        "2025-06-17",
+        "2025-12-26",
+        "2026-06-12",
+        "2026-11-03"
+      ],
+      "years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "res_m": 90.0,
+      "elevation_detrended": true,
+      "surface_detrended": true
+    },
+    "checks": [
+      {
+        "check": "military_or_rocket_range",
+        "category": "infrastructure",
+        "status": "does_not_explain",
+        "detail": "outside every listed launch site, drop zone and range; nearest is Palmachim launch and test site (launch_site), 2117 km beyond its approximate edge. The list is not exhaustive",
+        "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+        "evidence": {
+          "inside": [],
+          "within_margin": [],
+          "nearest_entry": {
+            "name": "Palmachim launch and test site",
+            "country": "Israel",
+            "kind": "launch_site",
+            "lat": 31.88,
+            "lon": 34.69,
+            "radius_km": 4.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Coastal air base and launch site.",
+            "distance_km": 2121.35,
+            "distance_to_edge_km": 2117.35,
+            "margin_km": 0.8
+          },
+          "signature": "thermal",
+          "n_entries": 82,
+          "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area."
+        }
+      },
+      {
+        "check": "landcover",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "Footprint is mostly bare (98%); cropland 0%, built-up 0%, water/wetland 2%; onset is undated or straddles 2021, so the map may show either state.",
+        "source": "ESA WorldCover 10 m 2021 v200 (c) ESA WorldCover project, CC BY 4.0",
+        "evidence": {
+          "worldcover": "v200 2021",
+          "context_margin_m": 500.0,
+          "footprint": {
+            "tree": 0.0,
+            "shrub": 0.0,
+            "grass": 0.0011,
+            "cropland": 0.0,
+            "builtup": 0.0,
+            "bare": 0.979,
+            "snow": 0.0,
+            "water": 0.0198,
+            "wetland": 0.0,
+            "mangrove": 0.0,
+            "moss": 0.0,
+            "nodata": 0.0
+          },
+          "context": {
+            "tree": 0.0,
+            "shrub": 0.0,
+            "grass": 0.0,
+            "cropland": 0.0,
+            "builtup": 0.0,
+            "bare": 1.0,
+            "snow": 0.0,
+            "water": 0.0,
+            "wetland": 0.0,
+            "mangrove": 0.0,
+            "moss": 0.0,
+            "nodata": 0.0
+          },
+          "footprint_pixels": 3528,
+          "footprint_source": "bbox",
+          "tiles": [
+            "N12E039"
+          ],
+          "missing_tiles": [],
+          "map_predates_onset": null,
+          "dominant": "bare",
+          "context_builtup": 0.0,
+          "explained_by": null
+        }
+      },
+      {
+        "check": "osm_infrastructure",
+        "category": "infrastructure",
+        "status": "explains",
+        "detail": "Footprint intersects mapped natural=volcano (node 319176124, Erta Ale); 4 explaining feature(s) within 300 m; nearest road or track 714 m.",
+        "source": "OpenStreetMap API 0.6 map call; data (c) OpenStreetMap contributors (ODbL)",
+        "evidence": {
+          "nearest_road_m": 714.5,
+          "nearest_building_m": null,
+          "nearest_road": {
+            "osm_type": "way",
+            "osm_id": 1361102866,
+            "kind": null,
+            "distance_m": 714.5,
+            "extent_m": 3583.1,
+            "highway": "track"
+          },
+          "nearest_road_seen_m": 714.5,
+          "nearest_building_seen_m": null,
+          "tolerance_m": 300.0,
+          "footprint_source": "bbox",
+          "search_radius_m": 3144.7,
+          "covered_radius_m": 3586.1,
+          "n_tagged_features": 28,
+          "explaining": [
+            {
+              "osm_type": "node",
+              "osm_id": 319176124,
+              "kind": "natural=volcano",
+              "distance_m": 0.0,
+              "extent_m": 0.0,
+              "name": "Erta Ale"
+            },
+            {
+              "osm_type": "node",
+              "osm_id": 1150883400,
+              "kind": "natural=volcano",
+              "distance_m": 44.4,
+              "extent_m": 0.0,
+              "name": "Irta'Ale Isate Gomera"
+            },
+            {
+              "osm_type": "node",
+              "osm_id": 6238790909,
+              "kind": "military=bunker",
+              "distance_m": 145.8,
+              "extent_m": 0.0
+            },
+            {
+              "osm_type": "node",
+              "osm_id": 6238790908,
+              "kind": "military=bunker",
+              "distance_m": 161.4,
+              "extent_m": 0.0
+            }
+          ],
+          "nearby_beyond_tolerance": [],
+          "osm_fetched": "2026-11-25",
+          "network_requests": 0,
+          "distance_reference": "footprint edge (0 = intersects)"
+        }
+      },
+      {
+        "check": "wikidata_nearby",
+        "category": "infrastructure",
+        "status": "not_run",
+        "detail": "skipped: already explained by osm_infrastructure",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "aviation_accident",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by osm_infrastructure",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "meteorite_record",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by osm_infrastructure",
+        "source": "engine",
+        "evidence": {}
+      }
+    ],
+    "tier": "T0",
+    "tier_reason": "explained by: osm_infrastructure",
+    "reports": [],
+    "notes": " stopped after the cheap checks"
+  },
+  "tier": {
+    "recomputed_tier": "T0",
+    "recomputed_reason": "explained by: osm_infrastructure",
+    "tier": "T0",
+    "reason": "explained by: osm_infrastructure",
+    "source": "recorded on the candidate",
+    "consistent": true
+  },
+  "checks": [
+    {
+      "check": "military_or_rocket_range",
+      "category": "infrastructure",
+      "status": "does_not_explain",
+      "detail": "outside every listed launch site, drop zone and range; nearest is Palmachim launch and test site (launch_site), 2117 km beyond its approximate edge. The list is not exhaustive",
+      "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+      "evidence": {
+        "inside": [],
+        "within_margin": [],
+        "nearest_entry": {
+          "name": "Palmachim launch and test site",
+          "country": "Israel",
+          "kind": "launch_site",
+          "lat": 31.88,
+          "lon": 34.69,
+          "radius_km": 4.0,
+          "approximate": true,
+          "diffuse": false,
+          "confidence": "high",
+          "note": "Coastal air base and launch site.",
+          "distance_km": 2121.35,
+          "distance_to_edge_km": 2117.35,
+          "margin_km": 0.8
+        },
+        "signature": "thermal",
+        "n_entries": 82,
+        "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area."
+      }
+    },
+    {
+      "check": "landcover",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "Footprint is mostly bare (98%); cropland 0%, built-up 0%, water/wetland 2%; onset is undated or straddles 2021, so the map may show either state.",
+      "source": "ESA WorldCover 10 m 2021 v200 (c) ESA WorldCover project, CC BY 4.0",
+      "evidence": {
+        "worldcover": "v200 2021",
+        "context_margin_m": 500.0,
+        "footprint": {
+          "tree": 0.0,
+          "shrub": 0.0,
+          "grass": 0.0011,
+          "cropland": 0.0,
+          "builtup": 0.0,
+          "bare": 0.979,
+          "snow": 0.0,
+          "water": 0.0198,
+          "wetland": 0.0,
+          "mangrove": 0.0,
+          "moss": 0.0,
+          "nodata": 0.0
+        },
+        "context": {
+          "tree": 0.0,
+          "shrub": 0.0,
+          "grass": 0.0,
+          "cropland": 0.0,
+          "builtup": 0.0,
+          "bare": 1.0,
+          "snow": 0.0,
+          "water": 0.0,
+          "wetland": 0.0,
+          "mangrove": 0.0,
+          "moss": 0.0,
+          "nodata": 0.0
+        },
+        "footprint_pixels": 3528,
+        "footprint_source": "bbox",
+        "tiles": [
+          "N12E039"
+        ],
+        "missing_tiles": [],
+        "map_predates_onset": null,
+        "dominant": "bare",
+        "context_builtup": 0.0,
+        "explained_by": null
+      }
+    },
+    {
+      "check": "osm_infrastructure",
+      "category": "infrastructure",
+      "status": "explains",
+      "detail": "Footprint intersects mapped natural=volcano (node 319176124, Erta Ale); 4 explaining feature(s) within 300 m; nearest road or track 714 m.",
+      "source": "OpenStreetMap API 0.6 map call; data (c) OpenStreetMap contributors (ODbL)",
+      "evidence": {
+        "nearest_road_m": 714.5,
+        "nearest_building_m": null,
+        "nearest_road": {
+          "osm_type": "way",
+          "osm_id": 1361102866,
+          "kind": null,
+          "distance_m": 714.5,
+          "extent_m": 3583.1,
+          "highway": "track"
+        },
+        "nearest_road_seen_m": 714.5,
+        "nearest_building_seen_m": null,
+        "tolerance_m": 300.0,
+        "footprint_source": "bbox",
+        "search_radius_m": 3144.7,
+        "covered_radius_m": 3586.1,
+        "n_tagged_features": 28,
+        "explaining": [
+          {
+            "osm_type": "node",
+            "osm_id": 319176124,
+            "kind": "natural=volcano",
+            "distance_m": 0.0,
+            "extent_m": 0.0,
+            "name": "Erta Ale"
+          },
+          {
+            "osm_type": "node",
+            "osm_id": 1150883400,
+            "kind": "natural=volcano",
+            "distance_m": 44.4,
+            "extent_m": 0.0,
+            "name": "Irta'Ale Isate Gomera"
+          },
+          {
+            "osm_type": "node",
+            "osm_id": 6238790909,
+            "kind": "military=bunker",
+            "distance_m": 145.8,
+            "extent_m": 0.0
+          },
+          {
+            "osm_type": "node",
+            "osm_id": 6238790908,
+            "kind": "military=bunker",
+            "distance_m": 161.4,
+            "extent_m": 0.0
+          }
+        ],
+        "nearby_beyond_tolerance": [],
+        "osm_fetched": "2026-11-25",
+        "network_requests": 0,
+        "distance_reference": "footprint edge (0 = intersects)"
+      }
+    },
+    {
+      "check": "wikidata_nearby",
+      "category": "infrastructure",
+      "status": "not_run",
+      "detail": "skipped: already explained by osm_infrastructure",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "aviation_accident",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by osm_infrastructure",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "meteorite_record",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by osm_infrastructure",
+      "source": "engine",
+      "evidence": {}
+    }
+  ],
+  "checks_not_run": [
+    {
+      "check": "wikidata_nearby",
+      "reason": "skipped: already explained by osm_infrastructure",
+      "mandatory": "true"
+    },
+    {
+      "check": "aviation_accident",
+      "reason": "skipped: already explained by osm_infrastructure",
+      "mandatory": "false"
+    },
+    {
+      "check": "meteorite_record",
+      "reason": "skipped: already explained by osm_infrastructure",
+      "mandatory": "false"
+    },
+    {
+      "check": "fire_history",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "artefact_screen",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "natural_process",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    }
+  ],
+  "onset": {
+    "absent_until": null,
+    "present_from": null,
+    "dated": false
+  },
+  "statistics": {
+    "footprint_vs_surroundings": {
+      "current": {
+        "inside": {
+          "brightness": 0.1448,
+          "ndvi": -0.0095,
+          "nbr": 0.019
+        },
+        "surroundings": {
+          "brightness": 0.1055,
+          "ndvi": 0.0073,
+          "nbr": -0.0237
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "name": "current.png",
+      "description": "Sentinel-2 true colour, CURRENT (no dated onset)",
+      "bytes": 137930,
+      "sha256": "1a3e60b5f24d0b52843e1fbc1c51327af50dd782eacdb02cd5d9e406bab61706"
+    },
+    {
+      "name": "falsecolor_current.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), CURRENT (no dated onset)",
+      "bytes": 134682,
+      "sha256": "cec046363dc65aaad95ff972c3712405a624c39d954791626a1e64c86c87af3d"
+    },
+    {
+      "name": "context.png",
+      "description": "Wider setting with the footprint marked",
+      "bytes": 239039,
+      "sha256": "616c7df1f703f12811aa6d600b792c543182be8af7adeb0878c284bd557c320b"
+    },
+    {
+      "name": "hires.png",
+      "description": "Esri World Imagery view (viewing only)",
+      "bytes": 385362,
+      "sha256": "0565582b72e14e5f3bd8d54ae36738c5a63ff884754648a229fe17053326baa6"
+    },
+    {
+      "name": "wayback_strip.png",
+      "description": "Esri Wayback versions; dates are publication dates, not acquisition dates",
+      "bytes": 358022,
+      "sha256": "65596ceedd59609934ce9f7b026bb5cbcd6ecbab224f4fb48c1039e82f72cb04"
+    },
+    {
+      "name": "dossier.md",
+      "description": "Plain-language summary",
+      "bytes": 5777,
+      "sha256": "a4f9200297c27c3c5e5262522427e0ae9637882dfd097697e3d0d2ad00dc7ce6"
+    },
+    {
+      "name": "dossier.json",
+      "description": "This machine-readable record"
+    }
+  ],
+  "panels_missing": [
+    {
+      "panel": "difference.png",
+      "reason": "no dated onset window, so there is no before/after pair"
+    },
+    {
+      "panel": "timeseries.png",
+      "reason": "the detector recorded no time series (measurements['series'] is absent)"
+    }
+  ],
+  "provenance": {
+    "sentinel2": {
+      "current": {
+        "window": [
+          "2025-11-25",
+          "2026-11-25"
+        ],
+        "acquisition_dates": [
+          "2025-11-25",
+          "2025-12-03",
+          "2025-12-25",
+          "2026-01-12"
+        ],
+        "scene_ids": [
+          "S2A_37PFR_20251125_0_L2A",
+          "S2C_37PFR_20251203_0_L2A",
+          "S2A_37PFR_20251225_0_L2A",
+          "S2C_37PFR_20260112_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_37PFR_20251125_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFR_20251203_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_37PFR_20251225_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFR_20260112_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 0.9717,
+        "grid": {
+          "crs": "EPSG:32637",
+          "res_m": 10.0,
+          "shape": [
+            188,
+            191
+          ],
+          "bounds": [
+            678950.0,
+            1503590.0,
+            680860.0,
+            1505470.0
+          ],
+          "bbox_wgs84": [
+            40.654027,
+            13.595304,
+            40.671795,
+            13.612414
+          ]
+        }
+      },
+      "context": {
+        "window": [
+          "2025-11-25",
+          "2026-11-25"
+        ],
+        "acquisition_dates": [
+          "2025-11-25",
+          "2025-12-03",
+          "2026-01-12",
+          "2026-02-11"
+        ],
+        "scene_ids": [
+          "S2A_37PFQ_20251125_0_L2A",
+          "S2A_37PFR_20251125_0_L2A",
+          "S2C_37PFQ_20251203_0_L2A",
+          "S2C_37PFR_20251203_0_L2A",
+          "S2C_37PFQ_20260112_0_L2A",
+          "S2C_37PFR_20260112_0_L2A",
+          "S2C_37PFQ_20260211_0_L2A",
+          "S2C_37PFR_20260211_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_37PFQ_20251125_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_37PFR_20251125_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFQ_20251203_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFR_20251203_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFQ_20260112_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFR_20260112_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFQ_20260211_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_37PFR_20260211_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 0.9992,
+        "grid": {
+          "crs": "EPSG:32637",
+          "res_m": 20.0,
+          "shape": [
+            501,
+            505
+          ],
+          "bounds": [
+            674860.0,
+            1499520.0,
+            684960.0,
+            1509540.0
+          ],
+          "bbox_wgs84": [
+            40.615985,
+            13.558261,
+            40.709947,
+            13.64945
+          ]
+        }
+      }
+    },
+    "esri": {
+      "note": "Shown for viewing only: not used for detection and not counted as an independent sensor.",
+      "hires": {
+        "source": "Esri World Imagery (live mosaic)",
+        "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+        "lat": 13.60385922875804,
+        "lon": 40.66291087139998,
+        "size_m": 876.6585551897721,
+        "zoom": 17,
+        "zoom_requested": null,
+        "ground_res_m": 1.1608,
+        "shape": [
+          755,
+          755
+        ],
+        "bbox": [
+          40.65885543823242,
+          13.599920335910065,
+          40.6669557094574,
+          13.607793355394866
+        ],
+        "origin_px": [
+          20566896,
+          15496783
+        ],
+        "tiles": 16,
+        "tile_url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "imagery_verified": true,
+        "retrieved": "2026-11-25",
+        "use": "viewing only; not a detector input and not an independent sensor",
+        "acquisition_date": "2025-04-01",
+        "sensor": "LG03",
+        "provider": "Vantor",
+        "source_resolution_m": 0.34,
+        "note": "per Esri metadata at the centre point of the live mosaic"
+      },
+      "wayback": [
+        {
+          "release_id": "WB_2014_R01",
+          "release_date": "2014-02-20",
+          "release_num": 10,
+          "label": "Esri release 2014-02-20 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 4.6433,
+          "bbox": [
+            40.65915584564209,
+            13.60019146411209,
+            40.66666603088379,
+            13.607490952859143
+          ],
+          "origin_px": [
+            5141731,
+            3874203
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2017_R05",
+          "release_date": "2017-03-15",
+          "release_num": 29387,
+          "label": "Esri release 2017-03-15 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 4.6433,
+          "bbox": [
+            40.65915584564209,
+            13.60019146411209,
+            40.66666603088379,
+            13.607490952859143
+          ],
+          "origin_px": [
+            5141731,
+            3874203
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/29387/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2020_R02",
+          "release_date": "2020-01-30",
+          "release_num": 21485,
+          "label": "Esri release 2020-01-30 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 4.6433,
+          "bbox": [
+            40.65915584564209,
+            13.60019146411209,
+            40.66666603088379,
+            13.607490952859143
+          ],
+          "origin_px": [
+            5141731,
+            3874203
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/21485/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2021_R14",
+          "release_date": "2021-10-13",
+          "release_num": 16749,
+          "label": "Esri release 2021-10-13 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 4.6433,
+          "bbox": [
+            40.65915584564209,
+            13.60019146411209,
+            40.66666603088379,
+            13.607490952859143
+          ],
+          "origin_px": [
+            5141731,
+            3874203
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/16749/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2023_R08",
+          "release_date": "2023-08-31",
+          "release_num": 64776,
+          "label": "Esri release 2023-08-31 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 4.6433,
+          "bbox": [
+            40.65915584564209,
+            13.60019146411209,
+            40.66666603088379,
+            13.607490952859143
+          ],
+          "origin_px": [
+            5141731,
+            3874203
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/64776/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2026_R07",
+          "release_date": "2026-08-05",
+          "release_num": 26334,
+          "label": "Esri release 2026-08-05 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 4.6433,
+          "bbox": [
+            40.65915584564209,
+            13.60019146411209,
+            40.66666603088379,
+            13.607490952859143
+          ],
+          "origin_px": [
+            5141731,
+            3874203
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/26334/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        }
+      ],
+      "tiles_used": 40,
+      "tile_limit": 60
+    },
+    "sources": {
+      "sentinel2_catalogue": "https://earth-search.aws.element84.com/v1",
+      "esri_world_imagery": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "esri_wayback": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml"
+    },
+    "attribution": [
+      "Contains modified Copernicus Sentinel data (see scene dates) (Sentinel-2 L2A via Earth Search)",
+      "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+    ]
+  },
+  "closing_statement": "This dossier records, at most, an unexplained observation: a surface feature that the checks listed above did not account for. It makes no claim about what caused the feature or where it came from. An unexplained observation is not evidence of any particular origin: checks that were not run, gaps in the data and errors in this pipeline all remain possible explanations."
+}

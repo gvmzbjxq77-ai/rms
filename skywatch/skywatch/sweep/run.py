@@ -237,8 +237,9 @@ def eliminate_region(region: Region, force: bool = False, confirm: bool = True,
     there. The rest get their onset refined scene by scene, then every check
     and the Landsat and radar confirmations.
     """
-    from ..detect.optical_change import refine_onset
+    from ..detect.optical_change import event_rank, refine_onset
     from ..eliminate.engine import assign_tier, confirm_sensors, run_checks
+    from ..eliminate.regional import annotate_siblings
 
     out = CAND_DIR / "final" / f"{region.id}.jsonl"
     if out.exists() and not force:
@@ -246,8 +247,12 @@ def eliminate_region(region: Region, force: bool = False, confirm: bool = True,
     from ..detect.optical_change import is_weak
 
     raw = load_candidates(CAND_DIR / "raw" / f"{region.id}.jsonl")
-    # Dated regions: the event-window finds are the point, so many are kept.
-    events = [c for c in raw if c.detector == "optical_event"][:events_kept]
+    # The sibling census must see every yearly find, not only the kept ones.
+    annotate_siblings(raw)
+    # Dated regions: the event-window finds are the point, so many are kept,
+    # ranked here so a stored order from an older detector run cannot decide.
+    events = sorted((c for c in raw if c.detector == "optical_event"),
+                    key=event_rank, reverse=True)[:events_kept]
     yearly = [c for c in raw if c.detector != "optical_event"]
     candidates = events + yearly[:top if events else top]
     for candidate in candidates:
@@ -282,9 +287,36 @@ def eliminate_region(region: Region, force: bool = False, confirm: bool = True,
     return len(done)
 
 
+def recheck_region(region: Region) -> tuple[str, dict[str, int]]:
+    """Apply the region-wide sibling census to an already eliminated region.
+
+    Re-runs only the natural-process check (which reads the census) on the
+    unexplained candidates and re-assigns their tiers, so a rule added after a
+    long elimination run does not force the slow stages to run again. Returns
+    the tier counts before and after.
+    """
+    from ..eliminate.engine import run_checks
+    from ..eliminate.regional import annotate_siblings, copy_census
+
+    out = CAND_DIR / "final" / f"{region.id}.jsonl"
+    if not out.exists():
+        return region.id, {}
+    final = load_candidates(out)
+    raw = load_candidates(CAND_DIR / "raw" / f"{region.id}.jsonl")
+    annotate_siblings(raw)
+    copy_census(raw, final)
+    before = {t: sum(c.tier == t for c in final) for t in ("T0", "T1", "T2", "T3", "T4")}
+    for candidate in final:
+        if candidate.tier != "T0" and candidate.measurements.get("regional_siblings"):
+            run_checks(candidate, only=["natural_process"])
+    save_candidates(out, final)
+    after = {t: sum(c.tier == t for c in final) for t in ("T0", "T1", "T2", "T3", "T4")}
+    return region.id, {"before": before, "after": after}
+
+
 def main(argv: Sequence[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    parser.add_argument("stage", choices=["detect", "refine", "sensors", "eliminate"])
+    parser.add_argument("stage", choices=["detect", "refine", "sensors", "eliminate", "recheck"])
     parser.add_argument("--kind", choices=["blind", "control", "seeded"])
     parser.add_argument("--regions", nargs="*")
     parser.add_argument("--res", type=float, default=20.0)
@@ -312,6 +344,9 @@ def main(argv: Sequence[str] | None = None) -> None:
         with ProcessPoolExecutor(args.workers) as pool:
             for future in as_completed([pool.submit(_refine_job, r, args.top, args.force) for r in ready]):
                 print(*future.result(), flush=True)
+    elif args.stage == "recheck":
+        for region in chosen:
+            print(*recheck_region(region), flush=True)
     else:
         # One process only: the Wikidata client paces its requests per process.
         for region in chosen:

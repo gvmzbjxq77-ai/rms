@@ -97,6 +97,23 @@ def _per_scene_support(candidate: Candidate) -> CheckResult:
                    "a single-scene feature may be a residual cloud or shadow", **evidence)
 
 
+def _bracketing_dates(composites: dict[str, list[str]], year: Any) -> tuple[list[str], list[str]] | None:
+    """The scene dates of the composites just before and at the break.
+
+    Yearly candidates store composites by year; event-window candidates store
+    a ``before`` and an ``after`` composite. None when the year is unknown to
+    the yearly layout.
+    """
+    if "before" in composites or "after" in composites:
+        return list(composites.get("before", [])), list(composites.get("after", []))
+    years = sorted(int(y) for y in composites)
+    if int(year) not in years:
+        return None
+    index = years.index(int(year))
+    before = composites.get(str(years[index - 1]), []) if index > 0 else []
+    return list(before), list(composites.get(str(year), []))
+
+
 def _observation_count(candidate: Candidate) -> CheckResult:
     """Were the bracketing composites built from enough separate dates?"""
     m = candidate.measurements
@@ -105,11 +122,13 @@ def _observation_count(candidate: Candidate) -> CheckResult:
     year = m.get("break_year")
     if not composites or year is None:
         return _result(name, "not_run", "no composite metadata on this candidate")
-    years = sorted(int(y) for y in composites)
-    index = years.index(int(year)) if int(year) in years else -1
-    n_after = len(composites.get(str(year), []))
-    n_before = len(composites.get(str(years[index - 1]), [])) if index > 0 else 0
-    valid_years = int(m.get("n_valid_years", len(years)))
+    bracket = _bracketing_dates(composites, year)
+    if bracket is None:
+        return _result(name, "not_run", "the break year is not among the composite dates")
+    before_dates, after_dates = bracket
+    n_before, n_after = len(before_dates), len(after_dates)
+    # An event window has two composites by construction; six is the yearly floor.
+    valid_years = 6 if "before" in composites else int(m.get("n_valid_years", len(composites)))
     evidence = dict(dates_before=n_before, dates_after=n_after, valid_years=valid_years)
     if min(n_before, n_after) < 2 or valid_years < 6:
         return _result(name, "inconclusive",
@@ -134,13 +153,11 @@ def _terrain_shadow(candidate: Candidate) -> CheckResult:
     composites = m.get("composite_dates") or {}
     year = m.get("break_year")
     doy_gap = None
-    if composites and year is not None and str(year) in composites:
-        years = sorted(int(y) for y in composites)
-        index = years.index(int(year))
-        if index > 0:
-            def mean_doy(values: list[str]) -> float:
-                return float(np.mean([date.fromisoformat(v).timetuple().tm_yday for v in values]))
-            doy_gap = abs(mean_doy(composites[str(year)]) - mean_doy(composites[str(years[index - 1])]))
+    bracket = _bracketing_dates(composites, year) if composites and year is not None else None
+    if bracket is not None and bracket[0] and bracket[1]:
+        def mean_doy(values: list[str]) -> float:
+            return float(np.mean([date.fromisoformat(v).timetuple().tm_yday for v in values]))
+        doy_gap = abs(mean_doy(bracket[1]) - mean_doy(bracket[0]))
     darkening_only = m.get("d_brightness", 0.0) < -0.02 and abs(m.get("d_ndvi", 0.0)) < 0.06
     evidence = dict(slope_max_deg=slope_max, day_of_year_gap=doy_gap, darkening_only=darkening_only)
     if slope_max >= 30 and darkening_only and doy_gap is not None and doy_gap >= 25:

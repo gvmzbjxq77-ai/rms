@@ -114,3 +114,24 @@ def test_human_context_marks_nearby_activity_inconclusive(monkeypatch):
     monkeypatch.setattr("skywatch.eliminate.landcover.landcover_fractions",
                         lambda lat, lon, r: (_ for _ in ()).throw(RuntimeError("down")))
     assert context.check_context(nothing)[0].status == "not_run"
+
+
+def test_artefact_observation_count_reads_event_window_layout():
+    from skywatch.core.models import Candidate
+    from skywatch.eliminate import artefacts
+
+    def cand(composites, year=2022):
+        return Candidate(id="e", region_id="r", lat=0, lon=0, bbox=(0, 0, 1, 1), signature="unknown",
+                         detector="optical_event", score=0.5, area_m2=3000, present_from="2022-04-07",
+                         measurements={"kind": "event_window", "break_year": year, "composite_dates": composites})
+
+    event = cand({"before": ["2021-10-24", "2021-11-13"], "after": ["2022-04-07", "2022-04-12", "2022-07-26"]})
+    result = artefacts._observation_count(event)
+    assert result.status == "does_not_explain" and result.evidence["dates_before"] == 2
+    thin = cand({"before": ["2021-10-24"], "after": ["2022-04-07", "2022-04-12"]})
+    assert artefacts._observation_count(thin).status == "inconclusive"
+    yearly = cand({"2020": ["2020-07-01", "2020-07-11"], "2021": ["2021-07-02", "2021-07-12"],
+                   "2022": ["2022-07-03", "2022-07-13"]}, year=2021)
+    yearly.measurements["n_valid_years"] = 8
+    assert artefacts._observation_count(yearly).status == "does_not_explain"
+    assert artefacts._bracketing_dates({"2020": ["2020-07-01"]}, 2019) is None

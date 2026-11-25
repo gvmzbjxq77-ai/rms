@@ -1,0 +1,121 @@
+[
+ {
+  "id": "SW-B09-GIBSON-OC0006",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B09-GIBSON-OC0006",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "foia_2.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "e10b6c69294ebc36506219ed03071df6bd537c122b2e22aa102ec58c2cbffd23",
+   "requested_utc": "2026-11-25T11:39:31Z"
+  }
+ },
+ {
+  "id": "SW-C10-NUBIAN-OC0002",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C10-NUBIAN-OC0002",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "aacd66a134c046d58f6a09ce24d79a78294631db88c08a5bbc3f92d52c5180dd",
+   "requested_utc": "2026-11-25T11:39:04Z"
+  }
+ },
+ {
+  "id": "SW-C01-BENBAN-OC0002",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C01-BENBAN-OC0002",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "c64f00ef3a5d07b9fe2861ccb9c85d5862bede4f780965f5eedb7db2b4d666e4",
+   "requested_utc": "2026-11-25T11:39:43Z"
+  }
+ },
+ {
+  "id": "SW-C02-OWEINAT-OC0001",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C02-OWEINAT-OC0001",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "c56b27b59635473f08a93707fb3ceaa3d3b26048d6ccad89118d6a027b6a5c76",
+   "requested_utc": "2026-11-25T11:40:34Z"
+  }
+ },
+ {
+  "id": "SW-C03-OYUTOLGOI-OC0015",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C03-OYUTOLGOI-OC0015",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "08556b628358cb7ac3e6e35af1028654d2a6efbf0fb33bbb0d8a60ab5ead583c",
+   "requested_utc": "2026-11-25T11:40:13Z"
+  }
+ },
+ {
+  "id": "SW-C04-DOMEFIRE-OC0009",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C04-DOMEFIRE-OC0009",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "f1f2965c33ada655706e87a93b68ab10809d3e36c05a9b628fe7a6c734af44d8",
+   "requested_utc": "2026-11-25T11:40:53Z"
+  }
+ },
+ {
+  "id": "SW-C05-YUCCAFLAT-TH0001",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C05-YUCCAFLAT-TH0001",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "e64a4e5a4b5380653277dba175a7e27c2067f6cc3451577099d23c075f5bebfd",
+   "requested_utc": "2026-11-25T11:41:03Z"
+  }
+ },
+ {
+  "id": "SW-C06-MU5735-OC0004",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C06-MU5735-OC0004",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "8cf006f1998cb5e574b58f7e50b166d12232162dbe116a2b9caf4ec3f5800d94",
+   "requested_utc": "2026-11-25T11:41:41Z"
+  }
+ },
+ {
+  "id": "SW-C07-VOSTOCHNY-OC0012",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C07-VOSTOCHNY-OC0012",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "79f4154b4bb03242423f0764e807de3c617c7ffbcfbdc15c5649d365e8d7d64d",
+   "requested_utc": "2026-11-25T11:41:34Z"
+  }
+ },
+ {
+  "id": "SW-C08-ERTAALE-TH0001",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C08-ERTAALE-TH0001",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "1609bc76544d7edc6491c50132ee3c20295779c2e29bd53e316563d6bed4657a",
+   "requested_utc": "2026-11-25T11:42:04Z"
+  }
+ }
+]

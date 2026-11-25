@@ -252,8 +252,39 @@ def _volcanic(x: _Context) -> CheckResult:
     return _result(name, "does_not_explain", f"nearest volcano {distance:.1f} km away", **evidence)
 
 
+def _regional_pattern(x: _Context) -> CheckResult:
+    """Same signature, same year, several unrelated places in the region.
+
+    Reads the census ``regional.annotate_siblings`` stored. Explains with
+    ``EXPLAIN_SIBLINGS`` or more others unless the outline is regular (a
+    rectilinear footprint may be one of several built things); suggestive from
+    ``SUGGEST_SIBLINGS``.
+    """
+    from .regional import EXPLAIN_SIBLINGS, MAGNITUDE_RATIO, MIN_COSINE, SUGGEST_SIBLINGS
+
+    info = x.m.get("regional_siblings")
+    if not info:
+        return _result("natural:regional_pattern", "not_run",
+                       "no region-wide sibling census (not a yearly optical candidate, or census not computed)")
+    n, compared, year, spread = int(info["count"]), int(info["compared"]), info.get("year"), info.get("spread_km", 0.0)
+    regular = float(x.shape.get("rectangularity", 0.0)) >= 0.8 and float(x.shape.get("straight_edge_fraction", 0.0)) >= 0.6
+    same = (f"{n} of {compared} other yearly candidates in this region changed the same way in {year} "
+            f"(spectral direction within cosine {MIN_COSINE}, size within {MAGNITUDE_RATIO}x), spread over {spread} km")
+    if n >= EXPLAIN_SIBLINGS and not regular:
+        return _result("natural:regional_pattern", "explains",
+                       f"regional pattern: {same}; a change that recurs across a region is a regional process "
+                       "(rain, greening, blown sand, moisture or the sensor), not a local event",
+                       siblings=n, compared=compared, year=year, spread_km=spread, ids=info.get("ids", []))
+    if n >= SUGGEST_SIBLINGS:
+        why = "; its regular outline kept it from being explained by that alone" if regular else ""
+        return _result("natural:regional_pattern", "inconclusive", f"possible regional pattern: {same}{why}",
+                       siblings=n, compared=compared, year=year, spread_km=spread, ids=info.get("ids", []))
+    return _result("natural:regional_pattern", "does_not_explain", same, siblings=n, compared=compared, year=year)
+
+
 _SUBTESTS: tuple[Callable[[_Context], CheckResult], ...] = (
-    _agriculture, _seasonal, _water, _snow, _mass_movement, _sand, _periglacial, _fluvial, _volcanic)
+    _agriculture, _seasonal, _water, _snow, _mass_movement, _sand, _periglacial, _fluvial, _volcanic,
+    _regional_pattern)
 
 
 def check_natural(candidate: Candidate) -> list[CheckResult]:

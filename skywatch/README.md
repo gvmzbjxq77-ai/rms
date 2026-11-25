@@ -14,6 +14,7 @@ uv venv --python 3.12 .venv && uv pip install --python .venv/bin/python -e . pyt
 .venv/bin/python -m skywatch.sweep.run detect --kind control   # then --kind blind / seeded
 .venv/bin/python -m skywatch.sweep.run sensors                  # thermal and night-light detectors
 .venv/bin/python -m skywatch.sweep.run eliminate                # cheap checks, onset refinement, all checks, confirmation, tiers
+.venv/bin/python -m skywatch.sweep.run recheck                  # re-apply the region-wide sibling census to finished regions
 .venv/bin/python -m skywatch.sweep.followup                     # dossiers, timestamps, request drafts
 .venv/bin/python -m skywatch.publish.adjudicate                 # review briefs for the panel
 .venv/bin/python -m skywatch.publish.site                       # output/site/
@@ -29,7 +30,7 @@ skips regions already done, so an interrupted sweep resumes.
 |---|---|
 | `skywatch/core` | Catalogue search, a common UTM grid for every sensor, cloud-masked composites, the candidate / check / tier model |
 | `skywatch/detect` | Sentinel-2 change detector (yearly steps, transients, dated event windows), shape analysis, Landsat optical and thermal, Sentinel-1 radar, terrain, night lights |
-| `skywatch/eliminate` | Checks: OpenStreetMap, land cover, Wikidata, test and launch ranges, accident and meteorite records, fire history, natural processes, sensor artefacts; the engine that runs them and assigns tiers |
+| `skywatch/eliminate` | Checks: OpenStreetMap, land cover, Wikidata, test and launch ranges, accident and meteorite records, fire history, natural processes (including the region-wide sibling census: the same change in the same year at five or more unrelated places is a regional process), sensor artefacts; the engine that runs them and assigns tiers |
 | `skywatch/reports` | Witness-report ingestion and matching (reports are unverified claims) |
 | `skywatch/dossier` | Per-candidate evidence folders with imagery |
 | `skywatch/provenance`, `skywatch/foia` | OpenTimestamps proofs; public-records request drafts and ground-truth plans (drafts only, never sent) |

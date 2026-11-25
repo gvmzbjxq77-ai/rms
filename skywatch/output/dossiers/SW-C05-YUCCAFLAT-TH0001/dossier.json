@@ -1,0 +1,660 @@
+{
+  "schema": "skywatch.dossier/1",
+  "generated_utc": "2026-11-25T11:41:03Z",
+  "candidate": {
+    "id": "SW-C05-YUCCAFLAT-TH0001",
+    "region_id": "C05-YUCCAFLAT",
+    "lat": 37.16788220967055,
+    "lon": -116.16072310504357,
+    "bbox": [
+      -116.1642004768521,
+      37.163648763662884,
+      -116.15617227007222,
+      37.17100692922394
+    ],
+    "signature": "thermal",
+    "detector": "landsat_thermal",
+    "score": 0.5503671566645304,
+    "area_m2": 226800.0,
+    "absent_until": null,
+    "present_from": null,
+    "sensors": [
+      "thermal_landsat"
+    ],
+    "shape": {},
+    "measurements": {
+      "median_anomaly_K": -5.896831512451172,
+      "median_z": -6.604405879974365,
+      "hit_fraction": 0.9230769230769231,
+      "n_scenes": 14,
+      "sign": -1,
+      "dates": [
+        "2019-06-08",
+        "2020-05-25",
+        "2021-02-21",
+        "2022-02-08",
+        "2022-07-02",
+        "2023-01-02",
+        "2023-07-05",
+        "2023-12-04",
+        "2024-06-21",
+        "2024-12-06",
+        "2025-07-10",
+        "2025-12-17",
+        "2026-06-19",
+        "2026-11-10"
+      ],
+      "years": [
+        "2019",
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "res_m": 90.0,
+      "elevation_detrended": true,
+      "surface_detrended": true
+    },
+    "checks": [
+      {
+        "check": "military_or_rocket_range",
+        "category": "infrastructure",
+        "status": "explains",
+        "detail": "inside Nevada National Security Site (test_range, United States): 21.2 km from the centre of an approximate 28 km circle (geometry confidence high); conventional military or space activity is the overwhelmingly likely cause",
+        "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+        "evidence": {
+          "inside": [
+            {
+              "name": "Nevada National Security Site",
+              "country": "United States",
+              "kind": "test_range",
+              "lat": 36.98,
+              "lon": -116.2,
+              "radius_km": 28.0,
+              "approximate": true,
+              "diffuse": false,
+              "confidence": "high",
+              "note": "Former Nevada Test Site; circle inscribed in a larger irregular boundary.",
+              "distance_km": 21.18,
+              "distance_to_edge_km": -6.82,
+              "margin_km": 5.6
+            }
+          ],
+          "within_margin": [],
+          "nearest_entry": {
+            "name": "Nevada National Security Site",
+            "country": "United States",
+            "kind": "test_range",
+            "lat": 36.98,
+            "lon": -116.2,
+            "radius_km": 28.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Former Nevada Test Site; circle inscribed in a larger irregular boundary.",
+            "distance_km": 21.18,
+            "distance_to_edge_km": -6.82,
+            "margin_km": 5.6
+          },
+          "signature": "thermal",
+          "n_entries": 82,
+          "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area.",
+          "entry": {
+            "name": "Nevada National Security Site",
+            "country": "United States",
+            "kind": "test_range",
+            "lat": 36.98,
+            "lon": -116.2,
+            "radius_km": 28.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Former Nevada Test Site; circle inscribed in a larger irregular boundary.",
+            "distance_km": 21.18,
+            "distance_to_edge_km": -6.82,
+            "margin_km": 5.6
+          }
+        }
+      },
+      {
+        "check": "landcover",
+        "category": "natural",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "osm_infrastructure",
+        "category": "infrastructure",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "wikidata_nearby",
+        "category": "infrastructure",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "aviation_accident",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "meteorite_record",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      }
+    ],
+    "tier": "T0",
+    "tier_reason": "explained by: military_or_rocket_range",
+    "reports": [],
+    "notes": " stopped after the cheap checks"
+  },
+  "tier": {
+    "recomputed_tier": "T0",
+    "recomputed_reason": "explained by: military_or_rocket_range",
+    "tier": "T0",
+    "reason": "explained by: military_or_rocket_range",
+    "source": "recorded on the candidate",
+    "consistent": true
+  },
+  "checks": [
+    {
+      "check": "military_or_rocket_range",
+      "category": "infrastructure",
+      "status": "explains",
+      "detail": "inside Nevada National Security Site (test_range, United States): 21.2 km from the centre of an approximate 28 km circle (geometry confidence high); conventional military or space activity is the overwhelmingly likely cause",
+      "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+      "evidence": {
+        "inside": [
+          {
+            "name": "Nevada National Security Site",
+            "country": "United States",
+            "kind": "test_range",
+            "lat": 36.98,
+            "lon": -116.2,
+            "radius_km": 28.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Former Nevada Test Site; circle inscribed in a larger irregular boundary.",
+            "distance_km": 21.18,
+            "distance_to_edge_km": -6.82,
+            "margin_km": 5.6
+          }
+        ],
+        "within_margin": [],
+        "nearest_entry": {
+          "name": "Nevada National Security Site",
+          "country": "United States",
+          "kind": "test_range",
+          "lat": 36.98,
+          "lon": -116.2,
+          "radius_km": 28.0,
+          "approximate": true,
+          "diffuse": false,
+          "confidence": "high",
+          "note": "Former Nevada Test Site; circle inscribed in a larger irregular boundary.",
+          "distance_km": 21.18,
+          "distance_to_edge_km": -6.82,
+          "margin_km": 5.6
+        },
+        "signature": "thermal",
+        "n_entries": 82,
+        "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area.",
+        "entry": {
+          "name": "Nevada National Security Site",
+          "country": "United States",
+          "kind": "test_range",
+          "lat": 36.98,
+          "lon": -116.2,
+          "radius_km": 28.0,
+          "approximate": true,
+          "diffuse": false,
+          "confidence": "high",
+          "note": "Former Nevada Test Site; circle inscribed in a larger irregular boundary.",
+          "distance_km": 21.18,
+          "distance_to_edge_km": -6.82,
+          "margin_km": 5.6
+        }
+      }
+    },
+    {
+      "check": "landcover",
+      "category": "natural",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "osm_infrastructure",
+      "category": "infrastructure",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "wikidata_nearby",
+      "category": "infrastructure",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "aviation_accident",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "meteorite_record",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    }
+  ],
+  "checks_not_run": [
+    {
+      "check": "landcover",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "true"
+    },
+    {
+      "check": "osm_infrastructure",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "true"
+    },
+    {
+      "check": "wikidata_nearby",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "true"
+    },
+    {
+      "check": "aviation_accident",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "false"
+    },
+    {
+      "check": "meteorite_record",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "false"
+    },
+    {
+      "check": "fire_history",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "artefact_screen",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "natural_process",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    }
+  ],
+  "onset": {
+    "absent_until": null,
+    "present_from": null,
+    "dated": false
+  },
+  "statistics": {
+    "footprint_vs_surroundings": {
+      "current": {
+        "inside": {
+          "brightness": 0.0884,
+          "ndvi": 0.2211,
+          "nbr": 0.0422
+        },
+        "surroundings": {
+          "brightness": 0.1056,
+          "ndvi": 0.2045,
+          "nbr": 0.0383
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "name": "current.png",
+      "description": "Sentinel-2 true colour, CURRENT (no dated onset)",
+      "bytes": 207386,
+      "sha256": "d98cec7565f2c087c2168c6688f2c209309e9793c4a67208741fb815a2d1fb25"
+    },
+    {
+      "name": "falsecolor_current.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), CURRENT (no dated onset)",
+      "bytes": 201828,
+      "sha256": "ab3a652b16fdc0178cac465c6e3cda6e1925cad4ca409cd1445ad1dd9f351b7c"
+    },
+    {
+      "name": "context.png",
+      "description": "Wider setting with the footprint marked",
+      "bytes": 246156,
+      "sha256": "e92d34cc9041a7a7ad2fa46ace0ecc81bfedb9af7a6c02f7d0fe63fef2a16290"
+    },
+    {
+      "name": "hires.png",
+      "description": "Esri World Imagery view (viewing only)",
+      "bytes": 259055,
+      "sha256": "308deec7c382e381ec371b88cdda87b4dd54e607e1bf18930abab0962340017f"
+    },
+    {
+      "name": "wayback_strip.png",
+      "description": "Esri Wayback versions; dates are publication dates, not acquisition dates",
+      "bytes": 298914,
+      "sha256": "1e50ed158c9af8e71728a855ee09950aade3dad2e5cc4da7caac48537d4662de"
+    },
+    {
+      "name": "dossier.md",
+      "description": "Plain-language summary",
+      "bytes": 5595,
+      "sha256": "c931da87585170b8ed060c9d8b345c8e3b8ec62dc6cd9d3d6bd9a06806c074ca"
+    },
+    {
+      "name": "dossier.json",
+      "description": "This machine-readable record"
+    }
+  ],
+  "panels_missing": [
+    {
+      "panel": "difference.png",
+      "reason": "no dated onset window, so there is no before/after pair"
+    },
+    {
+      "panel": "timeseries.png",
+      "reason": "the detector recorded no time series (measurements['series'] is absent)"
+    }
+  ],
+  "provenance": {
+    "sentinel2": {
+      "current": {
+        "window": [
+          "2025-11-25",
+          "2026-11-25"
+        ],
+        "acquisition_dates": [
+          "2025-11-28",
+          "2026-01-12",
+          "2026-09-04",
+          "2026-11-08"
+        ],
+        "scene_ids": [
+          "S2C_11SNB_20251128_0_L2A",
+          "S2B_11SNB_20260112_0_L2A",
+          "S2C_11SNB_20260904_0_L2A",
+          "S2B_11SNB_20261108_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_11SNB_20251128_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_11SNB_20260112_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_11SNB_20260904_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_11SNB_20261108_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32611",
+          "res_m": 10.0,
+          "shape": [
+            249,
+            250
+          ],
+          "bounds": [
+            573310.0,
+            4112520.0,
+            575810.0,
+            4115010.0
+          ],
+          "bbox_wgs84": [
+            -116.174386,
+            37.156006,
+            -116.145982,
+            37.178648
+          ]
+        }
+      },
+      "context": {
+        "window": [
+          "2025-11-25",
+          "2026-11-25"
+        ],
+        "acquisition_dates": [
+          "2025-11-28",
+          "2026-01-12",
+          "2026-09-04",
+          "2026-11-08"
+        ],
+        "scene_ids": [
+          "S2C_11SNB_20251128_0_L2A",
+          "S2B_11SNB_20260112_0_L2A",
+          "S2C_11SNB_20260904_0_L2A",
+          "S2B_11SNB_20261108_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_11SNB_20251128_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_11SNB_20260112_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_11SNB_20260904_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_11SNB_20261108_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32611",
+          "res_m": 20.0,
+          "shape": [
+            504,
+            506
+          ],
+          "bounds": [
+            569500.0,
+            4108720.0,
+            579620.0,
+            4118800.0
+          ],
+          "bbox_wgs84": [
+            -116.217643,
+            37.121439,
+            -116.102662,
+            37.2131
+          ]
+        }
+      }
+    },
+    "esri": {
+      "note": "Shown for viewing only: not used for detection and not counted as an independent sensor.",
+      "hires": {
+        "source": "Esri World Imagery (live mosaic)",
+        "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+        "lat": 37.16732784644341,
+        "lon": -116.16018637346215,
+        "size_m": 1146.7553863597939,
+        "zoom": 17,
+        "zoom_requested": null,
+        "ground_res_m": 0.9517,
+        "shape": [
+          1205,
+          1205
+        ],
+        "bbox": [
+          -116.16665482521057,
+          37.16218049559807,
+          -116.15372657775879,
+          37.172482686467994
+        ],
+        "origin_px": [
+          5949699,
+          13040241
+        ],
+        "tiles": 30,
+        "tile_url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "imagery_verified": true,
+        "retrieved": "2026-11-25",
+        "use": "viewing only; not a detector input and not an independent sensor",
+        "acquisition_date": "2020-12-05",
+        "sensor": "WV02",
+        "provider": "Vantor",
+        "source_resolution_m": 0.5,
+        "note": "per Esri metadata at the centre point of the live mosaic"
+      },
+      "wayback": [
+        {
+          "release_id": "WB_2014_R01",
+          "release_date": "2014-02-20",
+          "release_num": 10,
+          "label": "Esri release 2014-02-20 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.8069,
+          "bbox": [
+            -116.16621494293213,
+            37.162539599731126,
+            -116.15419864654541,
+            37.172115080584135
+          ],
+          "origin_px": [
+            1487435,
+            3260071
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2018_R09",
+          "release_date": "2018-06-27",
+          "release_num": 11334,
+          "label": "Esri release 2018-06-27 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.8069,
+          "bbox": [
+            -116.16621494293213,
+            37.162539599731126,
+            -116.15419864654541,
+            37.172115080584135
+          ],
+          "origin_px": [
+            1487435,
+            3260071
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/11334/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2021_R05",
+          "release_date": "2021-04-08",
+          "release_num": 6863,
+          "label": "Esri release 2021-04-08 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.8069,
+          "bbox": [
+            -116.16621494293213,
+            37.162539599731126,
+            -116.15419864654541,
+            37.172115080584135
+          ],
+          "origin_px": [
+            1487435,
+            3260071
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/6863/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2023_R05",
+          "release_date": "2023-06-13",
+          "release_num": 25982,
+          "label": "Esri release 2023-06-13 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.8069,
+          "bbox": [
+            -116.16621494293213,
+            37.162539599731126,
+            -116.15419864654541,
+            37.172115080584135
+          ],
+          "origin_px": [
+            1487435,
+            3260071
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/25982/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2026_R02",
+          "release_date": "2026-02-26",
+          "release_num": 64001,
+          "label": "Esri release 2026-02-26 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.8069,
+          "bbox": [
+            -116.16621494293213,
+            37.162539599731126,
+            -116.15419864654541,
+            37.172115080584135
+          ],
+          "origin_px": [
+            1487435,
+            3260071
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/64001/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        }
+      ],
+      "tiles_used": 54,
+      "tile_limit": 60
+    },
+    "sources": {
+      "sentinel2_catalogue": "https://earth-search.aws.element84.com/v1",
+      "esri_world_imagery": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "esri_wayback": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml"
+    },
+    "attribution": [
+      "Contains modified Copernicus Sentinel data (see scene dates) (Sentinel-2 L2A via Earth Search)",
+      "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+    ]
+  },
+  "closing_statement": "This dossier records, at most, an unexplained observation: a surface feature that the checks listed above did not account for. It makes no claim about what caused the feature or where it came from. An unexplained observation is not evidence of any particular origin: checks that were not run, gaps in the data and errors in this pipeline all remain possible explanations."
+}

@@ -1,0 +1,818 @@
+{
+  "schema": "skywatch.dossier/1",
+  "generated_utc": "2026-11-25T11:41:34Z",
+  "candidate": {
+    "id": "SW-C07-VOSTOCHNY-OC0012",
+    "region_id": "C07-VOSTOCHNY",
+    "lat": 51.870302664156554,
+    "lon": 128.33408249363296,
+    "bbox": [
+      128.33184720854436,
+      51.86903391900489,
+      128.33653193475257,
+      51.87152497364083
+    ],
+    "signature": "landing_trace",
+    "detector": "optical_change",
+    "score": 0.44359375,
+    "area_m2": 27200.0,
+    "absent_until": "2023-08-06",
+    "present_from": "2024-07-23",
+    "sensors": [
+      "optical_s2"
+    ],
+    "shape": {
+      "area_m2": 27200.0,
+      "perimeter_m": 635.269119345812,
+      "equivalent_diameter_m": 186.09705966725113,
+      "major_axis_m": 217.44259344720155,
+      "minor_axis_m": 172.79815677263673,
+      "elongation": 1.258361764433094,
+      "orientation_deg": 153.61611235626052,
+      "circularity": 0.8469607385429865,
+      "solidity": 0.85,
+      "eccentricity": 0.6070233027948155,
+      "rectangularity": 0.6974363572538572,
+      "n_corners": 6,
+      "straight_edge_fraction": 0.7153756054633902,
+      "hole_fraction": 0.0,
+      "regularity": 0.609741118738289
+    },
+    "measurements": {
+      "kind": "step",
+      "break_year": 2024,
+      "step_snr": 11.08984375,
+      "d_brightness": 0.1025288850069046,
+      "d_ndvi": -0.5899529457092285,
+      "d_nbr": -0.5813274383544922,
+      "d_swir": 0.1011861115694046,
+      "persistence_years": 3,
+      "recovery_fraction": 0.0,
+      "crowding": 0.00061400821740652,
+      "n_valid_years": 9,
+      "years_used": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "composite_dates": {
+        "2018": [
+          "2018-07-30",
+          "2018-08-02",
+          "2018-08-04"
+        ],
+        "2019": [
+          "2019-08-02",
+          "2019-08-07",
+          "2019-08-12"
+        ],
+        "2020": [
+          "2020-07-14",
+          "2020-07-29",
+          "2020-08-13"
+        ],
+        "2021": [
+          "2021-07-17",
+          "2021-08-13",
+          "2021-08-16"
+        ],
+        "2022": [
+          "2022-08-16",
+          "2022-08-21",
+          "2022-09-02"
+        ],
+        "2023": [
+          "2023-07-14",
+          "2023-07-17",
+          "2023-08-06"
+        ],
+        "2024": [
+          "2024-07-23",
+          "2024-07-26",
+          "2024-08-20"
+        ],
+        "2025": [
+          "2025-07-13",
+          "2025-08-07",
+          "2025-08-17"
+        ],
+        "2026": [
+          "2026-08-05",
+          "2026-08-07",
+          "2026-08-15"
+        ]
+      },
+      "scene_ids_before": [
+        "S2A_52UDC_20230806_0_L2A",
+        "S2A_52UDC_20230717_0_L2A",
+        "S2A_52UDC_20230714_0_L2A"
+      ],
+      "scene_ids_after": [
+        "S2B_52UDC_20240723_0_L2A",
+        "S2A_52UDC_20240820_0_L2A",
+        "S2B_52UDC_20240726_0_L2A"
+      ],
+      "res_m": 20.0
+    },
+    "checks": [
+      {
+        "check": "military_or_rocket_range",
+        "category": "infrastructure",
+        "status": "explains",
+        "detail": "inside Vostochny Cosmodrome (launch_site, Russia): 1.1 km from the centre of an approximate 15 km circle (geometry confidence high); conventional military or space activity is the overwhelmingly likely cause",
+        "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+        "evidence": {
+          "inside": [
+            {
+              "name": "Vostochny Cosmodrome",
+              "country": "Russia",
+              "kind": "launch_site",
+              "lat": 51.88,
+              "lon": 128.33,
+              "radius_km": 15.0,
+              "approximate": true,
+              "diffuse": false,
+              "confidence": "high",
+              "note": "Near Tsiolkovsky, Amur Oblast.",
+              "distance_km": 1.11,
+              "distance_to_edge_km": -13.89,
+              "margin_km": 3.0
+            }
+          ],
+          "within_margin": [],
+          "nearest_entry": {
+            "name": "Vostochny Cosmodrome",
+            "country": "Russia",
+            "kind": "launch_site",
+            "lat": 51.88,
+            "lon": 128.33,
+            "radius_km": 15.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Near Tsiolkovsky, Amur Oblast.",
+            "distance_km": 1.11,
+            "distance_to_edge_km": -13.89,
+            "margin_km": 3.0
+          },
+          "signature": "landing_trace",
+          "n_entries": 82,
+          "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area.",
+          "entry": {
+            "name": "Vostochny Cosmodrome",
+            "country": "Russia",
+            "kind": "launch_site",
+            "lat": 51.88,
+            "lon": 128.33,
+            "radius_km": 15.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Near Tsiolkovsky, Amur Oblast.",
+            "distance_km": 1.11,
+            "distance_to_edge_km": -13.89,
+            "margin_km": 3.0
+          }
+        }
+      },
+      {
+        "check": "landcover",
+        "category": "natural",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "osm_infrastructure",
+        "category": "infrastructure",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "wikidata_nearby",
+        "category": "infrastructure",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "aviation_accident",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "meteorite_record",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by military_or_rocket_range",
+        "source": "engine",
+        "evidence": {}
+      }
+    ],
+    "tier": "T0",
+    "tier_reason": "explained by: military_or_rocket_range",
+    "reports": [],
+    "notes": " stopped after the cheap checks"
+  },
+  "tier": {
+    "recomputed_tier": "T0",
+    "recomputed_reason": "explained by: military_or_rocket_range",
+    "tier": "T0",
+    "reason": "explained by: military_or_rocket_range",
+    "source": "recorded on the candidate",
+    "consistent": true
+  },
+  "checks": [
+    {
+      "check": "military_or_rocket_range",
+      "category": "infrastructure",
+      "status": "explains",
+      "detail": "inside Vostochny Cosmodrome (launch_site, Russia): 1.1 km from the centre of an approximate 15 km circle (geometry confidence high); conventional military or space activity is the overwhelmingly likely cause",
+      "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+      "evidence": {
+        "inside": [
+          {
+            "name": "Vostochny Cosmodrome",
+            "country": "Russia",
+            "kind": "launch_site",
+            "lat": 51.88,
+            "lon": 128.33,
+            "radius_km": 15.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Near Tsiolkovsky, Amur Oblast.",
+            "distance_km": 1.11,
+            "distance_to_edge_km": -13.89,
+            "margin_km": 3.0
+          }
+        ],
+        "within_margin": [],
+        "nearest_entry": {
+          "name": "Vostochny Cosmodrome",
+          "country": "Russia",
+          "kind": "launch_site",
+          "lat": 51.88,
+          "lon": 128.33,
+          "radius_km": 15.0,
+          "approximate": true,
+          "diffuse": false,
+          "confidence": "high",
+          "note": "Near Tsiolkovsky, Amur Oblast.",
+          "distance_km": 1.11,
+          "distance_to_edge_km": -13.89,
+          "margin_km": 3.0
+        },
+        "signature": "landing_trace",
+        "n_entries": 82,
+        "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area.",
+        "entry": {
+          "name": "Vostochny Cosmodrome",
+          "country": "Russia",
+          "kind": "launch_site",
+          "lat": 51.88,
+          "lon": 128.33,
+          "radius_km": 15.0,
+          "approximate": true,
+          "diffuse": false,
+          "confidence": "high",
+          "note": "Near Tsiolkovsky, Amur Oblast.",
+          "distance_km": 1.11,
+          "distance_to_edge_km": -13.89,
+          "margin_km": 3.0
+        }
+      }
+    },
+    {
+      "check": "landcover",
+      "category": "natural",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "osm_infrastructure",
+      "category": "infrastructure",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "wikidata_nearby",
+      "category": "infrastructure",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "aviation_accident",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "meteorite_record",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by military_or_rocket_range",
+      "source": "engine",
+      "evidence": {}
+    }
+  ],
+  "checks_not_run": [
+    {
+      "check": "landcover",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "true"
+    },
+    {
+      "check": "osm_infrastructure",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "true"
+    },
+    {
+      "check": "wikidata_nearby",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "true"
+    },
+    {
+      "check": "aviation_accident",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "false"
+    },
+    {
+      "check": "meteorite_record",
+      "reason": "skipped: already explained by military_or_rocket_range",
+      "mandatory": "false"
+    },
+    {
+      "check": "fire_history",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "artefact_screen",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "natural_process",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    }
+  ],
+  "onset": {
+    "absent_until": "2023-08-06",
+    "present_from": "2024-07-23",
+    "dated": true
+  },
+  "statistics": {
+    "footprint_vs_surroundings": {
+      "before": {
+        "inside": {
+          "brightness": 0.0539,
+          "ndvi": 0.6247,
+          "nbr": 0.3179
+        },
+        "surroundings": {
+          "brightness": 0.05,
+          "ndvi": 0.639,
+          "nbr": 0.3365
+        }
+      },
+      "after": {
+        "inside": {
+          "brightness": 0.0946,
+          "ndvi": 0.4701,
+          "nbr": 0.2278
+        },
+        "surroundings": {
+          "brightness": 0.0459,
+          "ndvi": 0.7326,
+          "nbr": 0.49
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "name": "before.png",
+      "description": "Sentinel-2 true colour, BEFORE onset",
+      "bytes": 116209,
+      "sha256": "f04b455e727cf288d94c16c7a39eba0cf791aaab28519327bd92382a977f73b9"
+    },
+    {
+      "name": "falsecolor_before.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), BEFORE onset",
+      "bytes": 106637,
+      "sha256": "c84dd2db4dbcacd52aa4d06c0fa7bcf04db5ad7a11bf9b2a634ef46b88deabc7"
+    },
+    {
+      "name": "after.png",
+      "description": "Sentinel-2 true colour, AFTER onset",
+      "bytes": 116427,
+      "sha256": "d7fffabc5652dbe9a57295f3988e6e92ed5e153a3cf1de4b27366f7477d9d38c"
+    },
+    {
+      "name": "falsecolor_after.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), AFTER onset",
+      "bytes": 107868,
+      "sha256": "9f43fe0fa5f07279b7d0813a33516db1c5e930c33b9fd84423d2c1a603aea55b"
+    },
+    {
+      "name": "difference.png",
+      "description": "After minus before: brightness and NDVI change",
+      "bytes": 78958,
+      "sha256": "88baa7097f7e7e2efcbfac5de471ddcedc9b6e04c058b6f4c04c42617ee63f05"
+    },
+    {
+      "name": "context.png",
+      "description": "Wider setting with the footprint marked",
+      "bytes": 253559,
+      "sha256": "38b8d0dbde6cbeddcc9674281c7fdd627e2e26c1363bea7d721084f5516938db"
+    },
+    {
+      "name": "hires.png",
+      "description": "Esri World Imagery view (viewing only)",
+      "bytes": 297600,
+      "sha256": "be29ba59e59ef6d07fb98fe02352f465876f8786b2e00bf346cde18f005977cb"
+    },
+    {
+      "name": "wayback_strip.png",
+      "description": "Esri Wayback versions; dates are publication dates, not acquisition dates",
+      "bytes": 256768,
+      "sha256": "a3ce0d0eae913aef5c1ad51d17c5b79758c58f4492f54ed2e0e2a456f5a742aa"
+    },
+    {
+      "name": "dossier.md",
+      "description": "Plain-language summary",
+      "bytes": 6751,
+      "sha256": "9212119dfa7e8cfd3e05b507ac03948f73fe32836b3c6702784bfe09758d7f5d"
+    },
+    {
+      "name": "dossier.json",
+      "description": "This machine-readable record"
+    }
+  ],
+  "panels_missing": [
+    {
+      "panel": "timeseries.png",
+      "reason": "the detector recorded no time series (measurements['series'] is absent)"
+    }
+  ],
+  "provenance": {
+    "sentinel2": {
+      "before": {
+        "window": [
+          "2022-08-06",
+          "2023-08-06"
+        ],
+        "acquisition_dates": [
+          "2022-10-07",
+          "2022-10-27",
+          "2023-07-04",
+          "2023-07-12"
+        ],
+        "scene_ids": [
+          "S2A_52UDC_20221007_0_L2A",
+          "S2A_52UDC_20221027_0_L2A",
+          "S2A_52UDC_20230704_0_L2A",
+          "S2B_52UDC_20230712_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_52UDC_20221007_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_52UDC_20221027_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_52UDC_20230704_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_52UDC_20230712_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32652",
+          "res_m": 10.0,
+          "shape": [
+            152,
+            152
+          ],
+          "bounds": [
+            453400.0,
+            5746060.0,
+            454920.0,
+            5747580.0
+          ],
+          "bbox_wgs84": [
+            128.323049,
+            51.863384,
+            128.345327,
+            51.877174
+          ]
+        }
+      },
+      "after": {
+        "window": [
+          "2024-07-23",
+          "2025-07-23"
+        ],
+        "acquisition_dates": [
+          "2024-08-20",
+          "2024-09-11",
+          "2024-10-06",
+          "2025-06-26"
+        ],
+        "scene_ids": [
+          "S2A_52UDC_20240820_0_L2A",
+          "S2B_52UDC_20240911_0_L2A",
+          "S2A_52UDC_20241006_0_L2A",
+          "S2C_52UDC_20250626_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_52UDC_20240820_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_52UDC_20240911_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_52UDC_20241006_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_52UDC_20250626_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32652",
+          "res_m": 10.0,
+          "shape": [
+            152,
+            152
+          ],
+          "bounds": [
+            453400.0,
+            5746060.0,
+            454920.0,
+            5747580.0
+          ],
+          "bbox_wgs84": [
+            128.323049,
+            51.863384,
+            128.345327,
+            51.877174
+          ]
+        }
+      },
+      "context": {
+        "window": [
+          "2024-07-23",
+          "2025-07-23"
+        ],
+        "acquisition_dates": [
+          "2024-08-20",
+          "2024-09-11",
+          "2024-10-06",
+          "2025-06-26"
+        ],
+        "scene_ids": [
+          "S2A_52UDC_20240820_0_L2A",
+          "S2B_52UDC_20240911_0_L2A",
+          "S2A_52UDC_20241006_0_L2A",
+          "S2C_52UDC_20250626_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_52UDC_20240820_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_52UDC_20240911_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_52UDC_20241006_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_52UDC_20250626_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32652",
+          "res_m": 20.0,
+          "shape": [
+            505,
+            506
+          ],
+          "bounds": [
+            449100.0,
+            5741780.0,
+            459220.0,
+            5751880.0
+          ],
+          "bbox_wgs84": [
+            128.259954,
+            51.824529,
+            128.408274,
+            51.916165
+          ]
+        }
+      }
+    },
+    "esri": {
+      "note": "Shown for viewing only: not used for detection and not counted as an independent sensor.",
+      "hires": {
+        "source": "Esri World Imagery (live mosaic)",
+        "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+        "lat": 51.87027944632286,
+        "lon": 128.33418957164847,
+        "size_m": 800.0,
+        "zoom": 17,
+        "zoom_requested": null,
+        "ground_res_m": 0.7374,
+        "shape": [
+          1085,
+          1085
+        ],
+        "bbox": [
+          128.32836985588074,
+          51.86668706220699,
+          128.34001064300537,
+          51.873874596041006
+        ],
+        "origin_px": [
+          28738287,
+          11102603
+        ],
+        "tiles": 30,
+        "tile_url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "imagery_verified": true,
+        "retrieved": "2026-11-25",
+        "use": "viewing only; not a detector input and not an independent sensor",
+        "acquisition_date": "2023-09-09",
+        "sensor": "WV02",
+        "provider": "Vantor",
+        "source_resolution_m": 0.5,
+        "note": "per Esri metadata at the centre point of the live mosaic"
+      },
+      "wayback": [
+        {
+          "release_id": "WB_2014_R01",
+          "release_date": "2014-02-20",
+          "release_num": 10,
+          "label": "Esri release 2014-02-20 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 2.9497,
+          "bbox": [
+            128.3298397064209,
+            51.867588051075046,
+            128.33855152130127,
+            51.872967109049235
+          ],
+          "origin_px": [
+            7184606,
+            2775685
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2017_R02",
+          "release_date": "2017-01-25",
+          "release_num": 9486,
+          "label": "Esri release 2017-01-25 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 2.9497,
+          "bbox": [
+            128.3298397064209,
+            51.867588051075046,
+            128.33855152130127,
+            51.872967109049235
+          ],
+          "origin_px": [
+            7184606,
+            2775685
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/9486/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2020_R01",
+          "release_date": "2020-01-08",
+          "release_num": 23001,
+          "label": "Esri release 2020-01-08 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 2.9497,
+          "bbox": [
+            128.3298397064209,
+            51.867588051075046,
+            128.33855152130127,
+            51.872967109049235
+          ],
+          "origin_px": [
+            7184606,
+            2775685
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/23001/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2020_R12",
+          "release_date": "2020-09-02",
+          "release_num": 9181,
+          "label": "Esri release 2020-09-02 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 2.9497,
+          "bbox": [
+            128.3298397064209,
+            51.867588051075046,
+            128.33855152130127,
+            51.872967109049235
+          ],
+          "origin_px": [
+            7184606,
+            2775685
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/9181/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2023_R10",
+          "release_date": "2023-11-01",
+          "release_num": 12457,
+          "label": "Esri release 2023-11-01 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 2.9497,
+          "bbox": [
+            128.3298397064209,
+            51.867588051075046,
+            128.33855152130127,
+            51.872967109049235
+          ],
+          "origin_px": [
+            7184606,
+            2775685
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/12457/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2026_R01",
+          "release_date": "2026-01-29",
+          "release_num": 22252,
+          "label": "Esri release 2026-01-29 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 2.9497,
+          "bbox": [
+            128.3298397064209,
+            51.867588051075046,
+            128.33855152130127,
+            51.872967109049235
+          ],
+          "origin_px": [
+            7184606,
+            2775685
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/22252/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        }
+      ],
+      "tiles_used": 54,
+      "tile_limit": 60
+    },
+    "sources": {
+      "sentinel2_catalogue": "https://earth-search.aws.element84.com/v1",
+      "esri_world_imagery": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "esri_wayback": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml"
+    },
+    "attribution": [
+      "Contains modified Copernicus Sentinel data (see scene dates) (Sentinel-2 L2A via Earth Search)",
+      "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+    ]
+  },
+  "closing_statement": "This dossier records, at most, an unexplained observation: a surface feature that the checks listed above did not account for. It makes no claim about what caused the feature or where it came from. An unexplained observation is not evidence of any particular origin: checks that were not run, gaps in the data and errors in this pipeline all remain possible explanations."
+}

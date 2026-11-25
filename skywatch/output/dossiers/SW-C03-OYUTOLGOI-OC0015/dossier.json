@@ -1,0 +1,981 @@
+{
+  "schema": "skywatch.dossier/1",
+  "generated_utc": "2026-11-25T11:40:13Z",
+  "candidate": {
+    "id": "SW-C03-OYUTOLGOI-OC0015",
+    "region_id": "C03-OYUTOLGOI",
+    "lat": 43.01283647793366,
+    "lon": 106.84949789841097,
+    "bbox": [
+      106.84877821210934,
+      43.01228455806749,
+      106.85021757183108,
+      43.013388393461504
+    ],
+    "signature": "landing_trace",
+    "detector": "optical_change",
+    "score": 0.34515625,
+    "area_m2": 1600.0,
+    "absent_until": "2024-08-26",
+    "present_from": "2025-08-01",
+    "sensors": [
+      "optical_s2"
+    ],
+    "shape": {
+      "area_m2": 1600.0,
+      "perimeter_m": 80.0,
+      "equivalent_diameter_m": 45.1351666838205,
+      "major_axis_m": 40.0,
+      "minor_axis_m": 40.0,
+      "elongation": 1.0,
+      "orientation_deg": 45.0,
+      "circularity": 1.0,
+      "solidity": 1.0,
+      "eccentricity": 0.0,
+      "rectangularity": 1.0,
+      "n_corners": 4,
+      "straight_edge_fraction": 0.0,
+      "hole_fraction": 0.0,
+      "regularity": 1.0
+    },
+    "measurements": {
+      "kind": "step",
+      "break_year": 2025,
+      "step_snr": 8.62890625,
+      "d_brightness": -0.026579342782497406,
+      "d_ndvi": -0.03224996477365494,
+      "d_nbr": 0.1049671471118927,
+      "d_swir": -0.1629115492105484,
+      "persistence_years": 2,
+      "recovery_fraction": 0.0,
+      "crowding": 0.002565676815002996,
+      "n_valid_years": 9,
+      "years_used": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "composite_dates": {
+        "2018": [
+          "2018-08-08",
+          "2018-08-13",
+          "2018-08-18"
+        ],
+        "2019": [
+          "2019-07-24",
+          "2019-08-03",
+          "2019-08-28"
+        ],
+        "2020": [
+          "2020-07-18",
+          "2020-07-28",
+          "2020-09-06"
+        ],
+        "2021": [
+          "2021-07-18",
+          "2021-07-28",
+          "2021-08-22"
+        ],
+        "2022": [
+          "2022-08-12",
+          "2022-08-22",
+          "2022-09-01"
+        ],
+        "2023": [
+          "2023-08-07",
+          "2023-08-12",
+          "2023-08-17"
+        ],
+        "2024": [
+          "2024-07-22",
+          "2024-08-11",
+          "2024-08-26"
+        ],
+        "2025": [
+          "2025-08-01",
+          "2025-08-08",
+          "2025-08-11"
+        ],
+        "2026": [
+          "2026-08-06",
+          "2026-08-11",
+          "2026-08-31"
+        ]
+      },
+      "scene_ids_before": [
+        "S2A_48TXN_20240811_0_L2A",
+        "S2A_48TXN_20240722_0_L2A",
+        "S2B_48TXN_20240826_0_L2A"
+      ],
+      "scene_ids_after": [
+        "S2A_48TXN_20250808_2_L2A",
+        "S2B_48TXN_20250811_0_L2A",
+        "S2B_48TXN_20250801_0_L2A"
+      ],
+      "res_m": 20.0,
+      "weak": false
+    },
+    "checks": [
+      {
+        "check": "military_or_rocket_range",
+        "category": "infrastructure",
+        "status": "does_not_explain",
+        "detail": "outside every listed launch site, drop zone and range; nearest is Jiuquan downrange drop zone, Alxa desert (drop_zone), 319 km beyond its approximate edge. The list is not exhaustive",
+        "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+        "evidence": {
+          "inside": [],
+          "within_margin": [],
+          "nearest_entry": {
+            "name": "Jiuquan downrange drop zone, Alxa desert",
+            "country": "China",
+            "kind": "drop_zone",
+            "lat": 40.2,
+            "lon": 103.5,
+            "radius_km": 100.0,
+            "approximate": true,
+            "diffuse": true,
+            "confidence": "low",
+            "note": "Booster and first-stage impact areas east-south-east of Jiuquan; estimated from launch azimuths.",
+            "distance_km": 418.71,
+            "distance_to_edge_km": 318.71,
+            "margin_km": 10.0
+          },
+          "signature": "landing_trace",
+          "n_entries": 82,
+          "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area."
+        }
+      },
+      {
+        "check": "landcover",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "Footprint is mostly bare (100%); cropland 0%, built-up 0%, water/wetland 0%; the 2021 map predates the onset, so it shows the site before the change.",
+        "source": "ESA WorldCover 10 m 2021 v200 (c) ESA WorldCover project, CC BY 4.0",
+        "evidence": {
+          "worldcover": "v200 2021",
+          "context_margin_m": 500.0,
+          "footprint": {
+            "tree": 0.0,
+            "shrub": 0.0,
+            "grass": 0.0,
+            "cropland": 0.0,
+            "builtup": 0.0,
+            "bare": 1.0,
+            "snow": 0.0,
+            "water": 0.0,
+            "wetland": 0.0,
+            "mangrove": 0.0,
+            "moss": 0.0,
+            "nodata": 0.0
+          },
+          "context": {
+            "tree": 0.0,
+            "shrub": 0.0004,
+            "grass": 0.0,
+            "cropland": 0.0,
+            "builtup": 0.0579,
+            "bare": 0.9249,
+            "snow": 0.0,
+            "water": 0.0168,
+            "wetland": 0.0,
+            "mangrove": 0.0,
+            "moss": 0.0,
+            "nodata": 0.0
+          },
+          "footprint_pixels": 182,
+          "footprint_source": "bbox",
+          "tiles": [
+            "N42E105"
+          ],
+          "missing_tiles": [],
+          "map_predates_onset": true,
+          "dominant": "bare",
+          "context_builtup": 0.0579,
+          "explained_by": null
+        }
+      },
+      {
+        "check": "osm_infrastructure",
+        "category": "infrastructure",
+        "status": "explains",
+        "detail": "Footprint intersects mapped landuse=industrial (way 206629216, \u041e\u044e\u0443\u0442\u043e\u043b\u0433\u043e\u0439); 2 explaining feature(s) within 123 m; nearest road or track 100 m.",
+        "source": "OpenStreetMap API 0.6 map call; data (c) OpenStreetMap contributors (ODbL)",
+        "evidence": {
+          "nearest_road_m": 100.3,
+          "nearest_building_m": 1317.1,
+          "nearest_road": {
+            "osm_type": "way",
+            "osm_id": 617708124,
+            "kind": null,
+            "distance_m": 100.3,
+            "extent_m": 1065.9,
+            "highway": "service"
+          },
+          "nearest_road_seen_m": 100.3,
+          "nearest_building_seen_m": 1317.1,
+          "tolerance_m": 122.6,
+          "footprint_source": "bbox",
+          "search_radius_m": 2932.8,
+          "covered_radius_m": 3017.7,
+          "n_tagged_features": 1000,
+          "explaining": [
+            {
+              "osm_type": "way",
+              "osm_id": 206629216,
+              "kind": "landuse=industrial",
+              "distance_m": 0.0,
+              "extent_m": 12649.1,
+              "name": "\u041e\u044e\u0443\u0442\u043e\u043b\u0433\u043e\u0439"
+            },
+            {
+              "osm_type": "way",
+              "osm_id": 787989255,
+              "kind": "landuse=quarry",
+              "distance_m": 0.0,
+              "extent_m": 3092.9,
+              "name": "Oyu Tolgoi - Southwest Oyu"
+            }
+          ],
+          "nearby_beyond_tolerance": [
+            {
+              "osm_type": "way",
+              "osm_id": 558063959,
+              "kind": "power=line",
+              "distance_m": 654.8,
+              "extent_m": 2186.8
+            },
+            {
+              "osm_type": "node",
+              "osm_id": 5381364193,
+              "kind": "power=tower",
+              "distance_m": 654.8,
+              "extent_m": 0.0
+            },
+            {
+              "osm_type": "node",
+              "osm_id": 5381364194,
+              "kind": "power=tower",
+              "distance_m": 667.6,
+              "extent_m": 0.0
+            },
+            {
+              "osm_type": "node",
+              "osm_id": 5381364192,
+              "kind": "power=tower",
+              "distance_m": 688.4,
+              "extent_m": 0.0
+            },
+            {
+              "osm_type": "node",
+              "osm_id": 5381364195,
+              "kind": "power=tower",
+              "distance_m": 706.9,
+              "extent_m": 0.0
+            }
+          ],
+          "osm_fetched": "2026-11-25",
+          "network_requests": 0,
+          "distance_reference": "footprint edge (0 = intersects)"
+        }
+      },
+      {
+        "check": "wikidata_nearby",
+        "category": "infrastructure",
+        "status": "not_run",
+        "detail": "skipped: already explained by osm_infrastructure",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "aviation_accident",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by osm_infrastructure",
+        "source": "engine",
+        "evidence": {}
+      },
+      {
+        "check": "meteorite_record",
+        "category": "event",
+        "status": "not_run",
+        "detail": "skipped: already explained by osm_infrastructure",
+        "source": "engine",
+        "evidence": {}
+      }
+    ],
+    "tier": "T0",
+    "tier_reason": "explained by: osm_infrastructure",
+    "reports": [],
+    "notes": " stopped after the cheap checks"
+  },
+  "tier": {
+    "recomputed_tier": "T0",
+    "recomputed_reason": "explained by: osm_infrastructure",
+    "tier": "T0",
+    "reason": "explained by: osm_infrastructure",
+    "source": "recorded on the candidate",
+    "consistent": true
+  },
+  "checks": [
+    {
+      "check": "military_or_rocket_range",
+      "category": "infrastructure",
+      "status": "does_not_explain",
+      "detail": "outside every listed launch site, drop zone and range; nearest is Jiuquan downrange drop zone, Alxa desert (drop_zone), 319 km beyond its approximate edge. The list is not exhaustive",
+      "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+      "evidence": {
+        "inside": [],
+        "within_margin": [],
+        "nearest_entry": {
+          "name": "Jiuquan downrange drop zone, Alxa desert",
+          "country": "China",
+          "kind": "drop_zone",
+          "lat": 40.2,
+          "lon": 103.5,
+          "radius_km": 100.0,
+          "approximate": true,
+          "diffuse": true,
+          "confidence": "low",
+          "note": "Booster and first-stage impact areas east-south-east of Jiuquan; estimated from launch azimuths.",
+          "distance_km": 418.71,
+          "distance_to_edge_km": 318.71,
+          "margin_km": 10.0
+        },
+        "signature": "landing_trace",
+        "n_entries": 82,
+        "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area."
+      }
+    },
+    {
+      "check": "landcover",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "Footprint is mostly bare (100%); cropland 0%, built-up 0%, water/wetland 0%; the 2021 map predates the onset, so it shows the site before the change.",
+      "source": "ESA WorldCover 10 m 2021 v200 (c) ESA WorldCover project, CC BY 4.0",
+      "evidence": {
+        "worldcover": "v200 2021",
+        "context_margin_m": 500.0,
+        "footprint": {
+          "tree": 0.0,
+          "shrub": 0.0,
+          "grass": 0.0,
+          "cropland": 0.0,
+          "builtup": 0.0,
+          "bare": 1.0,
+          "snow": 0.0,
+          "water": 0.0,
+          "wetland": 0.0,
+          "mangrove": 0.0,
+          "moss": 0.0,
+          "nodata": 0.0
+        },
+        "context": {
+          "tree": 0.0,
+          "shrub": 0.0004,
+          "grass": 0.0,
+          "cropland": 0.0,
+          "builtup": 0.0579,
+          "bare": 0.9249,
+          "snow": 0.0,
+          "water": 0.0168,
+          "wetland": 0.0,
+          "mangrove": 0.0,
+          "moss": 0.0,
+          "nodata": 0.0
+        },
+        "footprint_pixels": 182,
+        "footprint_source": "bbox",
+        "tiles": [
+          "N42E105"
+        ],
+        "missing_tiles": [],
+        "map_predates_onset": true,
+        "dominant": "bare",
+        "context_builtup": 0.0579,
+        "explained_by": null
+      }
+    },
+    {
+      "check": "osm_infrastructure",
+      "category": "infrastructure",
+      "status": "explains",
+      "detail": "Footprint intersects mapped landuse=industrial (way 206629216, \u041e\u044e\u0443\u0442\u043e\u043b\u0433\u043e\u0439); 2 explaining feature(s) within 123 m; nearest road or track 100 m.",
+      "source": "OpenStreetMap API 0.6 map call; data (c) OpenStreetMap contributors (ODbL)",
+      "evidence": {
+        "nearest_road_m": 100.3,
+        "nearest_building_m": 1317.1,
+        "nearest_road": {
+          "osm_type": "way",
+          "osm_id": 617708124,
+          "kind": null,
+          "distance_m": 100.3,
+          "extent_m": 1065.9,
+          "highway": "service"
+        },
+        "nearest_road_seen_m": 100.3,
+        "nearest_building_seen_m": 1317.1,
+        "tolerance_m": 122.6,
+        "footprint_source": "bbox",
+        "search_radius_m": 2932.8,
+        "covered_radius_m": 3017.7,
+        "n_tagged_features": 1000,
+        "explaining": [
+          {
+            "osm_type": "way",
+            "osm_id": 206629216,
+            "kind": "landuse=industrial",
+            "distance_m": 0.0,
+            "extent_m": 12649.1,
+            "name": "\u041e\u044e\u0443\u0442\u043e\u043b\u0433\u043e\u0439"
+          },
+          {
+            "osm_type": "way",
+            "osm_id": 787989255,
+            "kind": "landuse=quarry",
+            "distance_m": 0.0,
+            "extent_m": 3092.9,
+            "name": "Oyu Tolgoi - Southwest Oyu"
+          }
+        ],
+        "nearby_beyond_tolerance": [
+          {
+            "osm_type": "way",
+            "osm_id": 558063959,
+            "kind": "power=line",
+            "distance_m": 654.8,
+            "extent_m": 2186.8
+          },
+          {
+            "osm_type": "node",
+            "osm_id": 5381364193,
+            "kind": "power=tower",
+            "distance_m": 654.8,
+            "extent_m": 0.0
+          },
+          {
+            "osm_type": "node",
+            "osm_id": 5381364194,
+            "kind": "power=tower",
+            "distance_m": 667.6,
+            "extent_m": 0.0
+          },
+          {
+            "osm_type": "node",
+            "osm_id": 5381364192,
+            "kind": "power=tower",
+            "distance_m": 688.4,
+            "extent_m": 0.0
+          },
+          {
+            "osm_type": "node",
+            "osm_id": 5381364195,
+            "kind": "power=tower",
+            "distance_m": 706.9,
+            "extent_m": 0.0
+          }
+        ],
+        "osm_fetched": "2026-11-25",
+        "network_requests": 0,
+        "distance_reference": "footprint edge (0 = intersects)"
+      }
+    },
+    {
+      "check": "wikidata_nearby",
+      "category": "infrastructure",
+      "status": "not_run",
+      "detail": "skipped: already explained by osm_infrastructure",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "aviation_accident",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by osm_infrastructure",
+      "source": "engine",
+      "evidence": {}
+    },
+    {
+      "check": "meteorite_record",
+      "category": "event",
+      "status": "not_run",
+      "detail": "skipped: already explained by osm_infrastructure",
+      "source": "engine",
+      "evidence": {}
+    }
+  ],
+  "checks_not_run": [
+    {
+      "check": "wikidata_nearby",
+      "reason": "skipped: already explained by osm_infrastructure",
+      "mandatory": "true"
+    },
+    {
+      "check": "aviation_accident",
+      "reason": "skipped: already explained by osm_infrastructure",
+      "mandatory": "false"
+    },
+    {
+      "check": "meteorite_record",
+      "reason": "skipped: already explained by osm_infrastructure",
+      "mandatory": "false"
+    },
+    {
+      "check": "fire_history",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "artefact_screen",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "natural_process",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    }
+  ],
+  "onset": {
+    "absent_until": "2024-08-26",
+    "present_from": "2025-08-01",
+    "dated": true
+  },
+  "statistics": {
+    "footprint_vs_surroundings": {
+      "before": {
+        "inside": {
+          "brightness": 0.2886,
+          "ndvi": 0.005,
+          "nbr": 0.0158
+        },
+        "surroundings": {
+          "brightness": 0.2051,
+          "ndvi": 0.0075,
+          "nbr": -0.0108
+        }
+      },
+      "after": {
+        "inside": {
+          "brightness": 0.1945,
+          "ndvi": 0.0024,
+          "nbr": 0.0682
+        },
+        "surroundings": {
+          "brightness": 0.1989,
+          "ndvi": 0.013,
+          "nbr": 0.0096
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "name": "before.png",
+      "description": "Sentinel-2 true colour, BEFORE onset",
+      "bytes": 115941,
+      "sha256": "97f995e4b67a33f9a266f115898deeae31c94499acdcb98b4fd2d3cce3a4b1f6"
+    },
+    {
+      "name": "falsecolor_before.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), BEFORE onset",
+      "bytes": 112090,
+      "sha256": "f6ee9bc8adf72fd6be5279bb3419f34f5ec4088e0b523c47acf73c6bcc900808"
+    },
+    {
+      "name": "after.png",
+      "description": "Sentinel-2 true colour, AFTER onset",
+      "bytes": 116977,
+      "sha256": "ba3b0dcbaee0babcb62deaa1c1baa49a1c2887601efeda9bbdfec95506262b0b"
+    },
+    {
+      "name": "falsecolor_after.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), AFTER onset",
+      "bytes": 113867,
+      "sha256": "a409461c2eb695e42117142f0625c71722c8b8d1f1822fe2554740c647707786"
+    },
+    {
+      "name": "difference.png",
+      "description": "After minus before: brightness and NDVI change",
+      "bytes": 102080,
+      "sha256": "d9ff2baae8acd9fbfbe946c39e2327437e15500c3fce957e4de606fc8babdb1b"
+    },
+    {
+      "name": "context.png",
+      "description": "Wider setting with the footprint marked",
+      "bytes": 235181,
+      "sha256": "86f6eae7e3deae08c6d276ac6586ae86221cd6ae27441a2e25daf39fb54aa464"
+    },
+    {
+      "name": "hires.png",
+      "description": "Esri World Imagery view (viewing only)",
+      "bytes": 276700,
+      "sha256": "fc30ab5f9d3106e9743e21c7bb84293abff5d710362e9c43b0292ead1fe8537f"
+    },
+    {
+      "name": "wayback_strip.png",
+      "description": "Esri Wayback versions; dates are publication dates, not acquisition dates",
+      "bytes": 200048,
+      "sha256": "ec1c732e91bca7dbd8060e7d563d7725377de378923ad5e03cf8e65a0631e8f6"
+    },
+    {
+      "name": "dossier.md",
+      "description": "Plain-language summary",
+      "bytes": 6861,
+      "sha256": "d83e030992f65ded98272c9f1e86901d7d42a6a490091ecaa8c632c85dae0faa"
+    },
+    {
+      "name": "dossier.json",
+      "description": "This machine-readable record"
+    }
+  ],
+  "panels_missing": [
+    {
+      "panel": "timeseries.png",
+      "reason": "the detector recorded no time series (measurements['series'] is absent)"
+    }
+  ],
+  "provenance": {
+    "sentinel2": {
+      "before": {
+        "window": [
+          "2023-08-27",
+          "2024-08-26"
+        ],
+        "acquisition_dates": [
+          "2023-09-26",
+          "2023-10-21",
+          "2024-07-22",
+          "2024-08-26"
+        ],
+        "scene_ids": [
+          "S2A_48TXN_20230926_0_L2A",
+          "S2B_48TXN_20231021_0_L2A",
+          "S2A_48TXN_20240722_0_L2A",
+          "S2B_48TXN_20240826_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_48TXN_20230926_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_48TXN_20231021_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_48TXN_20240722_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_48TXN_20240826_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32648",
+          "res_m": 10.0,
+          "shape": [
+            154,
+            154
+          ],
+          "bounds": [
+            649950.0,
+            4763130.0,
+            651490.0,
+            4764670.0
+          ],
+          "bbox_wgs84": [
+            106.839847,
+            43.005753,
+            106.859151,
+            43.019919
+          ]
+        }
+      },
+      "after": {
+        "window": [
+          "2025-08-01",
+          "2026-08-01"
+        ],
+        "acquisition_dates": [
+          "2025-08-21",
+          "2025-09-17",
+          "2025-10-27",
+          "2026-06-22"
+        ],
+        "scene_ids": [
+          "S2B_48TXN_20250821_0_L2A",
+          "S2A_48TXN_20250917_1_L2A",
+          "S2A_48TXN_20251027_0_L2A",
+          "S2C_48TXN_20260622_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_48TXN_20250821_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_48TXN_20250917_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_48TXN_20251027_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_48TXN_20260622_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32648",
+          "res_m": 10.0,
+          "shape": [
+            154,
+            154
+          ],
+          "bounds": [
+            649950.0,
+            4763130.0,
+            651490.0,
+            4764670.0
+          ],
+          "bbox_wgs84": [
+            106.839847,
+            43.005753,
+            106.859151,
+            43.019919
+          ]
+        }
+      },
+      "context": {
+        "window": [
+          "2025-08-01",
+          "2026-08-01"
+        ],
+        "acquisition_dates": [
+          "2025-08-21",
+          "2025-09-17",
+          "2025-10-27",
+          "2026-06-22"
+        ],
+        "scene_ids": [
+          "S2B_48TXN_20250821_0_L2A",
+          "S2A_48TXN_20250917_1_L2A",
+          "S2A_48TXN_20251027_0_L2A",
+          "S2C_48TXN_20260622_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_48TXN_20250821_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_48TXN_20250917_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_48TXN_20251027_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2C_48TXN_20260622_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32648",
+          "res_m": 20.0,
+          "shape": [
+            511,
+            512
+          ],
+          "bounds": [
+            645600.0,
+            4758800.0,
+            655840.0,
+            4769020.0
+          ],
+          "bbox_wgs84": [
+            106.785371,
+            42.965904,
+            106.913724,
+            43.059918
+          ]
+        }
+      }
+    },
+    "esri": {
+      "note": "Shown for viewing only: not used for detection and not counted as an independent sensor.",
+      "hires": {
+        "source": "Esri World Imagery (live mosaic)",
+        "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+        "lat": 43.0128364757645,
+        "lon": 106.8494978919702,
+        "size_m": 800.0,
+        "zoom": 17,
+        "zoom_requested": null,
+        "ground_res_m": 0.8733,
+        "shape": [
+          916,
+          916
+        ],
+        "bbox": [
+          106.84458374977112,
+          43.00924470029662,
+          106.85441136360168,
+          43.01643066011435
+        ],
+        "origin_px": [
+          26735853,
+          12327458
+        ],
+        "tiles": 20,
+        "tile_url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "imagery_verified": true,
+        "retrieved": "2026-11-25",
+        "use": "viewing only; not a detector input and not an independent sensor",
+        "acquisition_date": "2025-10-25",
+        "sensor": "LG05",
+        "provider": "Vantor",
+        "source_resolution_m": 0.34,
+        "note": "per Esri metadata at the centre point of the live mosaic"
+      },
+      "wayback": [
+        {
+          "release_id": "WB_2014_R01",
+          "release_date": "2014-02-20",
+          "release_num": 10,
+          "label": "Esri release 2014-02-20 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.4932,
+          "bbox": [
+            106.84581756591797,
+            43.01013906861616,
+            106.85319900512695,
+            43.01553638341396
+          ],
+          "origin_px": [
+            6683992,
+            3081893
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2017_R04",
+          "release_date": "2017-02-27",
+          "release_num": 31026,
+          "label": "Esri release 2017-02-27 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.4932,
+          "bbox": [
+            106.84581756591797,
+            43.01013906861616,
+            106.85319900512695,
+            43.01553638341396
+          ],
+          "origin_px": [
+            6683992,
+            3081893
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/31026/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2020_R12",
+          "release_date": "2020-09-02",
+          "release_num": 9181,
+          "label": "Esri release 2020-09-02 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.4932,
+          "bbox": [
+            106.84581756591797,
+            43.01013906861616,
+            106.85319900512695,
+            43.01553638341396
+          ],
+          "origin_px": [
+            6683992,
+            3081893
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/9181/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2021_R14",
+          "release_date": "2021-10-13",
+          "release_num": 16749,
+          "label": "Esri release 2021-10-13 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.4932,
+          "bbox": [
+            106.84581756591797,
+            43.01013906861616,
+            106.85319900512695,
+            43.01553638341396
+          ],
+          "origin_px": [
+            6683992,
+            3081893
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/16749/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2023_R11",
+          "release_date": "2023-12-07",
+          "release_num": 56102,
+          "label": "Esri release 2023-12-07 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.4932,
+          "bbox": [
+            106.84581756591797,
+            43.01013906861616,
+            106.85319900512695,
+            43.01553638341396
+          ],
+          "origin_px": [
+            6683992,
+            3081893
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/56102/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2026_R05",
+          "release_date": "2026-05-28",
+          "release_num": 10842,
+          "label": "Esri release 2026-05-28 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 15,
+          "ground_res_m": 3.4932,
+          "bbox": [
+            106.84581756591797,
+            43.01013906861616,
+            106.85319900512695,
+            43.01553638341396
+          ],
+          "origin_px": [
+            6683992,
+            3081893
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10842/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        }
+      ],
+      "tiles_used": 44,
+      "tile_limit": 60
+    },
+    "sources": {
+      "sentinel2_catalogue": "https://earth-search.aws.element84.com/v1",
+      "esri_world_imagery": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "esri_wayback": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml"
+    },
+    "attribution": [
+      "Contains modified Copernicus Sentinel data (see scene dates) (Sentinel-2 L2A via Earth Search)",
+      "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+    ]
+  },
+  "closing_statement": "This dossier records, at most, an unexplained observation: a surface feature that the checks listed above did not account for. It makes no claim about what caused the feature or where it came from. An unexplained observation is not evidence of any particular origin: checks that were not run, gaps in the data and errors in this pipeline all remain possible explanations."
+}
