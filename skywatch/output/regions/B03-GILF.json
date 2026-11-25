@@ -1,0 +1,36 @@
+{
+ "region": "B03-GILF",
+ "name": "Gilf Kebir plateau, Egypt",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  25.704384623155164,
+  23.120337765001796,
+  26.095615376844833,
+  23.479662234998205
+ ],
+ "area_km2": 1600.0000000000025,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 2520,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 51,
+  "transient": 69
+ },
+ "step_fraction": 0.0004905930513329962,
+ "transient_fraction": 0.17101025324640803,
+ "valid_fraction": 1.0,
+ "seconds": 54.8
+}

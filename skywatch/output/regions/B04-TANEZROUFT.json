@@ -1,0 +1,35 @@
+{
+ "region": "B04-TANEZROUFT",
+ "name": "Tanezrouft, Algeria",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  1.4051096470353328,
+  22.620337765001796,
+  1.7948903529646674,
+  22.979662234998205
+ ],
+ "area_km2": 1600.00000000001,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 1,
+ "n_candidates_kept": 1,
+ "kinds": {
+  "step": 1
+ },
+ "step_fraction": 6.406812906278184e-06,
+ "transient_fraction": 1.971327048085595e-06,
+ "valid_fraction": 1.0,
+ "seconds": 94.6
+}

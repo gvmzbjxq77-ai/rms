@@ -13,7 +13,6 @@
  "res_m": 20.0,
  "status": "ok",
  "years": [
-  2017,
   2018,
   2019,
   2020,
@@ -24,13 +23,13 @@
   2025,
   2026
  ],
- "n_blobs_total": 334,
- "n_candidates_kept": 120,
+ "n_blobs_total": 19,
+ "n_candidates_kept": 19,
  "kinds": {
-  "step": 120
+  "step": 19
  },
- "step_fraction": 0.0038239587554375156,
+ "step_fraction": 9.129655758274056e-05,
  "transient_fraction": 0.0,
  "valid_fraction": 1.0,
- "seconds": 20.5
+ "seconds": 63.2
 }

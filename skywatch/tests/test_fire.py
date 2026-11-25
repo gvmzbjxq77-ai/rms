@@ -1,6 +1,7 @@
 """Tests for skywatch.eliminate.fire: synthetic MODIS archive, then live data."""
 from __future__ import annotations
 
+import shutil
 from datetime import date, timedelta
 from typing import Any
 
@@ -31,14 +32,21 @@ class FakeModis:
         self.missing_months: set[str] = set()
         self.failing_months: set[str] = set()
         self.ba_fill: int = 0
+        self.af_fill: int = 5
         self.search_error: Exception | None = None
         self.fetches: list[str] = []
         self.searches: list[str] = []
+        self.bboxes: list[tuple[float, ...]] = []
+
+    def new_archive(self) -> None:
+        """Forget cached blocks: the archive content is about to be replaced."""
+        shutil.rmtree(fire._CACHE_DIR, ignore_errors=True)
 
     def search(self, product: Any, bbox: Any, start: date, end: date) -> list[dict[str, Any]]:
         if self.search_error is not None:
             raise self.search_error
         self.searches.append(product.collection)
+        self.bboxes.append(tuple(bbox))
         west, south, east, north = bbox
         tiles = set()
         for lon, lat in ((west, south), (west, north), (east, south), (east, north)):
@@ -93,7 +101,7 @@ class FakeModis:
                     data[0][where] = day.timetuple().tm_yday
             return data, []
         days = [first + timedelta(days=i) for i in range(8)]
-        data = np.full((8, size, size), 5, dtype="uint8")
+        data = np.full((8, size, size), self.af_fill, dtype="uint8")
         for lat, lon, day, cls, product in self.fires:
             where = local(lat, lon)
             if where and product == name and day in days:
@@ -125,7 +133,7 @@ def _by_name(results: list[CheckResult]) -> dict[str, CheckResult]:
     return {r.check: r for r in results}
 
 
-BURN = dict(d_nbr=-0.42, d_ndvi=-0.30, d_brightness=-0.04, recovery_fraction=0.3)
+BURN: dict[str, Any] = {"d_nbr": -0.42, "d_ndvi": -0.30, "d_brightness": -0.04, "recovery_fraction": 0.3}
 
 
 # ---------------------------------------------------------------- geometry
@@ -207,6 +215,16 @@ def test_footprint_across_tile_boundary_reads_both_tiles(modis: FakeModis) -> No
     assert {h.split("/")[3] for h in modis.fetches} == {"2021-07-01"} and len(modis.fetches) >= 2
 
 
+def test_search_box_stays_on_the_globe(modis: FakeModis) -> None:
+    # The live catalogue rejects boxes beyond 180 E or 90 S (seen as a 40 s retry storm).
+    edge = fire.fire_survey(66.0, 179.999, 200.0, "2021-07-01", "2021-07-31")
+    assert edge["burned_area"]["status"] == "ok" and edge["active_fire"]["status"] == "ok"
+    fire.fire_survey(-90.0, 0.0, 200.0, "2021-07-01", "2021-07-31")           # must not raise
+    assert modis.bboxes
+    for west, south, east, north in modis.bboxes:
+        assert -180 <= west < east <= 180 and -90 <= south < north <= 90
+
+
 def test_survey_rejects_bad_arguments(modis: FakeModis) -> None:
     for args in ((float("nan"), LON, 100.0, "2021-07-01", "2021-08-01"),
                  (LAT, LON, -5.0, "2021-07-01", "2021-08-01"),
@@ -244,11 +262,21 @@ def test_incomplete_record_never_becomes_does_not_explain(modis: FakeModis, setu
     elif setup == "missing":
         modis.missing_months = {"2021-07"}
     else:
-        modis.ba_fill = -1
+        modis.ba_fill, modis.af_fill = -1, 4             # unmapped burned area under cloud
     survey = fire.fire_survey(LAT, LON, 100.0, "2021-06-25", "2021-08-14")
     assert survey["burned_area"]["status"] in ("partial", "no_coverage")
     history = _by_name(fire.check_fire(_candidate(**BURN)))["fire_history"]
     assert history.status == "inconclusive" and "incomplete" in history.detail
+
+
+def test_unmapped_burned_area_needs_a_clear_active_fire_view(modis: FakeModis) -> None:
+    modis.ba_fill = -1                                   # e.g. snow season: no burned-area mapping
+    history = _by_name(fire.check_fire(_candidate(**BURN)))["fire_history"]
+    assert history.status == "does_not_explain" and "unmapped" in history.detail
+    assert history.evidence["active_fire"]["clear_days_by_month"] == {"2021-06": 6, "2021-07": 31, "2021-08": 14}
+    modis.new_archive()
+    modis.af_fill = 0                                    # and the daily product has no data either
+    assert _by_name(fire.check_fire(_candidate(**BURN)))["fire_history"].status == "inconclusive"
 
 
 def test_failed_reads_are_not_cached(modis: FakeModis) -> None:
@@ -275,6 +303,7 @@ def test_fire_in_window_with_burn_spectra_explains(modis: FakeModis) -> None:
 def test_fire_within_padding_counts_and_outside_does_not(modis: FakeModis) -> None:
     modis.burns = [(LAT, LON, date(2021, 8, 12))]                # 13 days after present_from
     assert _by_name(fire.check_fire(_candidate(**BURN)))["fire_history"].status == "explains"
+    modis.new_archive()
     modis.burns = [(LAT, LON, date(2021, 5, 2))]                 # weeks before the window
     results = _by_name(fire.check_fire(_candidate(**BURN)))
     assert results["fire_history"].status == "does_not_explain"
@@ -286,6 +315,7 @@ def test_fire_within_padding_counts_and_outside_does_not(modis: FakeModis) -> No
 def test_active_fire_alone_explains_only_above_low_confidence(modis: FakeModis) -> None:
     modis.fires = [(LAT, LON, date(2021, 7, 20), 7, "MOD14A1")]
     assert _by_name(fire.check_fire(_candidate(**BURN)))["fire_history"].status == "inconclusive"
+    modis.new_archive()
     modis.fires = [(LAT, LON, date(2021, 7, 20), 8, "MYD14A1")]
     assert _by_name(fire.check_fire(_candidate(**BURN)))["fire_history"].status == "explains"
 
@@ -364,7 +394,7 @@ def _fake_composites(monkeypatch: pytest.MonkeyPatch, after_nir: float, late_nir
         out["swir22"] = np.full(grid.shape, 0.15, dtype="float32")
         out["dates"] = [start]
         return out
-    monkeypatch.setattr(fire.io, "s2_composite", composite)
+    monkeypatch.setattr(io, "s2_composite", composite)
     monkeypatch.setattr(fire, "_today", lambda: TODAY)
 
 
@@ -381,7 +411,7 @@ def test_measure_s2_detects_nbr_drop_and_recovery(monkeypatch: pytest.MonkeyPatc
 def test_measure_s2_all_nan_or_missing_is_none(monkeypatch: pytest.MonkeyPatch) -> None:
     _fake_composites(monkeypatch, after_nir=float("nan"))
     assert fire._measure_s2(_candidate(), 50.0, (date(2021, 7, 10), date(2021, 7, 30))) is None
-    monkeypatch.setattr(fire.io, "s2_composite", lambda *a, **k: None)
+    monkeypatch.setattr(io, "s2_composite", lambda *a, **k: None)
     assert fire._measure_s2(_candidate(), 50.0, (date(2021, 7, 10), date(2021, 7, 30))) is None
     # Before Sentinel-2 existed there is nothing to measure.
     assert fire._measure_s2(_candidate(), 50.0, (date(2010, 7, 10), date(2010, 7, 30))) is None

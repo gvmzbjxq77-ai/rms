@@ -56,8 +56,8 @@ _GDAL_ENV = {
     "GDAL_HTTP_TIMEOUT": "60",
     "GDAL_HTTP_MERGE_CONSECUTIVE_RANGES": "YES",
     "VSI_CACHE": "TRUE",
-    "VSI_CACHE_SIZE": "67108864",
-    "GDAL_CACHEMAX": "512",
+    "VSI_CACHE_SIZE": "4000000",      # per open file: keep small, many files are open at once
+    "GDAL_CACHEMAX": "192",
     "CPL_VSIL_CURL_USE_HEAD": "NO",
 }
 

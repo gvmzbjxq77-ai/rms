@@ -143,6 +143,22 @@ def _terrain_shadow(candidate: Candidate) -> CheckResult:
     return _result(name, "does_not_explain", "not a steep-slope darkening pattern", **evidence)
 
 
+def _widespread(candidate: Candidate) -> CheckResult:
+    """Is the candidate one of many changes that hit its neighbourhood in the same year?"""
+    name = "artefact:widespread_change"
+    crowding = candidate.measurements.get("crowding")
+    if crowding is None:
+        return _result(name, "not_run", "no neighbourhood statistics on this candidate")
+    if crowding >= 0.05:
+        return _result(name, "inconclusive",
+                       f"{crowding:.0%} of the surrounding 3 km also changed in the same year: "
+                       "weather, a seasonal effect or an image-processing change is likely, "
+                       "though a large site built in one year looks the same", crowding=crowding)
+    return _result(name, "does_not_explain",
+                   f"isolated: only {crowding:.1%} of the surrounding 3 km changed in the same year",
+                   crowding=crowding)
+
+
 def check_artefacts(candidate: Candidate) -> list[CheckResult]:
     """Umbrella "artefact_screen" plus its sub-results (names start "artefact:").
 
@@ -150,7 +166,8 @@ def check_artefacts(candidate: Candidate) -> list[CheckResult]:
     any is inconclusive; "does_not_explain" when at least the per-scene test
     ran and nothing was found; "not_run" when the per-scene test could not run.
     """
-    subs = [_per_scene_support(candidate), _observation_count(candidate), _terrain_shadow(candidate)]
+    subs = [_per_scene_support(candidate), _observation_count(candidate),
+            _terrain_shadow(candidate), _widespread(candidate)]
     statuses = {s.check: s.status for s in subs}
     explaining = [s for s in subs if s.status == "explains"]
     if explaining:

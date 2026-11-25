@@ -15,7 +15,6 @@
  "n_event_candidates": 60,
  "status": "ok",
  "years": [
-  2017,
   2018,
   2019,
   2020,
@@ -26,16 +25,16 @@
   2025,
   2026
  ],
- "n_blobs_total": 509,
+ "n_blobs_total": 552,
  "n_candidates_kept": 180,
  "kinds": {
   "event_window": 60,
   "step": 80,
-  "transient": 32,
-  "latest_year": 8
+  "latest_year": 5,
+  "transient": 35
  },
- "step_fraction": 0.016832067328269314,
- "transient_fraction": 0.03107612430449722,
+ "step_fraction": 0.018964075856303424,
+ "transient_fraction": 0.03553214212856851,
  "valid_fraction": 1.0,
- "seconds": 61.8
+ "seconds": 78.1
 }

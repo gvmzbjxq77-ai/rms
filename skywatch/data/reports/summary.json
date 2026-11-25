@@ -1,0 +1,77 @@
+{
+ "total": 122591,
+ "sources": {
+  "geipan": {
+   "count": 3400,
+   "date_min": "1937-01-01",
+   "date_max": "2026-09-03",
+   "geocoded": 3397,
+   "since_2016": 730,
+   "official_class": {
+    "A": 955,
+    "B": 1322,
+    "C": 1017,
+    "D": 106
+   }
+  },
+  "nuforc": {
+   "count": 119191,
+   "date_min": "1906-11-11",
+   "date_max": "2023-05-18",
+   "geocoded": 119190,
+   "since_2016": 24361
+  }
+ },
+ "tags": {
+  "landing": 472,
+  "physical_trace": 58,
+  "crash_retrieval": 415,
+  "close_encounter": 1232
+ },
+ "tags_since_2016": {
+  "landing": 59,
+  "physical_trace": 5,
+  "crash_retrieval": 59,
+  "close_encounter": 195
+ },
+ "built_at": "2026-11-25T04:45:51Z",
+ "path": "/home/user/skywatch/data/reports/reports.jsonl",
+ "files": {
+  "nuforc_planetsig_2014": {
+   "status": "ok",
+   "rows": 80332,
+   "date_min": "1906-11-11",
+   "date_max": "2014-05-08",
+   "urls": [
+    "https://raw.githubusercontent.com/planetsig/ufo-reports/master/csv-data/ufo-scrubbed-geocoded-time-standardized.csv"
+   ]
+  },
+  "nuforc_tidytuesday_2023": {
+   "status": "ok",
+   "rows": 96429,
+   "date_min": "1925-12-29",
+   "date_max": "2023-05-18",
+   "urls": [
+    "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-06-20/ufo_sightings.csv",
+    "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-06-20/places.csv"
+   ]
+  },
+  "geipan": {
+   "status": "ok",
+   "rows": 3400,
+   "date_min": "1937-01-01",
+   "date_max": "2026-09-03",
+   "urls": [
+    "https://www.geipan.fr/fr/cnes/export/cas"
+   ]
+  }
+ },
+ "duplicates_removed": 57570,
+ "rules_version": "f2af3fea55fe",
+ "not_ingested": {
+  "nuforc.org (live database, reports after mid-2023)": "The site blocks automated access and must not be contacted; no newer public copy fetchable from raw.githubusercontent.com was found, so NUFORC coverage ends where the newest ingested copy ends.",
+  "US National Archives UAP records (NARA record group 615)": "Host is not on the network allowlist of this environment; not attempted.",
+  "Published physical-trace catalogues (e.g. Phillips trace-case catalogue, CUFOS)": "Not available from any allowlisted host; not attempted.",
+  "GEIPAN witness-statement export (/fr/cnes/export/temoignages)": "Reachable but not ingested: the case export already carries one summary, class and coordinate per case, and per-witness rows would double count the same events."
+ }
+}

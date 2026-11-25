@@ -24,7 +24,7 @@ import tempfile
 import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -35,7 +35,7 @@ from rasterio.windows import Window
 from ..core import config, io
 from ..core.models import BBox, Candidate, CheckResult
 
-__all__ = ["burn_history", "fire_survey", "burn_likeness", "check_fire"]
+__all__ = ["burn_history", "burn_likeness", "check_fire", "fire_survey"]
 
 #: MODIS sinusoidal grid: sphere radius, tile size and upper-left corner (metres).
 _R = 6371007.181
@@ -53,9 +53,11 @@ _MAX_ITEMS = 6000
 _MAX_READS = 1500
 #: Longest window for which the daily active-fire files are read by default.
 _AF_AUTO_DAYS = 800
-#: Catalogue answers for periods this recent may still grow; re-ask after a few days.
+#: Catalogue answers are re-asked after 3 days for periods this recent (files still
+#: arriving) and after 30 days otherwise (the archive has gaps that may be filled).
 _FRESH_DAYS = 150
 _SEARCH_TTL_DAYS = 3
+_SETTLED_TTL_DAYS = 30
 
 _MODIS_BA_START = date(2000, 11, 1)
 _S2_START = date(2015, 7, 1)
@@ -133,7 +135,7 @@ def _haversine(lat: float, lon: float, lats: np.ndarray | float, lons: np.ndarra
     p1, p2 = np.radians(lat), np.radians(np.asarray(lats, dtype="float64"))
     dlon = np.radians(np.asarray(lons, dtype="float64") - lon)
     a = np.sin((p2 - p1) / 2) ** 2 + np.cos(p1) * np.cos(p2) * np.sin(dlon / 2) ** 2
-    return 2 * 6371008.8 * np.arcsin(np.sqrt(np.clip(a, 0.0, 1.0)))
+    return np.asarray(2 * 6371008.8 * np.arcsin(np.sqrt(np.clip(a, 0.0, 1.0))), dtype="float64")
 
 
 def _footprint(lat: float, lon: float, reach_m: float, npix: int) -> _Pixels:
@@ -149,10 +151,10 @@ def _footprint(lat: float, lon: float, reach_m: float, npix: int) -> _Pixels:
     xp, yp = float(xs), float(ys)
     shear = math.radians(lon) * math.sin(math.radians(lat))
     span_x = reach_m * (1.0 + abs(shear)) + pix
-    c0 = max(int(math.floor((xp - span_x - _X_MIN) / pix)), 0)
-    c1 = min(int(math.floor((xp + span_x - _X_MIN) / pix)), 36 * npix - 1)
-    r0 = max(int(math.floor((_Y_MAX - yp - reach_m - pix) / pix)), 0)
-    r1 = min(int(math.floor((_Y_MAX - yp + reach_m + pix) / pix)), 18 * npix - 1)
+    c0 = max(math.floor((xp - span_x - _X_MIN) / pix), 0)
+    c1 = min(math.floor((xp + span_x - _X_MIN) / pix), 36 * npix - 1)
+    r0 = max(math.floor((_Y_MAX - yp - reach_m - pix) / pix), 0)
+    r1 = min(math.floor((_Y_MAX - yp + reach_m + pix) / pix), 18 * npix - 1)
     empty = np.zeros(0, dtype="int64")
     if c1 < c0 or r1 < r0 or (c1 - c0 + 1) * (r1 - r0 + 1) > 4_000_000:
         return _Pixels(empty, empty, empty, empty, np.zeros(0))
@@ -181,7 +183,7 @@ def _footprint(lat: float, lon: float, reach_m: float, npix: int) -> _Pixels:
 # --------------------------------------------------------------------------
 
 def _today() -> date:
-    return datetime.now(timezone.utc).date()
+    return datetime.now(UTC).date()
 
 
 def _parse_day(text: Any) -> date:
@@ -205,6 +207,12 @@ def _atomic_write(path: Path, writer: Any) -> None:
     finally:
         if os.path.exists(tmp):
             os.remove(tmp)
+
+
+def _search_bbox(lat: float, lon: float, reach_m: float) -> BBox:
+    """Box around the point, cut at the poles and the 180th meridian (the catalogue rejects more)."""
+    west, south, east, north = io.point_bbox(lat, lon, reach_m)
+    return (max(west, -180.0), max(south, -90.0), min(east, 180.0), min(north, 90.0))
 
 
 def _search(product: _Product, bbox: BBox, start: date, end: date) -> list[dict[str, Any]]:
@@ -238,7 +246,7 @@ def _granules(product: _Product, tiles: list[tuple[int, int]], bbox: BBox, start
             saved = json.loads(path.read_text())
             fetched = date.fromisoformat(saved["fetched"])
             settled = end < fetched - timedelta(days=_FRESH_DAYS)
-            if settled or (today - fetched).days <= _SEARCH_TTL_DAYS:
+            if (today - fetched).days <= (_SETTLED_TTL_DAYS if settled else _SEARCH_TTL_DAYS):
                 granules = list(saved["granules"])
         except (OSError, ValueError, KeyError, TypeError):
             granules = None
@@ -289,7 +297,7 @@ def _load_block(granule: dict[str, Any], product: _Product, asset: str, brow: in
             with np.load(path, allow_pickle=False) as saved:
                 return saved["data"], [str(d) for d in saved["dates"]]
         except Exception:
-            pass  # unreadable cache entry: fetch again
+            path.unlink(missing_ok=True)  # unreadable cache entry: fetch again
     size = product.npix // _BLOCKS
     data, dates = _fetch_block(granule["hrefs"][asset], product.npix, granule["h"], granule["v"],
                                bcol * size, brow * size, size)
@@ -384,7 +392,7 @@ def _burned_area(lat: float, lon: float, radius_m: float, start: date, end: date
     if pixels.size == 0:
         info["detail"] = "the point is outside the MODIS land grid"
         return [], info
-    bbox = io.point_bbox(lat, lon, reach)
+    bbox = _search_bbox(lat, lon, reach)
     samples = {s.first_day: s for s in _collect(_BA, _BA.asset, pixels, bbox, start, end, use_cache)}
     hits: list[tuple[date, np.ndarray]] = []
     for month in months:
@@ -431,7 +439,8 @@ def _burned_area(lat: float, lon: float, radius_m: float, start: date, end: date
         info["status"] = "partial" if gaps else "ok"
     info["detail"] = (f"{info['months_read']}/{len(months)} monthly files read for {pixels.size} pixels"
                       + (f"; no file for {', '.join(info['months_missing'][:6])}" if info["months_missing"] else "")
-                      + (f"; read failed for {', '.join(info['months_failed'][:6])}" if info["months_failed"] else "")
+                      + (f"; incomplete (failed read or absent tile) for {', '.join(info['months_failed'][:6])}"
+                         if info["months_failed"] else "")
                       + (f"; unmapped in {', '.join(info['months_unmapped'][:6])}" if info["months_unmapped"] else ""))
     return detections, info
 
@@ -448,7 +457,7 @@ def _active_fire(lat: float, lon: float, radius_m: float, start: date, end: date
     if pixels.size == 0:
         info["detail"] = "the point is outside the MODIS land grid"
         return [], info
-    samples = _collect(_AF, _AF.asset, pixels, io.point_bbox(lat, lon, reach), start, end, use_cache)
+    samples = _collect(_AF, _AF.asset, pixels, _search_bbox(lat, lon, reach), start, end, use_cache)
     covered: set[date] = set()
     observed: set[date] = set()
     detections: list[dict[str, Any]] = []
@@ -472,11 +481,15 @@ def _active_fire(lat: float, lon: float, radius_m: float, start: date, end: date
                                    "pixels": int(fire.size),
                                    "confidence": _FIRE_CONFIDENCE[int(values[fire].max())]})
     info["days_covered"], info["days_observed"] = len(covered), len(observed)
+    info["clear_days_by_month"] = {}
+    for day in sorted(observed):
+        label = day.strftime("%Y-%m")
+        info["clear_days_by_month"][label] = info["clear_days_by_month"].get(label, 0) + 1
     if info["files_read"] == 0:
         info["status"] = "failed" if info["files_failed"] else "no_coverage"
     else:
         info["status"] = "ok" if len(covered) >= 0.9 * n_days else "partial"
-    info["detail"] = (f"{info['files_read']} eight-day files read ({info['files_failed']} failed); "
+    info["detail"] = (f"{info['files_read']} eight-day files read ({info['files_failed']} incomplete); "
                       f"{len(covered)}/{n_days} days covered, clear view on {len(observed)}")
     return detections, info
 
@@ -657,8 +670,9 @@ def _measure_s2(candidate: Candidate, radius_m: float, window: tuple[date, date]
 
 def _spectral(candidate: Candidate, radius_m: float) -> dict[str, Any]:
     """Spectral change of the candidate: detector measurements, else Sentinel-2."""
-    raw = candidate.measurements if isinstance(candidate.measurements, dict) else {}
-    nested = raw.get("spectral") if isinstance(raw.get("spectral"), dict) else {}
+    raw: dict[str, Any] = candidate.measurements if isinstance(candidate.measurements, dict) else {}
+    inner = raw.get("spectral")
+    nested: dict[str, Any] = inner if isinstance(inner, dict) else {}
     keys = ("d_nbr", "d_ndvi", "d_brightness", "d_nir", "recovery_fraction")
     values: dict[str, Any] = {k: _number(raw.get(k, nested.get(k))) for k in keys}
     values["source"], values["note"] = "candidate measurements", ""
@@ -687,19 +701,48 @@ def _spectral(candidate: Candidate, radius_m: float) -> dict[str, Any]:
 def _fire_consistent(spectral: dict[str, Any]) -> bool | None:
     """Does the change fit a place that MODIS says burned? None when unmeasured.
 
-    Looser than ``burn_likeness``: vegetation loss or darkening is enough,
-    because a burnt surface seen months later can be brighter than before.
+    Looser than ``burn_likeness``: a modest loss in the burn index or in
+    vegetation is enough, because a burnt surface seen months later can be
+    brighter than before. Darkening alone is not accepted: solar panels,
+    tarmac and wet ground also darken, and industrial heat can trip the
+    satellite fire detector.
     """
     if spectral["level"] == "unknown":
         return None
-    d_nbr, d_ndvi, d_bri = spectral["d_nbr"], spectral["d_ndvi"], spectral["d_brightness"]
-    return bool((d_nbr is not None and d_nbr <= -0.04) or (d_ndvi is not None and d_ndvi <= -0.04)
-                or (d_bri is not None and d_bri <= -0.02))
+    d_nbr, d_ndvi = spectral["d_nbr"], spectral["d_ndvi"]
+    return bool((d_nbr is not None and d_nbr <= -0.04) or (d_ndvi is not None and d_ndvi <= -0.04))
 
 
 # --------------------------------------------------------------------------
 # Checks
 # --------------------------------------------------------------------------
+
+def _record_complete(area: dict[str, Any], active: dict[str, Any], first: date,
+                     last: date) -> tuple[bool, str]:
+    """Can the two products together support "no fire"? Returns (yes, caveat).
+
+    Both must have been read in full. Months the burned-area product left
+    unmapped (too few usable observations: snow, darkness, cloud) are accepted
+    only when the active-fire product had a clear view of the footprint on at
+    least half of their days inside the window.
+    """
+    if active.get("status") != "ok" or area.get("status") not in ("ok", "partial"):
+        return False, ""
+    if area["status"] == "ok":
+        return True, ""
+    if area["months_missing"] or area["months_failed"]:
+        return False, ""
+    clear = active.get("clear_days_by_month", {})
+    for label in area["months_unmapped"]:
+        start = date.fromisoformat(label + "-01")
+        end = date(start.year + start.month // 12, start.month % 12 + 1, 1) - timedelta(days=1)
+        days = (min(end, last) - max(start, first)).days + 1
+        if clear.get(label, 0) < 0.5 * days:
+            return False, ""
+    return True, (f" The burned-area product left {', '.join(area['months_unmapped'])} unmapped (too few "
+                  "usable observations, usually snow, darkness or cloud); the active-fire product had "
+                  "a clear view on at least half the days of each such month and saw no fire.")
+
 
 def _describe(detections: list[dict[str, Any]]) -> str:
     burned = [d for d in detections if d["product"] == "MCD64A1"]
@@ -770,8 +813,9 @@ def _history(candidate: Candidate, spectral: dict[str, Any], radius_m: float) ->
     coverage = f"burned area: {area.get('detail', area['status'])}; active fire: {active.get('detail', active['status'])}"
     if not readable:
         return result("not_run", f"no MODIS fire product could be read ({coverage}).", **evidence)
-    if area["status"] == "ok" and active["status"] == "ok":
-        return result("does_not_explain", f"no burned area and no active fire {span} ({coverage}). "
+    complete, caveat = _record_complete(area, active, first, last)
+    if complete:
+        return result("does_not_explain", f"no burned area and no active fire {span} ({coverage}).{caveat} "
                       + MODIS_LIMIT + ".", **evidence)
     return result("inconclusive", f"no fire seen {span}, but the record is incomplete ({coverage}), "
                   "so a fire in the gap cannot be ruled out.", **evidence)
@@ -813,9 +857,10 @@ def check_fire(candidate: Candidate) -> list[CheckResult]:
       of nominal or high confidence, overlaps the footprint inside the onset
       window padded by 15 days and the spectral change fits a burn (or is
       unmeasured); "does_not_explain" only when both products were read in
-      full and show nothing; "inconclusive" for incomplete records,
-      contradicting spectra or a missing onset window; "not_run" when nothing
-      could be read.
+      full and show nothing (months the burned-area product left unmapped
+      need a clear active-fire view on half their days); "inconclusive" for
+      incomplete records, contradicting spectra, low-confidence fire only or
+      a missing onset window; "not_run" when nothing could be read.
     - burn_spectral (natural): Sentinel-2 change graded alone; a burn-like
       change without a MODIS record is "inconclusive", never "explains".
     - lightning (event): always "not_run"; no open archive is reachable.

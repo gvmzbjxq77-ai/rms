@@ -112,7 +112,7 @@ def point_bbox(lat: float, lon: float, half_size_m: float) -> BBox:
     """WGS84 box of roughly ``2 * half_size_m`` metres centred on a point."""
     dlat = half_size_m / 111_320.0
     dlon = half_size_m / (111_320.0 * max(np.cos(np.radians(lat)), 0.05))
-    return (lon - dlon, lat - dlat, lon + dlon, lat + dlat)
+    return (float(lon - dlon), float(lat - dlat), float(lon + dlon), float(lat + dlat))
 
 
 # --------------------------------------------------------------------------
@@ -196,7 +196,7 @@ def read_to_grid(href: str, grid: Grid, band: int = 1,
                               dst_crs=grid.crs, dst_nodata=np.nan, resampling=resampling)
                     return out
                 with WarpedVRT(src, src_nodata=nodata, nodata=np.nan, dtype="float32",
-                               crs=grid.crs, transform=grid.transform, width=grid.width,
+                               warp_mem_limit=24, crs=grid.crs, transform=grid.transform, width=grid.width,
                                height=grid.height, resampling=resampling) as vrt:
                     return vrt.read(band).astype("float32", copy=False)
         except Exception as exc:
@@ -269,45 +269,107 @@ def s2_read(item: Item, grid: Grid, bands: Sequence[str] = S2_BANDS,
     return out
 
 
+def _baseline(item: Item) -> float:
+    try:
+        return float(str(item.properties.get("s2:processing_baseline", "0")))
+    except ValueError:
+        return 0.0
+
+
+def s2_select(bbox: BBox, start: str, end: str, max_scenes: int = 4, max_cloud: float = 20.0,
+              prefer_date: str | None = None) -> list[list[Item]]:
+    """Choose the acquisition dates for a composite: one list of tiles per date.
+
+    The archive holds many images twice (the original and a reprocessed
+    version): only the newest processing baseline of each date and tile is
+    kept, so one composite never mixes processing versions arbitrarily. By
+    default the clearest dates win; with ``prefer_date`` (ISO) the dates
+    nearest to it win, each percent of cloud counting as two days, so that
+    composites of different years share the same sun angle.
+    """
+    newest: dict[tuple[str, str], Item] = {}
+    for item in s2_scenes(bbox, start, end, max_cloud=max_cloud):
+        key = (item.datetime.strftime("%Y-%m-%d"), item.properties.get("grid:code", item.id))
+        if key not in newest or _baseline(item) > _baseline(newest[key]):
+            newest[key] = item
+    by_day: dict[str, list[Item]] = {}
+    for (day, _tile), item in sorted(newest.items()):
+        by_day.setdefault(day, []).append(item)
+
+    def cloud(day: str) -> float:
+        return float(np.mean([it.properties.get("eo:cloud_cover", 100.0) for it in by_day[day]]))
+
+    if prefer_date:
+        target = np.datetime64(prefer_date[:10])
+        days = sorted(by_day, key=lambda d: abs(int((np.datetime64(d) - target).astype(int)))
+                      + 2.0 * cloud(d))[:max_scenes]
+    else:
+        days = sorted(by_day, key=cloud)[:max_scenes]
+    return [by_day[day] for day in sorted(days)]
+
+
+def _load_composite(path: Any, bands: Sequence[str]) -> dict[str, Any]:
+    with np.load(path, allow_pickle=False) as data:
+        out: dict[str, Any] = {b: data[b].astype("float32") for b in bands}
+        out["count"] = data["count"]
+        out["dates"] = [str(d) for d in data["dates"]]
+        out["scene_ids"] = [str(s) for s in data["scene_ids"]]
+    return out
+
+
 def s2_composite(grid: Grid, start: str, end: str, bands: Sequence[str] = S2_BANDS,
                  max_scenes: int = 4, max_cloud: float = 20.0,
-                 use_cache: bool = True) -> dict[str, Any] | None:
+                 use_cache: bool = True, prefer_date: str | None = None) -> dict[str, Any] | None:
     """Median cloud-free Sentinel-2 composite on ``grid`` for a date window.
 
     Returns band arrays (reflectance, NaN where never clear), ``"count"``
     (clear observations per pixel), ``"dates"`` and ``"scene_ids"``; None when
-    no usable scene exists. Results are cached on disk.
+    no usable scene exists. Scenes are chosen by ``s2_select``. Results are
+    cached on disk under a key made from the grid and the exact scenes used,
+    with a small index from the request to that key so repeat calls need no
+    catalogue search.
     """
-    key = hashlib.sha1(json.dumps(
-        [grid.crs, list(grid.transform)[:6], grid.width, grid.height, start, end,
-         list(bands), max_scenes, max_cloud]).encode()).hexdigest()[:20]
-    cache_file = config.CACHE / "s2_composite" / f"{key}.npz"
+    grid_key = [grid.crs, list(grid.transform)[:6], grid.width, grid.height, list(bands)]
+    request = hashlib.sha1(json.dumps(
+        grid_key + [start, end, max_scenes, max_cloud, prefer_date, "v2"]).encode()).hexdigest()[:20]
+    cache_dir = config.CACHE / "s2_composite"
+    index_file = cache_dir / f"req_{request}.json"
+    if use_cache and index_file.exists():
+        target = json.loads(index_file.read_text()).get("file")
+        if target is None:
+            return None
+        if (cache_dir / target).exists():
+            return _load_composite(cache_dir / target, bands)
+    groups = s2_select(grid.bbox_wgs84(), start, end, max_scenes, max_cloud, prefer_date)
+    wanted = sorted(item.id for group in groups for item in group)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    if not wanted:
+        index_file.write_text(json.dumps({"file": None}))
+        return None
+    content = hashlib.sha1(json.dumps(grid_key + wanted).encode()).hexdigest()[:20]
+    cache_file = cache_dir / f"{content}.npz"
     if use_cache and cache_file.exists():
-        with np.load(cache_file, allow_pickle=False) as data:
-            out: dict[str, Any] = {b: data[b].astype("float32") for b in bands}
-            out["count"] = data["count"]
-            out["dates"] = [str(d) for d in data["dates"]]
-            out["scene_ids"] = [str(s) for s in data["scene_ids"]]
-            return out
-    items = s2_scenes(grid.bbox_wgs84(), start, end, max_cloud=max_cloud)
-    # Pick the clearest acquisition DATES and read every tile of each date, so
-    # an area straddling several image tiles is covered completely.
-    by_day: dict[str, list[Item]] = {}
-    for item in items:
-        by_day.setdefault(item.datetime.strftime("%Y-%m-%d"), []).append(item)
-    days = sorted(by_day, key=lambda d: np.mean(
-        [it.properties.get("eo:cloud_cover", 100.0) for it in by_day[d]]))[:max_scenes]
+        index_file.write_text(json.dumps({"file": cache_file.name}))
+        return _load_composite(cache_file, bands)
+    # Composites written before the scene-addressed cache: reuse when they
+    # were built from exactly the scenes chosen now.
+    legacy = cache_dir / (hashlib.sha1(json.dumps(
+        [grid.crs, list(grid.transform)[:6], grid.width, grid.height, start, end,
+         list(bands), max_scenes, max_cloud, prefer_date]).encode()).hexdigest()[:20] + ".npz")
+    if use_cache and legacy.exists():
+        old = _load_composite(legacy, bands)
+        if sorted(old["scene_ids"]) == wanted:
+            legacy.rename(cache_file)
+            index_file.write_text(json.dumps({"file": cache_file.name}))
+            return old
     stacks: dict[str, list[np.ndarray]] = {b: [] for b in bands}
     count = np.zeros(grid.shape, dtype="uint8")
     used: list[Item] = []
-    for day in days:
-        tiles: dict[str, Item] = {}
-        for item in by_day[day]:
-            tiles.setdefault(item.properties.get("grid:code", item.id), item)
+    for group in groups:
         # Mosaic the tiles of one date first, so memory holds one layer per
         # date rather than one per tile.
         mosaic: dict[str, np.ndarray] | None = None
-        for item in tiles.values():
+        for item in group:
             try:
                 scene = s2_read(item, grid, bands)
             except Exception:
@@ -329,20 +391,23 @@ def s2_composite(grid: Grid, start: str, end: str, bands: Sequence[str] = S2_BAN
             stacks[b].append(mosaic[b])
     if not used:
         return None
-    out = {}
-    with np.errstate(all="ignore"):
-        import warnings
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", RuntimeWarning)
-            for b in bands:
-                out[b] = np.nanmedian(np.stack(stacks[b]), axis=0).astype("float32")
+    out: dict[str, Any] = {}
+    import warnings
+    with np.errstate(all="ignore"), warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        for b in bands:
+            # Rounded to the cache's precision so a first run and a cached
+            # run give identical values.
+            out[b] = np.nanmedian(np.stack(stacks[b]), axis=0).astype("float16").astype("float32")
+            stacks[b].clear()
     out["count"] = count
     out["dates"] = sorted({it.datetime.strftime("%Y-%m-%d") for it in used})
     out["scene_ids"] = [it.id for it in used]
-    cache_file.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(cache_file, count=count, dates=np.array(out["dates"]),
                         scene_ids=np.array(out["scene_ids"]),
                         **{b: out[b].astype("float16") for b in bands})
+    if sorted(out["scene_ids"]) == wanted:
+        index_file.write_text(json.dumps({"file": cache_file.name}))
     return out
 
 

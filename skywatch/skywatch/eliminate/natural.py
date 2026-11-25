@@ -112,10 +112,18 @@ def _water(x: _Context) -> CheckResult:
     if lc is not None and wet >= 0.2:
         return _result(name, "explains", f"{wet:.0%} of the footprint is mapped water or wetland: "
                        "water-level change", **evidence)
-    if (wetting or drying) and basin:
+    # Water comes and goes and has ragged edges. A change that has persisted
+    # for years or has a geometric outline is not accepted as water: solar
+    # panels and paving darken the same bands.
+    short_lived = x.m.get("kind") in ("transient", "latest_year", "event_window") \
+        or float(x.m.get("recovery_fraction", 0.0) or 0.0) >= 0.5
+    ragged = float(x.shape.get("regularity", 0.0)) < 0.5
+    evidence.update(short_lived=short_lived, ragged_outline=ragged)
+    if (wetting or drying) and basin and short_lived and ragged:
         return _result(name, "explains",
-                       "visible and short-wave infrared changed together on a flat basin floor: "
-                       "the signature of an ephemeral lake or playa " + ("flooding" if wetting else "drying"),
+                       "visible and short-wave infrared changed together on a flat basin floor, "
+                       "with a ragged outline and no lasting persistence: the signature of an "
+                       "ephemeral lake or playa " + ("flooding" if wetting else "drying"),
                        **evidence)
     if wetting or drying:
         return _result(name, "inconclusive", "moisture-like spectral change (wetting or drying)", **evidence)

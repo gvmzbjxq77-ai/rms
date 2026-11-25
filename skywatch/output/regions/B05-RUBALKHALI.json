@@ -1,0 +1,35 @@
+{
+ "region": "B05-RUBALKHALI",
+ "name": "Rub al Khali, Saudi Arabia",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  49.409287390629274,
+  19.420337765001797,
+  49.79071260937073,
+  19.779662234998206
+ ],
+ "area_km2": 1600.0000000000364,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 25,
+ "n_candidates_kept": 25,
+ "kinds": {
+  "transient": 25
+ },
+ "step_fraction": 0.0,
+ "transient_fraction": 0.8678960639153437,
+ "valid_fraction": 1.0,
+ "seconds": 41.6
+}

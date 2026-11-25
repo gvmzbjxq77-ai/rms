@@ -1,0 +1,424 @@
+[
+ {
+  "id": "S01-PEYRUIS",
+  "name": "Seeded: Peyruis, FR (geipan report of 2016-03-20)",
+  "bbox": [
+   5.8900143090159744,
+   44.00406755300036,
+   5.989985690984026,
+   44.07593244699964
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 5 km of the centre; this box covers roughly 81% of that area, so a null result here does not test the report. Claimed (not established): physical_trace.",
+  "season": [
+   "03-20",
+   "05-20"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "geipan",
+   "report_id": "geipan-2016-03-09454",
+   "datetime": "2016-03-20",
+   "summary": "Le t\u00e9moin est dans son lit lorsqu'une grande lueur illumine sa chambre, suivie d'un grand bruit. Il constate par la suite des traces d'herbes brul\u00e9es dans le champ d'un voisin. Aucun autre t\u00e9moignage n'est recueilli. L'observation est extr\u00eamement courte (1s) et surtout c'est uniquement celle d'une l",
+   "location_precision_km": 5.0,
+   "date_precision": "day",
+   "tags": [
+    "physical_trace"
+   ],
+   "official_class": "C",
+   "place": "Peyruis",
+   "country": "FR",
+   "lat": 44.04,
+   "lon": 5.94
+  }
+ },
+ {
+  "id": "S02-CLARKS-SUMMIT",
+  "name": "Seeded: Clarks Summit, US (nuforc report of 2020-02-23)",
+  "bbox": [
+   -75.7564883544539,
+   41.45275755300036,
+   -75.6605516455461,
+   41.524622446999636
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): landing, crash_retrieval.",
+  "season": [
+   "02-23",
+   "04-24"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-a443cf822bd6",
+   "datetime": "2020-02-23T03:00:00Z",
+   "summary": "UFO crash landing followed by hours of military helicopter traffic",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "landing",
+    "crash_retrieval"
+   ],
+   "official_class": null,
+   "place": "Clarks Summit",
+   "country": "US",
+   "lat": 41.48869,
+   "lon": -75.70852
+  }
+ },
+ {
+  "id": "S03-RENFREW",
+  "name": "Seeded: Renfrew, CA (nuforc report of 2022-10-09)",
+  "bbox": [
+   -76.7339552826194,
+   45.430877553000364,
+   -76.6314847173806,
+   45.50274244699964
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): crash_retrieval.",
+  "season": [
+   "10-09",
+   "12-09"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-06b5a0933a9f",
+   "datetime": "2022-10-09T23:30:00Z",
+   "summary": "Bright light plummeted towards earth.",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "crash_retrieval"
+   ],
+   "official_class": null,
+   "place": "Renfrew",
+   "country": "CA",
+   "lat": 45.46681,
+   "lon": -76.68272
+  }
+ },
+ {
+  "id": "S04-TELFORD",
+  "name": "Seeded: Telford, GB (nuforc report of 2020-09-08)",
+  "bbox": [
+   -2.508523821391914,
+   52.64065755300036,
+   -2.3899961786080866,
+   52.712522446999635
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): landing.",
+  "season": [
+   "09-08",
+   "11-08"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-86e258874d87",
+   "datetime": "2020-09-08T02:50:00Z",
+   "summary": "Heavy landing. .Extremly bright white light.. No sound. Lifted singly off the ground. Strong pulse on leave that affected my printer.",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "landing"
+   ],
+   "official_class": null,
+   "place": "Telford",
+   "country": "GB",
+   "lat": 52.67659,
+   "lon": -2.44926
+  }
+ },
+ {
+  "id": "S05-SNELLVILLE",
+  "name": "Seeded: Snellville, US (nuforc report of 2019-07-07)",
+  "bbox": [
+   -84.06317982213717,
+   33.82139755300036,
+   -83.97664017786282,
+   33.893262446999636
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): landing, close_encounter.",
+  "season": [
+   "07-07",
+   "09-06"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-75f1a39623f1",
+   "datetime": "2019-07-07T04:03:00Z",
+   "summary": "Saucer shaped object descended and hovered above tree lines. Not sure if it left or landed. Vanished after sporadic maneuvers.",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "landing",
+    "close_encounter"
+   ],
+   "official_class": null,
+   "place": "Snellville",
+   "country": "US",
+   "lat": 33.85733,
+   "lon": -84.01991
+  }
+ },
+ {
+  "id": "S06-SPRUCE-GROVE",
+  "name": "Seeded: Spruce Grove, CA (nuforc report of 2019-02-04)",
+  "bbox": [
+   -113.97919635392078,
+   53.49750755300036,
+   -113.85828364607922,
+   53.56937244699964
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): crash_retrieval.",
+  "season": [
+   "02-04",
+   "04-06"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-bf646c70d8c5",
+   "datetime": "2019-02-04T06:00:00Z",
+   "summary": "It was a long yellow orange flash of light falling to earth.",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "crash_retrieval"
+   ],
+   "official_class": null,
+   "place": "Spruce Grove",
+   "country": "CA",
+   "lat": 53.53344,
+   "lon": -113.91874
+  }
+ },
+ {
+  "id": "S07-MELBOURNE",
+  "name": "Seeded: Melbourne, AU (nuforc report of 2021-05-25)",
+  "bbox": [
+   144.9178361908353,
+   -37.84993244699964,
+   145.00880380916473,
+   -37.77806755300036
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 20 km of the centre; this box covers roughly 5% of that area, so a null result here does not test the report. Claimed (not established): landing.",
+  "season": [
+   "05-25",
+   "07-25"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-da5d82703a81",
+   "datetime": "2021-05-25T08:15:00Z",
+   "summary": "Meteorite turns into ball of light. Lands metres from me in street.",
+   "location_precision_km": 20.0,
+   "date_precision": "minute",
+   "tags": [
+    "landing"
+   ],
+   "official_class": null,
+   "place": "Melbourne",
+   "country": "AU",
+   "lat": -37.814,
+   "lon": 144.96332
+  }
+ },
+ {
+  "id": "S08-LIMA",
+  "name": "Seeded: Lima, US (nuforc report of 2023-04-11)",
+  "bbox": [
+   -84.15265619138826,
+   40.70661755300036,
+   -84.05780380861175,
+   40.77848244699964
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): crash_retrieval.",
+  "season": [
+   "04-11",
+   "06-11"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-2a1f3e88431d",
+   "datetime": "2023-04-11T00:09:00Z",
+   "summary": "Driving, spotted object coming down from sky before making turn. Believe it may have hit the ground",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "crash_retrieval"
+   ],
+   "official_class": null,
+   "place": "Lima",
+   "country": "US",
+   "lat": 40.74255,
+   "lon": -84.10523
+  }
+ },
+ {
+  "id": "S09-CORNWALL",
+  "name": "Seeded: Cornwall, CA (nuforc report of 2017-07-18)",
+  "bbox": [
+   -74.77898220566492,
+   44.98215755300036,
+   -74.67731779433508,
+   45.05402244699964
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): landing.",
+  "season": [
+   "07-18",
+   "09-17"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-b3c2f7dddb35",
+   "datetime": "2017-07-18T02:00:00Z",
+   "summary": "We where sitting in my yard and a bright orange/red light circular in shape was moving in a straight line then stopped we where all loo",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "landing"
+   ],
+   "official_class": null,
+   "place": "Cornwall",
+   "country": "CA",
+   "lat": 45.01809,
+   "lon": -74.72815
+  }
+ },
+ {
+  "id": "S10-BIRMINGHAM",
+  "name": "Seeded: Birmingham, GB (nuforc report of 2022-03-03)",
+  "bbox": [
+   -1.9588305675136823,
+   52.44548755300036,
+   -1.8408294324863175,
+   52.51735244699964
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 20 km of the centre; this box covers roughly 5% of that area, so a null result here does not test the report. Claimed (not established): landing.",
+  "season": [
+   "03-03",
+   "05-03"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-28d18d988fba",
+   "datetime": "2022-03-03T22:45:00Z",
+   "summary": "It flew by landed and i watched it stay there for like 5 minutes then it flew of but left something on the floor, some kind of gun",
+   "location_precision_km": 20.0,
+   "date_precision": "minute",
+   "tags": [
+    "landing"
+   ],
+   "official_class": null,
+   "place": "Birmingham",
+   "country": "GB",
+   "lat": 52.48142,
+   "lon": -1.89983
+  }
+ },
+ {
+  "id": "S11-PASCO",
+  "name": "Seeded: Pasco, US (nuforc report of 2023-02-19)",
+  "bbox": [
+   -119.15252219707762,
+   46.20364755300036,
+   -119.0486178029224,
+   46.275512446999635
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 10 km of the centre; this box covers roughly 20% of that area, so a null result here does not test the report. Claimed (not established): crash_retrieval.",
+  "season": [
+   "02-19",
+   "04-21"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-248cb1dbdffd",
+   "datetime": "2023-02-19T00:50:00Z",
+   "summary": "It could be clouds, maybe? Or a weather balloon or space junk falling to earth?",
+   "location_precision_km": 10.0,
+   "date_precision": "minute",
+   "tags": [
+    "crash_retrieval"
+   ],
+   "official_class": null,
+   "place": "Pasco",
+   "country": "US",
+   "lat": 46.23958,
+   "lon": -119.10057
+  }
+ },
+ {
+  "id": "S12-PLYMOUTH",
+  "name": "Seeded: Plymouth, GB (nuforc report of 2019-04-05)",
+  "bbox": [
+   -4.199387512214354,
+   50.33559755300036,
+   -4.086712487785645,
+   50.40746244699964
+  ],
+  "kind": "seeded",
+  "biome": "",
+  "notes": "Box of 8 km centred on the geocode of the place named in an unverified witness report, not on a surveyed site. The true site, if any, may lie anywhere within about 20 km of the centre; this box covers roughly 5% of that area, so a null result here does not test the report. Claimed (not established): crash_retrieval.",
+  "season": [
+   "04-05",
+   "06-05"
+  ],
+  "expected": "",
+  "expect": {},
+  "seed": {
+   "source": "nuforc",
+   "report_id": "nuforc-aebe6b53d8c1",
+   "datetime": "2019-04-05T04:21:00Z",
+   "summary": "Cigar shape craft crashing.",
+   "location_precision_km": 20.0,
+   "date_precision": "minute",
+   "tags": [
+    "crash_retrieval"
+   ],
+   "official_class": null,
+   "place": "Plymouth",
+   "country": "GB",
+   "lat": 50.37153,
+   "lon": -4.14305
+  }
+ }
+]

@@ -1,0 +1,37 @@
+{
+ "region": "B08-GOBI",
+ "name": "Trans-Altai Gobi, Mongolia",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  98.2543428923646,
+  42.820337765001796,
+  98.7456571076354,
+  43.179662234998204
+ ],
+ "area_km2": 1600.0000000000264,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 1031,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 27,
+  "transient": 81,
+  "latest_year": 12
+ },
+ "step_fraction": 0.0002469032060344231,
+ "transient_fraction": 0.038978329856751655,
+ "valid_fraction": 1.0,
+ "seconds": 124.4
+}

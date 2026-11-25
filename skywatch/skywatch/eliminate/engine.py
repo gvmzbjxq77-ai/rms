@@ -8,7 +8,9 @@ Tier ladder, exactly as implemented in ``skywatch.core.models.assign_tier``:
   a check is inconclusive, or there is no dated onset window.
 - T3: two or more sensors, a dated abrupt onset, every mandatory check ran,
   and none explains it and none is inconclusive.
-- T4: T3 plus an independent witness report matched in time and place.
+- T4: T3 plus an independent witness report matched in time and place, where
+  fewer than 0.1 such matches would be expected by chance from the local
+  reporting rate.
 
 A check that cannot run is recorded as "not_run" with the reason. It is never
 skipped silently and never counted as having failed to explain.
@@ -43,6 +45,10 @@ assert {name for name, _, _, mandatory in REGISTRY if mandatory} == set(MANDATOR
     "REGISTRY mandatory checks must match models.MANDATORY_CHECKS"
 
 Entry = tuple[str, str | Callable[[Candidate], list[CheckResult]], str, bool]
+
+#: Witness reports count towards T4 only when the number of matches expected
+#: by chance from the local reporting rate is at most this.
+REPORT_CHANCE_LIMIT = 0.1
 
 
 def _resolve(target: str | Callable[..., Any]) -> Callable[..., Any]:
@@ -88,14 +94,19 @@ def run_checks(candidate: Candidate, only: Sequence[str] | None = None,
                 explained_by = result.check
     candidate.checks = list(results.values())
     if only is None:
+        candidate.reports = []
+        candidate.checks = [c for c in candidate.checks if c.check not in ("report_match", "witness_reports")]
         try:
-            match = importlib.import_module("skywatch.reports.ingest").match_reports
-            candidate.reports = list(match(candidate) or [])
+            report = importlib.import_module("skywatch.reports.ingest").report_check(candidate)
+            candidate.checks.append(report)
+            matches = list(report.evidence.get("matches") or [])
+            chance = float(report.evidence.get("expected_by_chance", 1.0))
+            # A report only counts towards T4 when a coincidence is unlikely.
+            if matches and chance <= REPORT_CHANCE_LIMIT:
+                candidate.reports = matches
         except Exception as exc:
-            candidate.reports = []
-            candidate.checks = [c for c in candidate.checks if c.check != "report_match"]
             candidate.checks.append(CheckResult(
-                check="report_match", category="report", status="not_run",
+                check="witness_reports", category="report", status="not_run",
                 detail=f"{type(exc).__name__}: {str(exc)[:200]}", source="engine"))
     candidate.tier, candidate.tier_reason = assign_tier(candidate)
     return candidate

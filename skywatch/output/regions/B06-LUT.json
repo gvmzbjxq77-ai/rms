@@ -1,0 +1,37 @@
+{
+ "region": "B06-LUT",
+ "name": "Dasht-e Lut, Iran",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  58.69169926064669,
+  30.220337765001794,
+  59.108300739353304,
+  30.579662234998203
+ ],
+ "area_km2": 1600.0000000000132,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 851,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 44,
+  "transient": 28,
+  "latest_year": 48
+ },
+ "step_fraction": 0.0003924909380412205,
+ "transient_fraction": 0.01819737324409397,
+ "valid_fraction": 1.0,
+ "seconds": 73.7
+}

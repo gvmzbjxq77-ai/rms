@@ -1,0 +1,946 @@
+{
+  "schema": "skywatch.dossier/1",
+  "generated_utc": "2026-11-25T05:29:54Z",
+  "candidate": {
+    "id": "SW-C01-BENBAN-OC0001",
+    "region_id": "C01-BENBAN",
+    "lat": 24.41899347892077,
+    "lon": 32.69609202260027,
+    "bbox": [
+      32.695400036939965,
+      24.41836264713359,
+      32.696784001381026,
+      24.41962430742451
+    ],
+    "signature": "landing_trace",
+    "detector": "optical_change",
+    "score": 0.6,
+    "area_m2": 3600.0,
+    "absent_until": "2019-07-20",
+    "present_from": "2020-07-09",
+    "sensors": [
+      "optical_s2"
+    ],
+    "shape": {
+      "area_m2": 3600.0,
+      "perimeter_m": 160.0,
+      "equivalent_diameter_m": 67.70275002573075,
+      "major_axis_m": 65.31972647421809,
+      "minor_axis_m": 65.31972647421809,
+      "elongation": 1.0,
+      "orientation_deg": 45.0,
+      "circularity": 1.0,
+      "solidity": 1.0,
+      "eccentricity": 0.0,
+      "rectangularity": 1.0,
+      "n_corners": 4,
+      "straight_edge_fraction": 0.0,
+      "hole_fraction": 0.0,
+      "regularity": 1.0
+    },
+    "measurements": {
+      "kind": "step",
+      "break_year": 2020,
+      "step_snr": 15.0,
+      "d_brightness": -0.0991850346326828,
+      "d_ndvi": -0.0011380165815353394,
+      "d_nbr": -0.017078377306461334,
+      "d_swir": -0.141357421875,
+      "persistence_years": 7,
+      "recovery_fraction": 0.0,
+      "crowding": 0.003947195254318054,
+      "n_valid_years": 9,
+      "years_used": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "composite_dates": {
+        "2018": [
+          "2018-07-10",
+          "2018-07-15",
+          "2018-07-20"
+        ],
+        "2019": [
+          "2019-07-10",
+          "2019-07-15",
+          "2019-07-20"
+        ],
+        "2020": [
+          "2020-07-09",
+          "2020-07-14",
+          "2020-07-19"
+        ],
+        "2021": [
+          "2021-07-09",
+          "2021-07-14",
+          "2021-07-24"
+        ],
+        "2022": [
+          "2022-07-04",
+          "2022-07-14",
+          "2022-07-19"
+        ],
+        "2023": [
+          "2023-07-04",
+          "2023-07-19",
+          "2023-07-24"
+        ],
+        "2024": [
+          "2024-07-13",
+          "2024-07-18",
+          "2024-07-28"
+        ],
+        "2025": [
+          "2025-07-10",
+          "2025-07-18",
+          "2025-07-23"
+        ],
+        "2026": [
+          "2026-07-15",
+          "2026-07-18",
+          "2026-07-23"
+        ]
+      },
+      "scene_ids_before": [
+        "S2A_36QVM_20190710_1_L2A",
+        "S2A_36RVN_20190710_1_L2A",
+        "S2B_36QVM_20190715_1_L2A",
+        "S2B_36RVN_20190715_1_L2A",
+        "S2A_36QVM_20190720_1_L2A",
+        "S2A_36RVN_20190720_1_L2A"
+      ],
+      "scene_ids_after": [
+        "S2A_36RVN_20200714_1_L2A",
+        "S2A_36QVM_20200714_1_L2A",
+        "S2B_36RVN_20200719_1_L2A",
+        "S2B_36QVM_20200719_1_L2A",
+        "S2B_36RVN_20200709_1_L2A",
+        "S2B_36QVM_20200709_1_L2A"
+      ],
+      "res_m": 20.0,
+      "series": {
+        "dates": [
+          "2018-06-15",
+          "2018-07-20",
+          "2018-08-24",
+          "2018-09-28",
+          "2018-10-28",
+          "2018-12-07",
+          "2019-01-31",
+          "2019-03-17",
+          "2019-05-01",
+          "2019-07-05",
+          "2019-08-09",
+          "2019-09-13",
+          "2019-10-28",
+          "2019-12-07",
+          "2020-01-11",
+          "2020-02-20",
+          "2020-03-31",
+          "2020-05-05",
+          "2020-06-09",
+          "2020-07-14",
+          "2020-08-18",
+          "2020-09-17",
+          "2020-10-22",
+          "2020-11-26",
+          "2020-12-31",
+          "2021-02-04",
+          "2021-03-11",
+          "2021-04-25",
+          "2021-06-04",
+          "2021-07-09",
+          "2021-08-13"
+        ],
+        "scene_ids": [
+          "S2A_36RVN_20180615_0_L2A",
+          "S2B_36RVN_20180720_0_L2A",
+          "S2A_36RVN_20180824_0_L2A",
+          "S2B_36RVN_20180928_0_L2A",
+          "S2B_36RVN_20181028_0_L2A",
+          "S2B_36RVN_20181207_0_L2A",
+          "S2A_36RVN_20190131_0_L2A",
+          "S2B_36RVN_20190317_0_L2A",
+          "S2A_36RVN_20190501_1_L2A",
+          "S2B_36RVN_20190705_0_L2A",
+          "S2A_36RVN_20190809_1_L2A",
+          "S2B_36RVN_20190913_0_L2A",
+          "S2A_36RVN_20191028_0_L2A",
+          "S2A_36RVN_20191207_0_L2A",
+          "S2B_36RVN_20200111_0_L2A",
+          "S2B_36RVN_20200220_0_L2A",
+          "S2B_36RVN_20200331_0_L2A",
+          "S2A_36RVN_20200505_1_L2A",
+          "S2B_36RVN_20200609_0_L2A",
+          "S2A_36RVN_20200714_1_L2A",
+          "S2B_36RVN_20200818_0_L2A",
+          "S2B_36RVN_20200917_0_L2A",
+          "S2A_36RVN_20201022_1_L2A",
+          "S2B_36RVN_20201126_1_L2A",
+          "S2A_36RVN_20201231_1_L2A",
+          "S2B_36RVN_20210204_1_L2A",
+          "S2A_36RVN_20210311_1_L2A",
+          "S2B_36RVN_20210425_1_L2A",
+          "S2B_36RVN_20210604_1_L2A",
+          "S2A_36RVN_20210709_1_L2A",
+          "S2B_36RVN_20210813_1_L2A"
+        ],
+        "valid": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "inside": {
+          "brightness": [
+            0.29873335361480713,
+            0.283029168844223,
+            0.28599584102630615,
+            0.1910666674375534,
+            0.2659603953361511,
+            0.1622239649295807,
+            0.15826457738876343,
+            0.16766667366027832,
+            0.20387709140777588,
+            0.34041666984558105,
+            0.19497916102409363,
+            0.1862708330154419,
+            0.15830832719802856,
+            0.16333124041557312,
+            0.154767706990242,
+            0.157191663980484,
+            0.1980895847082138,
+            0.19645625352859497,
+            0.2070208340883255,
+            0.19694584608078003,
+            0.1898791790008545,
+            0.19593334197998047,
+            0.18193958699703217,
+            0.16995833814144135,
+            0.15725937485694885,
+            0.15900728106498718,
+            0.1725958287715912,
+            0.2006104290485382,
+            0.21050626039505005,
+            0.2015354186296463,
+            0.19358541071414948
+          ],
+          "ndvi": [
+            0.07873404771089554,
+            0.08434022217988968,
+            0.07811936736106873,
+            0.02858487330377102,
+            0.0893690437078476,
+            0.08178897202014923,
+            0.10042886435985565,
+            0.09798616170883179,
+            0.08310412615537643,
+            0.10243736207485199,
+            0.0777510404586792,
+            0.07718925178050995,
+            0.06861947476863861,
+            0.08072902262210846,
+            0.082099050283432,
+            0.08507531881332397,
+            0.070438914000988,
+            0.07961484044790268,
+            0.07006669044494629,
+            0.08569301664829254,
+            0.058939725160598755,
+            0.05241326615214348,
+            0.08558690547943115,
+            0.08060991764068604,
+            0.08991320431232452,
+            0.08235715329647064,
+            0.08138273656368256,
+            0.08756224811077118,
+            0.09265315532684326,
+            0.07656979560852051,
+            0.0753207877278328
+          ],
+          "nbr": [
+            -0.08128901571035385,
+            -0.0986381471157074,
+            -0.057700783014297485,
+            -0.022465962916612625,
+            -0.05022323876619339,
+            -0.10003010928630829,
+            -0.06595881283283234,
+            -0.09412214905023575,
+            -0.07577067613601685,
+            -0.08102037012577057,
+            -0.08670054376125336,
+            -0.09939761459827423,
+            -0.10372740775346756,
+            -0.06728682667016983,
+            -0.09129020571708679,
+            -0.09662143141031265,
+            -0.09709005802869797,
+            -0.08686564862728119,
+            -0.1330895572900772,
+            -0.0935281291604042,
+            -0.1342412829399109,
+            -0.11745623499155045,
+            -0.06728515028953552,
+            -0.09336365759372711,
+            -0.06663016974925995,
+            -0.09581916034221649,
+            -0.08019056171178818,
+            -0.09313978254795074,
+            -0.08769506961107254,
+            -0.10279333591461182,
+            -0.11598435044288635
+          ]
+        },
+        "ring": {
+          "brightness": [
+            0.28974002599716187,
+            0.2797778844833374,
+            0.27614983916282654,
+            0.19089347124099731,
+            0.2596838176250458,
+            0.20270662009716034,
+            0.22524617612361908,
+            0.21219702064990997,
+            0.23105265200138092,
+            0.21619999408721924,
+            0.19079135358333588,
+            0.1839897334575653,
+            0.16443085670471191,
+            0.16146618127822876,
+            0.15659867227077484,
+            0.15949103236198425,
+            0.1995568722486496,
+            0.19900576770305634,
+            0.2170824110507965,
+            0.20730125904083252,
+            0.19258862733840942,
+            0.19805826246738434,
+            0.17898334562778473,
+            0.1682724505662918,
+            0.15555024147033691,
+            0.16257159411907196,
+            0.17509789764881134,
+            0.20424580574035645,
+            0.22269564867019653,
+            0.2176549732685089,
+            0.19842523336410522
+          ],
+          "ndvi": [
+            0.08213739842176437,
+            0.08827099204063416,
+            0.0858326107263565,
+            0.04353366419672966,
+            0.09437047690153122,
+            0.0870034322142601,
+            0.10282723605632782,
+            0.09899038076400757,
+            0.08498916774988174,
+            0.09054338932037354,
+            0.0828249529004097,
+            0.07817152142524719,
+            0.07019201666116714,
+            0.08433900028467178,
+            0.08470675349235535,
+            0.09007108956575394,
+            0.07190307974815369,
+            0.08119282871484756,
+            0.07405899465084076,
+            0.08751767873764038,
+            0.06079903617501259,
+            0.05566420406103134,
+            0.08679304271936417,
+            0.0836314782500267,
+            0.09079619497060776,
+            0.0850890651345253,
+            0.08190632611513138,
+            0.08575234562158585,
+            0.09056777507066727,
+            0.07626720517873764,
+            0.07423391938209534
+          ],
+          "nbr": [
+            -0.07841617614030838,
+            -0.10320811718702316,
+            -0.07600269466638565,
+            -0.015602339059114456,
+            -0.07338163256645203,
+            -0.09548192471265793,
+            -0.017522642388939857,
+            -0.060140084475278854,
+            -0.05424974486231804,
+            -0.09292247891426086,
+            -0.07374147325754166,
+            -0.09943758696317673,
+            -0.09018342941999435,
+            -0.056021273136138916,
+            -0.08621328324079514,
+            -0.08779612928628922,
+            -0.08995896577835083,
+            -0.06980172544717789,
+            -0.12368530035018921,
+            -0.07000559568405151,
+            -0.12634293735027313,
+            -0.11047080159187317,
+            -0.05952934920787811,
+            -0.08780142664909363,
+            -0.05534890294075012,
+            -0.08456292748451233,
+            -0.06532932072877884,
+            -0.08300613611936569,
+            -0.07934247702360153,
+            -0.08030297607183456,
+            -0.10315258055925369
+          ]
+        },
+        "footprint_radius_m": 33.851375012865375,
+        "scenes_considered": 32
+      },
+      "series_feature": "brightness",
+      "series_shift": -0.0048491209745407104,
+      "series_noise": 0.032281593239307405,
+      "onset_note": "per-scene contrast does not separate before from after"
+    },
+    "checks": [],
+    "tier": null,
+    "tier_reason": "",
+    "reports": [],
+    "notes": ""
+  },
+  "tier": {
+    "recomputed_tier": "T1",
+    "recomputed_reason": "seen in one sensor only (optical_s2)",
+    "tier": "T1",
+    "reason": "seen in one sensor only (optical_s2)",
+    "consistent": true,
+    "source": "computed from the recorded evidence when the dossier was built"
+  },
+  "checks": [],
+  "checks_not_run": [
+    {
+      "check": "osm_infrastructure",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "landcover",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "wikidata_nearby",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "fire_history",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "artefact_screen",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    },
+    {
+      "check": "natural_process",
+      "reason": "never attempted: no result is recorded for this check",
+      "mandatory": "true"
+    }
+  ],
+  "onset": {
+    "absent_until": "2019-07-20",
+    "present_from": "2020-07-09",
+    "dated": true
+  },
+  "statistics": {
+    "footprint_vs_surroundings": {
+      "before": {
+        "inside": {
+          "brightness": 0.2498,
+          "ndvi": 0.082,
+          "nbr": -0.0545
+        },
+        "surroundings": {
+          "brightness": 0.2597,
+          "ndvi": 0.0827,
+          "nbr": -0.0564
+        }
+      },
+      "after": {
+        "inside": {
+          "brightness": 0.1884,
+          "ndvi": 0.0809,
+          "nbr": -0.0666
+        },
+        "surroundings": {
+          "brightness": 0.1902,
+          "ndvi": 0.0802,
+          "nbr": -0.0738
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "name": "before.png",
+      "description": "Sentinel-2 true colour, BEFORE onset",
+      "bytes": 94098,
+      "sha256": "6afca774986d6d6ca82495968dea675dbbea10cc692c8c49d4e3f50a13b6de2f"
+    },
+    {
+      "name": "falsecolor_before.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), BEFORE onset",
+      "bytes": 86114,
+      "sha256": "78a09941274856ca1472b4c949de1f0e6965b8483fe51cdfd36fb90d8eb5bea2"
+    },
+    {
+      "name": "after.png",
+      "description": "Sentinel-2 true colour, AFTER onset",
+      "bytes": 94048,
+      "sha256": "bbd3728c0e9c87fcbbb042dea077e61b7f7ad23696632eee80d8beaa36cffca7"
+    },
+    {
+      "name": "falsecolor_after.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), AFTER onset",
+      "bytes": 90583,
+      "sha256": "de9b1b06de1da19ace30491f90e739a4c3e860745601898023b165c8f52bb5ed"
+    },
+    {
+      "name": "difference.png",
+      "description": "After minus before: brightness and NDVI change",
+      "bytes": 65073,
+      "sha256": "0d95aa9b220c163ae1a945f88ff5f9926bf1652c4c6fecd87289e38e21e043ab"
+    },
+    {
+      "name": "context.png",
+      "description": "Wider setting with the footprint marked",
+      "bytes": 389283,
+      "sha256": "c4cd60a15d8213bbd4fb7fbb04c8601f90eeb5c773f30cee4d0935496094e980"
+    },
+    {
+      "name": "timeseries.png",
+      "description": "Brightness, NDVI and NBR inside the footprint versus the ring",
+      "bytes": 105097,
+      "sha256": "1aced49ec67211e3132489f278d3650748c43fea1c7dc6e409b4501a865645cf"
+    },
+    {
+      "name": "hires.png",
+      "description": "Esri World Imagery view (viewing only)",
+      "bytes": 232526,
+      "sha256": "99d506706b42ea24b3095a9c679800c984f0f97fffaf5cfa4d146cd86c8fffe0"
+    },
+    {
+      "name": "wayback_strip.png",
+      "description": "Esri Wayback versions; dates are publication dates, not acquisition dates",
+      "bytes": 248253,
+      "sha256": "4d0c8d318c04ab68140c4aeaf304fb94ca48678c5ad83712851aa46c6d2875ac"
+    },
+    {
+      "name": "dossier.md",
+      "description": "Plain-language summary",
+      "bytes": 6387,
+      "sha256": "5d7d4ab074ebce9cc59a53f77c11a9ba2e7bdd641ba29343dcf741ebb85e7e8b"
+    },
+    {
+      "name": "dossier.json",
+      "description": "This machine-readable record"
+    }
+  ],
+  "panels_missing": [],
+  "provenance": {
+    "sentinel2": {
+      "before": {
+        "window": [
+          "2018-07-20",
+          "2019-07-20"
+        ],
+        "acquisition_dates": [
+          "2018-08-29",
+          "2018-10-03",
+          "2019-04-01",
+          "2019-05-01"
+        ],
+        "scene_ids": [
+          "S2B_36QVM_20180829_1_L2A",
+          "S2B_36RVN_20180829_1_L2A",
+          "S2A_36QVM_20181003_1_L2A",
+          "S2A_36RVN_20181003_1_L2A",
+          "S2A_36QVM_20190401_1_L2A",
+          "S2A_36RVN_20190401_1_L2A",
+          "S2A_36QVM_20190501_1_L2A",
+          "S2A_36RVN_20190501_1_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_36QVM_20180829_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_36RVN_20180829_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20181003_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20181003_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20190401_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20190401_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20190501_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20190501_1_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32636",
+          "res_m": 10.0,
+          "shape": [
+            150,
+            152
+          ],
+          "bounds": [
+            468430.0,
+            2699900.0,
+            469950.0,
+            2701400.0
+          ],
+          "bbox_wgs84": [
+            32.688579,
+            24.412204,
+            32.703604,
+            24.425782
+          ]
+        }
+      },
+      "after": {
+        "window": [
+          "2020-07-09",
+          "2021-07-09"
+        ],
+        "acquisition_dates": [
+          "2020-09-02",
+          "2020-09-27",
+          "2020-10-22",
+          "2020-11-11"
+        ],
+        "scene_ids": [
+          "S2A_36QVM_20200902_1_L2A",
+          "S2A_36RVN_20200902_1_L2A",
+          "S2B_36QVM_20200927_1_L2A",
+          "S2B_36RVN_20200927_1_L2A",
+          "S2A_36QVM_20201022_1_L2A",
+          "S2A_36RVN_20201022_1_L2A",
+          "S2A_36QVM_20201111_1_L2A",
+          "S2A_36RVN_20201111_1_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20200902_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20200902_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_36QVM_20200927_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_36RVN_20200927_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20201022_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20201022_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20201111_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20201111_1_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32636",
+          "res_m": 10.0,
+          "shape": [
+            150,
+            152
+          ],
+          "bounds": [
+            468430.0,
+            2699900.0,
+            469950.0,
+            2701400.0
+          ],
+          "bbox_wgs84": [
+            32.688579,
+            24.412204,
+            32.703604,
+            24.425782
+          ]
+        }
+      },
+      "context": {
+        "window": [
+          "2020-07-09",
+          "2021-07-09"
+        ],
+        "acquisition_dates": [
+          "2020-09-02",
+          "2020-09-27",
+          "2020-10-22",
+          "2020-11-11"
+        ],
+        "scene_ids": [
+          "S2A_36QVM_20200902_1_L2A",
+          "S2A_36RVN_20200902_1_L2A",
+          "S2B_36QVM_20200927_1_L2A",
+          "S2B_36RVN_20200927_1_L2A",
+          "S2A_36QVM_20201022_1_L2A",
+          "S2A_36RVN_20201022_1_L2A",
+          "S2A_36QVM_20201111_1_L2A",
+          "S2A_36RVN_20201111_1_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20200902_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20200902_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_36QVM_20200927_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_36RVN_20200927_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20201022_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20201022_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36QVM_20201111_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_36RVN_20201111_1_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32636",
+          "res_m": 20.0,
+          "shape": [
+            499,
+            503
+          ],
+          "bounds": [
+            464160.0,
+            2695660.0,
+            474220.0,
+            2705640.0
+          ],
+          "bbox_wgs84": [
+            32.646351,
+            24.373818,
+            32.745797,
+            24.464153
+          ]
+        }
+      }
+    },
+    "esri": {
+      "note": "Shown for viewing only: not used for detection and not counted as an independent sensor.",
+      "hires": {
+        "source": "Esri World Imagery (live mosaic)",
+        "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+        "lat": 24.418993477279052,
+        "lon": 32.696092019160496,
+        "size_m": 800.0,
+        "zoom": 16,
+        "zoom_requested": null,
+        "ground_res_m": 2.175,
+        "shape": [
+          368,
+          368
+        ],
+        "bbox": [
+          32.69213676452637,
+          24.41540308702853,
+          32.70003318786621,
+          24.42259314871223
+        ],
+        "origin_px": [
+          9912172,
+          7214313
+        ],
+        "tiles": 6,
+        "tile_url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "imagery_verified": true,
+        "retrieved": "2026-11-25",
+        "use": "viewing only; not a detector input and not an independent sensor",
+        "acquisition_date": "2025-02-19",
+        "sensor": "WV03",
+        "provider": "Vantor",
+        "source_resolution_m": 0.31,
+        "note": "per Esri metadata at the centre point of the live mosaic"
+      },
+      "wayback": [
+        {
+          "release_id": "WB_2014_R01",
+          "release_date": "2014-02-20",
+          "release_num": 10,
+          "label": "Esri release 2014-02-20 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.175,
+          "bbox": [
+            32.69312381744385,
+            24.41630186714135,
+            32.69904613494873,
+            24.421694413405355
+          ],
+          "origin_px": [
+            9912218,
+            7214359
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2017_R05",
+          "release_date": "2017-03-15",
+          "release_num": 29387,
+          "label": "Esri release 2017-03-15 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.175,
+          "bbox": [
+            32.69312381744385,
+            24.41630186714135,
+            32.69904613494873,
+            24.421694413405355
+          ],
+          "origin_px": [
+            9912218,
+            7214359
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/29387/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2019_R13",
+          "release_date": "2019-10-09",
+          "release_num": 11351,
+          "label": "Esri release 2019-10-09 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.175,
+          "bbox": [
+            32.69312381744385,
+            24.41630186714135,
+            32.69904613494873,
+            24.421694413405355
+          ],
+          "origin_px": [
+            9912218,
+            7214359
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/11351/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2022_R01",
+          "release_date": "2022-02-02",
+          "release_num": 26083,
+          "label": "Esri release 2022-02-02 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.175,
+          "bbox": [
+            32.69312381744385,
+            24.41630186714135,
+            32.69904613494873,
+            24.421694413405355
+          ],
+          "origin_px": [
+            9912218,
+            7214359
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/26083/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2023_R11",
+          "release_date": "2023-12-07",
+          "release_num": 56102,
+          "label": "Esri release 2023-12-07 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.175,
+          "bbox": [
+            32.69312381744385,
+            24.41630186714135,
+            32.69904613494873,
+            24.421694413405355
+          ],
+          "origin_px": [
+            9912218,
+            7214359
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/56102/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2026_R05",
+          "release_date": "2026-05-28",
+          "release_num": 10842,
+          "label": "Esri release 2026-05-28 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.175,
+          "bbox": [
+            32.69312381744385,
+            24.41630186714135,
+            32.69904613494873,
+            24.421694413405355
+          ],
+          "origin_px": [
+            9912218,
+            7214359
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10842/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        }
+      ],
+      "tiles_used": 30,
+      "tile_limit": 60
+    },
+    "sources": {
+      "sentinel2_catalogue": "https://earth-search.aws.element84.com/v1",
+      "esri_world_imagery": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "esri_wayback": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml"
+    },
+    "attribution": [
+      "Contains modified Copernicus Sentinel data (see scene dates) (Sentinel-2 L2A via Earth Search)",
+      "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+    ]
+  },
+  "closing_statement": "This dossier records, at most, an unexplained observation: a surface feature that the checks listed above did not account for. It makes no claim about what caused the feature or where it came from. An unexplained observation is not evidence of any particular origin: checks that were not run, gaps in the data and errors in this pipeline all remain possible explanations."
+}

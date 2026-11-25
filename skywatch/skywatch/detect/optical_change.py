@@ -29,7 +29,10 @@ Z_STEP = 6.0
 Z_TRANSIENT = 9.0
 #: The year-on-year jump at the break must carry this share of the full step.
 ABRUPT_SHARE = 0.6
-DEFAULT_YEARS = tuple(range(2017, 2027))
+#: 2017 is left out: its imagery comes from a different processing chain.
+DEFAULT_YEARS = tuple(range(2018, 2027))
+#: Window (metres) in which same-year changes around a blob are counted.
+CROWD_WINDOW_M = 3000.0
 _SERIES_BANDS = ("blue", "green", "red", "nir", "swir22")
 
 
@@ -41,6 +44,13 @@ def season_window(year: int, season: tuple[str, str]) -> tuple[str, str]:
     start = f"{year}-{season[0]}"
     end_year = year + 1 if season[1] < season[0] else year
     return start, f"{end_year}-{season[1]}"
+
+
+def season_middle(year: int, season: tuple[str, str]) -> str:
+    """ISO date at the middle of the season window: the target date for composites."""
+    start, end = season_window(year, season)
+    first, last = date.fromisoformat(start), date.fromisoformat(end)
+    return (first + (last - first) / 2).isoformat()
 
 
 def features(bands: dict[str, np.ndarray]) -> np.ndarray:
@@ -57,7 +67,7 @@ def features(bands: dict[str, np.ndarray]) -> np.ndarray:
 
 
 def yearly_stack(region: Region, years: Sequence[int], res: float,
-                 max_scenes: int = 3, workers: int = 3) -> tuple[io.Grid, list[int], np.ndarray, dict[int, dict[str, Any]]]:
+                 max_scenes: int = 3, workers: int = 2) -> tuple[io.Grid, list[int], np.ndarray, dict[int, dict[str, Any]]]:
     """Composite every year; return grid, usable years, features[y, f, H, W], metadata."""
     grid = io.make_grid(region.bbox, res)
 
@@ -66,7 +76,8 @@ def yearly_stack(region: Region, years: Sequence[int], res: float,
         if start > date.today().isoformat():
             return year, None
         try:
-            comp = io.s2_composite(grid, start, end, max_scenes=max_scenes)
+            comp = io.s2_composite(grid, start, end, max_scenes=max_scenes,
+                                   prefer_date=season_middle(year, region.season))
         except Exception as exc:
             log.warning("composite failed for %s %s: %r", region.id, year, exc)
             return year, None
@@ -74,43 +85,65 @@ def yearly_stack(region: Region, years: Sequence[int], res: float,
             return year, None
         return year, (features(comp), {"dates": comp["dates"], "scene_ids": comp["scene_ids"]})
 
+    # Fill one preallocated array as years arrive, so no second copy is held.
+    stack = np.full((len(years), 4, *grid.shape), np.nan, "float32")
+    meta: dict[int, dict[str, Any]] = {}
     with ThreadPoolExecutor(workers) as pool:
-        results = dict(pool.map(one, years))
-    usable = [y for y in years if results[y] is not None]
-    meta = {y: results[y][1] for y in usable}
-    stack = (np.stack([results[y][0] for y in usable]) if usable
-             else np.empty((0, 4, *grid.shape), "float32"))
+        for index, (year, result) in enumerate(pool.map(one, years)):
+            if result is not None:
+                stack[index] = result[0]
+                meta[year] = result[1]
+    usable = [y for y in years if y in meta]
+    if len(usable) < len(years):
+        stack = stack[[i for i, y in enumerate(years) if y in meta]]
     return grid, usable, stack, meta
 
 
-def _sums(series: np.ndarray, name: str) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, float]:
-    """Cumulative sums of one feature's yearly series and its region-wide noise floor."""
+def noise_floors(stack: np.ndarray) -> list[float]:
+    """Region-wide robust year-to-year noise of each feature (one value per feature)."""
+    floors: list[float] = []
+    for f, name in enumerate(FEATURES[:stack.shape[1]]):
+        diffs = np.abs(np.diff(stack[:, f, ::7, ::7], axis=0))
+        finite = diffs[np.isfinite(diffs)]
+        floor = float(np.median(finite) * 1.4826 / np.sqrt(2)) if finite.size else 0.0
+        floors.append(max(floor, 0.25 * MIN_STEP[name] / 3.0))
+    return floors
+
+
+def _sums(series: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Validity mask and cumulative sums of one feature's yearly series."""
     ok = np.isfinite(series)
     filled = np.where(ok, series, 0.0).astype("float32")
-    diffs = np.abs(np.diff(series[:, ::7, ::7], axis=0))
-    finite = diffs[np.isfinite(diffs)]
-    floor = float(np.median(finite) * 1.4826 / np.sqrt(2)) if finite.size else 0.0
-    floor = max(floor, 0.25 * MIN_STEP[name] / 3.0)
     return ok, np.cumsum(filled, axis=0), np.cumsum(filled ** 2, axis=0), \
-        np.cumsum(ok, axis=0, dtype="float32"), floor
+        np.cumsum(ok, axis=0, dtype="float32")
 
 
-def step_statistics(stack: np.ndarray) -> dict[str, np.ndarray]:
+def step_statistics(stack: np.ndarray, chunk_rows: int = 400) -> dict[str, np.ndarray]:
     """Per-pixel best persistent step and best single-year transient.
 
     ``stack`` is features[y, f, H, W] with NaN gaps. Returns arrays over (H, W):
     step_z, step_k (index of the first year after the break), trans_z, trans_k,
     n_valid, and step_delta / trans_delta [f, H, W]: the after-minus-before
     mean at the best step, and the excursion in the best transient year.
-    Memory stays near twice the size of ``stack``.
+    The raster is processed in strips of ``chunk_rows`` rows to bound memory;
+    the noise floors are computed once over the whole raster.
     """
+    floors = noise_floors(stack)
+    parts = [_step_block(stack[:, :, r0:r0 + chunk_rows], floors)
+             for r0 in range(0, max(stack.shape[2], 1), chunk_rows)]
+    return {key: np.concatenate([p[key] for p in parts], axis=-2) for key in parts[0]}
+
+
+def _step_block(stack: np.ndarray, floors: Sequence[float]) -> dict[str, np.ndarray]:
+    """``step_statistics`` for one strip, with the noise floors supplied."""
     n_years, n_feat, height, width = stack.shape
     best_step = np.zeros((n_years, height, width), "float16")
     best_trans = np.zeros((n_years, height, width), "float16")
     n_valid = np.isfinite(stack).all(axis=1).sum(axis=0).astype("int16")
     for f in range(n_feat):
         series = stack[:, f]
-        ok, csum, csum2, cnum, floor = _sums(series, FEATURES[f])
+        ok, csum, csum2, cnum = _sums(series)
+        floor = floors[f]
         total, total2, count = csum[-1], csum2[-1], cnum[-1]
         minimum = MIN_STEP[FEATURES[f]]
         with np.errstate(divide="ignore", invalid="ignore"):
@@ -152,7 +185,7 @@ def step_statistics(stack: np.ndarray) -> dict[str, np.ndarray]:
     before_index = np.clip(step_k - 1, 0, None)[None]
     for f in range(n_feat):
         series = stack[:, f]
-        ok, csum, _csum2, cnum, _ = _sums(series, FEATURES[f])
+        ok, csum, _csum2, cnum = _sums(series)
         total, count = csum[-1], cnum[-1]
         with np.errstate(divide="ignore", invalid="ignore"):
             c1 = np.take_along_axis(csum, before_index, 0)[0]
@@ -170,11 +203,20 @@ def step_statistics(stack: np.ndarray) -> dict[str, np.ndarray]:
 
 
 def _blobs(mask: np.ndarray, key: np.ndarray, res: float, min_area_m2: float,
-           max_area_m2: float) -> list[tuple[int, np.ndarray, tuple[slice, slice]]]:
-    """Connected components of ``mask`` that share one break year ``key``."""
-    out: list[tuple[int, np.ndarray, tuple[slice, slice]]] = []
+           max_area_m2: float) -> list[tuple[int, np.ndarray, tuple[slice, slice], float]]:
+    """Connected components of ``mask`` that share one break year ``key``.
+
+    Each blob comes with its crowding: the share of the surrounding
+    ``CROWD_WINDOW_M`` window, outside the blob itself, that changed in the
+    same year. Isolated changes score near zero; weather, seasonal and
+    processing effects, which touch whole neighbourhoods at once, score high.
+    """
+    out: list[tuple[int, np.ndarray, tuple[slice, slice], float]] = []
+    size = max(3, int(round(CROWD_WINDOW_M / res)) | 1)
     for k in np.unique(key[mask]):
-        part = ndimage.binary_opening(mask & (key == k), structure=np.ones((2, 2), bool))
+        same_year = mask & (key == k)
+        density = ndimage.uniform_filter(same_year.astype("float32"), size=size, mode="constant")
+        part = ndimage.binary_opening(same_year, structure=np.ones((2, 2), bool))
         part = ndimage.binary_closing(part, structure=np.ones((3, 3), bool))
         labels, count = ndimage.label(part, structure=np.ones((3, 3), int))
         if not count:
@@ -183,7 +225,9 @@ def _blobs(mask: np.ndarray, key: np.ndarray, res: float, min_area_m2: float,
             blob = labels[box] == index
             area = blob.sum() * res ** 2
             if min_area_m2 <= area <= max_area_m2:
-                out.append((int(k), blob, box))
+                own = blob.sum() / float(size * size)
+                crowding = max(float(np.median(density[box][blob])) - own, 0.0)
+                out.append((int(k), blob, box, crowding))
     return out
 
 
@@ -198,7 +242,8 @@ def detect_changes(region: Region, years: Sequence[int] | None = None, res: floa
     the change in each feature, and its shape. ``score`` is
     ``min(1, median z / 25)`` over the blob. Pixels with fewer than five valid
     years are ignored. Ranking puts persistent steps before single-year
-    changes, then orders by score weighted by the logarithm of area.
+    changes, then favours isolated changes (low ``measurements["crowding"]``)
+    with regular outlines.
     Candidates beyond ``max_candidates`` are dropped with a log line saying how
     many. ``measurements["kind"]`` is ``step`` (persisted at least two years),
     ``latest_year`` (changed in the newest composite: persistence unknown) or
@@ -216,7 +261,7 @@ def detect_changes(region: Region, years: Sequence[int] | None = None, res: floa
     enough = stats["n_valid"] >= 5
     step_mask = enough & (stats["step_z"] >= Z_STEP)
     trans_mask = enough & ~step_mask & (stats["trans_z"] >= Z_TRANSIENT)
-    found: list[tuple[str, int, np.ndarray, tuple[slice, slice]]] = []
+    found: list[tuple[str, int, np.ndarray, tuple[slice, slice], float]] = []
     found += [("step", *b) for b in _blobs(step_mask, stats["step_k"], res, min_area_m2, max_area_m2)]
     found += [("transient", *b) for b in _blobs(trans_mask, stats["trans_k"], res, min_area_m2, max_area_m2)]
     if diagnostics is not None:
@@ -229,7 +274,7 @@ def detect_changes(region: Region, years: Sequence[int] | None = None, res: floa
             "transient_fraction": float(trans_mask.mean()),
             "valid_fraction": float(enough.mean())})
     candidates: list[Candidate] = []
-    for kind, k, blob, box in found:
+    for kind, k, blob, box, crowding in found:
         zmap = stats["step_z" if kind == "step" else "trans_z"][box]
         delta = stats["step_delta" if kind == "step" else "trans_delta"][(slice(None),) + box]
         z_med = float(np.median(zmap[blob]))
@@ -273,7 +318,7 @@ def detect_changes(region: Region, years: Sequence[int] | None = None, res: floa
                 "kind": kind, "break_year": int(year), "step_snr": z_med,
                 "d_brightness": d["brightness"], "d_ndvi": d["ndvi"], "d_nbr": d["nbr"],
                 "d_swir": d["swir"], "persistence_years": int(persistence),
-                "recovery_fraction": recovery,
+                "recovery_fraction": recovery, "crowding": crowding,
                 "n_valid_years": int(np.median(stats["n_valid"][box][blob])),
                 "years_used": [int(y) for y in usable],
                 "composite_dates": {str(y): meta[y]["dates"] for y in usable},
@@ -281,8 +326,10 @@ def detect_changes(region: Region, years: Sequence[int] | None = None, res: floa
                 "scene_ids_after": meta[year]["scene_ids"], "res_m": res,
             }))
     def rank(c: Candidate) -> tuple[int, float]:
-        weight = 1.0 + 0.5 * np.log10(max(c.area_m2, min_area_m2) / min_area_m2)
-        return (0 if c.measurements["kind"] == "step" else 1, -c.score * weight)
+        # Isolated, geometric changes first: that is what the search is for.
+        isolation = 1.0 / (1.0 + c.measurements["crowding"] / 0.02)
+        geometry = 1.0 + float(c.shape.get("regularity", 0.0))
+        return (0 if c.measurements["kind"] == "step" else 1, -c.score * isolation * geometry)
 
     candidates.sort(key=rank)
     if len(candidates) > max_candidates:
@@ -358,7 +405,7 @@ def detect_event_change(region: Region, event_date: str, window_days: int = 150,
         big |= strong
     mask = big & (z >= z_threshold)
     candidates: list[Candidate] = []
-    for _, blob, box in _blobs(mask, np.zeros(grid.shape, "int8"), res, min_area_m2, max_area_m2):
+    for _, blob, box, crowding in _blobs(mask, np.zeros(grid.shape, "int8"), res, min_area_m2, max_area_m2):
         z_med = float(np.median(z[box][blob]))
         d = {name: float(np.nanmedian(diff[i][box][blob])) for i, name in enumerate(FEATURES)}
         rows, cols = np.nonzero(blob)
@@ -378,7 +425,7 @@ def detect_event_change(region: Region, event_date: str, window_days: int = 150,
             measurements={"kind": "event_window", "event_date": event_date[:10],
                           "break_year": when.year, "step_snr": z_med,
                           "d_brightness": d["brightness"], "d_ndvi": d["ndvi"], "d_nbr": d["nbr"],
-                          "d_swir": d["swir"], "seasonal_baseline": baseline,
+                          "d_swir": d["swir"], "seasonal_baseline": baseline, "crowding": crowding,
                           "composite_dates": {"before": before["dates"], "after": after["dates"]},
                           "scene_ids_before": before["scene_ids"],
                           "scene_ids_after": after["scene_ids"], "res_m": res}))

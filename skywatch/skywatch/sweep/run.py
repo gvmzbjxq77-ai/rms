@@ -2,6 +2,7 @@
 
     python -m skywatch.sweep.run detect    [--kind blind|control|seeded] [--regions ID ...]
     python -m skywatch.sweep.run refine    [--top 20]
+    python -m skywatch.sweep.run sensors   [--kind blind]     thermal, radar, night lights
     python -m skywatch.sweep.run eliminate
 
 Each stage writes one JSON-lines file per region under ``output/candidates/
@@ -53,11 +54,13 @@ def _figure(region: Region, diag: dict[str, Any], candidates: list[Candidate], p
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    from ..detect.optical_change import season_window
+    from ..detect.optical_change import season_middle, season_window
 
     grid, years = diag["grid"], diag["years"]
-    first = io.s2_composite(grid, *season_window(years[0], region.season), max_scenes=3)
-    last = io.s2_composite(grid, *season_window(years[-1], region.season), max_scenes=3)
+    first = io.s2_composite(grid, *season_window(years[0], region.season), max_scenes=3,
+                            prefer_date=season_middle(years[0], region.season))
+    last = io.s2_composite(grid, *season_window(years[-1], region.season), max_scenes=3,
+                           prefer_date=season_middle(years[-1], region.season))
     step = 4 if grid.width > 1200 else 2
     stretch = None
     fig, axes = plt.subplots(1, 3, figsize=(18, 6.4))
@@ -172,6 +175,42 @@ def refine_region(region: Region, top: int = 20, force: bool = False) -> int:
     return len(refined)
 
 
+def sensors_region(region: Region, force: bool = False, radar: bool = False) -> dict[str, Any]:
+    """Run the non-optical detectors on one region: thermal, radar, night lights.
+
+    These look for the signatures that have no onset date: persistent thermal
+    anomalies, bright radar targets in empty terrain and isolated lights.
+    Each detector that fails or is unavailable is recorded with its reason.
+    """
+    out = CAND_DIR / "sensors" / f"{region.id}.jsonl"
+    note = CAND_DIR / "sensors" / f"{region.id}.json"
+    if note.exists() and not force:
+        return json.loads(note.read_text())
+    found: list[Candidate] = []
+    report: dict[str, Any] = {"region": region.id}
+    jobs: list[tuple[str, Any]] = []
+    from ..detect import landsat, sar
+    jobs.append(("thermal", lambda: landsat.detect_thermal_anomalies(region)))
+    if radar:
+        jobs.append(("radar", lambda: sar.detect_bright_scatterers(region, "2024-01-01", "2026-11-01")))
+    try:
+        from ..detect import nightlights
+        jobs.append(("lights", lambda: nightlights.detect_isolated_lights(region)))
+    except Exception as exc:
+        report["lights"] = f"not available: {type(exc).__name__}"
+    for name, job in jobs:
+        started = time.time()
+        try:
+            result = job()
+            found.extend(result)
+            report[name] = {"candidates": len(result), "seconds": round(time.time() - started, 1)}
+        except Exception as exc:
+            report[name] = {"error": f"{type(exc).__name__}: {str(exc)[:200]}"}
+    save_candidates(out, found)
+    note.write_text(json.dumps(report, indent=1))
+    return report
+
+
 def _refine_job(region: Region, top: int, force: bool) -> tuple[str, int]:
     return region.id, refine_region(region, top, force)
 
@@ -188,14 +227,18 @@ def eliminate_region(region: Region, force: bool = False, confirm: bool = True) 
     if out.exists() and not force:
         return len(load_candidates(out))
     candidates = load_candidates(CAND_DIR / "refined" / f"{region.id}.jsonl")
-    done = run_all(candidates, confirm=confirm, progress=False)
+    # Undated finds from the other sensors: the strongest few of each kind.
+    extra = load_candidates(CAND_DIR / "sensors" / f"{region.id}.jsonl")
+    for detector, keep in (("landsat_thermal", 4), ("sar_bright", 4), ("viirs_light", 3)):
+        candidates += [c for c in extra if c.detector == detector][:keep]
+    done = run_all(candidates, workers=4, confirm=confirm, progress=False)
     save_candidates(out, done)
     return len(done)
 
 
 def main(argv: Sequence[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    parser.add_argument("stage", choices=["detect", "refine", "eliminate"])
+    parser.add_argument("stage", choices=["detect", "refine", "sensors", "eliminate"])
     parser.add_argument("--kind", choices=["blind", "control", "seeded"])
     parser.add_argument("--regions", nargs="*")
     parser.add_argument("--res", type=float, default=20.0)
@@ -214,6 +257,10 @@ def main(argv: Sequence[str] | None = None) -> None:
                 print(f"{s['region']:<20} {s.get('status'):<8} years={len(s.get('years', []))} "
                       f"blobs={s.get('n_blobs_total')} kept={s.get('n_candidates_kept')} "
                       f"{s.get('seconds')}s {s.get('error', '')}", flush=True)
+    elif args.stage == "sensors":
+        with ProcessPoolExecutor(args.workers) as pool:
+            for future in as_completed([pool.submit(sensors_region, r, args.force) for r in chosen]):
+                print(json.dumps(future.result()), flush=True)
     elif args.stage == "refine":
         ready = [r for r in chosen if (CAND_DIR / "raw" / f"{r.id}.jsonl").exists()]
         with ProcessPoolExecutor(args.workers) as pool:
