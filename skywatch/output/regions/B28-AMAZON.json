@@ -1,0 +1,37 @@
+{
+ "region": "B28-AMAZON",
+ "name": "Jurua-Purus interfluve, Amazonas, Brazil",
+ "kind": "blind",
+ "biome": "rainforest",
+ "bbox": [
+  -66.1804931898403,
+  -5.6796622349982036,
+  -65.8195068101597,
+  -5.3203377650017964
+ ],
+ "area_km2": 1600.0000000000211,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 791,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "transient": 37,
+  "latest_year": 3
+ },
+ "step_fraction": 0.0032257824143070045,
+ "transient_fraction": 0.28565921510183806,
+ "valid_fraction": 1.0,
+ "seconds": 194.4
+}

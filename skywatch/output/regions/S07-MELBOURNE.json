@@ -1,0 +1,40 @@
+{
+ "region": "S07-MELBOURNE",
+ "name": "Seeded: Melbourne, AU (nuforc report of 2021-05-25)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  144.9178361908353,
+  -37.84993244699964,
+  145.00880380916473,
+  -37.77806755300036
+ ],
+ "area_km2": 63.99999999998611,
+ "res_m": 20.0,
+ "event_date": "2021-05-25",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 283,
+ "n_candidates_kept": 180,
+ "kinds": {
+  "event_window": 60,
+  "step": 80,
+  "latest_year": 14,
+  "transient": 26
+ },
+ "step_fraction": 0.011318504383087841,
+ "transient_fraction": 0.09146043294173772,
+ "valid_fraction": 0.99978531814658,
+ "seconds": 71.2
+}

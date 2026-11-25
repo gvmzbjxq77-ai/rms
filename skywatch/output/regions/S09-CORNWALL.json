@@ -1,0 +1,40 @@
+{
+ "region": "S09-CORNWALL",
+ "name": "Seeded: Cornwall, CA (nuforc report of 2017-07-18)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -74.77898220566492,
+  44.98215755300036,
+  -74.67731779433508,
+  45.05402244699964
+ ],
+ "area_km2": 63.999999999987416,
+ "res_m": 20.0,
+ "event_date": "2017-07-18",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 91,
+ "n_candidates_kept": 151,
+ "kinds": {
+  "event_window": 60,
+  "step": 65,
+  "transient": 9,
+  "latest_year": 17
+ },
+ "step_fraction": 0.011382294482920385,
+ "transient_fraction": 0.004697356888016493,
+ "valid_fraction": 1.0,
+ "seconds": 53.6
+}

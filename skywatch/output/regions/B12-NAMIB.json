@@ -1,0 +1,35 @@
+{
+ "region": "B12-NAMIB",
+ "name": "Namib sand sea, Namibia",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  15.102560569610684,
+  -24.679662234998204,
+  15.497439430389317,
+  -24.320337765001796
+ ],
+ "area_km2": 1600.0000000000066,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 31,
+ "n_candidates_kept": 31,
+ "kinds": {
+  "transient": 31
+ },
+ "step_fraction": 1.4492862265334323e-05,
+ "transient_fraction": 0.0003760647880918648,
+ "valid_fraction": 1.0,
+ "seconds": 225.4
+}

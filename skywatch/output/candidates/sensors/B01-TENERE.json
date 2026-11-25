@@ -1,0 +1,11 @@
+{
+ "region": "B01-TENERE",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 70.3
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 5.6
+ }
+}

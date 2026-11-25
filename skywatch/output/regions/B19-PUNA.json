@@ -1,0 +1,37 @@
+{
+ "region": "B19-PUNA",
+ "name": "Puna de Atacama, Argentina",
+ "kind": "blind",
+ "biome": "plateau",
+ "bbox": [
+  -67.79855975184269,
+  -25.379662234998204,
+  -67.4014402481573,
+  -25.020337765001795
+ ],
+ "area_km2": 1600.0000000000623,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 1253,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "transient": 29,
+  "latest_year": 11
+ },
+ "step_fraction": 0.0019047436449551947,
+ "transient_fraction": 0.04170722450657086,
+ "valid_fraction": 0.9954086067177548,
+ "seconds": 180.0
+}

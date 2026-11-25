@@ -1,0 +1,37 @@
+{
+ "region": "B16-NULLARBOR",
+ "name": "Nullarbor Plain, Australia",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  127.29148542871258,
+  -30.679662234998204,
+  127.70851457128742,
+  -30.320337765001796
+ ],
+ "area_km2": 1600.0000000000466,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 205,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 3,
+  "latest_year": 9,
+  "transient": 108
+ },
+ "step_fraction": 2.0749161916939397e-05,
+ "transient_fraction": 0.0014990659215520568,
+ "valid_fraction": 1.0,
+ "seconds": 176.7
+}

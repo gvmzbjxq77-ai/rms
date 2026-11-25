@@ -1,0 +1,11 @@
+{
+ "region": "B05-RUBALKHALI",
+ "thermal": {
+  "candidates": 3,
+  "seconds": 115.9
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.2
+ }
+}

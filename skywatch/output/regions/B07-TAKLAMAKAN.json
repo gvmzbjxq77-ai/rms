@@ -1,0 +1,37 @@
+{
+ "region": "B07-TAKLAMAKAN",
+ "name": "Western Taklamakan, China",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  80.67011192753257,
+  38.4203377650018,
+  81.12988807246744,
+  38.779662234998206
+ ],
+ "area_km2": 1599.9999999999707,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 552,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "transient": 31,
+  "latest_year": 9
+ },
+ "step_fraction": 0.007375238768518601,
+ "transient_fraction": 0.0034004231682098628,
+ "valid_fraction": 1.0,
+ "seconds": 258.0
+}

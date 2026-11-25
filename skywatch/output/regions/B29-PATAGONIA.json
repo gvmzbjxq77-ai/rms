@@ -1,0 +1,36 @@
+{
+ "region": "B29-PATAGONIA",
+ "name": "Patagonian steppe, Santa Cruz, Argentina",
+ "kind": "blind",
+ "biome": "steppe",
+ "bbox": [
+  -70.76593374648262,
+  -47.679662234998204,
+  -70.23406625351738,
+  -47.320337765001796
+ ],
+ "area_km2": 1599.999999999991,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025
+ ],
+ "n_blobs_total": 2519,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "transient": 37,
+  "latest_year": 3
+ },
+ "step_fraction": 0.024517547995050886,
+ "transient_fraction": 0.5333798194689516,
+ "valid_fraction": 0.9997428750656643,
+ "seconds": 172.2
+}

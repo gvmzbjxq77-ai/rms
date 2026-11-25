@@ -9,6 +9,12 @@ regions hold known, conventional, datable features that a working pipeline
 must find and then explain, plus "pristine" places declared in advance to
 contain nothing, which measure the raw false-positive rate. Seeded regions
 come from witness reports (``skywatch.reports.ingest.seeded_regions``).
+
+Detectable window: yearly composites run from 2018 and a step needs two
+years on each side, so persistent changes can be dated from 2020 to 2025,
+single-year changes from 2019, and changes in the newest year are reported
+with unknown persistence. Dated sites (seeded and some controls) are also
+examined with the event-window detector around their date.
 """
 from __future__ import annotations
 
@@ -82,9 +88,9 @@ REGIONS: list[Region] = [
 
     # ---- controls with a known conventional feature ---------------------------
     _control("C01-BENBAN", "Benban solar park, Egypt", 24.456, 32.739, 9.0, ("06-01", "08-31"), "desert",
-             "A 37 km2 solar park built on bare desert in 2018-2019, next to new irrigation circles. Must be detected with a 2018 or 2019 break and explained as mapped infrastructure.",
-             {"min_candidates": 1, "target": {"lat": 24.456, "lon": 32.739, "radius_m": 3500},
-              "break_year": [2018, 2019], "explained_by": ["osm_infrastructure", "wikidata_nearby"]}),
+             "A 37 km2 solar park beside expanding irrigation farms. The park itself was built in 2018-2019, before the earliest change this detector can date (2020), so the test here is the later construction in and around it: it must be detected and explained as mapped infrastructure or farmland.",
+             {"min_candidates": 1, "target": {"lat": 24.456, "lon": 32.739, "radius_m": 6000},
+              "break_year": None, "explained_by": ["osm_infrastructure", "wikidata_nearby", "landcover"]}),
     _control("C02-OWEINAT", "Sharq El Owainat pivot farms, Egypt", 22.58, 28.72, 12.0, ("12-01", "02-28"), "desert",
              "Centre-pivot irrigation circles about 800 m across in open desert, with new circles added over the years. Must be explained as agriculture.",
              {"min_candidates": 1, "target": None, "break_year": None,

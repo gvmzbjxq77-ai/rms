@@ -1,0 +1,33 @@
+{
+ "region": "B17-KALAHARI",
+ "name": "Central Kalahari, Botswana",
+ "kind": "blind",
+ "biome": "savanna",
+ "bbox": [
+  23.605814582977295,
+  -22.479662234998205,
+  23.994185417022706,
+  -22.120337765001796
+ ],
+ "area_km2": 1600.0000000000045,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 0,
+ "n_candidates_kept": 0,
+ "kinds": {},
+ "step_fraction": 0.0,
+ "transient_fraction": 0.0,
+ "valid_fraction": 1.0,
+ "seconds": 188.8
+}

@@ -1,0 +1,36 @@
+{
+ "region": "B10-SIMPSON",
+ "name": "Simpson Desert, Australia",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  137.30176465703153,
+  -25.179662234998204,
+  137.69823534296847,
+  -24.820337765001796
+ ],
+ "area_km2": 1600.0000000000557,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 637,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 117,
+  "transient": 3
+ },
+ "step_fraction": 0.004335613254692685,
+ "transient_fraction": 4.133299138944355e-05,
+ "valid_fraction": 1.0,
+ "seconds": 106.3
+}

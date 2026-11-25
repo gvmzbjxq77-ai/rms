@@ -1,0 +1,39 @@
+{
+ "region": "S02-CLARKS-SUMMIT",
+ "name": "Seeded: Clarks Summit, US (nuforc report of 2020-02-23)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -75.7564883544539,
+  41.45275755300036,
+  -75.6605516455461,
+  41.524622446999636
+ ],
+ "area_km2": 63.99999999999123,
+ "res_m": 20.0,
+ "event_date": "2020-02-23",
+ "n_event_candidates": 44,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 85,
+ "n_candidates_kept": 129,
+ "kinds": {
+  "event_window": 44,
+  "step": 7,
+  "transient": 78
+ },
+ "step_fraction": 0.0005024048034800723,
+ "transient_fraction": 0.02309836718438869,
+ "valid_fraction": 1.0,
+ "seconds": 80.7
+}

@@ -1,0 +1,37 @@
+{
+ "region": "B22-PUTORANA",
+ "name": "Putorana Plateau, Russia",
+ "kind": "blind",
+ "biome": "tundra",
+ "bbox": [
+  95.48698330014612,
+  69.3203377650018,
+  96.51301669985388,
+  69.6796622349982
+ ],
+ "area_km2": 1599.9999999999875,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 2228,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 5,
+  "transient": 114,
+  "latest_year": 1
+ },
+ "step_fraction": 6.657153428366085e-05,
+ "transient_fraction": 0.0962345872179937,
+ "valid_fraction": 1.0,
+ "seconds": 244.3
+}

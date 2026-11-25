@@ -61,7 +61,10 @@ def follow_up(candidate: Candidate, hires: bool = True, stamp: bool = True,
         report["dossier"] = "kept"
     else:
         try:
-            build.build_dossier(candidate, folder, hires=hires)
+            built = build.build_dossier(candidate, DOSSIERS, hires=hires)
+            if built != folder:
+                report["folder"] = str(built)
+                folder = built
             report["dossier"] = "built"
         except Exception as exc:
             report["dossier"] = f"failed: {type(exc).__name__}: {str(exc)[:160]}"

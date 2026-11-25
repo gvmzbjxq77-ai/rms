@@ -1,0 +1,36 @@
+{
+ "region": "B23-BARRENLANDS",
+ "name": "Barrenlands, Nunavut, Canada",
+ "kind": "blind",
+ "biome": "tundra",
+ "bbox": [
+  -100.42511706488547,
+  64.8203377650018,
+  -99.57488293511453,
+  65.1796622349982
+ ],
+ "area_km2": 1600.0000000000264,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 1716,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "transient": 40
+ },
+ "step_fraction": 0.011026477005858449,
+ "transient_fraction": 0.006574441625988018,
+ "valid_fraction": 0.9999958989649711,
+ "seconds": 193.4
+}

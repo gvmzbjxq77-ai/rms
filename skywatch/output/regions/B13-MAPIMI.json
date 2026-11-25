@@ -1,0 +1,37 @@
+{
+ "region": "B13-MAPIMI",
+ "name": "Bolson de Mapimi, Mexico",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  -103.90110587527823,
+  26.520337765001795,
+  -103.49889412472177,
+  26.879662234998204
+ ],
+ "area_km2": 1599.9999999999584,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 76,
+ "n_candidates_kept": 76,
+ "kinds": {
+  "step": 5,
+  "latest_year": 7,
+  "transient": 64
+ },
+ "step_fraction": 2.2859873400546276e-05,
+ "transient_fraction": 0.002563009676854796,
+ "valid_fraction": 1.0,
+ "seconds": 205.6
+}

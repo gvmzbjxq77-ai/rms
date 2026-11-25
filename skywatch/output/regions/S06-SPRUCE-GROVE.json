@@ -1,0 +1,38 @@
+{
+ "region": "S06-SPRUCE-GROVE",
+ "name": "Seeded: Spruce Grove, CA (nuforc report of 2019-02-04)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -113.97919635392078,
+  53.49750755300036,
+  -113.85828364607922,
+  53.56937244699964
+ ],
+ "area_km2": 64.00000000000107,
+ "res_m": 20.0,
+ "event_date": "2019-02-04",
+ "n_event_candidates": 2,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 481,
+ "n_candidates_kept": 122,
+ "kinds": {
+  "event_window": 2,
+  "transient": 120
+ },
+ "step_fraction": 1.7211111493580256e-05,
+ "transient_fraction": 0.14877858478767225,
+ "valid_fraction": 1.0,
+ "seconds": 175.7
+}

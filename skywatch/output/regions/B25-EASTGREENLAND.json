@@ -1,0 +1,37 @@
+{
+ "region": "B25-EASTGREENLAND",
+ "name": "Ice-free East Greenland",
+ "kind": "blind",
+ "biome": "polar",
+ "bbox": [
+  -26.097468473485993,
+  72.3203377650018,
+  -24.902531526514007,
+  72.6796622349982
+ ],
+ "area_km2": 1600.000000000006,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 2082,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "latest_year": 10,
+  "transient": 30
+ },
+ "step_fraction": 0.006759635320514641,
+ "transient_fraction": 0.007123178732710386,
+ "valid_fraction": 0.9998423698486183,
+ "seconds": 175.5
+}

@@ -1,0 +1,37 @@
+{
+ "region": "B18-CHANGTANG",
+ "name": "Changtang, northern Tibet",
+ "kind": "blind",
+ "biome": "plateau",
+ "bbox": [
+  85.7806729089541,
+  34.820337765001796,
+  86.2193270910459,
+  35.179662234998204
+ ],
+ "area_km2": 1600.0000000000236,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 1073,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "transient": 32,
+  "latest_year": 8
+ },
+ "step_fraction": 0.0008813184071538794,
+ "transient_fraction": 0.018267036776196694,
+ "valid_fraction": 1.0,
+ "seconds": 244.6
+}

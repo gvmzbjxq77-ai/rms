@@ -1,0 +1,39 @@
+{
+ "region": "S12-PLYMOUTH",
+ "name": "Seeded: Plymouth, GB (nuforc report of 2019-04-05)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -4.199387512214354,
+  50.33559755300036,
+  -4.086712487785645,
+  50.40746244699964
+ ],
+ "area_km2": 63.99999999999522,
+ "res_m": 20.0,
+ "event_date": "2019-04-05",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 72,
+ "n_candidates_kept": 132,
+ "kinds": {
+  "event_window": 60,
+  "step": 18,
+  "transient": 48,
+  "latest_year": 6
+ },
+ "step_fraction": 0.0019982010154000326,
+ "transient_fraction": 0.006930316512626095,
+ "valid_fraction": 0.9996257146134296,
+ "seconds": 47.0
+}

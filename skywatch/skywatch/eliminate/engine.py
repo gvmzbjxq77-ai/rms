@@ -34,6 +34,7 @@ REGISTRY: list[tuple[str, str, str, bool]] = [
     ("landcover", "skywatch.eliminate.landcover.check_landcover", "natural", True),
     ("osm_infrastructure", "skywatch.eliminate.osm.check_osm", "infrastructure", True),
     ("wikidata_nearby", "skywatch.eliminate.wikidata.check_wikidata", "infrastructure", True),
+    ("human_context", "skywatch.eliminate.context.check_context", "infrastructure", False),
     ("aviation_accident", "skywatch.eliminate.records.check_aviation_accident", "event", False),
     ("meteorite_record", "skywatch.eliminate.records.check_meteorite", "event", False),
     ("natural_process", "skywatch.eliminate.natural.check_natural", "natural", True),
@@ -92,6 +93,8 @@ def run_checks(candidate: Candidate, only: Sequence[str] | None = None,
             results[result.check] = result
             if result.status == "explains" and explained_by is None:
                 explained_by = result.check
+        # Kept current so later checks can read earlier results.
+        candidate.checks = list(results.values())
     candidate.checks = list(results.values())
     if only is None:
         candidate.reports = []

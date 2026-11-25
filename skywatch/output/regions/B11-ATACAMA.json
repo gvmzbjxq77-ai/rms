@@ -1,0 +1,37 @@
+{
+ "region": "B11-ATACAMA",
+ "name": "Atacama coastal range, Chile",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  -70.09905291844817,
+  -25.679662234998204,
+  -69.70094708155185,
+  -25.320337765001796
+ ],
+ "area_km2": 1599.9999999999993,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 193,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "latest_year": 4,
+  "transient": 36
+ },
+ "step_fraction": 0.0017034383613724932,
+ "transient_fraction": 0.18476118200107722,
+ "valid_fraction": 1.0,
+ "seconds": 201.8
+}

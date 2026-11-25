@@ -1,0 +1,11 @@
+{
+ "region": "C08-ERTAALE",
+ "thermal": {
+  "candidates": 18,
+  "seconds": 83.2
+ },
+ "lights": {
+  "candidates": 1,
+  "seconds": 5.8
+ }
+}

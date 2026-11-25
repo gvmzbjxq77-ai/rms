@@ -1,0 +1,11 @@
+{
+ "region": "C09-SERIRTIBESTI",
+ "thermal": {
+  "candidates": 0,
+  "seconds": 94.9
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 0.9
+ }
+}

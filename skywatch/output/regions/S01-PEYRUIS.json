@@ -1,0 +1,38 @@
+{
+ "region": "S01-PEYRUIS",
+ "name": "Seeded: Peyruis, FR (geipan report of 2016-03-20)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  5.8900143090159744,
+  44.00406755300036,
+  5.989985690984026,
+  44.07593244699964
+ ],
+ "area_km2": 63.999999999995666,
+ "res_m": 20.0,
+ "event_date": "2016-03-20",
+ "n_event_candidates": 0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 72,
+ "n_candidates_kept": 72,
+ "kinds": {
+  "step": 49,
+  "latest_year": 7,
+  "transient": 16
+ },
+ "step_fraction": 0.008361204013377926,
+ "transient_fraction": 0.003001904496469714,
+ "valid_fraction": 1.0,
+ "seconds": 29.6
+}

@@ -1,0 +1,37 @@
+{
+ "region": "B24-NORTHSLOPE",
+ "name": "North Slope interior, Alaska",
+ "kind": "blind",
+ "biome": "tundra",
+ "bbox": [
+  -156.4968197679638,
+  68.62033776500179,
+  -155.5031802320362,
+  68.9796622349982
+ ],
+ "area_km2": 1599.999999999971,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 791,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "latest_year": 28,
+  "transient": 12
+ },
+ "step_fraction": 0.0010346546995761655,
+ "transient_fraction": 0.004473606672559552,
+ "valid_fraction": 1.0,
+ "seconds": 191.5
+}

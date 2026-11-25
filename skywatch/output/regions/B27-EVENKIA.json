@@ -1,0 +1,36 @@
+{
+ "region": "B27-EVENKIA",
+ "name": "Evenkia taiga, Siberia",
+ "kind": "blind",
+ "biome": "taiga",
+ "bbox": [
+  103.59015953418886,
+  63.820337765001796,
+  104.40984046581114,
+  64.1796622349982
+ ],
+ "area_km2": 1599.999999999985,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 663,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 1,
+  "transient": 119
+ },
+ "step_fraction": 1.6903215088099558e-06,
+ "transient_fraction": 0.006442781168079776,
+ "valid_fraction": 1.0,
+ "seconds": 176.6
+}

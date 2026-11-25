@@ -1,0 +1,37 @@
+{
+ "region": "B15-BETPAKDALA",
+ "name": "Betpak-Dala steppe, Kazakhstan",
+ "kind": "blind",
+ "biome": "steppe",
+ "bbox": [
+  69.24136605468456,
+  45.820337765001796,
+  69.75863394531544,
+  46.179662234998204
+ ],
+ "area_km2": 1600.0000000000114,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 51,
+ "n_candidates_kept": 51,
+ "kinds": {
+  "step": 12,
+  "transient": 36,
+  "latest_year": 3
+ },
+ "step_fraction": 0.00040126747216299454,
+ "transient_fraction": 0.0007267728816236279,
+ "valid_fraction": 1.0,
+ "seconds": 232.3
+}

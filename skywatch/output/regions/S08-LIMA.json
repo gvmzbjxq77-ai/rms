@@ -1,0 +1,40 @@
+{
+ "region": "S08-LIMA",
+ "name": "Seeded: Lima, US (nuforc report of 2023-04-11)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -84.15265619138826,
+  40.70661755300036,
+  -84.05780380861175,
+  40.77848244699964
+ ],
+ "area_km2": 63.999999999991374,
+ "res_m": 20.0,
+ "event_date": "2023-04-11",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 149,
+ "n_candidates_kept": 180,
+ "kinds": {
+  "event_window": 60,
+  "step": 80,
+  "latest_year": 24,
+  "transient": 16
+ },
+ "step_fraction": 0.009188101671520978,
+ "transient_fraction": 0.007304862500146214,
+ "valid_fraction": 1.0,
+ "seconds": 113.1
+}

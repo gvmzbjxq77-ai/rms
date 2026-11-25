@@ -1,0 +1,36 @@
+{
+ "region": "B21-TAYMYR",
+ "name": "Taymyr Peninsula, Russia",
+ "kind": "blind",
+ "biome": "tundra",
+ "bbox": [
+  97.32770795259738,
+  74.3203377650018,
+  98.67229204740262,
+  74.6796622349982
+ ],
+ "area_km2": 1600.000000000006,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 519,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "transient": 72,
+  "latest_year": 48
+ },
+ "step_fraction": 7.212301301099154e-07,
+ "transient_fraction": 0.8566271432555367,
+ "valid_fraction": 1.0,
+ "seconds": 141.3
+}

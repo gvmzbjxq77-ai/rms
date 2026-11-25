@@ -1,0 +1,40 @@
+{
+ "region": "S11-PASCO",
+ "name": "Seeded: Pasco, US (nuforc report of 2023-02-19)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -119.15252219707762,
+  46.20364755300036,
+  -119.0486178029224,
+  46.275512446999635
+ ],
+ "area_km2": 63.9999999999998,
+ "res_m": 20.0,
+ "event_date": "2023-02-19",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 102,
+ "n_candidates_kept": 162,
+ "kinds": {
+  "event_window": 60,
+  "step": 77,
+  "transient": 15,
+  "latest_year": 10
+ },
+ "step_fraction": 0.00933175447588413,
+ "transient_fraction": 0.024973047489439917,
+ "valid_fraction": 1.0,
+ "seconds": 104.5
+}

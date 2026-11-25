@@ -1,0 +1,11 @@
+{
+ "region": "B04-TANEZROUFT",
+ "thermal": {
+  "candidates": 1,
+  "seconds": 100.0
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 1.1
+ }
+}

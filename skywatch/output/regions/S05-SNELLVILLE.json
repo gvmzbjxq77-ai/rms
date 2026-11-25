@@ -1,0 +1,40 @@
+{
+ "region": "S05-SNELLVILLE",
+ "name": "Seeded: Snellville, US (nuforc report of 2019-07-07)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -84.06317982213717,
+  33.82139755300036,
+  -83.97664017786282,
+  33.893262446999636
+ ],
+ "area_km2": 64.00000000000124,
+ "res_m": 20.0,
+ "event_date": "2019-07-07",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 167,
+ "n_candidates_kept": 180,
+ "kinds": {
+  "event_window": 60,
+  "step": 80,
+  "latest_year": 25,
+  "transient": 15
+ },
+ "step_fraction": 0.018474988659326157,
+ "transient_fraction": 0.010739765410061093,
+ "valid_fraction": 1.0,
+ "seconds": 128.8
+}

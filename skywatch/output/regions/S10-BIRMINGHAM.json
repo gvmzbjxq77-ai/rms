@@ -1,0 +1,39 @@
+{
+ "region": "S10-BIRMINGHAM",
+ "name": "Seeded: Birmingham, GB (nuforc report of 2022-03-03)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -1.9588305675136823,
+  52.44548755300036,
+  -1.8408294324863175,
+  52.51735244699964
+ ],
+ "area_km2": 63.99999999999525,
+ "res_m": 20.0,
+ "event_date": "2022-03-03",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 146,
+ "n_candidates_kept": 180,
+ "kinds": {
+  "event_window": 60,
+  "step": 24,
+  "transient": 95,
+  "latest_year": 1
+ },
+ "step_fraction": 0.0028424146071204894,
+ "transient_fraction": 0.46645107674519437,
+ "valid_fraction": 1.0,
+ "seconds": 50.0
+}

@@ -1,0 +1,39 @@
+{
+ "region": "S03-RENFREW",
+ "name": "Seeded: Renfrew, CA (nuforc report of 2022-10-09)",
+ "kind": "seeded",
+ "biome": "",
+ "bbox": [
+  -76.7339552826194,
+  45.430877553000364,
+  -76.6314847173806,
+  45.50274244699964
+ ],
+ "area_km2": 64.00000000000186,
+ "res_m": 20.0,
+ "event_date": "2022-10-09",
+ "n_event_candidates": 60,
+ "status": "ok",
+ "years": [
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 69,
+ "n_candidates_kept": 129,
+ "kinds": {
+  "event_window": 60,
+  "step": 22,
+  "latest_year": 1,
+  "transient": 46
+ },
+ "step_fraction": 0.004478501997733914,
+ "transient_fraction": 0.015331862365078419,
+ "valid_fraction": 1.0,
+ "seconds": 53.6
+}

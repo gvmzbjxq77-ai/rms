@@ -96,3 +96,21 @@ def test_pivot_sized_disc_is_explained_as_agriculture(monkeypatch):
     pad = _candidate(measurements={"d_brightness": 0.1},
                      shape={"equivalent_diameter_m": 200.0, "circularity": 0.5, "regularity": 0.8})
     assert {r.check: r for r in natural.check_natural(pad)}["natural_process"].status == "does_not_explain"
+
+
+def test_human_context_marks_nearby_activity_inconclusive(monkeypatch):
+    from skywatch.eliminate import context
+
+    monkeypatch.setattr("skywatch.eliminate.landcover.landcover_fractions",
+                        lambda lat, lon, r: {"bare": 1.0, "cropland": 0.0, "builtup": 0.0})
+    remote = _candidate(checks=[CheckResult("osm_infrastructure", "infrastructure", "does_not_explain",
+                                            evidence={"nearest_road_m": 5200.0, "nearest_building_m": None})])
+    assert context.check_context(remote)[0].status == "does_not_explain"
+    near = _candidate(checks=[CheckResult("osm_infrastructure", "infrastructure", "does_not_explain",
+                                          evidence={"nearest_road_m": 80.0, "nearest_building_m": 600.0})])
+    result = context.check_context(near)[0]
+    assert result.status == "inconclusive" and "80 m" in result.detail
+    nothing = _candidate(checks=[CheckResult("osm_infrastructure", "infrastructure", "not_run")])
+    monkeypatch.setattr("skywatch.eliminate.landcover.landcover_fractions",
+                        lambda lat, lon, r: (_ for _ in ()).throw(RuntimeError("down")))
+    assert context.check_context(nothing)[0].status == "not_run"

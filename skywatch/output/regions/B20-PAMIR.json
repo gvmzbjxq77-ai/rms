@@ -1,0 +1,37 @@
+{
+ "region": "B20-PAMIR",
+ "name": "Eastern Pamir, Tajikistan",
+ "kind": "blind",
+ "biome": "plateau",
+ "bbox": [
+  73.67106569241355,
+  38.12033776500179,
+  74.12893430758646,
+  38.4796622349982
+ ],
+ "area_km2": 1600.0000000000127,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 1575,
+ "n_candidates_kept": 120,
+ "kinds": {
+  "step": 80,
+  "transient": 36,
+  "latest_year": 4
+ },
+ "step_fraction": 0.000984479594845209,
+ "transient_fraction": 0.016080240832018495,
+ "valid_fraction": 0.9998567407393645,
+ "seconds": 174.6
+}

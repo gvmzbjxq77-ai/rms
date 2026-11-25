@@ -1,0 +1,11 @@
+{
+ "region": "B02-BILMA",
+ "thermal": {
+  "candidates": 60,
+  "seconds": 126.8
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 4.2
+ }
+}

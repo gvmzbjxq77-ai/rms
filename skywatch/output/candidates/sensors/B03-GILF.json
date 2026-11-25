@@ -1,0 +1,11 @@
+{
+ "region": "B03-GILF",
+ "thermal": {
+  "candidates": 60,
+  "seconds": 109.7
+ },
+ "lights": {
+  "candidates": 0,
+  "seconds": 0.8
+ }
+}

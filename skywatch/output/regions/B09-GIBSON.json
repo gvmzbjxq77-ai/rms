@@ -1,0 +1,36 @@
+{
+ "region": "B09-GIBSON",
+ "name": "Gibson Desert, Australia",
+ "kind": "blind",
+ "biome": "desert",
+ "bbox": [
+  125.80256056961068,
+  -24.679662234998204,
+  126.19743943038932,
+  -24.320337765001796
+ ],
+ "area_km2": 1600.0000000000643,
+ "res_m": 20.0,
+ "status": "ok",
+ "years": [
+  2018,
+  2019,
+  2020,
+  2021,
+  2022,
+  2023,
+  2024,
+  2025,
+  2026
+ ],
+ "n_blobs_total": 52,
+ "n_candidates_kept": 52,
+ "kinds": {
+  "step": 51,
+  "transient": 1
+ },
+ "step_fraction": 0.001845087544434778,
+ "transient_fraction": 2.160524056715197e-06,
+ "valid_fraction": 1.0,
+ "seconds": 139.6
+}
