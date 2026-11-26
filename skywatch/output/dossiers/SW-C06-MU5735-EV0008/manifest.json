@@ -1,0 +1,77 @@
+{
+ "files": [
+  {
+   "path": "after.png",
+   "sha256": "798c266b1de6df229b78ca822287f515df742081d0da02fc412d4c55ad7c69ea",
+   "size": 117485
+  },
+  {
+   "path": "before.png",
+   "sha256": "7bf3067f3989465df19dabd20ba18909ab32038ffa01276c6e16bfc98f8aca6d",
+   "size": 114591
+  },
+  {
+   "path": "context.png",
+   "sha256": "cec2f577bf6eab8e9011a59c2df838f2f1860b57c14b60870cd81a0700e4570d",
+   "size": 263395
+  },
+  {
+   "path": "difference.png",
+   "sha256": "e0b98595279e21b399825fc9a67a9baad73117711e04cfec4664e7a334d3c47e",
+   "size": 99086
+  },
+  {
+   "path": "dossier.json",
+   "sha256": "b5f02d6346f67ee3937757f04996e2b2d89ae3ceec421a9ef98b954181f22a44",
+   "size": 97361
+  },
+  {
+   "path": "dossier.md",
+   "sha256": "4a376eb411153b2eccdd340ee384fb9fdecf2b98d9919e6b12cc1dee53a86844",
+   "size": 14454
+  },
+  {
+   "path": "falsecolor_after.png",
+   "sha256": "287a6ef2f7ce0c61700824389c085cb2ff274c2bbd362544f1ae62ac8048f3b2",
+   "size": 110273
+  },
+  {
+   "path": "falsecolor_before.png",
+   "sha256": "a53c77a1c8604a58541bff0db85fccd005ea7afe34dad74f1527129bc03c5ffa",
+   "size": 109247
+  },
+  {
+   "path": "foia_1.md",
+   "sha256": "e6bb7693fa8af74b1ca9d5cf57d532a3dc7395be94f3d3c770d5630d86e7600e",
+   "size": 1047
+  },
+  {
+   "path": "ground_truth_plan.md",
+   "sha256": "8f0619e24933e9d9cbc0e4a6302bb56423124e2f7980e082c64e02a726afd6fa",
+   "size": 2991
+  },
+  {
+   "path": "hires.png",
+   "sha256": "8e8867538f1354e9cf2ad9d8c7b759a815892c8146eb4a753dcc70d8d6220d3b",
+   "size": 290632
+  },
+  {
+   "path": "thumb.png",
+   "sha256": "a9105176152697559e21ff8e80c6585a3ea04dccde80ded89e0ea63467e4eaa1",
+   "size": 370972
+  },
+  {
+   "path": "timeseries.png",
+   "sha256": "530d1d8d29ccfbeffb4714850f733f816d03c1f1abb79bb26dc1319fac2fa2cf",
+   "size": 83599
+  },
+  {
+   "path": "wayback_strip.png",
+   "sha256": "2a9ff77b6b2c987a0e5d926a3f0dc6db23fd7842326ce2346827808f45497ef6",
+   "size": 397549
+  }
+ ],
+ "hash": "sha256",
+ "manifest_sha256": "aeb201bb518931ce9a85e32f0f0b9295989156d84904c63c03108c70c16da1cc",
+ "schema": "skywatch-manifest/1"
+}

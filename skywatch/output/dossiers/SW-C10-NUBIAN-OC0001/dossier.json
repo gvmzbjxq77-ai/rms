@@ -1,0 +1,2356 @@
+{
+  "schema": "skywatch.dossier/1",
+  "generated_utc": "2026-11-25T12:45:25Z",
+  "candidate": {
+    "id": "SW-C10-NUBIAN-OC0001",
+    "region_id": "C10-NUBIAN",
+    "lat": 20.617444113630327,
+    "lon": 28.604238746059806,
+    "bbox": [
+      28.603631990739995,
+      20.616585733028494,
+      28.604956220184967,
+      20.618404702543735
+    ],
+    "signature": "installation",
+    "detector": "optical_change",
+    "score": 0.41953125,
+    "area_m2": 5600.0,
+    "absent_until": "2023-11-02",
+    "present_from": "2024-10-29",
+    "sensors": [
+      "optical_s2"
+    ],
+    "shape": {
+      "area_m2": 5600.0,
+      "perimeter_m": 244.14213562373095,
+      "equivalent_diameter_m": 84.44016491289504,
+      "major_axis_m": 140.34597587693167,
+      "minor_axis_m": 52.92415553247105,
+      "elongation": 2.651832125896159,
+      "orientation_deg": 98.07916692047559,
+      "circularity": 1.0,
+      "solidity": 0.875,
+      "eccentricity": 0.9261734537778887,
+      "rectangularity": 0.7777777777777778,
+      "n_corners": 4,
+      "straight_edge_fraction": 0.7278172131774755,
+      "hole_fraction": 0.0,
+      "regularity": 0.875
+    },
+    "measurements": {
+      "kind": "transient",
+      "break_year": 2024,
+      "step_snr": 10.48828125,
+      "d_brightness": -0.034258171916007996,
+      "d_ndvi": 0.011604394763708115,
+      "d_nbr": 0.024465210735797882,
+      "d_swir": -0.0787876546382904,
+      "persistence_years": 1,
+      "recovery_fraction": 1.0,
+      "crowding": 0.001359589408128891,
+      "n_valid_years": 8,
+      "years_used": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "composite_dates": {
+        "2018": [
+          "2018-10-29",
+          "2018-10-31",
+          "2018-11-03"
+        ],
+        "2019": [
+          "2019-10-26",
+          "2019-10-31",
+          "2019-11-03"
+        ],
+        "2020": [
+          "2020-10-28",
+          "2020-10-30",
+          "2020-11-02"
+        ],
+        "2021": [
+          "2021-10-28",
+          "2021-10-30",
+          "2021-11-02"
+        ],
+        "2022": [
+          "2022-10-25",
+          "2022-10-28",
+          "2022-10-30"
+        ],
+        "2023": [
+          "2023-10-28",
+          "2023-10-30",
+          "2023-11-02"
+        ],
+        "2024": [
+          "2024-10-29",
+          "2024-11-01",
+          "2024-11-03"
+        ],
+        "2025": [
+          "2025-10-27",
+          "2025-11-03",
+          "2025-11-06"
+        ],
+        "2026": [
+          "2026-10-29",
+          "2026-11-01",
+          "2026-11-03"
+        ]
+      },
+      "scene_ids_before": [
+        "S2A_35QPC_20231030_0_L2A",
+        "S2A_35QPC_20231102_0_L2A",
+        "S2B_35QPC_20231028_0_L2A"
+      ],
+      "scene_ids_after": [
+        "S2B_35QPC_20241101_0_L2A",
+        "S2B_35QPC_20241029_0_L2A",
+        "S2A_35QPC_20241103_0_L2A"
+      ],
+      "res_m": 20.0,
+      "weak": false,
+      "series": {
+        "dates": [
+          "2022-09-30",
+          "2023-02-22",
+          "2023-04-03",
+          "2023-05-08",
+          "2023-06-12",
+          "2023-07-17",
+          "2023-09-05",
+          "2023-10-10",
+          "2023-11-14",
+          "2023-12-19",
+          "2024-01-23",
+          "2024-03-23",
+          "2024-04-27",
+          "2024-05-27",
+          "2024-07-01",
+          "2024-08-10",
+          "2024-09-19",
+          "2024-10-29",
+          "2024-12-03",
+          "2025-01-17",
+          "2025-02-21",
+          "2025-04-02",
+          "2025-05-12",
+          "2025-06-03",
+          "2025-07-01",
+          "2025-08-15",
+          "2025-09-29",
+          "2025-10-21",
+          "2025-11-28"
+        ],
+        "scene_ids": [
+          "S2B_35QPC_20220930_0_L2A",
+          "S2A_35QPC_20230222_0_L2A",
+          "S2A_35QPC_20230403_0_L2A",
+          "S2B_35QPC_20230508_0_L2A",
+          "S2A_35QPC_20230612_0_L2A",
+          "S2B_35QPC_20230717_0_L2A",
+          "S2B_35QPC_20230905_0_L2A",
+          "S2A_35QPC_20231010_0_L2A",
+          "S2B_35QPC_20231114_0_L2A",
+          "S2A_35QPC_20231219_0_L2A",
+          "S2B_35QPC_20240123_0_L2A",
+          "S2B_35QPC_20240323_0_L2A",
+          "S2A_35QPC_20240427_0_L2A",
+          "S2A_35QPC_20240527_0_L2A",
+          "S2B_35QPC_20240701_0_L2A",
+          "S2B_35QPC_20240810_0_L2A",
+          "S2B_35QPC_20240919_0_L2A",
+          "S2B_35QPC_20241029_0_L2A",
+          "S2A_35QPC_20241203_0_L2A",
+          "S2B_35QPC_20250117_0_L2A",
+          "S2C_35QPC_20250221_0_L2A",
+          "S2C_35QPC_20250402_0_L2A",
+          "S2C_35QPC_20250512_0_L2A",
+          "S2A_35QPC_20250603_0_L2A",
+          "S2C_35QPC_20250701_0_L2A",
+          "S2B_35QPC_20250815_0_L2A",
+          "S2C_35QPC_20250929_0_L2A",
+          "S2A_35QPC_20251021_0_L2A",
+          "S2C_35QPC_20251128_0_L2A"
+        ],
+        "valid": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "inside": {
+          "brightness": [
+            0.34029772877693176,
+            0.3324436545372009,
+            0.3371218740940094,
+            0.3484309911727905,
+            0.3428885042667389,
+            0.341049462556839,
+            0.3437345027923584,
+            0.3373149335384369,
+            0.3318287432193756,
+            0.3377276062965393,
+            0.3454332947731018,
+            0.3460114896297455,
+            0.3545781373977661,
+            0.35053446888923645,
+            0.34322071075439453,
+            0.3303045928478241,
+            0.3182988464832306,
+            0.3030965328216553,
+            0.3018471300601959,
+            0.3027701675891876,
+            0.21272872388362885,
+            0.3268413841724396,
+            0.33530575037002563,
+            0.33332985639572144,
+            0.33214136958122253,
+            0.35839197039604187,
+            0.31703218817710876,
+            0.3199712932109833,
+            0.3225114941596985
+          ],
+          "ndvi": [
+            0.08082840591669083,
+            0.08418785780668259,
+            0.08910281211137772,
+            0.08570606261491776,
+            0.06818701326847076,
+            0.07403987646102905,
+            0.07147549092769623,
+            0.06367916613817215,
+            0.0644785687327385,
+            0.07616709172725677,
+            0.08154943585395813,
+            0.08765951544046402,
+            0.0679188221693039,
+            0.07037830352783203,
+            0.07369405031204224,
+            0.04549364000558853,
+            0.0747416689991951,
+            0.09208683669567108,
+            0.08442072570323944,
+            0.07685442268848419,
+            0.11860138177871704,
+            0.08513656258583069,
+            0.0792662650346756,
+            0.07538797706365585,
+            0.07873363047838211,
+            0.06350152939558029,
+            0.07610228657722473,
+            0.08207064867019653,
+            0.07588082551956177
+          ],
+          "nbr": [
+            -0.0927874743938446,
+            -0.0674113854765892,
+            -0.06695271283388138,
+            -0.09152011573314667,
+            -0.09435585141181946,
+            -0.11489811539649963,
+            -0.11037653684616089,
+            -0.09252602607011795,
+            -0.10484740138053894,
+            -0.0659598857164383,
+            -0.08111265301704407,
+            -0.08082537353038788,
+            -0.08096711337566376,
+            -0.08584342151880264,
+            -0.1118052676320076,
+            -0.1591745913028717,
+            -0.08185303956270218,
+            -0.06677302718162537,
+            -0.05335395783185959,
+            -0.09017658233642578,
+            -0.05769413337111473,
+            -0.06434337794780731,
+            -0.08496733009815216,
+            -0.08242657780647278,
+            -0.0847364217042923,
+            -0.09090404957532883,
+            -0.08504287898540497,
+            -0.07299588620662689,
+            -0.07680284231901169
+          ]
+        },
+        "ring": {
+          "brightness": [
+            0.3407813310623169,
+            0.3332050144672394,
+            0.3374832272529602,
+            0.3466562330722809,
+            0.34191185235977173,
+            0.340423583984375,
+            0.34281715750694275,
+            0.3375087380409241,
+            0.33314549922943115,
+            0.3380931615829468,
+            0.34521305561065674,
+            0.3465278148651123,
+            0.35363051295280457,
+            0.34955480694770813,
+            0.343279629945755,
+            0.3298524022102356,
+            0.33217230439186096,
+            0.3191429674625397,
+            0.31836435198783875,
+            0.32218143343925476,
+            0.23009026050567627,
+            0.3403686583042145,
+            0.3381299078464508,
+            0.33912399411201477,
+            0.33787691593170166,
+            0.36443454027175903,
+            0.3271070420742035,
+            0.32764822244644165,
+            0.3303025960922241
+          ],
+          "ndvi": [
+            0.08118418604135513,
+            0.08354713767766953,
+            0.0886881873011589,
+            0.08566515892744064,
+            0.06863310188055038,
+            0.07428987324237823,
+            0.07130199670791626,
+            0.06355805695056915,
+            0.06449444591999054,
+            0.07679396122694016,
+            0.08115041255950928,
+            0.08782032877206802,
+            0.06911861151456833,
+            0.07140941917896271,
+            0.07397778332233429,
+            0.04485825449228287,
+            0.06970091909170151,
+            0.08661247789859772,
+            0.07961434870958328,
+            0.07031649351119995,
+            0.11039676517248154,
+            0.08092284202575684,
+            0.07909929007291794,
+            0.07461091876029968,
+            0.07826128602027893,
+            0.061926428228616714,
+            0.07444710284471512,
+            0.08099006861448288,
+            0.07508288323879242
+          ],
+          "nbr": [
+            -0.09293799847364426,
+            -0.0673937052488327,
+            -0.0666947215795517,
+            -0.0920194610953331,
+            -0.0943746268749237,
+            -0.11474049836397171,
+            -0.1108870878815651,
+            -0.092256560921669,
+            -0.1051599457859993,
+            -0.06546826660633087,
+            -0.0812554731965065,
+            -0.08007565140724182,
+            -0.08028285205364227,
+            -0.0862615779042244,
+            -0.11166997998952866,
+            -0.1587032526731491,
+            -0.08454141020774841,
+            -0.06824273616075516,
+            -0.054066795855760574,
+            -0.09100985527038574,
+            -0.05857254937291145,
+            -0.06425600498914719,
+            -0.08619748055934906,
+            -0.08252301067113876,
+            -0.08448268473148346,
+            -0.09102649986743927,
+            -0.0867559164762497,
+            -0.0730341300368309,
+            -0.07699470221996307
+          ]
+        },
+        "footprint_radius_m": 42.22008245644752,
+        "scenes_considered": 32
+      },
+      "series_feature": "brightness",
+      "series_shift": -0.019432201981544495,
+      "series_noise": 0.024145911705493926,
+      "onset_note": "per-scene values do not separate before from after",
+      "landsat": {
+        "status": "ok",
+        "before": [
+          {
+            "date": "2022-09-28",
+            "scene_id": "LC09_L2SP_177046_20220928_02_T1",
+            "brightness": -0.0008401870727539062,
+            "ndvi": 6.689876317977905e-05,
+            "nbr": 0.00028128549456596375,
+            "kelvin": -0.137237548828125
+          },
+          {
+            "date": "2023-02-11",
+            "scene_id": "LC08_L2SP_177046_20230211_02_T1",
+            "brightness": -0.0010482966899871826,
+            "ndvi": 0.000509209930896759,
+            "nbr": -0.0002730637788772583,
+            "kelvin": -0.094879150390625
+          },
+          {
+            "date": "2023-06-11",
+            "scene_id": "LC09_L2SP_177046_20230611_02_T1",
+            "brightness": 0.00033992528915405273,
+            "ndvi": -0.0004292502999305725,
+            "nbr": -0.00012576952576637268,
+            "kelvin": 0.1126708984375
+          },
+          {
+            "date": "2023-11-02",
+            "scene_id": "LC09_L2SP_177046_20231102_02_T1",
+            "brightness": 0.00012576580047607422,
+            "ndvi": 3.5025179386138916e-05,
+            "nbr": 8.434802293777466e-05,
+            "kelvin": -0.115142822265625
+          }
+        ],
+        "after": [
+          {
+            "date": "2024-11-04",
+            "scene_id": "LC09_L2SP_177046_20241104_02_T1",
+            "brightness": -0.010617434978485107,
+            "ndvi": 0.003519676625728607,
+            "nbr": 0.0028656795620918274,
+            "kelvin": 0.057220458984375
+          },
+          {
+            "date": "2025-03-04",
+            "scene_id": "LC08_L2SP_177046_20250304_02_T1",
+            "brightness": -0.008876532316207886,
+            "ndvi": 0.0028033629059791565,
+            "nbr": 0.0023471154272556305,
+            "kelvin": -0.091461181640625
+          },
+          {
+            "date": "2025-07-02",
+            "scene_id": "LC09_L2SP_177046_20250702_02_T1",
+            "brightness": -0.0030190646648406982,
+            "ndvi": -0.0002694949507713318,
+            "nbr": 0.001524273306131363,
+            "kelvin": 0.0067138671875
+          },
+          {
+            "date": "2025-12-01",
+            "scene_id": "LC08_L2SP_177046_20251201_02_T1",
+            "brightness": -0.003043919801712036,
+            "ndvi": 0.0004959329962730408,
+            "nbr": 0.0020744428038597107,
+            "kelvin": -0.032958984375
+          }
+        ],
+        "footprint_radius_m": 42.22008245644752,
+        "optical": {
+          "feature": "brightness",
+          "shift": -0.005603015422821045,
+          "noise": 0.002606236647069454,
+          "sentinel2_step": -0.034258171916007996,
+          "confirmed": false
+        },
+        "thermal": {
+          "confirmed": false,
+          "reason": "footprint radius 42 m is below thermal resolution"
+        }
+      },
+      "sar": {
+        "status": "not_run",
+        "reason": "no relative orbit covers both periods (0 scenes before, 58 after)"
+      },
+      "regional_siblings": {
+        "count": 5,
+        "compared": 5,
+        "year": 2024,
+        "ids": [
+          "SW-C10-NUBIAN-OC0002",
+          "SW-C10-NUBIAN-OC0003",
+          "SW-C10-NUBIAN-OC0006",
+          "SW-C10-NUBIAN-OC0004",
+          "SW-C10-NUBIAN-OC0005"
+        ],
+        "spread_km": 24.4,
+        "min_cosine": 0.9,
+        "magnitude_ratio": 2.0
+      }
+    },
+    "checks": [
+      {
+        "check": "military_or_rocket_range",
+        "category": "infrastructure",
+        "status": "does_not_explain",
+        "detail": "outside every listed launch site, drop zone and range; nearest is Palmachim launch and test site (launch_site), 1387 km beyond its approximate edge. The list is not exhaustive",
+        "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+        "evidence": {
+          "inside": [],
+          "within_margin": [],
+          "nearest_entry": {
+            "name": "Palmachim launch and test site",
+            "country": "Israel",
+            "kind": "launch_site",
+            "lat": 31.88,
+            "lon": 34.69,
+            "radius_km": 4.0,
+            "approximate": true,
+            "diffuse": false,
+            "confidence": "high",
+            "note": "Coastal air base and launch site.",
+            "distance_km": 1390.9,
+            "distance_to_edge_km": 1386.9,
+            "margin_km": 0.8
+          },
+          "signature": "installation",
+          "n_entries": 82,
+          "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area."
+        }
+      },
+      {
+        "check": "landcover",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "Footprint is mostly bare (100%); cropland 0%, built-up 0%, water/wetland 0%; the 2021 map predates the onset, so it shows the site before the change.",
+        "source": "ESA WorldCover 10 m 2021 v200 (c) ESA WorldCover project, CC BY 4.0",
+        "evidence": {
+          "worldcover": "v200 2021",
+          "context_margin_m": 500.0,
+          "footprint": {
+            "tree": 0.0,
+            "shrub": 0.0,
+            "grass": 0.0,
+            "cropland": 0.0,
+            "builtup": 0.0,
+            "bare": 1.0,
+            "snow": 0.0,
+            "water": 0.0,
+            "wetland": 0.0,
+            "mangrove": 0.0,
+            "moss": 0.0,
+            "nodata": 0.0
+          },
+          "context": {
+            "tree": 0.0,
+            "shrub": 0.0,
+            "grass": 0.0,
+            "cropland": 0.0,
+            "builtup": 0.0,
+            "bare": 1.0,
+            "snow": 0.0,
+            "water": 0.0,
+            "wetland": 0.0,
+            "mangrove": 0.0,
+            "moss": 0.0,
+            "nodata": 0.0
+          },
+          "footprint_pixels": 330,
+          "footprint_source": "bbox",
+          "tiles": [
+            "N18E027"
+          ],
+          "missing_tiles": [],
+          "map_predates_onset": true,
+          "dominant": "bare",
+          "context_builtup": 0.0,
+          "explained_by": null
+        }
+      },
+      {
+        "check": "osm_infrastructure",
+        "category": "infrastructure",
+        "status": "does_not_explain",
+        "detail": "OpenStreetMap has no tagged feature within 2908 m. OpenStreetMap coverage in remote regions is incomplete, so the absence of a mapped feature is weak evidence.",
+        "source": "OpenStreetMap API 0.6 map call; data (c) OpenStreetMap contributors (ODbL)",
+        "evidence": {
+          "nearest_road_m": null,
+          "nearest_building_m": null,
+          "nearest_road": null,
+          "nearest_road_seen_m": null,
+          "nearest_building_seen_m": null,
+          "tolerance_m": 201.4,
+          "footprint_source": "bbox",
+          "search_radius_m": 2908.4,
+          "covered_radius_m": 3038.4,
+          "n_tagged_features": 0,
+          "explaining": [],
+          "nearby_beyond_tolerance": [],
+          "osm_fetched": "2026-11-25",
+          "network_requests": 0,
+          "distance_reference": "footprint edge (0 = intersects)"
+        }
+      },
+      {
+        "check": "wikidata_nearby",
+        "category": "infrastructure",
+        "status": "does_not_explain",
+        "detail": "no causally plausible catalogued item within the explanation distance (0 item(s) within 10.0 km; nearest: none)",
+        "source": "Wikidata SPARQL endpoint (query.wikidata.org)",
+        "evidence": {
+          "searched_radius_km": 10.0,
+          "n_items": 0,
+          "truncated": false,
+          "covered_radius_km": 10.0,
+          "footprint_radius_km": 0.042,
+          "onset_window_padded": [
+            "2023-10-03",
+            "2024-11-28"
+          ],
+          "category_counts": {},
+          "nearest": [],
+          "explaining": [],
+          "undated_events_in_range": [],
+          "events_outside_window": [],
+          "causal_near_misses": [],
+          "requested_radius_km": 10.0
+        }
+      },
+      {
+        "check": "aviation_accident",
+        "category": "event",
+        "status": "does_not_explain",
+        "detail": "no recorded accident within 2.0 km dated 2023-10-03 to 2024-11-28; no record in the window within the context radius. Coverage is limited: Outside the United States the absence of a record is weak evidence: most general-aviation and all military crashes abroad are in neither catalogue.",
+        "source": "NTSB aviation accident database (data.ntsb.gov/avdata) and Wikidata aviation-accident items",
+        "evidence": {
+          "radius_km": 2.042,
+          "pad_days": 30,
+          "onset_window": [
+            "2023-11-02",
+            "2024-10-29"
+          ],
+          "padded_window": [
+            "2023-10-03",
+            "2024-11-28"
+          ],
+          "sources_used": [
+            "ntsb",
+            "wikidata"
+          ],
+          "sources_failed": {},
+          "coverage": "NTSB aviation database (avall, 2008 to the download date): civil aviation accidents and selected incidents in the United States, its territories and international waters, plus foreign events involving US-registered, US-operated or US-manufactured aircraft in which the NTSB took part. It holds no military losses and almost no other foreign accidents, and records without coordinates cannot be matched. Wikidata: only accidents notable enough to have an item with coordinates within 10 km; far from complete anywhere. Outside the United States the absence of a record is weak evidence: most general-aviation and all military crashes abroad are in neither catalogue.",
+          "records_in_radius": [],
+          "nearest_record": {
+            "ntsb_no": "DCA09WA059",
+            "date": "2009-06-09",
+            "latitude": 15.58944,
+            "longitude": 32.55305,
+            "aircraft": "MCDONNELL DOUGLAS MD11",
+            "damage": "SUBS",
+            "injury_severity": "NONE",
+            "fatalities": 0,
+            "location": "Khartoum",
+            "country": "SD",
+            "source": "ntsb",
+            "id": "20090627X83323",
+            "distance_km": 697.574,
+            "label": "NTSB DCA09WA059: MCDONNELL DOUGLAS MD11, Khartoum (SD)"
+          },
+          "nearest_ntsb_record": {
+            "ntsb_no": "DCA09WA059",
+            "date": "2009-06-09",
+            "latitude": 15.58944,
+            "longitude": 32.55305,
+            "aircraft": "MCDONNELL DOUGLAS MD11",
+            "damage": "SUBS",
+            "injury_severity": "NONE",
+            "fatalities": 0,
+            "location": "Khartoum",
+            "country": "SD",
+            "source": "ntsb",
+            "id": "20090627X83323",
+            "distance_km": 697.574,
+            "label": "NTSB DCA09WA059: MCDONNELL DOUGLAS MD11, Khartoum (SD)"
+          },
+          "nearest_in_window": null,
+          "matches": [],
+          "lesser_matches": []
+        }
+      },
+      {
+        "check": "meteorite_record",
+        "category": "event",
+        "status": "not_run",
+        "detail": "the table's last recorded fall year is 2013; it cannot speak for an onset window ending 2024-10-29 (nearest record: Gebel Kamil (Found, 2009) at 303.7 km)",
+        "source": "Meteoritical Society / NASA Meteorite Landings table (mirror on raw.githubusercontent.com)",
+        "evidence": {
+          "radius_km": 3.042,
+          "onset_window": [
+            "2023-11-02",
+            "2024-10-29"
+          ],
+          "padded_window": [
+            "2023-11-02",
+            "2024-10-29"
+          ],
+          "catalogue_last_fall_year": 2013,
+          "coverage": "Meteorite Landings table (Meteoritical Society / NASA open data, as mirrored for TidyTuesday 2019-06-11): about 38,000 located meteorites, mostly finds; the year is the fall or find year, coordinates are often rounded to an arc-minute or worse, masses are recovered masses, and the table stops in the early 2010s. Later falls are only covered by Wikidata meteorite items, which the wikidata_nearby check evaluates.",
+          "records_in_radius": [],
+          "nearest_record": {
+            "name": "Gebel Kamil",
+            "fall": "Found",
+            "year": 2009,
+            "mass_g": 1600000.0,
+            "class": "Iron, ungrouped",
+            "lat": 22.01833,
+            "lon": 26.08778,
+            "distance_km": 303.658
+          },
+          "n_records_within_context_km": 0,
+          "context_radius_km": 50.0,
+          "matches": []
+        }
+      },
+      {
+        "check": "human_context",
+        "category": "infrastructure",
+        "status": "does_not_explain",
+        "detail": "remote: no mapped road within 300 m, no mapped building within 1 km, and no farmland or built-up land within 1.5 km (maps are incomplete in remote regions)",
+        "source": "OpenStreetMap distances; ESA WorldCover 2021",
+        "evidence": {
+          "nearest_road_m": null,
+          "nearest_building_m": null,
+          "mapped_features_nearby": 0,
+          "cropland_share": 0.0,
+          "builtup_share": 0.0
+        }
+      },
+      {
+        "check": "night_lights",
+        "category": "infrastructure",
+        "status": "does_not_explain",
+        "detail": "No persistent light within 1500 m of the candidate: peak radiance 0.445 against background 0.36 nW/cm2/sr, lit in 0 of 8 monthly composites (202411 to 202506, 121 cloud-free nights). Unlit sites are not thereby unexplained; many installations carry no lights. Before the onset (202305 to 202310) persistent light was absent (radiance 0.41, background 0.35 nW/cm2/sr). Sensor footprint about 750 m, so a neighbour within roughly 1 km cannot be separated. Archive ends 2025-06-30.",
+        "source": "World Bank Light Every Night archive, VIIRS DNB monthly cloud-free composites (globalnightlight.s3.amazonaws.com/composites)",
+        "evidence": {
+          "archive_end": "2025-06-30",
+          "radius_m": 1500.0,
+          "resolution_m": 750.0,
+          "after_onset": {
+            "status": "ok",
+            "reason": "",
+            "radius_m": 1500.0,
+            "months_used": 8,
+            "months_lit": 0,
+            "lit_fraction": 0.0,
+            "clear_nights": 121,
+            "radiance": 0.445,
+            "radiance_mean": 0.352,
+            "background": 0.36,
+            "excess": 0.075,
+            "persistent_light": false,
+            "threshold": {
+              "min_excess": 1.0,
+              "k_sigma": 5.0,
+              "absolute": 5.0,
+              "min_lit_fraction": 0.667,
+              "min_months": 3,
+              "rule": "month lit if footprint_max - background_median >= max(min_excess, k_sigma*background_sigma) or footprint_max >= absolute; persistent if lit in >= min_lit_fraction of usable months"
+            },
+            "archive_end": "2025-06-30",
+            "resolution_m": 750.0,
+            "units": "nW/cm2/sr",
+            "files": [
+              "composites/npp_202411_ops/DNB_npp_20241101-20241130_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202411_ops/DNB_npp_20241101-20241130_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202412_ops/DNB_npp_20241201-20241231_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202412_ops/DNB_npp_20241201-20241231_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202501_ops/DNB_npp_20250101-20250131_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202501_ops/DNB_npp_20250101-20250131_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202502_ops/DNB_npp_20250201-20250228_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202502_ops/DNB_npp_20250201-20250228_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202503_ops/DNB_npp_20250301-20250331_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202503_ops/DNB_npp_20250301-20250331_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202504_ops/DNB_npp_20250401-20250430_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202504_ops/DNB_npp_20250401-20250430_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202505_ops/DNB_npp_20250501-20250531_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202505_ops/DNB_npp_20250501-20250531_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202506_ops/DNB_npp_20250601-20250630_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202506_ops/DNB_npp_20250601-20250630_global_ecm-slexcl_v10_ops.n_cf.tif"
+            ],
+            "months": [
+              "202411",
+              "202412",
+              "202501",
+              "202502",
+              "202503",
+              "202504",
+              "202505",
+              "202506"
+            ]
+          },
+          "before_onset": {
+            "status": "ok",
+            "reason": "",
+            "radius_m": 1500.0,
+            "months_used": 6,
+            "months_lit": 0,
+            "lit_fraction": 0.0,
+            "clear_nights": 93,
+            "radiance": 0.41,
+            "radiance_mean": 0.342,
+            "background": 0.35,
+            "excess": 0.06,
+            "persistent_light": false,
+            "threshold": {
+              "min_excess": 1.0,
+              "k_sigma": 5.0,
+              "absolute": 5.0,
+              "min_lit_fraction": 0.667,
+              "min_months": 3,
+              "rule": "month lit if footprint_max - background_median >= max(min_excess, k_sigma*background_sigma) or footprint_max >= absolute; persistent if lit in >= min_lit_fraction of usable months"
+            },
+            "archive_end": "2025-06-30",
+            "resolution_m": 750.0,
+            "units": "nW/cm2/sr",
+            "files": [
+              "composites/npp_202305_ops/DNB_npp_20230501-20230531_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202305_ops/DNB_npp_20230501-20230531_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202306_ops/DNB_npp_20230601-20230630_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202306_ops/DNB_npp_20230601-20230630_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202307_ops/DNB_npp_20230701-20230731_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202307_ops/DNB_npp_20230701-20230731_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202308_ops/DNB_npp_20230801-20230831_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202308_ops/DNB_npp_20230801-20230831_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202309_ops/DNB_npp_20230901-20230930_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202309_ops/DNB_npp_20230901-20230930_global_ecm-slexcl_v10_ops.n_cf.tif",
+              "composites/npp_202310_ops/DNB_npp_20231001-20231031_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+              "composites/npp_202310_ops/DNB_npp_20231001-20231031_global_ecm-slexcl_v10_ops.n_cf.tif"
+            ],
+            "months": [
+              "202305",
+              "202306",
+              "202307",
+              "202308",
+              "202309",
+              "202310"
+            ]
+          },
+          "persistent_light": false
+        }
+      },
+      {
+        "check": "natural_process",
+        "category": "natural",
+        "status": "explains",
+        "detail": "regional pattern: 5 of 5 other yearly candidates in this region changed the same way in 2024 (spectral direction within cosine 0.9, size within 2.0x), spread over 24.4 km; a change that recurs across a region is a regional process (rain, greening, blown sand, moisture or the sensor), not a local event",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "sub_checks": {
+            "natural:agriculture": "does_not_explain",
+            "natural:recurring_cycle": "does_not_explain",
+            "natural:surface_water": "inconclusive",
+            "natural:snow_ice": "does_not_explain",
+            "natural:mass_movement": "does_not_explain",
+            "natural:wind_blown_sand": "does_not_explain",
+            "natural:permafrost_or_lake_drainage": "does_not_explain",
+            "natural:river_or_coast": "does_not_explain",
+            "natural:volcanic": "does_not_explain",
+            "natural:regional_pattern": "explains"
+          },
+          "data_errors": {}
+        }
+      },
+      {
+        "check": "natural:agriculture",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "no cropland and not a pivot-sized disc",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "diameter_m": 84.44016491289504,
+          "circularity": 1.0,
+          "d_ndvi": 0.011604394763708115,
+          "cropland_fraction": 0.0,
+          "cropland_nearby_fraction": 0.0
+        }
+      },
+      {
+        "check": "natural:recurring_cycle",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "the record shows one transition, not a cycle",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "flips": null,
+          "onset_note": "per-scene values do not separate before from after",
+          "n_scenes": 29
+        }
+      },
+      {
+        "check": "natural:surface_water",
+        "category": "natural",
+        "status": "inconclusive",
+        "detail": "moisture-like spectral change (wetting or drying)",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "water_fraction": 0.0,
+          "d_brightness": -0.034258171916007996,
+          "d_swir": -0.0787876546382904,
+          "slope_deg": 0.4693995416164398,
+          "flat_basin": true,
+          "wetting_signature": true,
+          "drying_signature": false,
+          "short_lived": true,
+          "ragged_outline": false
+        }
+      },
+      {
+        "check": "natural:snow_ice",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "no snow mapped and no snow signature",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "snow_fraction": 0.0,
+          "d_brightness": -0.034258171916007996,
+          "d_swir": -0.0787876546382904,
+          "elevation_m": 406.0449523925781,
+          "latitude": 20.617444113630327,
+          "snow_signature": false
+        }
+      },
+      {
+        "check": "natural:mass_movement",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "gentle ground (0 degrees)",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "slope_deg": 0.4693995416164398,
+          "slope_max_deg": 1.2733795642852783,
+          "elongation": 2.651832125896159
+        }
+      },
+      {
+        "check": "natural:wind_blown_sand",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "not an irregular brightness-only change on bare ground",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "bare_fraction": 1.0,
+          "regularity": 0.875,
+          "brightness_only": true
+        }
+      },
+      {
+        "check": "natural:permafrost_or_lake_drainage",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "not a permafrost latitude or altitude",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "latitude": 20.617444113630327,
+          "elevation_m": 406.0449523925781,
+          "water_nearby_fraction": 0.0
+        }
+      },
+      {
+        "check": "natural:river_or_coast",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "no significant water around the footprint",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "water_nearby_fraction": 0.0,
+          "elongation": 2.651832125896159
+        }
+      },
+      {
+        "check": "natural:volcanic",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "no catalogued volcano within 10 km",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {}
+      },
+      {
+        "check": "artefact_screen",
+        "category": "artefact",
+        "status": "does_not_explain",
+        "detail": "4 separate scenes show the short-lived change",
+        "source": "Sentinel-2 per-scene series and composite metadata",
+        "evidence": {
+          "sub_checks": {
+            "artefact:per_scene_support": "does_not_explain",
+            "artefact:observation_count": "does_not_explain",
+            "artefact:terrain_shadow": "does_not_explain",
+            "artefact:widespread_change": "does_not_explain"
+          }
+        }
+      },
+      {
+        "check": "artefact:per_scene_support",
+        "category": "artefact",
+        "status": "does_not_explain",
+        "detail": "4 separate scenes show the short-lived change",
+        "source": "Sentinel-2 per-scene series and composite metadata",
+        "evidence": {
+          "feature": "brightness",
+          "mode": "absolute",
+          "expected_shift": -0.034258171916007996,
+          "baseline": 0.3406735956668854,
+          "noise": 0.008564542979001999,
+          "scenes_checked": 5,
+          "scenes_showing_change": 4,
+          "share": 0.8
+        }
+      },
+      {
+        "check": "artefact:observation_count",
+        "category": "artefact",
+        "status": "does_not_explain",
+        "detail": "composites use 3 and 3 separate dates; 8 valid years",
+        "source": "Sentinel-2 per-scene series and composite metadata",
+        "evidence": {
+          "dates_before": 3,
+          "dates_after": 3,
+          "valid_years": 8
+        }
+      },
+      {
+        "check": "artefact:terrain_shadow",
+        "category": "artefact",
+        "status": "does_not_explain",
+        "detail": "not a steep-slope darkening pattern",
+        "source": "Sentinel-2 per-scene series and composite metadata",
+        "evidence": {
+          "slope_max_deg": 1.2733795642852783,
+          "day_of_year_gap": 2.3333333333333712,
+          "darkening_only": true
+        }
+      },
+      {
+        "check": "artefact:widespread_change",
+        "category": "artefact",
+        "status": "does_not_explain",
+        "detail": "isolated: only 0.1% of the surrounding 3 km changed in the same year",
+        "source": "Sentinel-2 per-scene series and composite metadata",
+        "evidence": {
+          "crowding": 0.001359589408128891
+        }
+      },
+      {
+        "check": "fire_history",
+        "category": "event",
+        "status": "inconclusive",
+        "detail": "no fire seen between 2022-09-28 and 2024-11-13 within 122 m of the candidate, but the record is incomplete (burned area: 25/27 monthly files read for 6 pixels; no file for 2023-09, 2024-07; active fire: 190 eight-day files read (0 incomplete); 754/778 days covered, clear view on 748), so a fire in the gap cannot be ruled out.",
+        "source": "MODIS MCD64A1 burned area and MOD14A1/MYD14A1 active fire (Planetary Computer)",
+        "evidence": {
+          "window": [
+            "2022-09-28",
+            "2024-11-13"
+          ],
+          "radius_m": 122.3752291028674,
+          "detections": [],
+          "n_detections": 0,
+          "burned_area": {
+            "status": "partial",
+            "product": "MCD64A1",
+            "pixels": 6,
+            "months_expected": 27,
+            "months_read": 25,
+            "months_missing": [
+              "2023-09",
+              "2024-07"
+            ],
+            "months_failed": [],
+            "months_unmapped": [],
+            "detail": "25/27 monthly files read for 6 pixels; no file for 2023-09, 2024-07"
+          },
+          "active_fire": {
+            "status": "ok",
+            "product": "MOD14A1/MYD14A1",
+            "pixels": 6,
+            "days_expected": 778,
+            "days_covered": 754,
+            "days_observed": 748,
+            "files_read": 190,
+            "files_failed": 0,
+            "clear_days_by_month": {
+              "2022-09": 3,
+              "2022-10": 30,
+              "2022-11": 30,
+              "2022-12": 21,
+              "2023-01": 31,
+              "2023-02": 25,
+              "2023-03": 26,
+              "2023-04": 30,
+              "2023-05": 31,
+              "2023-06": 30,
+              "2023-07": 31,
+              "2023-08": 31,
+              "2023-09": 30,
+              "2023-10": 31,
+              "2023-11": 22,
+              "2023-12": 31,
+              "2024-01": 31,
+              "2024-02": 28,
+              "2024-03": 31,
+              "2024-04": 30,
+              "2024-05": 31,
+              "2024-06": 30,
+              "2024-07": 31,
+              "2024-08": 29,
+              "2024-09": 30,
+              "2024-10": 31,
+              "2024-11": 13
+            },
+            "detail": "190 eight-day files read (0 incomplete); 754/778 days covered, clear view on 748"
+          },
+          "spectral": {
+            "d_nbr": 0.024465210735797882,
+            "d_ndvi": 0.011604394763708115,
+            "d_brightness": -0.034258171916007996,
+            "level": "not_burn_like",
+            "source": "candidate measurements"
+          }
+        }
+      },
+      {
+        "check": "burn_spectral",
+        "category": "natural",
+        "status": "does_not_explain",
+        "detail": "the before/after change does not look like a burn scar: NBR rose (+0.024). Recovery fraction 1.00: fully recovered, which fits a grass fire but also a passing darkening",
+        "source": "candidate measurements",
+        "evidence": {
+          "d_nbr": 0.024465210735797882,
+          "d_ndvi": 0.011604394763708115,
+          "d_brightness": -0.034258171916007996,
+          "d_nir": null,
+          "recovery_fraction": 1.0,
+          "level": "not_burn_like",
+          "before_dates": null,
+          "after_dates": null,
+          "fire_history_status": "inconclusive"
+        }
+      },
+      {
+        "check": "lightning",
+        "category": "event",
+        "status": "not_run",
+        "detail": "no open global lightning archive can be reached without an account, so ignition by lightning was not tested",
+        "source": "none",
+        "evidence": {}
+      },
+      {
+        "check": "witness_reports",
+        "category": "report",
+        "status": "not_run",
+        "detail": "no ingested report source covers this place and time (sources: nuforc 1906-11-11..2023-05-18; geipan 1937-01-01..2026-09-03)",
+        "source": "NUFORC public copies; GEIPAN",
+        "evidence": {
+          "window": [
+            "2023-10-26",
+            "2024-11-05"
+          ]
+        }
+      },
+      {
+        "check": "natural:regional_pattern",
+        "category": "natural",
+        "status": "explains",
+        "detail": "regional pattern: 5 of 5 other yearly candidates in this region changed the same way in 2024 (spectral direction within cosine 0.9, size within 2.0x), spread over 24.4 km; a change that recurs across a region is a regional process (rain, greening, blown sand, moisture or the sensor), not a local event",
+        "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+        "evidence": {
+          "siblings": 5,
+          "compared": 5,
+          "year": 2024,
+          "spread_km": 24.4,
+          "ids": [
+            "SW-C10-NUBIAN-OC0002",
+            "SW-C10-NUBIAN-OC0003",
+            "SW-C10-NUBIAN-OC0006",
+            "SW-C10-NUBIAN-OC0004",
+            "SW-C10-NUBIAN-OC0005"
+          ]
+        }
+      }
+    ],
+    "tier": "T0",
+    "tier_reason": "explained by: natural:regional_pattern, natural_process",
+    "reports": [],
+    "notes": ""
+  },
+  "tier": {
+    "recomputed_tier": "T0",
+    "recomputed_reason": "explained by: natural:regional_pattern, natural_process",
+    "tier": "T0",
+    "reason": "explained by: natural:regional_pattern, natural_process",
+    "source": "recorded on the candidate",
+    "consistent": true
+  },
+  "checks": [
+    {
+      "check": "military_or_rocket_range",
+      "category": "infrastructure",
+      "status": "does_not_explain",
+      "detail": "outside every listed launch site, drop zone and range; nearest is Palmachim launch and test site (launch_site), 1387 km beyond its approximate edge. The list is not exhaustive",
+      "source": "SKYWATCH curated list data/reference/ranges.json (approximate geometries)",
+      "evidence": {
+        "inside": [],
+        "within_margin": [],
+        "nearest_entry": {
+          "name": "Palmachim launch and test site",
+          "country": "Israel",
+          "kind": "launch_site",
+          "lat": 31.88,
+          "lon": 34.69,
+          "radius_km": 4.0,
+          "approximate": true,
+          "diffuse": false,
+          "confidence": "high",
+          "note": "Coastal air base and launch site.",
+          "distance_km": 1390.9,
+          "distance_to_edge_km": 1386.9,
+          "margin_km": 0.8
+        },
+        "signature": "installation",
+        "n_entries": 82,
+        "coverage": "Curated list of approximate circles (data/reference/ranges.json); not exhaustive, so a point outside every circle may still lie in an unlisted or mis-sized military or space area."
+      }
+    },
+    {
+      "check": "landcover",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "Footprint is mostly bare (100%); cropland 0%, built-up 0%, water/wetland 0%; the 2021 map predates the onset, so it shows the site before the change.",
+      "source": "ESA WorldCover 10 m 2021 v200 (c) ESA WorldCover project, CC BY 4.0",
+      "evidence": {
+        "worldcover": "v200 2021",
+        "context_margin_m": 500.0,
+        "footprint": {
+          "tree": 0.0,
+          "shrub": 0.0,
+          "grass": 0.0,
+          "cropland": 0.0,
+          "builtup": 0.0,
+          "bare": 1.0,
+          "snow": 0.0,
+          "water": 0.0,
+          "wetland": 0.0,
+          "mangrove": 0.0,
+          "moss": 0.0,
+          "nodata": 0.0
+        },
+        "context": {
+          "tree": 0.0,
+          "shrub": 0.0,
+          "grass": 0.0,
+          "cropland": 0.0,
+          "builtup": 0.0,
+          "bare": 1.0,
+          "snow": 0.0,
+          "water": 0.0,
+          "wetland": 0.0,
+          "mangrove": 0.0,
+          "moss": 0.0,
+          "nodata": 0.0
+        },
+        "footprint_pixels": 330,
+        "footprint_source": "bbox",
+        "tiles": [
+          "N18E027"
+        ],
+        "missing_tiles": [],
+        "map_predates_onset": true,
+        "dominant": "bare",
+        "context_builtup": 0.0,
+        "explained_by": null
+      }
+    },
+    {
+      "check": "osm_infrastructure",
+      "category": "infrastructure",
+      "status": "does_not_explain",
+      "detail": "OpenStreetMap has no tagged feature within 2908 m. OpenStreetMap coverage in remote regions is incomplete, so the absence of a mapped feature is weak evidence.",
+      "source": "OpenStreetMap API 0.6 map call; data (c) OpenStreetMap contributors (ODbL)",
+      "evidence": {
+        "nearest_road_m": null,
+        "nearest_building_m": null,
+        "nearest_road": null,
+        "nearest_road_seen_m": null,
+        "nearest_building_seen_m": null,
+        "tolerance_m": 201.4,
+        "footprint_source": "bbox",
+        "search_radius_m": 2908.4,
+        "covered_radius_m": 3038.4,
+        "n_tagged_features": 0,
+        "explaining": [],
+        "nearby_beyond_tolerance": [],
+        "osm_fetched": "2026-11-25",
+        "network_requests": 0,
+        "distance_reference": "footprint edge (0 = intersects)"
+      }
+    },
+    {
+      "check": "wikidata_nearby",
+      "category": "infrastructure",
+      "status": "does_not_explain",
+      "detail": "no causally plausible catalogued item within the explanation distance (0 item(s) within 10.0 km; nearest: none)",
+      "source": "Wikidata SPARQL endpoint (query.wikidata.org)",
+      "evidence": {
+        "searched_radius_km": 10.0,
+        "n_items": 0,
+        "truncated": false,
+        "covered_radius_km": 10.0,
+        "footprint_radius_km": 0.042,
+        "onset_window_padded": [
+          "2023-10-03",
+          "2024-11-28"
+        ],
+        "category_counts": {},
+        "nearest": [],
+        "explaining": [],
+        "undated_events_in_range": [],
+        "events_outside_window": [],
+        "causal_near_misses": [],
+        "requested_radius_km": 10.0
+      }
+    },
+    {
+      "check": "aviation_accident",
+      "category": "event",
+      "status": "does_not_explain",
+      "detail": "no recorded accident within 2.0 km dated 2023-10-03 to 2024-11-28; no record in the window within the context radius. Coverage is limited: Outside the United States the absence of a record is weak evidence: most general-aviation and all military crashes abroad are in neither catalogue.",
+      "source": "NTSB aviation accident database (data.ntsb.gov/avdata) and Wikidata aviation-accident items",
+      "evidence": {
+        "radius_km": 2.042,
+        "pad_days": 30,
+        "onset_window": [
+          "2023-11-02",
+          "2024-10-29"
+        ],
+        "padded_window": [
+          "2023-10-03",
+          "2024-11-28"
+        ],
+        "sources_used": [
+          "ntsb",
+          "wikidata"
+        ],
+        "sources_failed": {},
+        "coverage": "NTSB aviation database (avall, 2008 to the download date): civil aviation accidents and selected incidents in the United States, its territories and international waters, plus foreign events involving US-registered, US-operated or US-manufactured aircraft in which the NTSB took part. It holds no military losses and almost no other foreign accidents, and records without coordinates cannot be matched. Wikidata: only accidents notable enough to have an item with coordinates within 10 km; far from complete anywhere. Outside the United States the absence of a record is weak evidence: most general-aviation and all military crashes abroad are in neither catalogue.",
+        "records_in_radius": [],
+        "nearest_record": {
+          "ntsb_no": "DCA09WA059",
+          "date": "2009-06-09",
+          "latitude": 15.58944,
+          "longitude": 32.55305,
+          "aircraft": "MCDONNELL DOUGLAS MD11",
+          "damage": "SUBS",
+          "injury_severity": "NONE",
+          "fatalities": 0,
+          "location": "Khartoum",
+          "country": "SD",
+          "source": "ntsb",
+          "id": "20090627X83323",
+          "distance_km": 697.574,
+          "label": "NTSB DCA09WA059: MCDONNELL DOUGLAS MD11, Khartoum (SD)"
+        },
+        "nearest_ntsb_record": {
+          "ntsb_no": "DCA09WA059",
+          "date": "2009-06-09",
+          "latitude": 15.58944,
+          "longitude": 32.55305,
+          "aircraft": "MCDONNELL DOUGLAS MD11",
+          "damage": "SUBS",
+          "injury_severity": "NONE",
+          "fatalities": 0,
+          "location": "Khartoum",
+          "country": "SD",
+          "source": "ntsb",
+          "id": "20090627X83323",
+          "distance_km": 697.574,
+          "label": "NTSB DCA09WA059: MCDONNELL DOUGLAS MD11, Khartoum (SD)"
+        },
+        "nearest_in_window": null,
+        "matches": [],
+        "lesser_matches": []
+      }
+    },
+    {
+      "check": "meteorite_record",
+      "category": "event",
+      "status": "not_run",
+      "detail": "the table's last recorded fall year is 2013; it cannot speak for an onset window ending 2024-10-29 (nearest record: Gebel Kamil (Found, 2009) at 303.7 km)",
+      "source": "Meteoritical Society / NASA Meteorite Landings table (mirror on raw.githubusercontent.com)",
+      "evidence": {
+        "radius_km": 3.042,
+        "onset_window": [
+          "2023-11-02",
+          "2024-10-29"
+        ],
+        "padded_window": [
+          "2023-11-02",
+          "2024-10-29"
+        ],
+        "catalogue_last_fall_year": 2013,
+        "coverage": "Meteorite Landings table (Meteoritical Society / NASA open data, as mirrored for TidyTuesday 2019-06-11): about 38,000 located meteorites, mostly finds; the year is the fall or find year, coordinates are often rounded to an arc-minute or worse, masses are recovered masses, and the table stops in the early 2010s. Later falls are only covered by Wikidata meteorite items, which the wikidata_nearby check evaluates.",
+        "records_in_radius": [],
+        "nearest_record": {
+          "name": "Gebel Kamil",
+          "fall": "Found",
+          "year": 2009,
+          "mass_g": 1600000.0,
+          "class": "Iron, ungrouped",
+          "lat": 22.01833,
+          "lon": 26.08778,
+          "distance_km": 303.658
+        },
+        "n_records_within_context_km": 0,
+        "context_radius_km": 50.0,
+        "matches": []
+      }
+    },
+    {
+      "check": "human_context",
+      "category": "infrastructure",
+      "status": "does_not_explain",
+      "detail": "remote: no mapped road within 300 m, no mapped building within 1 km, and no farmland or built-up land within 1.5 km (maps are incomplete in remote regions)",
+      "source": "OpenStreetMap distances; ESA WorldCover 2021",
+      "evidence": {
+        "nearest_road_m": null,
+        "nearest_building_m": null,
+        "mapped_features_nearby": 0,
+        "cropland_share": 0.0,
+        "builtup_share": 0.0
+      }
+    },
+    {
+      "check": "night_lights",
+      "category": "infrastructure",
+      "status": "does_not_explain",
+      "detail": "No persistent light within 1500 m of the candidate: peak radiance 0.445 against background 0.36 nW/cm2/sr, lit in 0 of 8 monthly composites (202411 to 202506, 121 cloud-free nights). Unlit sites are not thereby unexplained; many installations carry no lights. Before the onset (202305 to 202310) persistent light was absent (radiance 0.41, background 0.35 nW/cm2/sr). Sensor footprint about 750 m, so a neighbour within roughly 1 km cannot be separated. Archive ends 2025-06-30.",
+      "source": "World Bank Light Every Night archive, VIIRS DNB monthly cloud-free composites (globalnightlight.s3.amazonaws.com/composites)",
+      "evidence": {
+        "archive_end": "2025-06-30",
+        "radius_m": 1500.0,
+        "resolution_m": 750.0,
+        "after_onset": {
+          "status": "ok",
+          "reason": "",
+          "radius_m": 1500.0,
+          "months_used": 8,
+          "months_lit": 0,
+          "lit_fraction": 0.0,
+          "clear_nights": 121,
+          "radiance": 0.445,
+          "radiance_mean": 0.352,
+          "background": 0.36,
+          "excess": 0.075,
+          "persistent_light": false,
+          "threshold": {
+            "min_excess": 1.0,
+            "k_sigma": 5.0,
+            "absolute": 5.0,
+            "min_lit_fraction": 0.667,
+            "min_months": 3,
+            "rule": "month lit if footprint_max - background_median >= max(min_excess, k_sigma*background_sigma) or footprint_max >= absolute; persistent if lit in >= min_lit_fraction of usable months"
+          },
+          "archive_end": "2025-06-30",
+          "resolution_m": 750.0,
+          "units": "nW/cm2/sr",
+          "files": [
+            "composites/npp_202411_ops/DNB_npp_20241101-20241130_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202411_ops/DNB_npp_20241101-20241130_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202412_ops/DNB_npp_20241201-20241231_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202412_ops/DNB_npp_20241201-20241231_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202501_ops/DNB_npp_20250101-20250131_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202501_ops/DNB_npp_20250101-20250131_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202502_ops/DNB_npp_20250201-20250228_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202502_ops/DNB_npp_20250201-20250228_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202503_ops/DNB_npp_20250301-20250331_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202503_ops/DNB_npp_20250301-20250331_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202504_ops/DNB_npp_20250401-20250430_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202504_ops/DNB_npp_20250401-20250430_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202505_ops/DNB_npp_20250501-20250531_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202505_ops/DNB_npp_20250501-20250531_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202506_ops/DNB_npp_20250601-20250630_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202506_ops/DNB_npp_20250601-20250630_global_ecm-slexcl_v10_ops.n_cf.tif"
+          ],
+          "months": [
+            "202411",
+            "202412",
+            "202501",
+            "202502",
+            "202503",
+            "202504",
+            "202505",
+            "202506"
+          ]
+        },
+        "before_onset": {
+          "status": "ok",
+          "reason": "",
+          "radius_m": 1500.0,
+          "months_used": 6,
+          "months_lit": 0,
+          "lit_fraction": 0.0,
+          "clear_nights": 93,
+          "radiance": 0.41,
+          "radiance_mean": 0.342,
+          "background": 0.35,
+          "excess": 0.06,
+          "persistent_light": false,
+          "threshold": {
+            "min_excess": 1.0,
+            "k_sigma": 5.0,
+            "absolute": 5.0,
+            "min_lit_fraction": 0.667,
+            "min_months": 3,
+            "rule": "month lit if footprint_max - background_median >= max(min_excess, k_sigma*background_sigma) or footprint_max >= absolute; persistent if lit in >= min_lit_fraction of usable months"
+          },
+          "archive_end": "2025-06-30",
+          "resolution_m": 750.0,
+          "units": "nW/cm2/sr",
+          "files": [
+            "composites/npp_202305_ops/DNB_npp_20230501-20230531_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202305_ops/DNB_npp_20230501-20230531_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202306_ops/DNB_npp_20230601-20230630_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202306_ops/DNB_npp_20230601-20230630_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202307_ops/DNB_npp_20230701-20230731_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202307_ops/DNB_npp_20230701-20230731_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202308_ops/DNB_npp_20230801-20230831_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202308_ops/DNB_npp_20230801-20230831_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202309_ops/DNB_npp_20230901-20230930_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202309_ops/DNB_npp_20230901-20230930_global_ecm-slexcl_v10_ops.n_cf.tif",
+            "composites/npp_202310_ops/DNB_npp_20231001-20231031_global_ecm-slexcl_v10_ops.avg_rade9.tif",
+            "composites/npp_202310_ops/DNB_npp_20231001-20231031_global_ecm-slexcl_v10_ops.n_cf.tif"
+          ],
+          "months": [
+            "202305",
+            "202306",
+            "202307",
+            "202308",
+            "202309",
+            "202310"
+          ]
+        },
+        "persistent_light": false
+      }
+    },
+    {
+      "check": "natural_process",
+      "category": "natural",
+      "status": "explains",
+      "detail": "regional pattern: 5 of 5 other yearly candidates in this region changed the same way in 2024 (spectral direction within cosine 0.9, size within 2.0x), spread over 24.4 km; a change that recurs across a region is a regional process (rain, greening, blown sand, moisture or the sensor), not a local event",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "sub_checks": {
+          "natural:agriculture": "does_not_explain",
+          "natural:recurring_cycle": "does_not_explain",
+          "natural:surface_water": "inconclusive",
+          "natural:snow_ice": "does_not_explain",
+          "natural:mass_movement": "does_not_explain",
+          "natural:wind_blown_sand": "does_not_explain",
+          "natural:permafrost_or_lake_drainage": "does_not_explain",
+          "natural:river_or_coast": "does_not_explain",
+          "natural:volcanic": "does_not_explain",
+          "natural:regional_pattern": "explains"
+        },
+        "data_errors": {}
+      }
+    },
+    {
+      "check": "natural:agriculture",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "no cropland and not a pivot-sized disc",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "diameter_m": 84.44016491289504,
+        "circularity": 1.0,
+        "d_ndvi": 0.011604394763708115,
+        "cropland_fraction": 0.0,
+        "cropland_nearby_fraction": 0.0
+      }
+    },
+    {
+      "check": "natural:recurring_cycle",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "the record shows one transition, not a cycle",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "flips": null,
+        "onset_note": "per-scene values do not separate before from after",
+        "n_scenes": 29
+      }
+    },
+    {
+      "check": "natural:surface_water",
+      "category": "natural",
+      "status": "inconclusive",
+      "detail": "moisture-like spectral change (wetting or drying)",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "water_fraction": 0.0,
+        "d_brightness": -0.034258171916007996,
+        "d_swir": -0.0787876546382904,
+        "slope_deg": 0.4693995416164398,
+        "flat_basin": true,
+        "wetting_signature": true,
+        "drying_signature": false,
+        "short_lived": true,
+        "ragged_outline": false
+      }
+    },
+    {
+      "check": "natural:snow_ice",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "no snow mapped and no snow signature",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "snow_fraction": 0.0,
+        "d_brightness": -0.034258171916007996,
+        "d_swir": -0.0787876546382904,
+        "elevation_m": 406.0449523925781,
+        "latitude": 20.617444113630327,
+        "snow_signature": false
+      }
+    },
+    {
+      "check": "natural:mass_movement",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "gentle ground (0 degrees)",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "slope_deg": 0.4693995416164398,
+        "slope_max_deg": 1.2733795642852783,
+        "elongation": 2.651832125896159
+      }
+    },
+    {
+      "check": "natural:wind_blown_sand",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "not an irregular brightness-only change on bare ground",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "bare_fraction": 1.0,
+        "regularity": 0.875,
+        "brightness_only": true
+      }
+    },
+    {
+      "check": "natural:permafrost_or_lake_drainage",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "not a permafrost latitude or altitude",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "latitude": 20.617444113630327,
+        "elevation_m": 406.0449523925781,
+        "water_nearby_fraction": 0.0
+      }
+    },
+    {
+      "check": "natural:river_or_coast",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "no significant water around the footprint",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "water_nearby_fraction": 0.0,
+        "elongation": 2.651832125896159
+      }
+    },
+    {
+      "check": "natural:volcanic",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "no catalogued volcano within 10 km",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {}
+    },
+    {
+      "check": "artefact_screen",
+      "category": "artefact",
+      "status": "does_not_explain",
+      "detail": "4 separate scenes show the short-lived change",
+      "source": "Sentinel-2 per-scene series and composite metadata",
+      "evidence": {
+        "sub_checks": {
+          "artefact:per_scene_support": "does_not_explain",
+          "artefact:observation_count": "does_not_explain",
+          "artefact:terrain_shadow": "does_not_explain",
+          "artefact:widespread_change": "does_not_explain"
+        }
+      }
+    },
+    {
+      "check": "artefact:per_scene_support",
+      "category": "artefact",
+      "status": "does_not_explain",
+      "detail": "4 separate scenes show the short-lived change",
+      "source": "Sentinel-2 per-scene series and composite metadata",
+      "evidence": {
+        "feature": "brightness",
+        "mode": "absolute",
+        "expected_shift": -0.034258171916007996,
+        "baseline": 0.3406735956668854,
+        "noise": 0.008564542979001999,
+        "scenes_checked": 5,
+        "scenes_showing_change": 4,
+        "share": 0.8
+      }
+    },
+    {
+      "check": "artefact:observation_count",
+      "category": "artefact",
+      "status": "does_not_explain",
+      "detail": "composites use 3 and 3 separate dates; 8 valid years",
+      "source": "Sentinel-2 per-scene series and composite metadata",
+      "evidence": {
+        "dates_before": 3,
+        "dates_after": 3,
+        "valid_years": 8
+      }
+    },
+    {
+      "check": "artefact:terrain_shadow",
+      "category": "artefact",
+      "status": "does_not_explain",
+      "detail": "not a steep-slope darkening pattern",
+      "source": "Sentinel-2 per-scene series and composite metadata",
+      "evidence": {
+        "slope_max_deg": 1.2733795642852783,
+        "day_of_year_gap": 2.3333333333333712,
+        "darkening_only": true
+      }
+    },
+    {
+      "check": "artefact:widespread_change",
+      "category": "artefact",
+      "status": "does_not_explain",
+      "detail": "isolated: only 0.1% of the surrounding 3 km changed in the same year",
+      "source": "Sentinel-2 per-scene series and composite metadata",
+      "evidence": {
+        "crowding": 0.001359589408128891
+      }
+    },
+    {
+      "check": "fire_history",
+      "category": "event",
+      "status": "inconclusive",
+      "detail": "no fire seen between 2022-09-28 and 2024-11-13 within 122 m of the candidate, but the record is incomplete (burned area: 25/27 monthly files read for 6 pixels; no file for 2023-09, 2024-07; active fire: 190 eight-day files read (0 incomplete); 754/778 days covered, clear view on 748), so a fire in the gap cannot be ruled out.",
+      "source": "MODIS MCD64A1 burned area and MOD14A1/MYD14A1 active fire (Planetary Computer)",
+      "evidence": {
+        "window": [
+          "2022-09-28",
+          "2024-11-13"
+        ],
+        "radius_m": 122.3752291028674,
+        "detections": [],
+        "n_detections": 0,
+        "burned_area": {
+          "status": "partial",
+          "product": "MCD64A1",
+          "pixels": 6,
+          "months_expected": 27,
+          "months_read": 25,
+          "months_missing": [
+            "2023-09",
+            "2024-07"
+          ],
+          "months_failed": [],
+          "months_unmapped": [],
+          "detail": "25/27 monthly files read for 6 pixels; no file for 2023-09, 2024-07"
+        },
+        "active_fire": {
+          "status": "ok",
+          "product": "MOD14A1/MYD14A1",
+          "pixels": 6,
+          "days_expected": 778,
+          "days_covered": 754,
+          "days_observed": 748,
+          "files_read": 190,
+          "files_failed": 0,
+          "clear_days_by_month": {
+            "2022-09": 3,
+            "2022-10": 30,
+            "2022-11": 30,
+            "2022-12": 21,
+            "2023-01": 31,
+            "2023-02": 25,
+            "2023-03": 26,
+            "2023-04": 30,
+            "2023-05": 31,
+            "2023-06": 30,
+            "2023-07": 31,
+            "2023-08": 31,
+            "2023-09": 30,
+            "2023-10": 31,
+            "2023-11": 22,
+            "2023-12": 31,
+            "2024-01": 31,
+            "2024-02": 28,
+            "2024-03": 31,
+            "2024-04": 30,
+            "2024-05": 31,
+            "2024-06": 30,
+            "2024-07": 31,
+            "2024-08": 29,
+            "2024-09": 30,
+            "2024-10": 31,
+            "2024-11": 13
+          },
+          "detail": "190 eight-day files read (0 incomplete); 754/778 days covered, clear view on 748"
+        },
+        "spectral": {
+          "d_nbr": 0.024465210735797882,
+          "d_ndvi": 0.011604394763708115,
+          "d_brightness": -0.034258171916007996,
+          "level": "not_burn_like",
+          "source": "candidate measurements"
+        }
+      }
+    },
+    {
+      "check": "burn_spectral",
+      "category": "natural",
+      "status": "does_not_explain",
+      "detail": "the before/after change does not look like a burn scar: NBR rose (+0.024). Recovery fraction 1.00: fully recovered, which fits a grass fire but also a passing darkening",
+      "source": "candidate measurements",
+      "evidence": {
+        "d_nbr": 0.024465210735797882,
+        "d_ndvi": 0.011604394763708115,
+        "d_brightness": -0.034258171916007996,
+        "d_nir": null,
+        "recovery_fraction": 1.0,
+        "level": "not_burn_like",
+        "before_dates": null,
+        "after_dates": null,
+        "fire_history_status": "inconclusive"
+      }
+    },
+    {
+      "check": "lightning",
+      "category": "event",
+      "status": "not_run",
+      "detail": "no open global lightning archive can be reached without an account, so ignition by lightning was not tested",
+      "source": "none",
+      "evidence": {}
+    },
+    {
+      "check": "witness_reports",
+      "category": "report",
+      "status": "not_run",
+      "detail": "no ingested report source covers this place and time (sources: nuforc 1906-11-11..2023-05-18; geipan 1937-01-01..2026-09-03)",
+      "source": "NUFORC public copies; GEIPAN",
+      "evidence": {
+        "window": [
+          "2023-10-26",
+          "2024-11-05"
+        ]
+      }
+    },
+    {
+      "check": "natural:regional_pattern",
+      "category": "natural",
+      "status": "explains",
+      "detail": "regional pattern: 5 of 5 other yearly candidates in this region changed the same way in 2024 (spectral direction within cosine 0.9, size within 2.0x), spread over 24.4 km; a change that recurs across a region is a regional process (rain, greening, blown sand, moisture or the sensor), not a local event",
+      "source": "Sentinel-2 change measurements, ESA WorldCover, Copernicus DEM",
+      "evidence": {
+        "siblings": 5,
+        "compared": 5,
+        "year": 2024,
+        "spread_km": 24.4,
+        "ids": [
+          "SW-C10-NUBIAN-OC0002",
+          "SW-C10-NUBIAN-OC0003",
+          "SW-C10-NUBIAN-OC0006",
+          "SW-C10-NUBIAN-OC0004",
+          "SW-C10-NUBIAN-OC0005"
+        ]
+      }
+    }
+  ],
+  "checks_not_run": [
+    {
+      "check": "meteorite_record",
+      "reason": "the table's last recorded fall year is 2013; it cannot speak for an onset window ending 2024-10-29 (nearest record: Gebel Kamil (Found, 2009) at 303.7 km)",
+      "mandatory": "false"
+    },
+    {
+      "check": "lightning",
+      "reason": "no open global lightning archive can be reached without an account, so ignition by lightning was not tested",
+      "mandatory": "false"
+    },
+    {
+      "check": "witness_reports",
+      "reason": "no ingested report source covers this place and time (sources: nuforc 1906-11-11..2023-05-18; geipan 1937-01-01..2026-09-03)",
+      "mandatory": "false"
+    }
+  ],
+  "onset": {
+    "absent_until": "2023-11-02",
+    "present_from": "2024-10-29",
+    "dated": true
+  },
+  "statistics": {
+    "footprint_vs_surroundings": {
+      "before": {
+        "inside": {
+          "brightness": 0.3346,
+          "ndvi": 0.0812,
+          "nbr": -0.0772
+        },
+        "surroundings": {
+          "brightness": 0.3309,
+          "ndvi": 0.0821,
+          "nbr": -0.0761
+        }
+      },
+      "after": {
+        "inside": {
+          "brightness": 0.31,
+          "ndvi": 0.0797,
+          "nbr": -0.0693
+        },
+        "surroundings": {
+          "brightness": 0.3261,
+          "ndvi": 0.0766,
+          "nbr": -0.0727
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "name": "before.png",
+      "description": "Sentinel-2 true colour, BEFORE onset",
+      "bytes": 85544,
+      "sha256": "dc8a2fdc69b2d41c1dccb501b8c3cfd8ce2ad9210dc27cdcd2ce0977e5d3dbd1"
+    },
+    {
+      "name": "falsecolor_before.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), BEFORE onset",
+      "bytes": 88571,
+      "sha256": "b8e01aa6667e0479689f976641c814f93b70ee9296d02ba0cff7cddf29ebeb50"
+    },
+    {
+      "name": "after.png",
+      "description": "Sentinel-2 true colour, AFTER onset",
+      "bytes": 87715,
+      "sha256": "84728d348506589882d5c898a28b0ac9b3b5865dfcc6a7b5be620d9f34c68ca5"
+    },
+    {
+      "name": "falsecolor_after.png",
+      "description": "Sentinel-2 false colour (SWIR1, NIR, red), AFTER onset",
+      "bytes": 91420,
+      "sha256": "135ceb4c94dea07989c226e06ceef96c02d827933729ac817cdbb714c850c641"
+    },
+    {
+      "name": "difference.png",
+      "description": "After minus before: brightness and NDVI change",
+      "bytes": 58065,
+      "sha256": "25b97c5670c0c4e66f7266fb1b555f6cac0a48e478f864e9ce3c14ea2e9a28ba"
+    },
+    {
+      "name": "context.png",
+      "description": "Wider setting with the footprint marked",
+      "bytes": 344319,
+      "sha256": "689c5e0d30cf9ecec0a065812cb8758dc44a38fd3f19021720f8ef7decddf076"
+    },
+    {
+      "name": "timeseries.png",
+      "description": "Brightness, NDVI and NBR inside the footprint versus the ring",
+      "bytes": 85307,
+      "sha256": "b89186a62073957ac22f79b188516f0fa8cefd301d8bad031be4009c62013948"
+    },
+    {
+      "name": "hires.png",
+      "description": "Esri World Imagery view (viewing only)",
+      "bytes": 182859,
+      "sha256": "e06bb1d2e803b65d8e8653d95367edae03e8fe38e0f48c67e0568a336ae74811"
+    },
+    {
+      "name": "wayback_strip.png",
+      "description": "Esri Wayback versions; dates are publication dates, not acquisition dates",
+      "bytes": 316831,
+      "sha256": "1808ceac7d288d37565e34bdb9fcc2235c0b3c2cf16d4005c759d2939d6be325"
+    },
+    {
+      "name": "dossier.md",
+      "description": "Plain-language summary",
+      "bytes": 14063,
+      "sha256": "6a36e67f46c465d814af678f6f33b645ad5a1ffe28bfeaadba94f5f71b2cedd4"
+    },
+    {
+      "name": "dossier.json",
+      "description": "This machine-readable record"
+    }
+  ],
+  "panels_missing": [],
+  "provenance": {
+    "sentinel2": {
+      "before": {
+        "window": [
+          "2022-11-02",
+          "2023-11-02"
+        ],
+        "acquisition_dates": [
+          "2022-11-09",
+          "2022-11-14",
+          "2022-11-19",
+          "2022-11-24"
+        ],
+        "scene_ids": [
+          "S2B_35QPC_20221109_0_L2A",
+          "S2A_35QPC_20221114_0_L2A",
+          "S2B_35QPC_20221119_1_L2A",
+          "S2A_35QPC_20221124_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_35QPC_20221109_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_35QPC_20221114_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_35QPC_20221119_1_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_35QPC_20221124_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32635",
+          "res_m": 10.0,
+          "shape": [
+            152,
+            152
+          ],
+          "bounds": [
+            666410.0,
+            2279880.0,
+            667930.0,
+            2281400.0
+          ],
+          "bbox_wgs84": [
+            28.596931,
+            20.610563,
+            28.611658,
+            20.624427
+          ]
+        }
+      },
+      "after": {
+        "window": [
+          "2024-10-29",
+          "2025-10-29"
+        ],
+        "acquisition_dates": [
+          "2024-11-03",
+          "2024-11-08",
+          "2024-11-18",
+          "2024-11-23"
+        ],
+        "scene_ids": [
+          "S2A_35QPC_20241103_0_L2A",
+          "S2B_35QPC_20241108_0_L2A",
+          "S2B_35QPC_20241118_0_L2A",
+          "S2A_35QPC_20241123_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_35QPC_20241103_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_35QPC_20241108_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_35QPC_20241118_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_35QPC_20241123_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32635",
+          "res_m": 10.0,
+          "shape": [
+            152,
+            152
+          ],
+          "bounds": [
+            666410.0,
+            2279880.0,
+            667930.0,
+            2281400.0
+          ],
+          "bbox_wgs84": [
+            28.596931,
+            20.610563,
+            28.611658,
+            20.624427
+          ]
+        }
+      },
+      "context": {
+        "window": [
+          "2024-10-29",
+          "2025-10-29"
+        ],
+        "acquisition_dates": [
+          "2024-11-03",
+          "2024-11-08"
+        ],
+        "scene_ids": [
+          "S2A_35QPC_20241103_0_L2A",
+          "S2B_35QPC_20241108_0_L2A"
+        ],
+        "scene_urls": [
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2A_35QPC_20241103_0_L2A",
+          "https://earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_35QPC_20241108_0_L2A"
+        ],
+        "method": "per-pixel median of the clearest dates, cloud and shadow masked",
+        "clear_fraction": 1.0,
+        "grid": {
+          "crs": "EPSG:32635",
+          "res_m": 20.0,
+          "shape": [
+            504,
+            506
+          ],
+          "bounds": [
+            662120.0,
+            2275600.0,
+            672240.0,
+            2285680.0
+          ],
+          "bbox_wgs84": [
+            28.555382,
+            20.571514,
+            28.653427,
+            20.663463
+          ]
+        }
+      }
+    },
+    "esri": {
+      "note": "Shown for viewing only: not used for detection and not counted as an independent sensor.",
+      "hires": {
+        "source": "Esri World Imagery (live mosaic)",
+        "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+        "lat": 20.617495217786114,
+        "lon": 28.60429410546248,
+        "size_m": 800.0,
+        "zoom": 17,
+        "zoom_requested": null,
+        "ground_res_m": 1.1178,
+        "shape": [
+          716,
+          716
+        ],
+        "bbox": [
+          28.60044836997986,
+          20.613896582658388,
+          28.60813021659851,
+          20.62108642297626
+        ],
+        "origin_px": [
+          19442971,
+          14812301
+        ],
+        "tiles": 12,
+        "tile_url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+        "imagery_verified": true,
+        "retrieved": "2026-11-25",
+        "use": "viewing only; not a detector input and not an independent sensor",
+        "acquisition_date": "2023-09-12",
+        "sensor": "WV02",
+        "provider": "Vantor",
+        "source_resolution_m": 0.5,
+        "note": "per Esri metadata at the centre point of the live mosaic"
+      },
+      "wayback": [
+        {
+          "release_id": "WB_2014_R01",
+          "release_date": "2014-02-20",
+          "release_num": 10,
+          "label": "Esri release 2014-02-20 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.2357,
+          "bbox": [
+            28.60142469406128,
+            20.614810394041093,
+            28.60717535018921,
+            20.620192732249514
+          ],
+          "origin_px": [
+            9721531,
+            7406195
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/10/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2017_R05",
+          "release_date": "2017-03-15",
+          "release_num": 29387,
+          "label": "Esri release 2017-03-15 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.2357,
+          "bbox": [
+            28.60142469406128,
+            20.614810394041093,
+            28.60717535018921,
+            20.620192732249514
+          ],
+          "origin_px": [
+            9721531,
+            7406195
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/29387/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2019_R13",
+          "release_date": "2019-10-09",
+          "release_num": 11351,
+          "label": "Esri release 2019-10-09 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.2357,
+          "bbox": [
+            28.60142469406128,
+            20.614810394041093,
+            28.60717535018921,
+            20.620192732249514
+          ],
+          "origin_px": [
+            9721531,
+            7406195
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/11351/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2021_R14",
+          "release_date": "2021-10-13",
+          "release_num": 16749,
+          "label": "Esri release 2021-10-13 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.2357,
+          "bbox": [
+            28.60142469406128,
+            20.614810394041093,
+            28.60717535018921,
+            20.620192732249514
+          ],
+          "origin_px": [
+            9721531,
+            7406195
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/16749/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2023_R09",
+          "release_date": "2023-10-11",
+          "release_num": 1034,
+          "label": "Esri release 2023-10-11 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.2357,
+          "bbox": [
+            28.60142469406128,
+            20.614810394041093,
+            28.60717535018921,
+            20.620192732249514
+          ],
+          "origin_px": [
+            9721531,
+            7406195
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/1034/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        },
+        {
+          "release_id": "WB_2026_R07",
+          "release_date": "2026-08-05",
+          "release_num": 26334,
+          "label": "Esri release 2026-08-05 (published; not the acquisition date)",
+          "date_meaning": "date Esri published this version of the mosaic, NOT the date the picture was taken",
+          "zoom": 16,
+          "ground_res_m": 2.2357,
+          "bbox": [
+            28.60142469406128,
+            20.614810394041093,
+            28.60717535018921,
+            20.620192732249514
+          ],
+          "origin_px": [
+            9721531,
+            7406195
+          ],
+          "tiles": 4,
+          "tile_url": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/WMTS/1.0.0/default028mm/MapServer/tile/26334/{z}/{y}/{x}",
+          "source": "Esri World Imagery Wayback",
+          "attribution": "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+          "selection": "releases in which the centre tile changed"
+        }
+      ],
+      "tiles_used": 36,
+      "tile_limit": 60
+    },
+    "sources": {
+      "sentinel2_catalogue": "https://earth-search.aws.element84.com/v1",
+      "esri_world_imagery": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "esri_wayback": "https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/WMTS/1.0.0/WMTSCapabilities.xml"
+    },
+    "attribution": [
+      "Contains modified Copernicus Sentinel data (see scene dates) (Sentinel-2 L2A via Earth Search)",
+      "Esri World Imagery. Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+    ]
+  },
+  "closing_statement": "This dossier records, at most, an unexplained observation: a surface feature that the checks listed above did not account for. It makes no claim about what caused the feature or where it came from. An unexplained observation is not evidence of any particular origin: checks that were not run, gaps in the data and errors in this pipeline all remain possible explanations."
+}

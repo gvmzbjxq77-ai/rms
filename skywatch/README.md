@@ -37,6 +37,29 @@ skips regions already done, so an interrupted sweep resumes.
 | `skywatch/sweep` | Regions (blind, control) and the staged runner |
 | `skywatch/publish` | Catalogue export and the results page |
 
+## Pilot sweep (November 2026)
+
+| | Regions | Area km² | Reviewed | T0 explained | T1 one sensor | T2 two sensors | T3 / T4 |
+|---|---|---|---|---|---|---|---|
+| Blind | 29 | 46,400 | 462 | 382 | 71 | 9 | 0 |
+| Control | 11 | 8,504 | 179 | 152 | 21 | 6 | 0 |
+| Seeded (witness reports) | 12 | 768 | 426 | 418 | 8 | 0 | 0 |
+
+All 11 control regions passed their expectation (solar park, pivot farms,
+open-pit mine, wildfire, nuclear test site, aircraft crash scar, cosmodrome,
+active volcano, and three regions declared empty in advance). Independent
+three-sceptic review panels examined the nine blind T2 candidates and one
+control T2: nine were explained with specific image evidence (earthworks beside
+tracks, a wadi flood deposit, drought browning, salt-pan drying, wet-season
+greening, a roadside construction yard) and one, a hectare of spinifex lost on
+a Gibson Desert dune crest in November 2024, was judged probably ordinary (a
+small fire) but not shown. No candidate reached T3 or T4. The published page
+and its catalogue carry every candidate, every check and every verdict.
+
+Not run in this sweep, by lack of open access: radar interferometry
+(ground deformation), night-time and sub-100 m thermal imagery, lightning
+archives, and witness reports after May 2023.
+
 ## Evidence tiers
 
 - **T0** explained by at least one check.

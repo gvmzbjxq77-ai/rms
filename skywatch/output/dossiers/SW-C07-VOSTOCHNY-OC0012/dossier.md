@@ -34,6 +34,8 @@ The feature is absent in imagery up to 2023-08-06 and present from 2024-07-23. I
 - scene_ids_before: ["S2A_52UDC_20230806_0_L2A", "S2A_52UDC_20230717_0_L2A", "S2A_52UDC_20230714_0_L2A"]
 - scene_ids_after: ["S2B_52UDC_20240723_0_L2A", "S2A_52UDC_20240820_0_L2A", "S2B_52UDC_20240726_0_L2A"]
 - res_m: 20
+- weak: False
+- regional_siblings: {"count": 10, "compared": 79, "year": 2024, "ids": ["SW-C07-VOSTOCHNY-OC0065", "SW-C07-VOSTOCHNY-OC0021", "SW-C07-VOSTOCHNY-OC0033", "SW-C07-VOSTOCHNY-OC0050", "SW-C07-VOSTOCHNY-OC0067", "SW-C07-VOSTOCHNY-OC0074", "SW-C07-VOSTOCHNY-OC0073", "SW-C07-VOSTOCHNY-OC0071"], "spread_km": 9.2, "min_cosin...
 - shape.area_m2: 27,200
 - shape.perimeter_m: 635.3
 - shape.equivalent_diameter_m: 186.1

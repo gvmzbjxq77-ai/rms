@@ -1,0 +1,13 @@
+{
+ "verdict": "explained",
+ "verdict_label": "explained",
+ "one_line": "Prospecting or borrow pits with pale spoil dug beside a dirt track in 2023-24; seen directly in hires.png and the 2026 Wayback mosaic.",
+ "summary": "Sentinel-2 before.png shows a uniform brown bare slope immediately west of a north-south dirt track; after.png shows a bright pale patch about 150 x 95 m filling the footprint against that track, with a new straight pale track running east from the junction. hires.png (Esri, picture dated 2025-03-05, after onset) resolves the patch into an excavated area of pale subsoil with several dark pits separated by spoil heaps, a short spur from the track carrying two small vehicle-sized objects, and a turning loop; wayback_strip.png shows undisturbed ground in every mosaic release from 2014 through 2023-10-11 and the same pit cluster in the 2026-05-28 release. The 32-scene series (timeseries.png) shows inside-minus-ring brightness climbing stepwise from about 0 in mid-2023 to +0.07 by 2024-02 and holding near +0.05 through 2025, with NBR rising and SWIR flat (d_swir +0.003), the signature of exposed dry pale regolith rather than water, fire or snow; Landsat independently confirms the brightening (shift 0.035 vs noise 0.004) while SAR, thermal and night lights are null, as expected for shallow digging. All three sceptics (human activity, natural processes, artefacts) independently identified small-scale excavation in a known small-mining district (Margarita mine 3.4 km away), and the panel agrees: the cause is directly visible at 1 m resolution, so the candidate is explained.",
+ "explanation": "Small-scale earthworks: a cluster of excavation pits (prospecting workings or borrow scrapes) with pale spoil heaps, opened on the west side of an existing dirt track (OSM way 111564066) between about 2023-08 and 2024-02, together with a newly graded straight east-west access track from the same junction; the brightening is freshly exposed pale subsurface material.",
+ "next_step": "Not required for the verdict. If an operator is wanted: query Chile's SERNAGEOMIN Catastro Minero at -25.3620, -69.9862 for a concession (pedimento or manifestacion) registered in 2023-2024, or obtain one dated commercial scene (Planet or Maxar) from 2023-08 to 2024-02 showing machinery opening the pits.",
+ "reviewers": 3,
+ "votes": {
+  "refuted": 3,
+  "not_refuted": 0
+ }
+}

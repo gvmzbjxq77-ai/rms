@@ -11,14 +11,30 @@
   ],
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "e10b6c69294ebc36506219ed03071df6bd537c122b2e22aa102ec58c2cbffd23",
-   "requested_utc": "2026-11-25T11:39:31Z"
+   "manifest_sha256": "d0205923c9925020a6b32490c48a854b43308e26057bbadcf16197b7b27e8302",
+   "requested_utc": "2026-11-25T12:33:10Z"
   }
  },
  {
-  "id": "SW-C10-NUBIAN-OC0002",
+  "id": "SW-B19-PUNA-OC0012",
   "tier": "T2",
-  "folder": "/home/user/skywatch/output/dossiers/SW-C10-NUBIAN-OC0002",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B19-PUNA-OC0012",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "foia_2.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "7686327f2e6caac507f804e19fe403db8754af96e882281706aa6af94c2e6bf8",
+   "requested_utc": "2026-11-25T12:33:27Z"
+  }
+ },
+ {
+  "id": "SW-C01-BENBAN-OC0015",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C01-BENBAN-OC0015",
   "dossier": "built",
   "drafts": [
    "foia_1.md",
@@ -26,8 +42,467 @@
   ],
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "aacd66a134c046d58f6a09ce24d79a78294631db88c08a5bbc3f92d52c5180dd",
-   "requested_utc": "2026-11-25T11:39:04Z"
+   "manifest_sha256": "b536b6b34b542461dd806fdec287d673417eee49f345ddca53b0ee6dfc24f61d",
+   "requested_utc": "2026-11-25T12:33:25Z"
+  }
+ },
+ {
+  "id": "SW-B03-GILF-OC0013",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B03-GILF-OC0013",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "71615d878cf605a312fa46d36e7f29af1c4a18c54f811ab404bbb316bd17df4e",
+   "requested_utc": "2026-11-25T12:33:54Z"
+  }
+ },
+ {
+  "id": "SW-B14-USTYURT-OC0002",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B14-USTYURT-OC0002",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "0cd6bd135bae901898d86c8f6117ce0352eabb2147a887aa4d7f27be2dd95d7a",
+   "requested_utc": "2026-11-25T12:33:59Z"
+  }
+ },
+ {
+  "id": "SW-B19-PUNA-OC0013",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B19-PUNA-OC0013",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "foia_2.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "370a24e739071eafa10ac0b1a22f7358f0e9cd94142176ed72c336e572c7480c",
+   "requested_utc": "2026-11-25T12:34:02Z"
+  }
+ },
+ {
+  "id": "SW-C01-BENBAN-OC0009",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C01-BENBAN-OC0009",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "2877cc96a0a3676239d06a6ea1e1f268d675c8f975e9fb22d2e24ed7db27c0a0",
+   "requested_utc": "2026-11-25T12:34:01Z"
+  }
+ },
+ {
+  "id": "SW-B14-USTYURT-OC0014",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B14-USTYURT-OC0014",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "797e3c9cfcdb34a27639fff1f96803fcde41c54c48b5399bd294a693a081d3d6",
+   "requested_utc": "2026-11-25T12:34:27Z"
+  }
+ },
+ {
+  "id": "SW-C01-BENBAN-OC0014",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C01-BENBAN-OC0014",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "48904510f71996b32cd482a0ac743e0d17dcfe632739ac4a36a6fec0261e7775",
+   "requested_utc": "2026-11-25T12:34:51Z"
+  }
+ },
+ {
+  "id": "SW-B19-PUNA-OC0010",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B19-PUNA-OC0010",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "foia_2.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "467a3559924960e23132c8363cfa169acf7b24d6caa3f420e3bde56b87bced7a",
+   "requested_utc": "2026-11-25T12:34:24Z"
+  }
+ },
+ {
+  "id": "SW-B11-ATACAMA-OC0010",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B11-ATACAMA-OC0010",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "foia_2.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "487c48c10dd7b9f389abbe6eb11709becd888433df18ada61a83709d47246d60",
+   "requested_utc": "2026-11-25T12:35:59Z"
+  }
+ },
+ {
+  "id": "SW-B13-MAPIMI-OC0005",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B13-MAPIMI-OC0005",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "foia_2.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "0ccb74010ccc156b28ab65335f906f288e79efe231dcc94e7dbeff2bcfdad2e2",
+   "requested_utc": "2026-11-25T12:35:09Z"
+  }
+ },
+ {
+  "id": "SW-C06-MU5735-EV0008",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C06-MU5735-EV0008",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "aeb201bb518931ce9a85e32f0f0b9295989156d84904c63c03108c70c16da1cc",
+   "requested_utc": "2026-11-25T12:35:35Z"
+  }
+ },
+ {
+  "id": "SW-C06-MU5735-EV0028",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C06-MU5735-EV0028",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "5920b2dc664ffacae4d92e4ee6080cf2bcaee4da20d9a12e5289759d8605fb52",
+   "requested_utc": "2026-11-25T12:35:49Z"
+  }
+ },
+ {
+  "id": "SW-C06-MU5735-EV0043",
+  "tier": "T2",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C06-MU5735-EV0043",
+  "dossier": "built",
+  "drafts": [
+   "foia_1.md",
+   "ground_truth_plan.md"
+  ],
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "7ec8584a504a33fd5c927fdee6f0da43b2c135dee0af251a96257a30558bd44e",
+   "requested_utc": "2026-11-25T12:36:09Z"
+  }
+ },
+ {
+  "id": "SW-B06-LUT-OC0003",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B06-LUT-OC0003",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "b50bc0a6f317d02e1941b04844e1d6cc065bb9525466afcb0d5cf84b1388c0a0",
+   "requested_utc": "2026-11-25T12:36:28Z"
+  }
+ },
+ {
+  "id": "SW-B11-ATACAMA-OC0009",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B11-ATACAMA-OC0009",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "2fef31d34d34f86cd220338461a5fcce5f51333a14eb2a4560deaf1f394af0df",
+   "requested_utc": "2026-11-25T12:36:31Z"
+  }
+ },
+ {
+  "id": "SW-B08-GOBI-OC0015",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B08-GOBI-OC0015",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "995797841b4115c37e18dfd8a50ce300bd867c1baf880c312c769dd168af8868",
+   "requested_utc": "2026-11-25T12:36:42Z"
+  }
+ },
+ {
+  "id": "SW-B11-ATACAMA-OC0004",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B11-ATACAMA-OC0004",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "2640994b2405c614cc3193df7fe37052ae44ebab2105558f79cc9b1e7e99b43f",
+   "requested_utc": "2026-11-25T12:37:24Z"
+  }
+ },
+ {
+  "id": "SW-B09-GIBSON-OC0001",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B09-GIBSON-OC0001",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "330e09cf20cc193abf56f7b0488a5107a1d7b37cf38116b309d26f7d3c4fe821",
+   "requested_utc": "2026-11-25T12:37:43Z"
+  }
+ },
+ {
+  "id": "SW-B28-AMAZON-OC0015",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B28-AMAZON-OC0015",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "a53067f0b0e68ee440f66fc2fcb10a77d0b6cc1b8a6989a8aac192bd82de954d",
+   "requested_utc": "2026-11-25T12:37:11Z"
+  }
+ },
+ {
+  "id": "SW-B06-LUT-OC0016",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B06-LUT-OC0016",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "44b75069a3e9df8d3036ff0b00d1f77f8af1b126de7e0642abb86e36bb78a10d",
+   "requested_utc": "2026-11-25T12:38:06Z"
+  }
+ },
+ {
+  "id": "SW-C03-OYUTOLGOI-OC0009",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C03-OYUTOLGOI-OC0009",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "77e499742ff24e9c662c7b52bab75a34eb2aecb3da34e23d0b0939a5b194a223",
+   "requested_utc": "2026-11-25T12:37:56Z"
+  }
+ },
+ {
+  "id": "SW-C02-OWEINAT-OC0012",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C02-OWEINAT-OC0012",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "8728f627605cc739b6cbaf9ff7671d1c30c87bcd1457f0d13c14914bbf44700e",
+   "requested_utc": "2026-11-25T12:38:30Z"
+  }
+ },
+ {
+  "id": "SW-S03-RENFREW-OC0009",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-S03-RENFREW-OC0009",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "e2c514621e41e65ffa94a43694e082a6297003bd4584ae7fb9d79e1dece74f1d",
+   "requested_utc": "2026-11-25T12:38:26Z"
+  }
+ },
+ {
+  "id": "SW-B03-GILF-OC0015",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B03-GILF-OC0015",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "5e5f4444fc5fc2ca3a78d66a0617da50fa9fbefb0cac9512a4cf18a2f4726260",
+   "requested_utc": "2026-11-25T12:39:04Z"
+  }
+ },
+ {
+  "id": "SW-B29-PATAGONIA-OC0002",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B29-PATAGONIA-OC0002",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "700fb6fdda7a1b8acfd8d6e5dd3d70a706436a4f650d593fcb83af54bc276d54",
+   "requested_utc": "2026-11-25T12:39:29Z"
+  }
+ },
+ {
+  "id": "SW-B13-MAPIMI-OC0011",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B13-MAPIMI-OC0011",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "025330f799c52e45b64fe30088d6fdb191be60d44a428285388c4e660654a14f",
+   "requested_utc": "2026-11-25T12:39:29Z"
+  }
+ },
+ {
+  "id": "SW-B13-MAPIMI-OC0003",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B13-MAPIMI-OC0003",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "e03cf7b7b92611cf915ad0e2b1fd2f2e3015f1ad8ff6f0d03fdf41b41ceb2480",
+   "requested_utc": "2026-11-25T12:39:47Z"
+  }
+ },
+ {
+  "id": "SW-B01-TENERE-OC0004",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B01-TENERE-OC0004",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "6a0a2c023980ea3694b5295a95b48432e7dff28980e7f35514b96e45b8d080bb",
+   "requested_utc": "2026-11-25T12:40:26Z"
+  }
+ },
+ {
+  "id": "SW-B18-CHANGTANG-OC0010",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B18-CHANGTANG-OC0010",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "f81b43c574dc0a81dec42efa9cd186bbb9d4e07e674efcd2c6d9fbdbd4694b15",
+   "requested_utc": "2026-11-25T12:40:41Z"
+  }
+ },
+ {
+  "id": "SW-B23-BARRENLANDS-OC0007",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B23-BARRENLANDS-OC0007",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "bb10af30e6b9774f1672c2e7f10da7033c9f5fdda59e7399a7cf22c0b449ebe9",
+   "requested_utc": "2026-11-25T12:40:48Z"
+  }
+ },
+ {
+  "id": "SW-B27-EVENKIA-OC0001",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B27-EVENKIA-OC0001",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "dd18394d0a398b0d1d087a561dd9ad3264748b75b2a0c9627ebe92055624dbfe",
+   "requested_utc": "2026-11-25T12:41:31Z"
+  }
+ },
+ {
+  "id": "SW-B03-GILF-OC0012",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B03-GILF-OC0012",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "7c7cb48836b44efc1b24d5d0e6b600bf6dcb2bfdee9dba1b2dba21adc92c9028",
+   "requested_utc": "2026-11-25T12:41:34Z"
+  }
+ },
+ {
+  "id": "SW-S01-PEYRUIS-OC0012",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-S01-PEYRUIS-OC0012",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "38a17c5cef18686e77db410eacdd3dead620d02e36b7a819ed841da13ef4169c",
+   "requested_utc": "2026-11-25T12:41:50Z"
+  }
+ },
+ {
+  "id": "SW-S02-CLARKS-SUMMIT-OC0006",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-S02-CLARKS-SUMMIT-OC0006",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "a337cef5ee1bd830301d1f4d2d96e26f67515d6e7bac4286537313a5b1c2e9c1",
+   "requested_utc": "2026-11-25T12:42:41Z"
+  }
+ },
+ {
+  "id": "SW-B28-AMAZON-OC0002",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B28-AMAZON-OC0002",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "c31aa82e0d056c58399bfd650ea3f7152d6defe50bd00e1d1b9cb0fd84f3db88",
+   "requested_utc": "2026-11-25T12:42:43Z"
+  }
+ },
+ {
+  "id": "SW-B21-TAYMYR-OC0016",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B21-TAYMYR-OC0016",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "1e36319f927791c7e901841cf12c9c06e6767eaa7ae1f4d703bb21454b26f633",
+   "requested_utc": "2026-11-25T12:42:40Z"
+  }
+ },
+ {
+  "id": "SW-C09-SERIRTIBESTI-OC0002",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C09-SERIRTIBESTI-OC0002",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "b63e690ecdba670c7d4f6c43b66880ff5694b0696c1df448f0ca84b6726f5eb1",
+   "requested_utc": "2026-11-25T12:43:59Z"
+  }
+ },
+ {
+  "id": "SW-B04-TANEZROUFT-OC0001",
+  "tier": "T1",
+  "folder": "/home/user/skywatch/output/dossiers/SW-B04-TANEZROUFT-OC0001",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "c682955c745b1155fefae48a0c19006521de41f2a0f40b6e6914e428396caafb",
+   "requested_utc": "2026-11-25T12:43:48Z"
   }
  },
  {
@@ -37,8 +512,8 @@
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "c64f00ef3a5d07b9fe2861ccb9c85d5862bede4f780965f5eedb7db2b4d666e4",
-   "requested_utc": "2026-11-25T11:39:43Z"
+   "manifest_sha256": "529de7b9e3565c970d2366158cea9d8066fbd50a1bd1099ba13aaebfe922dbc2",
+   "requested_utc": "2026-11-25T12:43:15Z"
   }
  },
  {
@@ -48,8 +523,8 @@
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "c56b27b59635473f08a93707fb3ceaa3d3b26048d6ccad89118d6a027b6a5c76",
-   "requested_utc": "2026-11-25T11:40:34Z"
+   "manifest_sha256": "dec87bd4d98d04501cd7316fe7ba07e7e1793b04e59e729dc2d20f5e312e948b",
+   "requested_utc": "2026-11-25T12:43:44Z"
   }
  },
  {
@@ -59,8 +534,8 @@
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "08556b628358cb7ac3e6e35af1028654d2a6efbf0fb33bbb0d8a60ab5ead583c",
-   "requested_utc": "2026-11-25T11:40:13Z"
+   "manifest_sha256": "3a85daafe03aa213982cca423a90ed4a61269fe11eaa8bf31c0cfba205fb0458",
+   "requested_utc": "2026-11-25T12:44:06Z"
   }
  },
  {
@@ -70,8 +545,8 @@
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "f1f2965c33ada655706e87a93b68ab10809d3e36c05a9b628fe7a6c734af44d8",
-   "requested_utc": "2026-11-25T11:40:53Z"
+   "manifest_sha256": "28288e00cab6cc485094539aa9107d9985dc5700150029ac86648d206ac9a210",
+   "requested_utc": "2026-11-25T12:44:10Z"
   }
  },
  {
@@ -81,19 +556,19 @@
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "e64a4e5a4b5380653277dba175a7e27c2067f6cc3451577099d23c075f5bebfd",
-   "requested_utc": "2026-11-25T11:41:03Z"
+   "manifest_sha256": "a849d2816c7b1a2e61c475cf6d6c4d2054a9bac999d9d6c75ba87011858697ef",
+   "requested_utc": "2026-11-25T12:44:21Z"
   }
  },
  {
-  "id": "SW-C06-MU5735-OC0004",
+  "id": "SW-C06-MU5735-EV0049",
   "tier": "T0",
-  "folder": "/home/user/skywatch/output/dossiers/SW-C06-MU5735-OC0004",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C06-MU5735-EV0049",
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "8cf006f1998cb5e574b58f7e50b166d12232162dbe116a2b9caf4ec3f5800d94",
-   "requested_utc": "2026-11-25T11:41:41Z"
+   "manifest_sha256": "d0062e5e5d7ee4125bc65f706768a5daeb543ee544ad3879cabcd759cdf31801",
+   "requested_utc": "2026-11-25T12:44:54Z"
   }
  },
  {
@@ -103,8 +578,8 @@
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "79f4154b4bb03242423f0764e807de3c617c7ffbcfbdc15c5649d365e8d7d64d",
-   "requested_utc": "2026-11-25T11:41:34Z"
+   "manifest_sha256": "f07efa5443d92c1f43afe3b45f71371f865b877d36e0e496f7eadc8119fa3c72",
+   "requested_utc": "2026-11-25T12:44:28Z"
   }
  },
  {
@@ -114,8 +589,30 @@
   "dossier": "built",
   "timestamp": {
    "status": "pending",
-   "manifest_sha256": "1609bc76544d7edc6491c50132ee3c20295779c2e29bd53e316563d6bed4657a",
-   "requested_utc": "2026-11-25T11:42:04Z"
+   "manifest_sha256": "644a1ecfc1a8ba037446c2ca149c1c944e0bb466506e3af643970947eab84f45",
+   "requested_utc": "2026-11-25T12:44:40Z"
+  }
+ },
+ {
+  "id": "SW-C09-SERIRTIBESTI-OC0003",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C09-SERIRTIBESTI-OC0003",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "758f2900605f3d51dca53fa741e33bf82f541a3419f7a3167badadfbc945d298",
+   "requested_utc": "2026-11-25T12:45:30Z"
+  }
+ },
+ {
+  "id": "SW-C10-NUBIAN-OC0001",
+  "tier": "T0",
+  "folder": "/home/user/skywatch/output/dossiers/SW-C10-NUBIAN-OC0001",
+  "dossier": "built",
+  "timestamp": {
+   "status": "pending",
+   "manifest_sha256": "46741c7dc1a0fc56864865261e7a5a4ea5b4db1d78580b01606c083f19a4d5d2",
+   "requested_utc": "2026-11-25T12:45:26Z"
   }
  }
 ]

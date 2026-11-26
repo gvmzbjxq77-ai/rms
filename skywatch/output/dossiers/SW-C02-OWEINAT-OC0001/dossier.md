@@ -35,6 +35,7 @@ The feature is absent in imagery up to 2023-01-18 and present from 2024-01-11. I
 - scene_ids_after: ["S2B_35QPF_20240116_0_L2A", "S2B_35QPE_20240116_0_L2A", "S2A_35QPF_20240111_0_L2A", "S2A_35QPE_20240111_0_L2A", "S2A_35QPF_20240118_0_L2A", "S2A_35QPE_20240118_0_L2A"]
 - res_m: 20
 - weak: False
+- regional_siblings: {"count": 3, "compared": 119, "year": 2023, "ids": ["SW-C02-OWEINAT-OC0041", "SW-C02-OWEINAT-OC0054", "SW-C02-OWEINAT-OC0013"], "spread_km": 7.3, "min_cosine": 0.9, "magnitude_ratio": 2.0}
 - shape.area_m2: 310,800
 - shape.perimeter_m: 2,030
 - shape.equivalent_diameter_m: 629.1

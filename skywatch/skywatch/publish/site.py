@@ -36,6 +36,8 @@ LIMITS = [
      "Millimetre deformation needs radar interferometry products that require a data-provider account. That check was not run, so underground excavation cannot be ruled in or out."),
     ("Absence from a map is weak evidence",
      "OpenStreetMap and Wikidata are thin in remote regions. 'Nothing mapped here' often means nobody has mapped it yet. Lightning records and most countries' aircraft-accident records were not available."),
+    ("Event-window finds stop at the second tier",
+     "Changes found in a dated window around a witness report are compared against the previous year's season rather than a scene-by-scene record, so the per-scene artefact test cannot run for them and they cannot rise above T2."),
     ("Regional patterns are set aside by rule",
      "When five or more unrelated places in one region changed the same way in the same year, the change is attributed to a regional process (rain, greening, blown sand, moisture or the sensor) and explained as such. Five similar things built in one region in one year would be set aside by the same rule unless their outlines are regular."),
     ("A tier is not an identification",

@@ -35,6 +35,7 @@ The feature is absent in imagery up to 2021-07-24 and present from 2022-07-04. I
 - scene_ids_after: ["S2A_36QVM_20220714_0_L2A", "S2A_36RVN_20220714_0_L2A", "S2B_36RVN_20220719_0_L2A", "S2B_36QVM_20220719_0_L2A", "S2A_36RVN_20220704_0_L2A", "S2A_36QVM_20220704_0_L2A"]
 - res_m: 20
 - weak: False
+- regional_siblings: {"count": 0, "compared": 119, "year": 2022, "ids": [], "spread_km": 0.0, "min_cosine": 0.9, "magnitude_ratio": 2.0}
 - shape.area_m2: 11,200
 - shape.perimeter_m: 336.6
 - shape.equivalent_diameter_m: 119.4

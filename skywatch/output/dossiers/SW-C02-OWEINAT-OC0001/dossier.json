@@ -1,6 +1,6 @@
 {
   "schema": "skywatch.dossier/1",
-  "generated_utc": "2026-11-25T11:40:33Z",
+  "generated_utc": "2026-11-25T12:43:43Z",
   "candidate": {
     "id": "SW-C02-OWEINAT-OC0001",
     "region_id": "C02-OWEINAT",
@@ -119,7 +119,20 @@
         "S2A_35QPE_20240118_0_L2A"
       ],
       "res_m": 20.0,
-      "weak": false
+      "weak": false,
+      "regional_siblings": {
+        "count": 3,
+        "compared": 119,
+        "year": 2023,
+        "ids": [
+          "SW-C02-OWEINAT-OC0041",
+          "SW-C02-OWEINAT-OC0054",
+          "SW-C02-OWEINAT-OC0013"
+        ],
+        "spread_km": 7.3,
+        "min_cosine": 0.9,
+        "magnitude_ratio": 2.0
+      }
     },
     "checks": [
       {
@@ -639,8 +652,8 @@
     {
       "name": "dossier.md",
       "description": "Plain-language summary",
-      "bytes": 7417,
-      "sha256": "78d25162add60298db9574cf5500ee416cbe38f830daf7c9a05cf930e31afbac"
+      "bytes": 7627,
+      "sha256": "33f157fd8e79800a4b515fb95c51d72d735dea6922e301bb3b308833fce87248"
     },
     {
       "name": "dossier.json",

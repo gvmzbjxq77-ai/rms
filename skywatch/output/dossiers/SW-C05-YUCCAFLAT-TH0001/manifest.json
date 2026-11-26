@@ -12,7 +12,7 @@
   },
   {
    "path": "dossier.json",
-   "sha256": "b97c68d73f886eec65f1ab1862c74d526feeacf79b8419ffcde7ed41bcd7e05e",
+   "sha256": "6b4b4397cc34db7ff35d983a21a409dcaa074b272526f909cc3d262b0f0905fc",
    "size": 22789
   },
   {
@@ -42,6 +42,6 @@
   }
  ],
  "hash": "sha256",
- "manifest_sha256": "e64a4e5a4b5380653277dba175a7e27c2067f6cc3451577099d23c075f5bebfd",
+ "manifest_sha256": "a849d2816c7b1a2e61c475cf6d6c4d2054a9bac999d9d6c75ba87011858697ef",
  "schema": "skywatch-manifest/1"
 }

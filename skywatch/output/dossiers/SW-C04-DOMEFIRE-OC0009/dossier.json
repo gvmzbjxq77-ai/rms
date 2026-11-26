@@ -1,6 +1,6 @@
 {
   "schema": "skywatch.dossier/1",
-  "generated_utc": "2026-11-25T11:40:53Z",
+  "generated_utc": "2026-11-25T12:44:10Z",
   "candidate": {
     "id": "SW-C04-DOMEFIRE-OC0009",
     "region_id": "C04-DOMEFIRE",
@@ -125,7 +125,25 @@
         "S2B_11SPV_20211002_1_L2A"
       ],
       "res_m": 20.0,
-      "weak": false
+      "weak": false,
+      "regional_siblings": {
+        "count": 13,
+        "compared": 86,
+        "year": 2021,
+        "ids": [
+          "SW-C04-DOMEFIRE-OC0006",
+          "SW-C04-DOMEFIRE-OC0049",
+          "SW-C04-DOMEFIRE-OC0048",
+          "SW-C04-DOMEFIRE-OC0053",
+          "SW-C04-DOMEFIRE-OC0054",
+          "SW-C04-DOMEFIRE-OC0055",
+          "SW-C04-DOMEFIRE-OC0050",
+          "SW-C04-DOMEFIRE-OC0052"
+        ],
+        "spread_km": 6.6,
+        "min_cosine": 0.9,
+        "magnitude_ratio": 2.0
+      }
     },
     "checks": [
       {
@@ -617,8 +635,8 @@
     {
       "name": "dossier.md",
       "description": "Plain-language summary",
-      "bytes": 7064,
-      "sha256": "d89529d6f16dc1ba3ed4f0a673e4ecff54f95564aa6076f555eced2fa6734669"
+      "bytes": 7386,
+      "sha256": "3f5b8a1d8f08126800e8a6171a7a9fe93095f664a35d284013b5e03dbb2a8cdf"
     },
     {
       "name": "dossier.json",

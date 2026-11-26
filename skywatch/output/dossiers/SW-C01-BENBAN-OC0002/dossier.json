@@ -1,6 +1,6 @@
 {
   "schema": "skywatch.dossier/1",
-  "generated_utc": "2026-11-25T11:39:42Z",
+  "generated_utc": "2026-11-25T12:43:15Z",
   "candidate": {
     "id": "SW-C01-BENBAN-OC0002",
     "region_id": "C01-BENBAN",
@@ -125,7 +125,16 @@
         "S2A_36QVM_20220704_0_L2A"
       ],
       "res_m": 20.0,
-      "weak": false
+      "weak": false,
+      "regional_siblings": {
+        "count": 0,
+        "compared": 119,
+        "year": 2022,
+        "ids": [],
+        "spread_km": 0.0,
+        "min_cosine": 0.9,
+        "magnitude_ratio": 2.0
+      }
     },
     "checks": [
       {
@@ -673,8 +682,8 @@
     {
       "name": "dossier.md",
       "description": "Plain-language summary",
-      "bytes": 7160,
-      "sha256": "0f2b15fd0c86f9269adee1ebfc8173031ff998a0aee43f6bdf8b698f255e19aa"
+      "bytes": 7297,
+      "sha256": "d73029d8400b39d19e4b741b37e66fa19c58083fd9ab1bb01b5f1f3b177175d0"
     },
     {
       "name": "dossier.json",

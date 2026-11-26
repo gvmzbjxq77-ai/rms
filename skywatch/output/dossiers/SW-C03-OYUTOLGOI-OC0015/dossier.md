@@ -35,6 +35,7 @@ The feature is absent in imagery up to 2024-08-26 and present from 2025-08-01. I
 - scene_ids_after: ["S2A_48TXN_20250808_2_L2A", "S2B_48TXN_20250811_0_L2A", "S2B_48TXN_20250801_0_L2A"]
 - res_m: 20
 - weak: False
+- regional_siblings: {"count": 5, "compared": 119, "year": 2025, "ids": ["SW-C03-OYUTOLGOI-OC0044", "SW-C03-OYUTOLGOI-OC0055", "SW-C03-OYUTOLGOI-OC0035", "SW-C03-OYUTOLGOI-OC0067", "SW-C03-OYUTOLGOI-OC0070"], "spread_km": 3.7, "min_cosine": 0.9, "magnitude_ratio": 2.0}
 - shape.area_m2: 1,600
 - shape.perimeter_m: 80
 - shape.equivalent_diameter_m: 45.14

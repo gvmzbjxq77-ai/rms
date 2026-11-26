@@ -35,6 +35,7 @@ The feature is absent in imagery up to 2020-10-07 and present from 2021-09-22. I
 - scene_ids_after: ["S2B_11SPU_20210922_1_L2A", "S2B_11SPV_20210922_1_L2A", "S2A_11SPU_20210927_1_L2A", "S2A_11SPV_20210927_1_L2A", "S2B_11SPU_20211002_1_L2A", "S2B_11SPV_20211002_1_L2A"]
 - res_m: 20
 - weak: False
+- regional_siblings: {"count": 13, "compared": 86, "year": 2021, "ids": ["SW-C04-DOMEFIRE-OC0006", "SW-C04-DOMEFIRE-OC0049", "SW-C04-DOMEFIRE-OC0048", "SW-C04-DOMEFIRE-OC0053", "SW-C04-DOMEFIRE-OC0054", "SW-C04-DOMEFIRE-OC0055", "SW-C04-DOMEFIRE-OC0050", "SW-C04-DOMEFIRE-OC0052"], "spread_km": 6.6, "min_cosine": 0.9,...
 - shape.area_m2: 11,600
 - shape.perimeter_m: 433.1
 - shape.equivalent_diameter_m: 121.5

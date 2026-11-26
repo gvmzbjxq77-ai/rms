@@ -1,6 +1,6 @@
 {
   "schema": "skywatch.dossier/1",
-  "generated_utc": "2026-11-25T11:41:34Z",
+  "generated_utc": "2026-11-25T12:44:27Z",
   "candidate": {
     "id": "SW-C07-VOSTOCHNY-OC0012",
     "region_id": "C07-VOSTOCHNY",
@@ -118,7 +118,26 @@
         "S2A_52UDC_20240820_0_L2A",
         "S2B_52UDC_20240726_0_L2A"
       ],
-      "res_m": 20.0
+      "res_m": 20.0,
+      "weak": false,
+      "regional_siblings": {
+        "count": 10,
+        "compared": 79,
+        "year": 2024,
+        "ids": [
+          "SW-C07-VOSTOCHNY-OC0065",
+          "SW-C07-VOSTOCHNY-OC0021",
+          "SW-C07-VOSTOCHNY-OC0033",
+          "SW-C07-VOSTOCHNY-OC0050",
+          "SW-C07-VOSTOCHNY-OC0067",
+          "SW-C07-VOSTOCHNY-OC0074",
+          "SW-C07-VOSTOCHNY-OC0073",
+          "SW-C07-VOSTOCHNY-OC0071"
+        ],
+        "spread_km": 9.2,
+        "min_cosine": 0.9,
+        "magnitude_ratio": 2.0
+      }
     },
     "checks": [
       {
@@ -464,8 +483,8 @@
     {
       "name": "dossier.md",
       "description": "Plain-language summary",
-      "bytes": 6751,
-      "sha256": "9212119dfa7e8cfd3e05b507ac03948f73fe32836b3c6702784bfe09758d7f5d"
+      "bytes": 7087,
+      "sha256": "0a05552c756ada8c6a80d339a433ac5a4d87a02618bfa5052cb5ec412f8d414c"
     },
     {
       "name": "dossier.json",

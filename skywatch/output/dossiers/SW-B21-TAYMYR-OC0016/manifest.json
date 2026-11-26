@@ -1,0 +1,67 @@
+{
+ "files": [
+  {
+   "path": "after.png",
+   "sha256": "55612fdf03acef92cb3cef0510aaa14d5929c0f7157a6f511f9c9cdf0a908509",
+   "size": 113328
+  },
+  {
+   "path": "before.png",
+   "sha256": "25fb3778cdab79498de3a71b90a5723741b26670e7fe37042169c0675150e363",
+   "size": 115199
+  },
+  {
+   "path": "context.png",
+   "sha256": "302a029f900f9c08e881c6364f28c36084455788d64ec3ccd903eeb2db684463",
+   "size": 250949
+  },
+  {
+   "path": "difference.png",
+   "sha256": "d5452c12d2caf11e2b1cc4c74bb42a356eb3b362fa582acf251dc0ca796f7f27",
+   "size": 79786
+  },
+  {
+   "path": "dossier.json",
+   "sha256": "72adf4f71c0b2f2cafe8628e32251910f08d7d670fb415dbf42cc1862f729271",
+   "size": 82923
+  },
+  {
+   "path": "dossier.md",
+   "sha256": "8520a85954611cbdf7bdb1c005ab1c22a66e8c1c5f1cd7327ff8a10b946aa946",
+   "size": 13989
+  },
+  {
+   "path": "falsecolor_after.png",
+   "sha256": "a91b92a910d6c61af1b82187ebe0a1ae56b4f945e24ffae69c2be66f829ad8ca",
+   "size": 102686
+  },
+  {
+   "path": "falsecolor_before.png",
+   "sha256": "526a983b8c2dd9e2d2860cbfdd389d72e692ab06a2c8ba93791e935efe17981d",
+   "size": 104345
+  },
+  {
+   "path": "hires.png",
+   "sha256": "8fbabf9288f359d812b80ad0bd8d4a8cf25ac82534c33c22539d2636324a4733",
+   "size": 266244
+  },
+  {
+   "path": "thumb.png",
+   "sha256": "1e77d594aed62d80fc549235681daee293ff133ee8de83979f1c3a5b267f3075",
+   "size": 334744
+  },
+  {
+   "path": "timeseries.png",
+   "sha256": "b4b8654bcd19bc495c9903e1e9494d6fc71a6797220a87c21a4a8197797296d7",
+   "size": 91512
+  },
+  {
+   "path": "wayback_strip.png",
+   "sha256": "a7d1e73b162a45cda2a59f406bed6258c002334cf247282120125af0111ff0ec",
+   "size": 290013
+  }
+ ],
+ "hash": "sha256",
+ "manifest_sha256": "1e36319f927791c7e901841cf12c9c06e6767eaa7ae1f4d703bb21454b26f633",
+ "schema": "skywatch-manifest/1"
+}
